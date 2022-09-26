@@ -1,0 +1,21 @@
+.logo {
+    text-align: center;
+
+    user-select: none;
+}
+
+.logo h1,
+.logo p {
+    line-height: 120%;
+}
+
+.logo h1 {
+    font-size: clamp(1.875rem, 5vw, 2.5rem);
+    font-weight: 800;
+    color: var(--opaque-red);
+}
+
+.logo p {
+    font-size: clamp(1rem, 3vw, 1.125rem);
+    font-weight: 300;
+}
