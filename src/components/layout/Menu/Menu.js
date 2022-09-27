@@ -1,6 +1,6 @@
 import styles from "./Menu.module.css";
 
-import IconLogo from "../../../components/Logo/IconLogo/IconLogo";
+import IconLogo from "../../logo/IconLogo/IconLogo";
 import Home from "../../../assets/menuIcons/home.png";
 import List from "../../../assets/menuIcons/list.png";
 import Profile from "../../../assets/menuIcons/profile.png";

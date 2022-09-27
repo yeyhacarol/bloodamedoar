@@ -10,7 +10,8 @@
 
   --font: font-family: 'Poppins', sans-serif;
 
-  --button-size: width: clamp(35px, 35vw, 140px);
+  --default-button-size: width: clamp(80px, 50vw, 280px);
+  --df-button-size: width: clamp(35px, 35vw, 140px);
 }
 
 * {

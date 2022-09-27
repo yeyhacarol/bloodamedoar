@@ -1,9 +1,9 @@
-import Menu from "./components/layout/Menu/Menu";
+import Home from "./pages/Home/Home";
 
 const App = () => {
   return (
     <>
-      <Menu />
+      <Home />
     </>
   );
 };
