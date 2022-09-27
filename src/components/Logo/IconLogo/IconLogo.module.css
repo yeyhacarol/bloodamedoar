@@ -1,8 +1,9 @@
 .logo {
     display: flex;
+    align-items: center;
     gap: 5px;
 
-    /* position: absolute;
+/*     position: absolute;
     padding: 1.8% 0 0 3%; */
 
     user-select: none;
@@ -13,8 +14,8 @@
 }
 
 .logo img {
-    width: clamp(30px, 10vw, 50px);
-    height: clamp(30px, 10vw, 50px);
+    width: clamp(32px, 10vw, 50px);
+    height: clamp(32px, 10vw, 50px);
 }
 
 .brand h1,
@@ -23,7 +24,7 @@
 }
 
 .brand h1 {
-    font-size: clamp(1rem, 5vw, 1.625rem);
+    font-size: clamp(1.125rem, 5vw, 1.625rem);
     font-weight: 800;
     color: var(--opaque-red);
 }

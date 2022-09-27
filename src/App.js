@@ -1,5 +1,11 @@
+import Menu from "./components/layout/Menu/Menu";
+
 const App = () => {
-  return <></>;
+  return (
+    <>
+      <Menu />
+    </>
+  );
 };
 
 export default App;
