@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    user-select: none;
 }
 
 .button {
@@ -18,10 +20,6 @@
     border: none;
 
     cursor: pointer;
-}
-
-.button.custom_size {
-    width: clamp(35px, 35vw, 140px)
 }
 
 .already_has_registration {

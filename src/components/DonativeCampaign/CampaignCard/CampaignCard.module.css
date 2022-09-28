@@ -1,0 +1,78 @@
+.card_container {
+    width: 230px;
+    height: 330px;
+
+    border-radius: 10px;
+
+    background-image: url(../../../assets/blood-donation.jpg); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    user-select: none;
+}
+
+.card_container * {
+    transition: 0.3s ease all;
+}
+
+.card_container:hover .card_content {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.827),rgba(0, 0, 0, 0.8)), url(../../../assets/blood-donation.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card_content {
+    width: inherit;
+    height: inherit;
+
+    gap: 50px;
+    padding: 10px 10px;
+
+    border-radius: 10px;
+
+    transition: all 0.5s;
+
+    display: none;
+}
+
+.card_content h2,
+.card_content p {
+    text-align: center;
+    color: #fff;
+}
+
+.card_content h2 {
+    font-size: clamp(1rem, 5vw, 1.25rem);
+    font-weight: 500;
+}
+
+.card_content p {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.custom_button {
+    width: clamp(35px, 35vw, 140px);
+    background-color: transparent;
+    border: 1px solid #fff;
+
+    transition: all .5s;
+}
+
+.custom_button:hover {
+    background-color: var(--opaque-red);
+    border: none;
+}
+
+@media screen and (max-width: 1025px) {
+    .card_container {
+        width: 200px;
+        height: 300px;
+    }
+}

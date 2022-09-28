@@ -1,7 +1,9 @@
 import styles from "./Home.module.css";
 
 import Menu from "../../components/layout/Menu/Menu";
-import Submit from "../../components/form/Submit/Submit";
+import Header from "../../components/Header/Header";
+
+import CampaignCard from "../../components/DonativeCampaign/CampaignCard/CampaignCard";
 
 const Home = () => {
   return (
@@ -9,9 +11,20 @@ const Home = () => {
       <Menu />
 
       <div className={styles.home_content}>
-        <div className={styles.home_header}>
-          <Submit action="Entrar" />
-        </div>
+        <Header action="Entrar" />
+
+        <CampaignCard />
+        <CampaignCard />
+        <CampaignCard />
+        <CampaignCard />
+        <CampaignCard />
+        <CampaignCard />
+        <CampaignCard />
+        <CampaignCard />
+        <CampaignCard />
+        <CampaignCard />
+        <CampaignCard />
+        <CampaignCard />
       </div>
     </div>
   );

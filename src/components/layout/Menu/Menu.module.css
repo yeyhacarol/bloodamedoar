@@ -9,6 +9,8 @@
     align-items: center;
 
     border-right: 1.5px solid #D0D0D0;
+
+    user-select: none;
 }
 
 .menu {
@@ -85,7 +87,7 @@
 
     .container_menu {
         width: 100vw;
-        height: 100px;
+        height: 50px;
 
         padding: 0;
 
@@ -115,22 +117,7 @@
         display: flex;
         justify-content: center;
     }
-
-    .menu_item img {
-        width: 30px;
-        height: 30px;
-    }
     
-    .menu_item.list img {
-        width: 30px;
-        height: 35px;
-    }
-    
-    .menu_item.profile img {
-        width: 25px;
-        height: 30px;
-    }
-
     .copyright {
         display: none;
     }
