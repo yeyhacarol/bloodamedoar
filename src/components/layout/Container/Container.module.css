@@ -1,8 +1,14 @@
 .container {
-    width: calc(100vw - 240px);
+    width: calc(100vw - 290px);
     min-height: 250px;
     
     margin-bottom: 60px;
 
     border: 1.5px solid #d0d0d0;
+}
+
+@media screen and (max-width: 1025px) {
+    .container {
+        width: 100vw;
+    }
 }

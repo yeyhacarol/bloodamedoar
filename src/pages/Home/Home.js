@@ -12,7 +12,9 @@ const Home = () => {
       <div className={styles.home_content}>
         <Header action="Entrar" />
 
-        <CampaignSlider />
+        <div className={styles.content}>
+          <CampaignSlider />
+        </div>
       </div>
     </div>
   );
