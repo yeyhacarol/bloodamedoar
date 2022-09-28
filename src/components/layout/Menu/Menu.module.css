@@ -10,6 +10,7 @@
 
     border-right: 1.5px solid #D0D0D0;
 
+    z-index: 9999;
     user-select: none;
 }
 

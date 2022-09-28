@@ -1,0 +1,8 @@
+.container {
+    width: calc(100vw - 240px);
+    min-height: 250px;
+    
+    margin-bottom: 60px;
+
+    border: 1.5px solid #d0d0d0;
+}
