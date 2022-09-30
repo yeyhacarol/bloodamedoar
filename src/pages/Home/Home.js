@@ -2,8 +2,8 @@ import styles from "./Home.module.css";
 
 import Menu from "../../components/layout/Menu/Menu";
 import Header from "../../components/Header/Header";
-import CampaignSlider from "../../components/DonativeCampaign/CampaignSlider/CampaignSlider";
-import ListItem from "../../components/ListItem/ListItem";
+import CampaignSlider from "../../components/donativeCampaign/CampaignSlider/CampaignSlider";
+import List from "../../components/list/List/List";
 
 const Home = () => {
   return (
@@ -16,7 +16,7 @@ const Home = () => {
         <div className={styles.content}>
           <CampaignSlider />
 
-          <ListItem />
+          <List />
         </div>
       </div>
     </div>
