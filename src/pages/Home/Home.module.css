@@ -2,6 +2,11 @@
     display: flex;
 }
 
+.home_content {
+    position: absolute;
+    right: 0;
+}
+
 .content {
     padding-left: 50px;
 }

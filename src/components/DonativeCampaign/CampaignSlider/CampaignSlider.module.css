@@ -1,10 +1,3 @@
-h3 {
-    font-size: clamp(1rem, 5vw, 1.125em);
-    font-weight: 500;
-
-    padding: 20px 0 20px 45px;
-}
-
 .slider {
     margin-bottom: 20px;
     overflow-x: hidden;
@@ -56,6 +49,13 @@ h3 {
 } 
 
 
+@media screen and (max-width: 1025px) {
+    .slider_item {
+        width: 200px;
+        height: 300px;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .arrow_left,
     .arrow_right {
@@ -70,5 +70,9 @@ h3 {
 
     .slider::-webkit-scrollbar {
         height: 0;
+    }
+
+    .slider_content {
+        padding: 0px 25px;
     }
 }

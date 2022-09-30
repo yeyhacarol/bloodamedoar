@@ -32,9 +32,7 @@ const CompaignSlider = () => {
   };
 
   return (
-    <Container customClass={styles.container}>
-      <h3>Campanhas</h3>
-
+    <Container title="Campanhas" customClass={styles.container}>
       <div className={styles.arrow_left} onClick={handleLeftArrow}>
         <IoIosArrowBack size={45} color="#fff" />
       </div>
@@ -46,7 +44,7 @@ const CompaignSlider = () => {
       <div className={styles.slider}>
         <div
           className={styles.slider_content}
-          style={{ marginLeft: scrollX, width: 8 * 330 }}
+          style={{ marginLeft: scrollX, width: 8 * 390 }}
         >
           <div className={styles.slider_item}>
             <CampaignCard />

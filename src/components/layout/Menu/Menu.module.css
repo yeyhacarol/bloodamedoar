@@ -4,6 +4,8 @@
 
     padding-top: 30px;
 
+    position: fixed;
+
     display: flex;
     flex-direction: column;
     align-items: center;

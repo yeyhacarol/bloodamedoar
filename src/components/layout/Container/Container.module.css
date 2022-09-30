@@ -5,10 +5,25 @@
     margin-bottom: 60px;
 
     border: 1.5px solid #d0d0d0;
+
+    user-select: none;
+}
+
+.container h3 {
+    font-size: clamp(1rem, 5vw, 1.125em);
+    font-weight: 600;
+
+    padding: 20px 0 20px 45px;
 }
 
 @media screen and (max-width: 1025px) {
     .container {
         width: 100vw;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .container h3 {
+        padding: 20px 0 20px 25px;
     }
 }
