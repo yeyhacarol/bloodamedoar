@@ -1,5 +1,5 @@
 .container_menu {
-    width: 224px;
+    width: 240px;
     height: 100vh;
 
     padding-top: 30px;
@@ -11,6 +11,7 @@
     align-items: center;
 
     border-right: 1.5px solid #D0D0D0;
+    background-color: #fff;
 
     z-index: 9999;
     user-select: none;

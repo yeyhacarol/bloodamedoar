@@ -11,6 +11,83 @@
     padding-left: 50px;
 }
 
+.requirements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.requirements h2 {
+    font-size: clamp(1.125rem, 5vw, 1.375rem);
+    font-weight: 600;
+
+    margin-bottom: 10px;
+}
+
+.see_requirements,
+.see_impediments {
+    height: 80vh;
+}
+
+.see_requirements h3,
+.see_impediments h3 {
+    text-align: center;
+
+    font-size: clamp(1rem, 5vw, 1.125rem);
+    font-weight: 300;
+
+    margin-bottom: 50px;
+}
+
+.see_requirements h3 span {
+    color: #0A9207;
+}
+
+.requirements_bloobs {
+    width: 80vw;
+
+    display: flex;
+}
+
+.first_req,
+.second_req,
+.third_req,
+.fourty_req {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.first_req img
+.second_req img,
+.third_req img,
+.fourty_req img {
+    position: relative;
+}
+
+.first_req p,
+.second_req p,
+.third_req p,
+.fourty_req p {
+    text-align: center;
+
+    position: absolute;
+}
+
+.first_req p,
+.third_req p,
+.fourty_req p {
+    width: 25%;
+}
+.second_req p {
+    width: 100%;
+}
+
+.see_impediments h3 span {
+    color: #920707;
+}
+
+
 @media screen and (max-width: 1025px) {
     .content {
         padding-left: 0;

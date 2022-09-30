@@ -2,7 +2,7 @@
     width: 100%;
     min-height: 120px;
 
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     padding: 25px 15px;
     gap: 15px;
 
@@ -14,9 +14,10 @@
 }
 
 .list_item_content {
+    width: 90%;
+
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 15px;
 }
 
@@ -37,6 +38,7 @@
 
 .list_item_data h4 {
     font-size: clamp(0.875rem, 2vw, 1.125rem);
+    font-weight: 600;
 }
 
 .list_item_data p {

@@ -7,6 +7,8 @@ import styles from "./CampaignSlider.module.css";
 import Container from "../../layout/Container/Container";
 import CampaignCard from "../CampaignCard/CampaignCard";
 
+import background from "../../../assets/blood-donation.jpg";
+
 const CompaignSlider = () => {
   const [scrollX, setScrollX] = useState(0);
 
@@ -31,6 +33,8 @@ const CompaignSlider = () => {
     setScrollX(scroll);
   };
 
+  /* CONSUMIR API E PASSAR DADOS DINÂMICOS */
+
   return (
     <Container title="Campanhas" customClass={styles.container}>
       <div className={styles.arrow_left} onClick={handleLeftArrow}>
@@ -44,31 +48,28 @@ const CompaignSlider = () => {
       <div className={styles.slider}>
         <div
           className={styles.slider_content}
-          style={{ marginLeft: scrollX, width: 8 * 390 }}
+          style={{ marginLeft: scrollX, width: 3 * 390 }}
         >
           <div className={styles.slider_item}>
-            <CampaignCard />
+            <CampaignCard
+              background={background}
+              title="SEJA O HERÓI DE ALGÚEM!"
+              catchphrase="Doe sangue e seja o herói de alguém."
+            />
           </div>
           <div className={styles.slider_item}>
-            <CampaignCard />
+            <CampaignCard
+              background={background}
+              title="SEJA O HERÓI DE ALGÚEM!"
+              catchphrase="Doe sangue e seja o herói de alguém."
+            />
           </div>
           <div className={styles.slider_item}>
-            <CampaignCard />
-          </div>
-          <div className={styles.slider_item}>
-            <CampaignCard />
-          </div>
-          <div className={styles.slider_item}>
-            <CampaignCard />
-          </div>
-          <div className={styles.slider_item}>
-            <CampaignCard />
-          </div>
-          <div className={styles.slider_item}>
-            <CampaignCard />
-          </div>
-          <div className={styles.slider_item}>
-            <CampaignCard />
+            <CampaignCard
+              background={background}
+              title="SEJA O HERÓI DE ALGÚEM!"
+              catchphrase="Doe sangue e seja o herói de alguém."
+            />
           </div>
         </div>
       </div>

@@ -1,12 +1,16 @@
-import Submit from "../../form/Submit/Submit";
 import styles from "./CampaignCard.module.css";
 
-const CampaignCard = () => {
+import Submit from "../../form/Submit/Submit";
+
+const CampaignCard = ({ background, title, catchphrase }) => {
   return (
-    <div className={styles.card_container}>
+    <div
+      className={styles.card_container}
+      style={{ backgroundImage: `url(${background})` }}
+    >
       <div className={styles.card_content}>
-        <h2>SEJA UM HERÓI</h2>
-        <p>Estenda a mão para um ato solidário.</p>
+        <h2>{title}</h2>
+        <p>{catchphrase}</p>
         <Submit customClass={styles.custom_button} action="Ver mais" />
       </div>
     </div>

@@ -5,7 +5,7 @@ import Home from "../../../assets/menuIcons/home.png";
 import List from "../../../assets/menuIcons/list.png";
 import Profile from "../../../assets/menuIcons/profile.png";
 
-const Menu = ({ label }) => {
+const Menu = ({ label, alt, title }) => {
   return (
     <div className={styles.container_menu}>
       <div className={styles.logo}>
@@ -18,12 +18,8 @@ const Menu = ({ label }) => {
           <p>Página inicial</p>
         </div>
         <div className={`${styles.menu_item} ${styles.list}`}>
-          <img
-            src={List}
-            alt="Lista de hemocentros"
-            title="Lista de hemocentros"
-          />
-          <p>Hemocentros</p>
+          <img src={List} alt={alt} title={title} />
+          <p>{label}</p>
         </div>
         <div className={`${styles.menu_item} ${styles.profile}`}>
           <img src={Profile} alt="Perfil" title="Perfil" />
