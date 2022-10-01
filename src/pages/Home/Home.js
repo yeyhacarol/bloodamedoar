@@ -5,6 +5,13 @@ import req2 from "../../assets/bloobs/req-2.svg";
 import req3 from "../../assets/bloobs/req-3.svg";
 import req4 from "../../assets/bloobs/req-4.svg";
 
+import imp1 from "../../assets/bloobs/imp-1.svg";
+import imp2 from "../../assets/bloobs/imp-2.svg";
+import imp3 from "../../assets/bloobs/imp-3.svg";
+import imp4 from "../../assets/bloobs/imp-4.svg";
+import imp5 from "../../assets/bloobs/imp-5.svg";
+import imp6 from "../../assets/bloobs/imp-6.svg";
+
 import Menu from "../../components/layout/Menu/Menu";
 import Header from "../../components/Header/Header";
 import CampaignSlider from "../../components/donativeCampaign/CampaignSlider/CampaignSlider";
@@ -26,13 +33,12 @@ const Home = () => {
           <CampaignSlider />
 
           <List />
-
           <section className={styles.requirements}>
             <h2>Quer saber como doar?</h2>
-            <h3>
-              Veja os <span>requisitos</span>
-            </h3>
             <div className={styles.see_requirements}>
+              <h3>
+                Veja os <span>requisitos</span>
+              </h3>
               <div className={styles.requirements_bloobs}>
                 <div className={styles.first_req}>
                   <img
@@ -63,7 +69,7 @@ const Home = () => {
                     antes dos 60 anos.
                   </p>
                 </div>
-                <div className={styles.fourty_req}>
+                <div className={styles.fourth_req}>
                   <img
                     src={req4}
                     alt="Homens podem doar até 4 vezes no ano em um período de 2 meses, já as mulheres podem doar até 3 vezes no ano a cada 3 meses."
@@ -76,12 +82,131 @@ const Home = () => {
                 </div>
               </div>
             </div>
+
             <div className={styles.see_impediments}>
               <h3>
                 Veja os <span>impeditivos</span>
               </h3>
+              <div className={styles.impediments_bloobs}>
+                <div className={styles.first_imp}>
+                  <img src={imp1} alt="Resfriados e sintomas de gripe." />
+                  <p>Resfriados e sintomas de gripe.</p>
+                </div>
+                <div className={styles.second_imp}>
+                  <img
+                    src={imp2}
+                    alt="Gravidez, 90 dias após parto normal e 180 dias após cesariana, amamentação (se o parto ocorreu há menos de 12 meses)."
+                  />
+                  <p>
+                    Gravidez, 90 dias após parto normal e 180 dias após
+                    cesariana, amamentação (se o parto ocorreu há menos de 12
+                    meses).
+                  </p>
+                </div>
+                <div className={styles.third_imp}>
+                  <img src={imp3} alt="Procedimentos endoscópicos." />
+                  <p>Procedimentos endoscópicos.</p>
+                </div>
+                <div className={styles.fourth_imp}>
+                  <img
+                    src={imp4}
+                    alt="Procedimentos dentários: extração dentária (verificar uso de medicação) ou tratamento de canal (verificar medicação). Cirurgia odontológica com anestesia geral."
+                  />
+                  <p>
+                    Procedimentos dentários: extração dentária (verificar uso de
+                    medicação) ou tratamento de canal (verificar medicação).
+                    Cirurgia odontológica com anestesia geral.
+                  </p>
+                </div>
+                <div className={styles.fifth_imp}>
+                  <img src={imp5} alt="Vacinações de vários tipos." />
+                  <p>Vacinações de vários tipos.</p>
+                </div>
+                <div className={styles.sixth_imp}>
+                  <img
+                    src={imp6}
+                    alt="Tatuagem, maquiagem definitiva e micropigmentação de 6 a 12 meses."
+                  />
+                  <p>
+                    Tatuagem, maquiagem definitiva e micropigmentação de 6 a 12
+                    meses.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.gov.br/saude/pt-br/composicao/saes/sangue#:~:text=Quais%20s%C3%A3o%20os%20requisitos%20para,com%20consentimento%20formal%20dos%20respons%C3%A1veis."
+            >
+              Ver todos hemocentros
+            </a>
+          </section>
 
-              <div className={styles.impediments_bloobs}></div>
+          <section className={styles.step_by_step}>
+            <h2>
+              Veja o passo a passo de como a doação é feita depois do
+              agendamento e o pós-doação
+            </h2>
+            <div className={styles.top}>
+              <div className={styles.step}>
+                <h4>VOTO DE AUTOEXCLUSÃO</h4>
+                <div className={styles.step_content}>
+                  <p>
+                    Visando máxima segurança para o paciente que receberá
+                    transfusão de seu sangue, se ao final da análise da triagem
+                    você for considerado apto para doação, mas não tiver
+                    respondido algumas questões confidenciais, haverá a
+                    oportunidade íntima de você indicar que seu sangue não
+                    deverá ser utilizado em transfusão. Esta oportunidade
+                    chama-se “Voto de Autoexclusão”.
+                  </p>
+                </div>
+              </div>
+              <div className={styles.step}>
+                <h4>VOTO DE AUTOEXCLUSÃO</h4>
+                <div className={styles.step_content}>
+                  <p>
+                    Visando máxima segurança para o paciente que receberá
+                    transfusão de seu sangue, se ao final da análise da triagem
+                    você for considerado apto para doação, mas não tiver
+                    respondido algumas questões confidenciais, haverá a
+                    oportunidade íntima de você indicar que seu sangue não
+                    deverá ser utilizado em transfusão. Esta oportunidade
+                    chama-se “Voto de Autoexclusão”.
+                  </p>
+                </div>
+              </div>
+              <div className={styles.step}>
+                <h4>VOTO DE AUTOEXCLUSÃO</h4>
+                <div className={styles.step_content}>
+                  <p>
+                    Visando máxima segurança para o paciente que receberá
+                    transfusão de seu sangue, se ao final da análise da triagem
+                    você for considerado apto para doação, mas não tiver
+                    respondido algumas questões confidenciais, haverá a
+                    oportunidade íntima de você indicar que seu sangue não
+                    deverá ser utilizado em transfusão. Esta oportunidade
+                    chama-se “Voto de Autoexclusão”.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className={styles.bottom}>
+              <div className={styles.step}>
+                <h4>VOTO DE AUTOEXCLUSÃO</h4>
+                <div className={styles.step_content}>
+                  <p>
+                    Visando máxima segurança para o paciente que receberá
+                    transfusão de seu sangue, se ao final da análise da triagem
+                    você for considerado apto para doação, mas não tiver
+                    respondido algumas questões confidenciais, haverá a
+                    oportunidade íntima de você indicar que seu sangue não
+                    deverá ser utilizado em transfusão. Esta oportunidade
+                    chama-se “Voto de Autoexclusão”.
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
         </div>
