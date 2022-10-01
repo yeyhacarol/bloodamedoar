@@ -29,11 +29,10 @@ const Home = () => {
 
           <section className={styles.requirements}>
             <h2>Quer saber como doar?</h2>
+            <h3>
+              Veja os <span>requisitos</span>
+            </h3>
             <div className={styles.see_requirements}>
-              <h3>
-                Veja os <span>requisitos</span>
-              </h3>
-
               <div className={styles.requirements_bloobs}>
                 <div className={styles.first_req}>
                   <img
