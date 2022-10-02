@@ -2,20 +2,15 @@
 
 }
 
-.home_content,
-.content {
-    position: absolute;
-    right: 0;
-}
-
-.content {   
-    padding-left: 50px;
+.home_content {   
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .requirements {
-    width: 100%;
+    width: calc(100vw - 255px);
 
-    padding-right: 50px;
     margin-bottom: 100px;
 
     display: flex;
@@ -49,7 +44,7 @@
 
 .see_requirements,
 .see_impediments {
-    width: 100%;
+    width: inherit;
 
     display: flex;
     flex-direction: column;
@@ -197,7 +192,7 @@
 }
 
 .step_by_step {
-    width: 100%;
+    width: calc(100vw - 240px);
     min-height: 500px;
 
     padding: 20px 20px 20px 40px;
@@ -243,7 +238,7 @@
 }
 
 .top {
-    width: inherit;
+    width: 100%;
     min-height: 200px;
 
     margin-bottom: 10px;
@@ -275,7 +270,7 @@
 }
 
 .step_content {
-    width: inherit;
+    width: 100%;
     min-height: 200px;
 
     padding: 0 8px;

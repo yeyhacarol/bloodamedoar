@@ -1,0 +1,38 @@
+footer {
+    width: calc(100vw - 240px);
+    height: 150px;
+
+    padding: 0 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-top: 1.5px solid #d0d0d0;
+}
+
+.follow_us {
+    width: 30%;
+
+    gap: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social_media {
+    display: flex;
+    gap: 10px;   
+}
+
+footer p,
+.copyright p {
+    font-size: clamp(0.875rem, 1vw, 1rem);
+}
+
+.copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
