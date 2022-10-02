@@ -17,7 +17,7 @@ const List = () => {
           address="Universidade Estadual de Campinas - R. Carlos Chagas, 480 - Cidade Universitária, Campinas - SP, 13083-878"
         />
       </div>
-      <a href="#">Ver todos hemocentros.</a>
+      <a href="/">Ver todos hemocentros.</a>
     </Container>
   );
 };

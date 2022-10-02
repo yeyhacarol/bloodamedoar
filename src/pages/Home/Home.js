@@ -20,6 +20,7 @@ import Menu from "../../components/layout/Menu/Menu";
 import Header from "../../components/Header/Header";
 import CampaignSlider from "../../components/donativeCampaign/CampaignSlider/CampaignSlider";
 import List from "../../components/list/List/List";
+import ContactUs from "../../components/forms/ContactUs/ContactUs";
 
 const Home = () => {
   return (
@@ -227,6 +228,8 @@ const Home = () => {
               </div>
             </div>
           </section>
+
+          <ContactUs />
         </div>
       </div>
     </div>
