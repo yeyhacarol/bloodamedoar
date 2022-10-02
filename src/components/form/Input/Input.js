@@ -11,7 +11,7 @@ const Input = ({
   mask,
   label,
   error,
-  errorMessage,
+  errorMessage = "Campo obrigatório.",
   name,
   value,
   handleOnChange,
@@ -23,42 +23,28 @@ const Input = ({
   };
 
   return (
-    <>
+    <div className={styles.input_container}>
       {mask ? (
-        <div className={styles.input_container}>
-          <IMaskInput
-            className={styles.input}
-            placeholder={placeholder}
-            mask={mask}
-            name={name}
-            value={value}
-            onAccept={(value) => handleOnChange(value, name)}
-          />
-          {error && (
-            <span className={styles.error_message}>
-              <MdErrorOutline /> {errorMessage}
-            </span>
-          )}
-        </div>
+        <IMaskInput
+          className={styles.input}
+          placeholder={placeholder}
+          mask={mask}
+          name={name}
+          value={value}
+          onAccept={(value) => handleOnChange(value, name)}
+        />
       ) : (
         <>
           {type === "password" ? (
-            <div className={styles.password_input}>
-              <div className={styles.input_container}>
-                <input
-                  className={styles.input}
-                  type={passwordShown ? "text" : "password"}
-                  placeholder={placeholder}
-                  name={name}
-                  value={value}
-                  onChange={(e) => handleOnChange(e.target.value, name)}
-                />
-                {error && (
-                  <span className={styles.error_message}>
-                    <MdErrorOutline /> {errorMessage}
-                  </span>
-                )}
-              </div>
+            <div className={styles.input_container}>
+              <input
+                className={styles.input}
+                type={passwordShown ? "text" : "password"}
+                placeholder={placeholder}
+                name={name}
+                value={value}
+                onChange={(e) => handleOnChange(e.target.value, name)}
+              />
               {passwordShown ? (
                 <AiOutlineEye
                   size={25}
@@ -85,27 +71,25 @@ const Input = ({
                   <label htmlFor="mark">{label}</label>
                 </div>
               ) : (
-                <div className={styles.input_container}>
-                  <input
-                    className={styles.input}
-                    type={type}
-                    placeholder={placeholder}
-                    name={name}
-                    value={value}
-                    onChange={(e) => handleOnChange(e.target.value, name)}
-                  />
-                  {error && (
-                    <span className={styles.error_message}>
-                      <MdErrorOutline /> {errorMessage}
-                    </span>
-                  )}
-                </div>
+                <input
+                  className={styles.input}
+                  type={type}
+                  placeholder={placeholder}
+                  name={name}
+                  value={value}
+                  onChange={(e) => handleOnChange(e.target.value, name)}
+                />
               )}
             </>
           )}
+          {error && (
+            <span className={styles.error_message}>
+              <MdErrorOutline size={20} /> {errorMessage}
+            </span>
+          )}
         </>
       )}
-    </>
+    </div>
   );
 };
 

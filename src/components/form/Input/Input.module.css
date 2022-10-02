@@ -94,3 +94,11 @@ input[type="checkbox"]:checked::before {
 .remember_pwd label {
     font-size: clamp(0.875rem, 3vw, 1rem);
 }
+
+.error_message {
+    padding-top: 5px;
+    gap: 5px;
+
+    display: flex;
+    align-items: center;
+}
