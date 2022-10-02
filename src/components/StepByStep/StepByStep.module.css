@@ -1,0 +1,113 @@
+.step_by_step {
+    width: calc(100vw - 240px);
+    min-height: 500px;
+
+    padding: 20px 20px 20px 40px;
+    margin-bottom: 100px;
+
+/*     position: absolute;
+    right: 0; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: rgba(232, 166, 166, 0.5);
+
+    user-select: none;
+}
+
+.step_by_step h2 {
+    font-size: clamp(1rem, 3vw, 1.175rem);
+    font-weight: 600;
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.step_by_step img {
+    width: clamp(20px, 2vw, 30px);
+
+    position: absolute;
+}
+
+.step_by_step .next_step.first_step {
+    top: 50%;
+    left: 32%;
+}
+.step_by_step .next_step.second_step {
+    top: 50%;
+    left: 65.9%;
+}
+.step_by_step .next_step.third_step {
+    top: -8px;
+    right: 15%;
+}
+
+.top {
+    width: 100%;
+    min-height: 200px;
+
+    margin-bottom: 10px;
+    gap: 10px;
+
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+}
+
+.top .step,
+.bottom .step {
+    width: inherit;
+    height: inherit;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom {
+    position: relative;
+}
+
+.bottom .step_content {
+    min-height: 150px;
+}
+
+.step_content {
+    width: 100%;
+    min-height: 200px;
+
+    padding: 0 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.step_content p,
+.step h4 {
+    font-size: clamp(0.75rem, 1vw, 1rem);
+    text-align: justify;
+}
+
+@media screen and (max-width: 1025px) {
+    .step_by_step {
+        width: 100vw;
+
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .step_by_step {
+        display: none;
+    }
+}

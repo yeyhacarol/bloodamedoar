@@ -7,7 +7,7 @@
 }
 
 .button {
-    width: clamp(80px, 50vw, 280px);
+    width: clamp(100px, 25vw, 280px);
     height: clamp(45px, 10vw, 55px);
     
     font-size: clamp(1rem, 4vw, 1.375rem);

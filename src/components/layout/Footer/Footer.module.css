@@ -9,6 +9,8 @@ footer {
     justify-content: center;
 
     border-top: 1.5px solid #d0d0d0;
+
+    user-select: none;
 }
 
 .follow_us {
@@ -35,4 +37,11 @@ footer p,
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+@media screen and (max-width: 1025px) {
+    footer {
+        width: 100vw;
+        height: 200px;
+    }
 }

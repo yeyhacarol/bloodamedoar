@@ -1,5 +1,5 @@
 .input_container {
-    width: clamp(200px, 30vw, 450px);
+    width: clamp(230px, 35vw, 450px);
     height: clamp(45px, 10vw, 55px);
 
     display: flex;

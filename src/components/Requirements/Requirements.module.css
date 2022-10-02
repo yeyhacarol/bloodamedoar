@@ -1,0 +1,172 @@
+.requirements {
+    width: calc(100vw - 255px);
+
+    margin-bottom: 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    user-select: none;
+}
+
+.requirements h2 {
+    font-size: clamp(1rem, 3vw, 1.175rem);
+    font-weight: 600;
+
+    margin-bottom: 10px;
+}
+
+.see_requirements h3,
+.see_impediments h3 {
+    font-size: clamp(1rem, 5vw, 1.125rem);
+    font-weight: 300;
+
+    margin-bottom: 45px;
+}
+
+.see_requirements h3 span {
+    color:  var(--green);
+}
+.see_impediments h3 span {
+    color: var(--red);
+}
+
+.see_requirements,
+.see_impediments {
+    width: inherit;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.requirements_bloobs,
+.impediments_bloobs {
+    width: inherit;
+
+    position: relative;
+}
+
+.requirements_bloobs {
+    height: clamp(500px, 50vw, 730px);
+}
+.impediments_bloobs {
+    height: clamp(470px, 40vw, 680px);
+}
+
+.requirements .req,
+.requirements .imp {
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.first_req,
+.first_imp {
+    left: 0;
+    top: 0;
+}
+
+.second_req {
+    left: 20%;
+    top: 195px;
+}
+
+.third_req {
+    right: 23%;
+    top: 0;
+}
+.fourth_req {
+    right: 0;
+    top: 195px;
+}
+
+.second_imp,
+.fourth_imp,
+.sixth_imp {
+    top: 50px;
+}
+
+.first_imp,
+.third_imp,
+.fifth_imp {
+    z-index: 3;
+}
+.second_imp,
+.sixth_imp {
+    z-index: 2;
+}
+
+.second_imp {
+    left: 0;
+}
+
+.third_imp {
+    left: 55%;
+    top: 0;
+}
+
+.fourth_imp {
+    right: 0;
+    left: 0;
+    top: 185px;
+}
+
+.fifth_imp {
+    right: 15%;
+    top: 325px;
+}
+
+.sixth_imp {
+    right: 0px;
+}
+
+.requirements img {
+    width: clamp(250px, 26vw, 430px);
+} 
+
+.first_imp img,
+.third_imp img,
+.fifth_imp img {
+    width: clamp(130px, 10vw, 200px);
+} 
+
+.requirements p {
+    width: 85%;
+
+    position: absolute;
+
+    font-size: clamp(0.875rem, 1vw, 1.125rem);
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+}
+
+.fourth_imp p {
+    width: 22%;
+}
+
+.requirements a {
+    align-self: flex-end;
+    padding-right: 50px;
+
+    font-size: clamp(0.875rem, 1vw, 1.125rem);
+    color: #000;
+}
+
+@media screen and (max-width: 1025px) {
+    .requirements {
+        width: 100vw;
+
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .requirements {
+        display: none;
+    }
+}
