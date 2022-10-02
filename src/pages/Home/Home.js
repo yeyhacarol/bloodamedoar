@@ -12,6 +12,10 @@ import imp4 from "../../assets/bloobs/imp-4.svg";
 import imp5 from "../../assets/bloobs/imp-5.svg";
 import imp6 from "../../assets/bloobs/imp-6.svg";
 
+import lfdownArrow from "../../assets/arrow/left-arrow-down.svg";
+import lfupArrow from "../../assets/arrow/left-arrow-up.svg";
+import downArrow from "../../assets/arrow/down-arrow.svg";
+
 import Menu from "../../components/layout/Menu/Menu";
 import Header from "../../components/Header/Header";
 import CampaignSlider from "../../components/donativeCampaign/CampaignSlider/CampaignSlider";
@@ -161,6 +165,11 @@ const Home = () => {
                     deverá ser utilizado em transfusão.
                   </p>
                 </div>
+                <img
+                  className={`${styles.next_step} ${styles.first_step}`}
+                  src={lfdownArrow}
+                  alt="Próximo passo"
+                />
               </div>
               <div className={styles.step}>
                 <h4>VOTO DE AUTOEXCLUSÃO</h4>
@@ -174,6 +183,11 @@ const Home = () => {
                   </p>
                 </div>
               </div>
+              <img
+                className={`${styles.next_step} ${styles.second_step}`}
+                src={lfupArrow}
+                alt="Próximo passo"
+              />
               <div className={styles.step}>
                 <h4>DESCANSO E LANCHE</h4>
                 <div className={styles.step_content}>
@@ -188,6 +202,11 @@ const Home = () => {
               </div>
             </div>
             <div className={styles.bottom}>
+              <img
+                className={`${styles.next_step} ${styles.third_step}`}
+                src={downArrow}
+                alt="Próximo passo"
+              />
               <div className={styles.step}>
                 <h4>EXAMES</h4>
                 <div className={styles.step_content}>

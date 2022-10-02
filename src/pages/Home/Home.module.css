@@ -2,15 +2,13 @@
 
 }
 
-.home_content {
+.home_content,
+.content {
     position: absolute;
     right: 0;
 }
 
 .content {   
-    position: absolute;
-    right: 0;
-
     padding-left: 50px;
 }
 
@@ -28,7 +26,7 @@
 }
 
 .requirements h2 {
-    font-size: clamp(1.125rem, 5vw, 1.275rem);
+    font-size: clamp(1rem, 3vw, 1.175rem);
     font-weight: 600;
 
     margin-bottom: 10px;
@@ -200,32 +198,57 @@
 
 .step_by_step {
     width: 100%;
-    min-height: 600px;
+    min-height: 500px;
 
-    padding: 25px;
+    padding: 20px 20px 20px 40px;
+
+    position: absolute;
+    right: 0;
 
     display: flex;
     flex-direction: column;
     align-items: center;
 
     background-color: rgba(232, 166, 166, 0.5);
+
+    user-select: none;
 }
 
 .step_by_step h2 {
-    font-size: clamp(1.125rem, 3vw, 1.275rem);
+    font-size: clamp(1rem, 3vw, 1.175rem);
     font-weight: 600;
     text-align: center;
 
     margin-bottom: 30px;
 }
 
+.step_by_step img {
+    width: clamp(20px, 2vw, 30px);
+
+    position: absolute;
+}
+
+.step_by_step .next_step.first_step {
+    top: 50%;
+    left: 32%;
+}
+.step_by_step .next_step.second_step {
+    top: 50%;
+    left: 65.9%;
+}
+.step_by_step .next_step.third_step {
+    top: -3px;
+    right: 15%;
+}
+
 .top {
     width: inherit;
-    min-height: 250px;
+    min-height: 200px;
 
-    margin-bottom: 30px;
+    gap: 10px;
 
-    gap: 20px;    
+    position: relative;
+
     display: flex;
     justify-content: center;
 }
@@ -241,15 +264,19 @@
     align-items: center;
 }
 
+.bottom {
+    position: relative;
+}
+
 .bottom .step_content {
     min-height: 150px;
 }
 
 .step_content {
     width: inherit;
-    min-height: 250px;
+    min-height: 200px;
 
-    padding: 10px;
+    padding: 0 8px;
 
     display: flex;
     flex-direction: column;
@@ -258,13 +285,14 @@
 
     border-radius: 10px;
     background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .step_content p,
 .step h4 {
-    font-size: clamp(0.875rem, 1vw, 1rem);
+    font-size: clamp(0.75rem, 1vw, 1rem);
     text-align: justify;
-}
+} 
 
 @media screen and (max-width: 1200px) {
     .see_requirements,
@@ -275,5 +303,13 @@
 @media screen and (max-width: 1025px) {
     .requirements {
         padding-right: 0;
+    }
+    .requirements a {
+        padding-right: 20px;
+    }
+    .step_by_step {
+        padding: 20px;
+
+        position: relative;
     }
 }
