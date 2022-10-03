@@ -11,9 +11,7 @@ const Menu = ({ label, alt, title }) => {
   return (
     <div className={styles.container_menu}>
       <div className={styles.logo}>
-        <Link to="/">
-          <IconLogo />
-        </Link>
+        <IconLogo />
       </div>
 
       <nav className={styles.menu}>

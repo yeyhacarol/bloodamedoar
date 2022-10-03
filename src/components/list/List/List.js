@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./List.module.css";
 
 import Container from "../../layout/Container/Container";
@@ -15,9 +16,12 @@ const List = () => {
           logo={logo}
           name="Hemocentro Campinas"
           address="Universidade Estadual de Campinas - R. Carlos Chagas, 480 - Cidade Universitária, Campinas - SP, 13083-878"
+          link="/seebloodcenter"
         />
       </div>
-      <a href="/">Ver todos hemocentros.</a>
+      <Link to="/seeallbloodcenters" className={styles.bloodcenters}>
+        Ver todos hemocentros.
+      </Link>
     </Container>
   );
 };

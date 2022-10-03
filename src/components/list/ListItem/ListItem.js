@@ -1,8 +1,8 @@
 import styles from "./ListItem.module.css";
 
-import Submit from "../../form/Submit/Submit";
+import Button from "../../layout/Button/Button";
 
-const ListItem = ({ logo, name, address }) => {
+const ListItem = ({ logo, name, address, link }) => {
   return (
     <div className={styles.list_item_container}>
       <div className={styles.list_item_content}>
@@ -12,7 +12,11 @@ const ListItem = ({ logo, name, address }) => {
           <p>{address}</p>
         </div>
       </div>
-      <Submit customClass={styles.custom_button} action="Ver mais" />
+      <Button
+        customClass={styles.custom_button}
+        action="Ver mais"
+        link={link}
+      />
     </div>
   );
 };

@@ -3,14 +3,9 @@
     align-items: center;
     gap: 5px;
 
-/*     position: absolute;
-    padding: 1.8% 0 0 3%; */
+    text-decoration: none;
 
     user-select: none;
-}
-
-.brand {
-    text-align: center;
 }
 
 .logo img {
@@ -32,4 +27,6 @@
 .brand p {
     font-size: clamp(0.75rem, 3vw, 1rem);
     font-weight: 300;
+    color: #000;
+    text-align: center;
 }

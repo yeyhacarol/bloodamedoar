@@ -11,33 +11,30 @@
     border-bottom: 1.5px solid #D0D0D0;
 }
 
-.span_header {
-    width: 100%;
-}
-
-.submit_header {
-    width: 100%;
-
-    display: flex;
-    justify-content: flex-end;
+.logo {
+    opacity: 0;
 }
 
 .header_container span {
+    width: 100%;
+    
     font-size: clamp(0.875rem, 2vw, 1.063rem);
     font-weight: 600;
 }
 
-.header {
+.button {
+    width: 100%;
+
     display: flex;
     justify-content: flex-end;
-}
-
-.custom_button {
-    width: clamp(35px, 35vw, 140px) !important;
 }
 
 @media screen and (max-width: 1025px) {
     .header_container {
         width: 100vw;
+    }
+
+   .logo {
+        opacity: 1;
     }
 }

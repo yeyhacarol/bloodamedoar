@@ -1,6 +1,6 @@
 import styles from "./CampaignCard.module.css";
 
-import Submit from "../../form/Submit/Submit";
+import Button from "../../layout/Button/Button";
 
 const CampaignCard = ({ background, title, catchphrase }) => {
   return (
@@ -11,7 +11,11 @@ const CampaignCard = ({ background, title, catchphrase }) => {
       <div className={styles.card_content}>
         <h2>{title}</h2>
         <p>{catchphrase}</p>
-        <Submit customClass={styles.custom_button} action="Ver mais" />
+        <Button
+          customClass={styles.custom_button}
+          action="Ver mais"
+          link="/seemorecampaign"
+        />
       </div>
     </div>
   );
