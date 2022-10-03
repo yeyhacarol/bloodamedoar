@@ -59,6 +59,11 @@
     font-weight: 300;
 }
 
+.a {
+    text-decoration: none;
+    color: #000;
+}
+
 .copyright {
     height: 160px;
     gap: 40px;
@@ -114,12 +119,17 @@
     }
 
     .menu_item {
-        width: 33.3vw;
+        width: inherit;
         height: inherit;
         padding: 0;
 
         display: flex;
         justify-content: center;
+    }
+
+    .a {
+        width: 33.3vw;
+        height: inherit;
     }
     
     .copyright {

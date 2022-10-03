@@ -1,6 +1,6 @@
 import styles from "./Header.module.css";
 
-import Submit from "../../components/form/Submit/Submit";
+import Button from "../../components/layout/Button/Button";
 
 const Header = ({ span, action }) => {
   return (
@@ -15,7 +15,7 @@ const Header = ({ span, action }) => {
 
       {action ? (
         <div className={styles.submit_header}>
-          <Submit customClass={styles.custom_button} action={action} />
+          <Button action={action} link="/identification" />
         </div>
       ) : (
         <></>
