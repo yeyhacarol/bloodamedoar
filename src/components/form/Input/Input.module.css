@@ -1,6 +1,5 @@
 .input_container {
     display: flex;
-    align-items: flex-end;
     flex-direction: column;
 
     position: relative;

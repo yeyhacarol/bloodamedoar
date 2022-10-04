@@ -1,0 +1,27 @@
+.steps {
+    gap: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.line {
+    width: 60px;
+    height: 1.5px;
+    background-color: #d0d0d0;
+}
+
+.step {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+
+.step span {
+    position: absolute;
+
+    color: #fff;
+}

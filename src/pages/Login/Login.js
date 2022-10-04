@@ -30,7 +30,7 @@ const Login = () => {
             action="Entrar"
             instruction="Novo por aqui?"
             link="Cadastre-se"
-            to="/registration"
+            to="/bloodcenterregistration"
             customClass={styles.custom_button}
           />
         </form>
