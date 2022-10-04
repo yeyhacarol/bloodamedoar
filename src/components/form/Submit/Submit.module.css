@@ -30,12 +30,12 @@
     font-size: clamp(0.875rem, 3vw, 1rem);
 }
 
-.already_has_registration p span {
+.already_has_registration p a {
     padding: 0 5px;
 }
 
-.already_has_registration span {
+.already_has_registration a {
     font-weight: 700;
     color: var(--red);
-    cursor: pointer;
+    text-decoration: none;
 }

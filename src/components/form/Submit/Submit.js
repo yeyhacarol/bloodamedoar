@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 import styles from "./Submit.module.css";
 
-const Submit = ({ action, instruction, link, id, customClass }) => {
+const Submit = ({ action, instruction, link, to, id, customClass }) => {
   return (
     <div className={styles.button_container}>
       <button
@@ -15,7 +17,7 @@ const Submit = ({ action, instruction, link, id, customClass }) => {
         <div className={styles.already_has_registration}>
           <p>
             {instruction}
-            <span>{link}</span>
+            <Link to={to}>{link}</Link>
           </p>
         </div>
       ) : (

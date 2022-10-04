@@ -1,9 +1,9 @@
 .input_container {
-    width: clamp(230px, 35vw, 450px);
-    height: clamp(45px, 10vw, 55px);
-
     display: flex;
+    align-items: flex-end;
     flex-direction: column;
+
+    position: relative;
 
     margin-bottom: 25px;  
 }
@@ -15,8 +15,8 @@
 }
 
 .input {
-    width: inherit;
-    height: inherit;
+    width: clamp(260px, 50vw, 450px);
+    height: clamp(45px, 10vw, 55px);
     padding: 10px;
 
     font-size: clamp(0.875rem, 2vw, 1rem);
@@ -38,9 +38,8 @@
 
 .icon {
     position: absolute;
-    margin-top: clamp(10px, 2vw, 13px);
-    margin-left: -10px;
-
+    top: 22%;
+    right: 10px;
     cursor: pointer;
 }
 
@@ -66,6 +65,8 @@ input[type="checkbox"] {
 
     border: 1px solid #cccccc;
     border-radius: 5px;
+
+    cursor: pointer;
 }
 
 input[type="checkbox"]::before {
@@ -85,14 +86,15 @@ input[type="checkbox"]:checked::before {
     background-color: var(--red);
 }
 
-.remember_pwd {
+.checkbox {
     display: flex;
     align-items: center;
+    
     gap: 5px;
 }
 
-.remember_pwd label {
-    font-size: clamp(0.875rem, 3vw, 1rem);
+.checkbox label {
+    font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
 .error_message {
