@@ -59,8 +59,8 @@
 
 .bloow {
     width: 100vw;
-    max-height: 600px;
-    min-height: 410px;
+    max-height: 800px;
+    min-height: 600px;
 
     object-fit: cover;
 

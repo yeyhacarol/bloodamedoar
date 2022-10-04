@@ -22,13 +22,13 @@ const Identification = () => {
             customClass={styles.custom_button}
             action="Quero doar"
             id="1"
-            link="/donor"
+            link="/login"
           />
           <Button
             customClass={styles.custom_button}
             action="Quero receber doações"
             id="2"
-            link="/hemocenter"
+            link="/login"
           />
         </div>
       </div>
