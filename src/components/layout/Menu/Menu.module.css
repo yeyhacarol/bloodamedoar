@@ -119,8 +119,6 @@
     }
 
     .menu_item {
-        width: inherit;
-        height: inherit;
         padding: 0;
 
         display: flex;

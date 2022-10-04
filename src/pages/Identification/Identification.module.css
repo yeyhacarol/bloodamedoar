@@ -9,7 +9,11 @@
 
 .identification_content {
     width: 100vw;
-    height: 70vh;
+    height: 60%;
+
+    z-index: 99;
+
+    position: relative;
 
     display: flex;
     flex-direction: column;
@@ -34,6 +38,7 @@
 .welcome p {
     font-size: clamp(1rem, 3vw, 1.5rem);
     font-weight: 300;
+    text-align: center;
 }
 
 .choice {
@@ -52,10 +57,58 @@
     background-color: var(--brown);
 }
 
+.bloow {
+    width: 100vw;
+    max-height: 600px;
+    min-height: 410px;
+
+    object-fit: cover;
+
+    position: absolute;
+    bottom: 0;
+}
+
+.custom_footer {
+    width: 100vw;
+    height: 80px;
+
+    position: absolute;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    
+    color: #fff;
+    border: none;
+}
+
+.custom_copy {
+    position: absolute;
+    left: 0;
+    right: 0;
+} 
+ 
+
 @media screen and (max-width: 800px) {
+    .logo {
+        padding: 15px 0 0 15px;
+    }
+
     .choice {
         display: flex;
         flex-direction: column;
         gap: 25px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    footer {
+        padding: 0;
+    }
+
+    .custom_copy {
+        bottom: 10px;
     }
 }

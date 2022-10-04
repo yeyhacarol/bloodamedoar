@@ -6,10 +6,10 @@ import {
   IoLogoTwitter,
 } from "react-icons/io5";
 
-const Footer = () => {
+const Footer = ({ customClass, customized }) => {
   return (
-    <footer>
-      <div className={styles.follow_us}>
+    <footer className={customClass}>
+      <div className={`${styles.follow_us} ${customized}`}>
         <p>Nos siga nas redes sociais.</p>
         <div className={styles.social_media}>
           <IoLogoFacebook size={30} />
@@ -17,7 +17,7 @@ const Footer = () => {
           <IoLogoTwitter size={30} />
         </div>
       </div>
-      <div className={styles.copyright}>
+      <div className={`${styles.copyright} ${customized}`}>
         <p>Blood - AmeDoar</p>
         <p>Todos os direitos reservados. &copy; 2022</p>
       </div>

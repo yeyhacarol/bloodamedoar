@@ -1,7 +1,10 @@
 import styles from "./Identification.module.css";
 
+import bloow from "../../assets/bloodFlow/bloow.png";
+
 import IconLogo from "../../components/logo/IconLogo/IconLogo";
 import Button from "../../components/layout/Button/Button";
+import Footer from "../../components/layout/Footer/Footer";
 
 const Identification = () => {
   return (
@@ -28,6 +31,17 @@ const Identification = () => {
             link="/hemocenter"
           />
         </div>
+      </div>
+      <div>
+        <img
+          src={bloow}
+          alt="Imagem de fundo do rodapé"
+          className={styles.bloow}
+        />
+        <Footer
+          customClass={styles.custom_footer}
+          customized={styles.custom_copy}
+        />
       </div>
     </div>
   );
