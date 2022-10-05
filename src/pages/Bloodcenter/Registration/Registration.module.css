@@ -32,11 +32,6 @@ form h3 {
     margin-bottom: 15px;
 }
 
-.chk {
-    display: flex;
-    justify-content: space-between;
-}
-
 @media screen and (max-width: 1300px) {
     .registration_content {
         width: 20%;

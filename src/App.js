@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Identification from "./pages/Identification/Identification";
 import Login from "./pages/Login/Login";
-import BloodcenterRegistration from "./pages/Bloodcenter/Registration/BloodcenterRegistration";
+import BloodcenterRegistration from "./pages/Bloodcenter/Registration/Registration";
 
 const App = () => {
   return (
