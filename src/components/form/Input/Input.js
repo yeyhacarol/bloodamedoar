@@ -37,7 +37,7 @@ const Input = ({
       ) : (
         <>
           {type === "password" ? (
-            <div className={styles.input_container}>
+            <>
               <input
                 className={styles.input}
                 type={passwordShown ? "text" : "password"}
@@ -63,7 +63,7 @@ const Input = ({
                   }}
                 />
               )}
-            </div>
+            </>
           ) : (
             <>
               {type === "checkbox" ? (
