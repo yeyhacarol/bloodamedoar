@@ -6,17 +6,17 @@ const Steps = () => {
   return (
     <div className={styles.steps}>
       <div className={styles.step}>
-        <img src={step} alt="Primeira etapa" />
+        <img src={step} alt="Primeira etapa" className={styles.bloob} />
         <span>1</span>
       </div>
       <div className={styles.line}></div>
       <div className={styles.step}>
-        <img src={step} alt="Segundo etapa" />
+        <img src={step} alt="Segundo etapa" className={styles.bloob} />
         <span>2</span>
       </div>
       <div className={styles.line}></div>
       <div className={styles.step}>
-        <img src={step} alt="Terceira etapa" />
+        <img src={step} alt="Terceira etapa" className={styles.bloob} />
         <span>3</span>
       </div>
     </div>
