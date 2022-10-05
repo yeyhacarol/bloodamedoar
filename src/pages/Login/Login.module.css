@@ -41,10 +41,6 @@
     font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
-.custom_button {
-    width: clamp(100px, 50vw, 280px);
-}
-
 .bloobers {
     width: 100%;
     height: 100%;

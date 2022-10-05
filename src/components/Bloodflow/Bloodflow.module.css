@@ -1,0 +1,48 @@
+.our_benefits {
+    width: 95%;
+    height: 100vh;
+
+    position: fixed;
+    right: 0;
+
+    z-index: -99;
+
+    background-image: url(../../assets/bloodFlow/blood-flow.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    width: 40%;
+
+    color: #fff;
+}
+
+.benefits h2 {
+    font-weight: 500;
+    font-size: clamp(1.063rem, 1.5vw, 1.75rem);
+}
+
+.hand {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    font-weight: 300;
+    font-size: clamp(1rem, 1.5vw, 1.375rem);
+}
+
+@media screen and (max-width: 1025px) {
+    .our_benefits {
+        display: none;
+    }
+}

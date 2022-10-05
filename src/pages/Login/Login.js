@@ -31,7 +31,6 @@ const Login = () => {
             instruction="Novo por aqui?"
             link="Cadastre-se"
             to="/bloodcenterregistration"
-            customClass={styles.custom_button}
           />
         </form>
       </div>

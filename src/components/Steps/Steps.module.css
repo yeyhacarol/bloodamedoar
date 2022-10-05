@@ -21,6 +21,10 @@
     position: relative;
 }
 
+.step img {
+    width: clamp(35px, 5vw, 50px);
+}
+
 /* .bloob {
     filter: brightness(0) saturate(100%) invert(14%) sepia(82%) saturate(2063%) hue-rotate(341deg) brightness(120%) contrast(104%);
 } */

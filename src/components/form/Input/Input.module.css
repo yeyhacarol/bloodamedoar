@@ -14,7 +14,7 @@
 }
 
 .input {
-    width: clamp(260px, 50vw, 450px);
+    width: clamp(260px, 55vw, 450px);
     height: clamp(45px, 10vw, 55px);
     padding: 10px;
 

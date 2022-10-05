@@ -6,6 +6,7 @@ import Steps from "../../../components/Steps/Steps";
 import Input from "../../../components/form/Input/Input";
 import Selection from "../../../components/form/Select/Select";
 import Submit from "../../../components/form/Submit/Submit";
+import Bloodflow from "../../../components/Bloodflow/Bloodflow";
 
 const BloodcenterRegistration = () => {
   return (
@@ -49,6 +50,7 @@ const BloodcenterRegistration = () => {
             onChange={} */
           />
           <Submit
+            customClass={styles.custom_button}
             action="Próximo"
             instruction="Já possui cadastro?"
             link="Entrar"
@@ -56,6 +58,8 @@ const BloodcenterRegistration = () => {
           />
         </form>
       </div>
+
+      <Bloodflow />
     </div>
   );
 };
