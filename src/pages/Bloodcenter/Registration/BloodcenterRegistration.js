@@ -18,27 +18,27 @@ const BloodcenterRegistration = () => {
         <Heading heading="Cadastrar-se" />
         <Steps />
         <form>
-          <h3>Dados do hemocentro</h3>
+          {/* <h3>Dados do hemocentro</h3>
           <Input
-            placeholder="Nome do hemocentro" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={}  */
+            placeholder="Nome do hemocentro" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={}  
           />
           <div className={styles.chk}>
             <Input
               type="checkbox"
               label="Sou unidade"
-              /* error={} errorMessage={} name="unity" value={} handleOnClick={} */
+              /* error={} errorMessage={} name="unity" value={} handleOnClick={} 
             />
             <Input
               type="checkbox"
-              label="Sou sede" /* error={} errorMessage={} name="headOffice" value={} handleOnChange={}  */
+              label="Sou sede" /* error={} errorMessage={} name="headOffice" value={} handleOnChange={}  
             />
           </div>
           <Input
-            placeholder="Nome da sede" /* error={} errorMessage={} name="unityName" value={} handleOnChange={}  */
+            placeholder="Nome da sede" /* error={} errorMessage={} name="unityName" value={} handleOnChange={}  
           />
           <Input
             placeholder="CNPJ"
-            mask="00.000.000/0000-00" /* error={} errorMessage={} name="cnpj" value={} handleOnChange={}  */
+            mask="00.000.000/0000-00" /* error={} errorMessage={} name="cnpj" value={} handleOnChange={}  
           />
           <Selection
             isMulti="true"
@@ -47,7 +47,7 @@ const BloodcenterRegistration = () => {
             name="services"
             message="Sem serviços"
             /* options={}
-            onChange={} */
+            onChange={} 
           />
           <Submit
             customClass={styles.custom_button}
@@ -55,7 +55,37 @@ const BloodcenterRegistration = () => {
             instruction="Já possui cadastro?"
             link="Entrar"
             to="/login"
+          /> */}
+
+          {/* <h3>Endereço</h3>
+          <Input
+            placeholder="CEP" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={} 
           />
+          <Input
+            placeholder="Logradouro" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={} 
+          />
+          <Input
+            placeholder="Número" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={} 
+          />
+          <Input
+            placeholder="Bairro" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={} 
+          />
+          <Input
+            placeholder="Estado" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={} 
+          />
+          <Input
+            placeholder="Cidade" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={} 
+          />
+          <Input
+            placeholder="Ponto de referência" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={} 
+          />
+          <Submit
+            customClass={styles.custom_button}
+            action="Próximo"
+            instruction="Já possui cadastro?"
+            link="Entrar"
+            to="/login"
+          /> */}
         </form>
       </div>
 
