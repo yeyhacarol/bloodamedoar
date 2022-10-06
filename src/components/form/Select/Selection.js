@@ -4,7 +4,7 @@ const Selection = ({
   isMulti,
   closeMenuOnSelect,
   placeholder,
-  width = "clamp(260px, 50vw, 450px)",
+  width = " clamp(260px, 55vw, 450px);",
   name,
   message,
   options,

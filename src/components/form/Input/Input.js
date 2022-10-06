@@ -16,7 +16,6 @@ const Input = ({
   id,
   value,
   handleOnChange,
-  handleOnClick,
 }) => {
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -79,7 +78,6 @@ const Input = ({
                   placeholder={placeholder}
                   name={name}
                   value={value}
-                  onClick={(e) => handleOnClick(e.currentTarget.checked, name)}
                 />
               )}
             </>
