@@ -4,7 +4,7 @@ import Input from "../../../../form/Input/Input";
 import Selection from "../../../../form/Select/Selection";
 import Submit from "../../../../form/Submit/Submit";
 
-const BloodcenterData = () => {
+const BloodcenterData = ({ onClick }) => {
   return (
     <>
       <h3>Dados do hemocentro</h3>
@@ -15,11 +15,13 @@ const BloodcenterData = () => {
         <Input
           type="checkbox"
           label="Sou unidade"
+          id="1"
           /* error={} errorMessage={} name="unity" value={} handleOnClick={} */
         />
         <Input
           type="checkbox"
-          label="Sou sede" /* error={} errorMessage={} name="headOffice" value={} handleOnChange={}  */
+          label="Sou sede"
+          id="2" /* error={} errorMessage={} name="headOffice" value={} handleOnChange={}  */
         />
       </div>
       <Input
@@ -44,6 +46,7 @@ const BloodcenterData = () => {
         instruction="Já possui cadastro?"
         link="Entrar"
         to="/login"
+        handleOnClick={onClick}
       />
     </>
   );

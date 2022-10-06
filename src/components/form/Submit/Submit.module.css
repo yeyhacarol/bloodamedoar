@@ -4,6 +4,8 @@
     align-items: center;
 
     user-select: none;
+
+    margin-bottom: 50px;
 }
 
 .button {

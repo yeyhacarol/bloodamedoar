@@ -13,6 +13,7 @@ const Input = ({
   error,
   errorMessage = "Campo obrigatório.",
   name,
+  id,
   value,
   handleOnChange,
   handleOnClick,
@@ -68,8 +69,8 @@ const Input = ({
             <>
               {type === "checkbox" ? (
                 <div className={styles.checkbox}>
-                  <input type={type} name={name} value={value} id="mark" />
-                  <label htmlFor="mark">{label}</label>
+                  <input type={type} name={name} value={value} id={id} />
+                  <label htmlFor={id}>{label}</label>
                 </div>
               ) : (
                 <input

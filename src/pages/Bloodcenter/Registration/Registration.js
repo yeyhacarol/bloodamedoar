@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./Registration.module.css";
 
 import IconLogo from "../../../components/logo/IconLogo/IconLogo";
@@ -9,6 +10,30 @@ import BloodcenterAddress from "../../../components/forms/Bloodcenter/Registrati
 import BloodcenterAccount from "../../../components/forms/Bloodcenter/Registration/BloodcenterAccount/BloodcenterAccount";
 
 const BloodcenterRegistration = () => {
+  const [visibility, setVisibility] = useState({
+    bloodcenterData: true,
+    bloodcenterAddress: false,
+    bloodcenterAccount: false,
+  });
+
+  const handleVisibility = (e) => {
+    e.preventDefault();
+
+    if (visibility.bloodcenterData)
+      return setVisibility({
+        ...visibility,
+        bloodcenterAddress: true,
+        bloodcenterData: false,
+      });
+
+    if (visibility.bloodcenterAddress)
+      return setVisibility({
+        ...visibility,
+        bloodcenterAddress: false,
+        bloodcenterAccount: true,
+      });
+  };
+
   return (
     <div className={styles.registration_container}>
       <div className={styles.logo}>
@@ -18,11 +43,15 @@ const BloodcenterRegistration = () => {
         <Heading heading="Cadastrar-se" />
         <Steps />
         <form>
-          <BloodcenterData />
-
-          <BloodcenterAddress />
-
-          <BloodcenterAccount />
+          {visibility.bloodcenterAccount && (
+            <BloodcenterAccount onClick={handleVisibility} />
+          )}
+          {visibility.bloodcenterAddress && (
+            <BloodcenterAddress onClick={handleVisibility} />
+          )}
+          {visibility.bloodcenterData && (
+            <BloodcenterData onClick={handleVisibility} />
+          )}
         </form>
       </div>
 

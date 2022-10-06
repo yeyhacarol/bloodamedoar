@@ -1,7 +1,7 @@
 import Input from "../../../../form/Input/Input";
 import Submit from "../../../../form/Submit/Submit";
 
-const BloodcenterAccount = () => {
+const BloodcenterAccount = ({ onClick }) => {
   return (
     <>
       <h3>Contato</h3>
@@ -29,6 +29,7 @@ const BloodcenterAccount = () => {
         instruction="Já possui cadastro?"
         link="Entrar"
         to="/login"
+        handleOnClick={onClick}
       />
     </>
   );

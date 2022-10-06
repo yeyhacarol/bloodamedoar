@@ -23,6 +23,8 @@
     align-items: center;
 
     user-select: none;
+
+    z-index: 999;
 }
 
 form h3 {
