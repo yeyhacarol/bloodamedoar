@@ -16,17 +16,61 @@ const BloodcenterData = ({ onClick }) => {
   });
 
   const handleOnChange = (input, value) => {
-    setData((prevState) => ({ ...prevState, [input]: value }));
+    setData((prevState) => ({ ...prevState, [value]: input }));
 
     console.log(data);
   };
 
+  const [errors, setErrors] = useState({
+    bloodcenterName: false,
+    unity: false,
+    headOffice: false,
+    unityName: false,
+    cnpj: false,
+    errorMessage: "",
+  });
+
+  const handleValidate = (e) => {
+    e.preventDefault();
+
+    if (!data.bloodcenterName && !data.cnpj) {
+      return setErrors({
+        ...errors,
+        bloodcenterName: true,
+        cnpj: true,
+        errorMessage: "Campo obrigatório.",
+      });
+    }
+
+    if (!data.unity || !data.headOffice) {
+      return setErrors({ ...errors, unity: true, headOffice: true });
+    }
+
+    if (data.cnpj.length < 18) {
+      return setErrors({
+        ...errors,
+        cnpj: true,
+        errorMessage: "Preencha corretamente.",
+      });
+    }
+
+    setErrors({
+      bloodcenterName: false,
+      unity: false,
+      headOffice: false,
+      unityName: false,
+      cnpj: false,
+    });
+  };
+
   return (
-    <>
+    <form onSubmit={handleValidate}>
       <h3>Dados do hemocentro</h3>
       <Input
         placeholder="Nome do hemocentro"
-        /* error={} errorMessage={} */ name="bloodcenterName"
+        errorMessage={errors.errorMessage}
+        error={errors.bloodcenterName}
+        name="bloodcenterName"
         value={data.bloodcenterName}
         handleOnChange={handleOnChange}
       />
@@ -35,13 +79,18 @@ const BloodcenterData = ({ onClick }) => {
           type="checkbox"
           label="Sou unidade"
           id="1"
-          /* error={} errorMessage={} */ name="unity"
+          error={errors.unity}
+          name="unity"
+          onClick={(value, name) => handleOnChange(value, name)}
         />
         <Input
           type="checkbox"
           label="Sou sede"
           id="2"
-          /* error={} errorMessage={} */ name="headOffice"
+          error={errors.headOffice}
+          name="headOffice"
+          value={data.headOffice}
+          onClick={(value, name) => handleOnChange(value, name)}
         />
       </div>
       <Input
@@ -53,7 +102,9 @@ const BloodcenterData = ({ onClick }) => {
       <Input
         placeholder="CNPJ"
         mask="00.000.000/0000-00"
-        /* error={} errorMessage={} */ name="cnpj"
+        error={errors.cnpj}
+        errorMessage={errors.errorMessage}
+        name="cnpj"
         value={data.cnpj}
         handleOnChange={handleOnChange}
       />
@@ -72,9 +123,8 @@ const BloodcenterData = ({ onClick }) => {
         instruction="Já possui cadastro?"
         link="Entrar"
         to="/login"
-        handleOnClick={onClick}
       />
-    </>
+    </form>
   );
 };
 

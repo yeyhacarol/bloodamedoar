@@ -42,7 +42,7 @@ const BloodcenterRegistration = () => {
       <div className={styles.registration_content}>
         <Heading heading="Cadastrar-se" />
         <Steps />
-        <form>
+        <>
           {visibility.bloodcenterAccount && (
             <BloodcenterAccount onClick={handleVisibility} />
           )}
@@ -52,7 +52,7 @@ const BloodcenterRegistration = () => {
           {visibility.bloodcenterData && (
             <BloodcenterData onClick={handleVisibility} />
           )}
-        </form>
+        </>
       </div>
 
       <Bloodflow />

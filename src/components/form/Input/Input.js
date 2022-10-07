@@ -11,11 +11,12 @@ const Input = ({
   mask,
   label,
   error,
-  errorMessage = "Campo obrigatório.",
+  errorMessage,
   name,
   id,
   value,
   handleOnChange,
+  onClick,
 }) => {
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -68,7 +69,13 @@ const Input = ({
             <>
               {type === "checkbox" ? (
                 <div className={styles.checkbox}>
-                  <input type={type} name={name} value={value} id={id} />
+                  <input
+                    type={type}
+                    name={name}
+                    value={value}
+                    id={id}
+                    onClick={(e) => onClick(e.currentTarget.checked, name)}
+                  />
                   <label htmlFor={id}>{label}</label>
                 </div>
               ) : (
@@ -78,16 +85,17 @@ const Input = ({
                   placeholder={placeholder}
                   name={name}
                   value={value}
+                  onChange={(e) => handleOnChange(e.target.value, name)}
                 />
               )}
             </>
           )}
-          {error && (
-            <span className={styles.error_message}>
-              <MdErrorOutline size={20} /> {errorMessage}
-            </span>
-          )}
         </>
+      )}
+      {error && (
+        <span className={styles.error_message}>
+          <MdErrorOutline size={20} /> {errorMessage}
+        </span>
       )}
     </div>
   );
