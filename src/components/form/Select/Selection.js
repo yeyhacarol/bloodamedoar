@@ -1,21 +1,27 @@
 import Select from "react-select";
 
+import { MdErrorOutline } from "react-icons/md";
+
+import style from "./Selection.module.css";
+
 const Selection = ({
   isMulti,
   closeMenuOnSelect,
   placeholder,
-  width = " clamp(260px, 55vw, 450px);",
+  width = " clamp(260px, 35vw, 450px);",
+  error,
+  errorMessage,
   name,
   message,
   options,
-  onChange,
+  handleOnChange,
+  value,
 }) => {
   const styles = {
     container: (styles) => {
       return {
         ...styles,
         width: width,
-        marginBottom: "25px",
       };
     },
     control: (styles) => {
@@ -65,26 +71,34 @@ const Selection = ({
   };
 
   return (
-    <Select
-      isMulti={isMulti}
-      closeMenuOnSelect={closeMenuOnSelect}
-      placeholder={placeholder}
-      name={name}
-      width={width}
-      styles={styles}
-      theme={(theme) => ({
-        ...theme,
-        borderRadius: 10,
-        colors: {
-          ...theme.colors,
-          primary25: "#EEEEEE",
-          primary: "var(--red)",
-        },
-      })}
-      options={options}
-      noOptionsMessage={() => message}
-      onChange={onChange}
-    />
+    <div className={style.select_container}>
+      <Select
+        isMulti={isMulti}
+        closeMenuOnSelect={closeMenuOnSelect}
+        placeholder={placeholder}
+        name={name}
+        width={width}
+        styles={styles}
+        value={value}
+        theme={(theme) => ({
+          ...theme,
+          borderRadius: 10,
+          colors: {
+            ...theme.colors,
+            primary25: "#EEEEEE",
+            primary: "var(--red)",
+          },
+        })}
+        options={options}
+        noOptionsMessage={() => message}
+        onChange={(value) => handleOnChange(value, name)}
+      />
+      {error && (
+        <span className={style.error_message}>
+          <MdErrorOutline size={20} /> {errorMessage}
+        </span>
+      )}
+    </div>
   );
 };
 

@@ -1,39 +1,136 @@
+import { useEffect, useState } from "react";
+
+import CEPService from "../../../../../services/apiBrasil/CEPService";
+
 import Input from "../../../../form/Input/Input";
 import Submit from "../../../../form/Submit/Submit";
 
-const BloodcenterAddress = ({ onClick }) => {
+const TAB_INDEX = 1;
+
+const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
+  const initialData = JSON.parse(localStorage.getItem("data"));
+
+  const [data, setData] = useState(
+    initialData || {
+      cep: "",
+      street: "",
+      number: "",
+      neighborhood: "",
+      state: "",
+      city: "",
+      landmark: "",
+    }
+  );
+
+  const handleOnChange = (input, value) => {
+    setData((prevState) => ({ ...prevState, [value]: input }));
+  };
+
+  const [errors, setErrors] = useState({
+    cep: {
+      number: false,
+      errorMessage: false,
+    },
+  });
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+
+    if (!data.number) {
+      return setErrors({
+        cep: {
+          number: true,
+          errorMessage: "Preencha esse campo.",
+        },
+      });
+    }
+
+    setTabIndex(2);
+    setTabSteps((tabSteps) => {
+      const copy = tabSteps;
+      copy.push(TAB_INDEX);
+      return copy;
+    });
+
+    localStorage.setItem("data", JSON.stringify({ ...initialData, ...data }));
+  };
+
+  useEffect(() => {
+    CEPService(data.cep).then((resp) => {
+      setData((prevState) => {
+        return {
+          ...prevState,
+          street: resp.street,
+          number: data.number,
+          neighborhood: resp.neighborhood,
+          state: resp.state,
+          city: resp.city,
+          landmark: data.landmark,
+        };
+      });
+    });
+  }, [data.cep]);
+
   return (
-    <>
+    <form onSubmit={handleOnSubmit}>
       <h3>Endereço</h3>
       <Input
-        placeholder="CEP" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={} */
+        placeholder="CEP"
+        mask="00000-000"
+        name="cep"
+        value={data.cep}
+        handleOnChange={handleOnChange}
+        disable={true}
       />
       <Input
-        placeholder="Logradouro" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={} */
+        placeholder="Logradouro"
+        name="street"
+        value={data.street || ""}
+        handleOnChange={handleOnChange}
+        disable={true}
       />
       <Input
-        placeholder="Número" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={} */
+        placeholder="Número"
+        name="number"
+        error={errors.cep.number}
+        errorMessage={errors.cep.errorMessage}
+        value={data.number || ""}
+        handleOnChange={handleOnChange}
       />
       <Input
-        placeholder="Bairro" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={} */
+        placeholder="Bairro"
+        name="neighbourhood"
+        value={data.neighborhood || ""}
+        handleOnChange={handleOnChange}
+        disable={true}
       />
       <Input
-        placeholder="Estado" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={} */
+        placeholder="Estado"
+        name="state"
+        value={data.state || ""}
+        handleOnChange={handleOnChange}
+        disable={true}
       />
       <Input
-        placeholder="Cidade" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={} */
+        placeholder="Cidade"
+        name="city"
+        value={data.city || ""}
+        handleOnChange={handleOnChange}
+        disable={true}
       />
       <Input
-        placeholder="Ponto de referência" /* error={} errorMessage={} name="bloodcenterName" value={} handleOnChange={} */
+        placeholder="Ponto de referência"
+        name="landmark"
+        value={data.landmark || ""}
+        handleOnChange={handleOnChange}
       />
       <Submit
         action="Próximo"
         instruction="Já possui cadastro?"
         link="Entrar"
         to="/login"
-        handleOnClick={onClick}
       />
-    </>
+    </form>
   );
 };
 

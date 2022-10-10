@@ -68,6 +68,7 @@ const ContactUs = () => {
             name="email"
             value={inputs.email}
             error={errors.email}
+            errorMessage="Preencha seu e-mail."
             handleOnChange={handleOnChange}
           />
           <Input
@@ -75,6 +76,7 @@ const ContactUs = () => {
             name="subject"
             value={inputs.subject}
             error={errors.subject}
+            errorMessage="Preencha o assunto."
             handleOnChange={handleOnChange}
           />
           <Input
@@ -82,6 +84,7 @@ const ContactUs = () => {
             name="message"
             value={inputs.message}
             error={errors.message}
+            errorMessage="Qual a mensagem?"
             handleOnChange={handleOnChange}
           />
           <Submit action="Enviar" />

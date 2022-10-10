@@ -17,6 +17,8 @@ const Input = ({
   value,
   handleOnChange,
   onClick,
+  checked,
+  disable,
 }) => {
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -31,6 +33,7 @@ const Input = ({
           className={styles.input}
           placeholder={placeholder}
           mask={mask}
+          unmask={true}
           name={name}
           value={value}
           onAccept={(value) => handleOnChange(value, name)}
@@ -46,6 +49,7 @@ const Input = ({
                 name={name}
                 value={value}
                 onChange={(e) => handleOnChange(e.target.value, name)}
+                disabled={disable}
               />
               {passwordShown ? (
                 <AiOutlineEye
@@ -74,7 +78,9 @@ const Input = ({
                     name={name}
                     value={value}
                     id={id}
-                    onClick={(e) => onClick(e.currentTarget.checked, name)}
+                    onChange={(e) => onClick(e.currentTarget.checked, name)}
+                    checked={checked}
+                    disabled={disable}
                   />
                   <label htmlFor={id}>{label}</label>
                 </div>
@@ -86,6 +92,7 @@ const Input = ({
                   name={name}
                   value={value}
                   onChange={(e) => handleOnChange(e.target.value, name)}
+                  disabled={disable}
                 />
               )}
             </>

@@ -1,0 +1,14 @@
+.select_container {
+    margin-bottom: 25px;
+}
+
+.error_message {
+    color: var(--primary-red);
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    font-weight: 600;
+
+    padding-top: 5px;
+    gap: 5px;
+    display: flex;
+    align-items: center;
+}

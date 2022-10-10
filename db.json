@@ -1,0 +1,34 @@
+{
+  "listarTipoServico": [
+    {
+      "id": 1,
+      "tipo_servico": "Sangue"
+    },
+    {
+      "id": 2,
+      "tipo_servico": "Plaqueta"
+    }
+  ],
+  "cadastrarHemocentro": [
+    {
+      "bloodcenterName": "FPS/HSP",
+      "unity": false,
+      "headOffice": true,
+      "headOfficeName": "",
+      "cnpj": "52030830000165",
+      "services": [
+        "1",
+        "2"
+      ],
+      "cep": "05403900",
+      "street": "Avenida Doutor Enéas Carvalho de Aguiar, 255",
+      "number": "255",
+      "neighborhood": "Pinheiros",
+      "state": "SP",
+      "city": "São Paulo",
+      "telephone": "34353544678",
+      "password": "14Torn@do",
+      "id": 1
+    }
+  ]
+}
