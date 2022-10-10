@@ -126,19 +126,21 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
               resp.descricao_identificador_matriz_filial === "FILIAL"
                 ? resp.nome_fantasia
                 : "",
-            services: data.services,
             cep: resp.cep,
           };
         });
       });
 
-      return setErrors((prevState) => ({
-        ...prevState,
+      return setErrors({
         cnpj: {
           number: false,
           errorMessage: false,
         },
-      }));
+        services: {
+          type: false,
+          errorMessage: false,
+        },
+      });
     }
   }, [data.cnpj]);
 
@@ -191,7 +193,6 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
         />
       )}
       <Selection
-        isMulti="true"
         closeMenuOnSelect="false"
         placeholder="Tipos de serviço"
         error={errors.services.type}

@@ -97,6 +97,8 @@ input[type="checkbox"]:checked::before {
 }
 
 .error_message {
+  width: clamp(260px, 35vw, 450px);
+
   padding-top: 5px;
   gap: 5px;
 

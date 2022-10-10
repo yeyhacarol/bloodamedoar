@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { pwd } from "../../../../../utils/regex";
 
@@ -26,6 +25,10 @@ const BloodcenterAccount = () => {
       number: false,
       errorMessage: false,
     },
+    email: {
+      field: false,
+      errorMessage: false,
+    },
     password: {
       number: false,
       errorMessage: false,
@@ -38,8 +41,6 @@ const BloodcenterAccount = () => {
 
   const handleValidate = (e) => {
     e.preventDefault();
-
-    console.log(data);
 
     if (!data.telephone) {
       return setErrors({
@@ -57,6 +58,16 @@ const BloodcenterAccount = () => {
         telephone: {
           number: true,
           errorMessage: "Número inválido.",
+        },
+      });
+    }
+
+    if (!data.email) {
+      return setErrors({
+        ...errors,
+        email: {
+          field: true,
+          errorMessage: "Campo obrigatório.",
         },
       });
     }
@@ -97,6 +108,10 @@ const BloodcenterAccount = () => {
         number: false,
         errorMessage: false,
       },
+      email: {
+        field: false,
+        errorMessage: false,
+      },
       password: {
         number: false,
         errorMessage: false,
@@ -111,7 +126,7 @@ const BloodcenterAccount = () => {
 
     delete data["confirmPassword"];
 
-    data["services"] = data["services"].map((item) => item.value);
+    data["services"] = data["services"].value;
 
     fetch("http://localhost:5000/cadastrarHemocentro", {
       method: "POST",
@@ -143,6 +158,8 @@ const BloodcenterAccount = () => {
       <Input
         type="email"
         placeholder="E-mail"
+        error={errors.email.field}
+        errorMessage={errors.email.errorMessage}
         name="email"
         value={data.email || ""}
         handleOnChange={handleOnChange}

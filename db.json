@@ -7,28 +7,48 @@
     {
       "id": 2,
       "tipo_servico": "Plaqueta"
+    },
+    {
+      "id": 3,
+      "tipo_servico": "Ambos"
     }
   ],
   "cadastrarHemocentro": [
     {
-      "bloodcenterName": "FPS/HSP",
+      "bloodcenterName": "SENAI - DEPARTAMENTO REGIONAL DE SAO PAULO",
       "unity": false,
       "headOffice": true,
       "headOfficeName": "",
-      "cnpj": "52030830000165",
-      "services": [
-        "1",
-        "2"
-      ],
-      "cep": "05403900",
-      "street": "Avenida Doutor Enéas Carvalho de Aguiar, 255",
-      "number": "255",
-      "neighborhood": "Pinheiros",
+      "cnpj": "03774819000102",
+      "services": "1",
+      "cep": "01311923",
+      "street": "Avenida Paulista, 1313",
+      "number": "1313",
+      "neighborhood": "Bela Vista",
       "state": "SP",
       "city": "São Paulo",
-      "telephone": "34353544678",
-      "password": "14Torn@do",
+      "telephone": "11987656776",
+      "password": "14Tubarones@",
       "id": 1
+    },
+    {
+      "bloodcenterName": "SENAI - DEPARTAMENTO REGIONAL DE SAO PAULO",
+      "unity": false,
+      "headOffice": true,
+      "headOfficeName": "",
+      "cnpj": "03774819000102",
+      "services": "1",
+      "cep": "01311923",
+      "street": "Avenida Paulista, 1313",
+      "neighborhood": "Bela Vista",
+      "state": "SP",
+      "city": "São Paulo",
+      "number": "1313",
+      "landmark": "TESTE",
+      "telephone": "11987656776",
+      "email": "lookthehorizon4@gmail.com",
+      "password": "14Torn@do",
+      "id": 2
     }
   ]
 }

@@ -4,6 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
 import step from "../../../assets/bloobs/step.svg";
+import currentstep from "../../../assets/bloobs/current-step.svg";
 
 import IconLogo from "../../../components/logo/IconLogo/IconLogo";
 import Heading from "../../../components/Heading/Heading";
@@ -36,17 +37,29 @@ const Registration = () => {
         >
           <TabList className={styles.steps}>
             <Tab className={styles.step}>
-              <img src={step} alt="Primeira etapa" className={styles.bloob} />
+              <img
+                src={tabIndex === 0 ? currentstep : step}
+                alt="Primeira etapa"
+                className={styles.bloob}
+              />
               <span>1</span>
             </Tab>
             <div className={styles.line}></div>
             <Tab className={styles.step}>
-              <img src={step} alt="Segundo etapa" className={styles.bloob} />
+              <img
+                src={tabIndex === 1 ? currentstep : step}
+                alt="Segundo etapa"
+                className={styles.bloob}
+              />
               <span>2</span>
             </Tab>
             <div className={styles.line}></div>
             <Tab className={styles.step}>
-              <img src={step} alt="Terceira etapa" className={styles.bloob} />
+              <img
+                src={tabIndex === 2 ? currentstep : step}
+                alt="Terceira etapa"
+                className={styles.bloob}
+              />
               <span>3</span>
             </Tab>
           </TabList>

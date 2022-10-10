@@ -22,7 +22,6 @@ const Identification = () => {
             customClass={styles.custom_button}
             action="Quero doar"
             id="1"
-            link="/login"
           />
           <Button
             customClass={styles.custom_button}

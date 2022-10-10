@@ -45,6 +45,13 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
       });
     }
 
+    setErrors({
+      cep: {
+        number: false,
+        errorMessage: false,
+      },
+    });
+
     setTabIndex(2);
     setTabSteps((tabSteps) => {
       const copy = tabSteps;
@@ -61,11 +68,9 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
         return {
           ...prevState,
           street: resp.street,
-          number: data.number,
           neighborhood: resp.neighborhood,
           state: resp.state,
           city: resp.city,
-          landmark: data.landmark,
         };
       });
     });
