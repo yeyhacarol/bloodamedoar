@@ -10,9 +10,9 @@ const BloodcenterAccount = () => {
 
   const [data, setData] = useState(
     initialData || {
-      telephone: "",
+      telefone: "",
       email: "",
-      password: "",
+      senha: "",
     }
   );
 
@@ -42,7 +42,7 @@ const BloodcenterAccount = () => {
   const handleValidate = (e) => {
     e.preventDefault();
 
-    if (!data.telephone) {
+    if (!data.telefone) {
       return setErrors({
         ...errors,
         telephone: {
@@ -52,7 +52,7 @@ const BloodcenterAccount = () => {
       });
     }
 
-    if (data.telephone.length !== 11) {
+    if (data.telefone.length !== 11) {
       return setErrors({
         ...errors,
         telephone: {
@@ -72,7 +72,7 @@ const BloodcenterAccount = () => {
       });
     }
 
-    if (!data.password) {
+    if (!data.senha) {
       return setErrors({
         ...errors,
         password: {
@@ -82,7 +82,7 @@ const BloodcenterAccount = () => {
       });
     }
 
-    if (!pwd.test(data.password)) {
+    if (!pwd.test(data.senha)) {
       return setErrors({
         ...errors,
         password: {
@@ -93,7 +93,7 @@ const BloodcenterAccount = () => {
       });
     }
 
-    if (data.confirmPassword !== data.password) {
+    if (data.confirmPassword !== data.senha) {
       return setErrors({
         ...errors,
         confirmPassword: {
@@ -126,7 +126,7 @@ const BloodcenterAccount = () => {
 
     delete data["confirmPassword"];
 
-    data["services"] = data["services"].value;
+    data["id_tipo_servico"] = data["id_tipo_servico"].value;
 
     fetch("http://localhost:5000/cadastrarHemocentro", {
       method: "POST",
@@ -151,8 +151,8 @@ const BloodcenterAccount = () => {
         placeholder="Número de telefone"
         error={errors.telephone.number}
         errorMessage={errors.telephone.errorMessage}
-        name="telephone"
-        value={data.telephone || ""}
+        name="telefone"
+        value={data.telefone || ""}
         handleOnChange={handleOnChange}
       />
       <Input
@@ -171,8 +171,8 @@ const BloodcenterAccount = () => {
         placeholder="Senha"
         error={errors.password.number}
         errorMessage={errors.password.errorMessage}
-        name="password"
-        value={data.password || ""}
+        name="senha"
+        value={data.senha || ""}
         handleOnChange={handleOnChange}
       />
       <Input

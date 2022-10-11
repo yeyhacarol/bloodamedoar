@@ -15,40 +15,21 @@
   ],
   "cadastrarHemocentro": [
     {
-      "bloodcenterName": "SENAI - DEPARTAMENTO REGIONAL DE SAO PAULO",
-      "unity": false,
-      "headOffice": true,
-      "headOfficeName": "",
+      "nome_unidade": "SENAI - DEPARTAMENTO REGIONAL DE SAO PAULO",
+      "unidade_sede": true,
+      "nome_sede": "SERVICO NACIONAL DE APRENDIZAGEM INDUSTRIAL",
       "cnpj": "03774819000102",
-      "services": "1",
+      "id_tipo_servico": "1",
       "cep": "01311923",
-      "street": "Avenida Paulista, 1313",
-      "number": "1313",
-      "neighborhood": "Bela Vista",
-      "state": "SP",
-      "city": "São Paulo",
-      "telephone": "11987656776",
-      "password": "14Tubarones@",
-      "id": 1
-    },
-    {
-      "bloodcenterName": "SENAI - DEPARTAMENTO REGIONAL DE SAO PAULO",
-      "unity": false,
-      "headOffice": true,
-      "headOfficeName": "",
-      "cnpj": "03774819000102",
-      "services": "1",
-      "cep": "01311923",
-      "street": "Avenida Paulista, 1313",
-      "neighborhood": "Bela Vista",
-      "state": "SP",
-      "city": "São Paulo",
-      "number": "1313",
-      "landmark": "TESTE",
-      "telephone": "11987656776",
+      "logradouro": "Avenida Paulista, 1313",
+      "bairro": "Bela Vista",
+      "estado": "SP",
+      "cidade": "São Paulo",
+      "numero": "2121",
+      "telefone": "31223321313",
       "email": "lookthehorizon4@gmail.com",
-      "password": "14Torn@do",
-      "id": 2
+      "senha": "ABCabc123!",
+      "id": 1
     }
   ]
 }

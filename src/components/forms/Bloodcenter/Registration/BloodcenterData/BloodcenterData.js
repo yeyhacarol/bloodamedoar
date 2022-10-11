@@ -16,18 +16,18 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
   const initialData = dataStorage
     ? JSON.parse(dataStorage)
     : {
-        bloodcenterName: "",
-        unity: false,
-        headOffice: false,
-        headOfficeName: "",
+        nome_unidade: "",
+        /* unity: false, */
+        unidade_sede: false,
+        nome_sede: "",
         cnpj: "",
-        services: [],
+        id_tipo_servico: [],
         cep: "",
       };
 
   const [data, setData] = useState(initialData);
 
-  const [services, setServices] = useState([]);
+  const [id_tipo_servico, setId_tipo_servico] = useState([]);
 
   const handleOnChange = (input, value) => {
     setData((prevState) => ({ ...prevState, [value]: input }));
@@ -38,7 +38,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
       number: false,
       errorMessage: false,
     },
-    services: {
+    id_tipo_servico: {
       type: false,
       errorMessage: false,
     },
@@ -57,10 +57,10 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
       });
     }
 
-    if (data.services.length === 0) {
+    if (data.id_tipo_servico.length === 0) {
       return setErrors({
         ...errors,
-        services: {
+        id_tipo_servico: {
           type: true,
           errorMessage: "Escolha ao menos um tipo de serviço.",
         },
@@ -80,17 +80,17 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
   };
 
   useEffect(() => {
-    let services = [];
+    let id_tipo_servico = [];
 
     getTypeDonation().then((resp) => {
       resp.map((service) => {
-        return services.push({
+        return id_tipo_servico.push({
           value: `${service.id}`,
           label: service.tipo_servico,
         });
       });
 
-      setServices(services);
+      setId_tipo_servico(id_tipo_servico);
     });
   }, []);
 
@@ -111,21 +111,21 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
           return {
             ...prevState,
             cnpj: resp.cnpj,
-            bloodcenterName: resp.nome_fantasia
+            nome_unidade: resp.nome_fantasia
               ? resp.nome_fantasia
               : resp.razao_social,
-            unity:
+            /* unity:
               resp.descricao_identificador_matriz_filial === "FILIAL"
                 ? setData((value) => ({ ...value, unity: true }))
-                : setData((value) => ({ ...value, unity: false })),
-            headOffice:
+                : setData((value) => ({ ...value, unity: false })), */
+            unidade_sede:
               resp.descricao_identificador_matriz_filial === "MATRIZ"
-                ? setData((value) => ({ ...value, headOffice: true }))
-                : setData((value) => ({ ...value, headOffice: false })),
-            headOfficeName:
+                ? setData((value) => ({ ...value, unidade_sede: true }))
+                : setData((value) => ({ ...value, unidade_sede: false })),
+            nome_sede:
               resp.descricao_identificador_matriz_filial === "FILIAL"
                 ? resp.nome_fantasia
-                : "",
+                : resp.razao_social,
             cep: resp.cep,
           };
         });
@@ -136,7 +136,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
           number: false,
           errorMessage: false,
         },
-        services: {
+        id_tipo_servico: {
           type: false,
           errorMessage: false,
         },
@@ -159,12 +159,12 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
       <Input
         placeholder="Nome do hemocentro"
         name="bloodcenterName"
-        value={data.bloodcenterName || ""}
+        value={data.nome_unidade || ""}
         handleOnChange={handleOnChange}
         disable={true}
       />
       <div className={styles.chk}>
-        <Input
+        {/* <Input
           type="checkbox"
           label="Sou unidade"
           id="1"
@@ -172,13 +172,13 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
           checked={data.unity ? true : false}
           onClick={(value, name) => handleOnChange(value, name)}
           disable={true}
-        />
+        /> */}
         <Input
           type="checkbox"
           label="Sou sede"
           id="2"
           name="headOffice"
-          checked={data.headOffice ? true : false}
+          checked={data.unidade_sede ? true : false}
           onClick={(value, name) => handleOnChange(value, name)}
           disable={true}
         />
@@ -187,7 +187,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
         <Input
           placeholder="Nome da sede"
           name="unityName"
-          value={data.headOfficeName || ""}
+          value={data.nome_sede || ""}
           handleOnChange={handleOnChange}
           disable={true}
         />
@@ -195,12 +195,12 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
       <Selection
         closeMenuOnSelect="false"
         placeholder="Tipos de serviço"
-        error={errors.services.type}
-        errorMessage={errors.services.errorMessage}
-        name="services"
+        error={errors.id_tipo_servico.type}
+        errorMessage={errors.id_tipo_servico.errorMessage}
+        name="id_tipo_servico"
         message="Sem serviços"
-        value={data.services}
-        options={services && services}
+        value={data.id_tipo_servico}
+        options={id_tipo_servico && id_tipo_servico}
         handleOnChange={handleOnChange}
       />
       <Submit

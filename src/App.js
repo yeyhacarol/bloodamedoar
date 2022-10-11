@@ -8,6 +8,7 @@ import Registration from "./pages/Bloodcenter/Registration/Registration";
 const App = () => {
   return (
     <>
+      {/*  <Routes /> */}
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -13,12 +13,12 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
   const [data, setData] = useState(
     initialData || {
       cep: "",
-      street: "",
-      number: "",
-      neighborhood: "",
-      state: "",
-      city: "",
-      landmark: "",
+      logradouro: "",
+      numero: "",
+      bairro: "",
+      estado: "",
+      cidade: "",
+      ponto_referencia: "",
     }
   );
 
@@ -36,7 +36,7 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    if (!data.number) {
+    if (!data.numero) {
       return setErrors({
         cep: {
           number: true,
@@ -67,10 +67,10 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
       setData((prevState) => {
         return {
           ...prevState,
-          street: resp.street,
-          neighborhood: resp.neighborhood,
-          state: resp.state,
-          city: resp.city,
+          logradouro: resp.street,
+          bairro: resp.neighborhood,
+          estado: resp.state,
+          cidade: resp.city,
         };
       });
     });
@@ -90,43 +90,43 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
       <Input
         placeholder="Logradouro"
         name="street"
-        value={data.street || ""}
+        value={data.logradouro || ""}
         handleOnChange={handleOnChange}
         disable={true}
       />
       <Input
         placeholder="Número"
-        name="number"
+        name="numero"
         error={errors.cep.number}
         errorMessage={errors.cep.errorMessage}
-        value={data.number || ""}
+        value={data.numero || ""}
         handleOnChange={handleOnChange}
       />
       <Input
         placeholder="Bairro"
         name="neighbourhood"
-        value={data.neighborhood || ""}
+        value={data.bairro || ""}
         handleOnChange={handleOnChange}
         disable={true}
       />
       <Input
         placeholder="Estado"
         name="state"
-        value={data.state || ""}
+        value={data.estado || ""}
         handleOnChange={handleOnChange}
         disable={true}
       />
       <Input
         placeholder="Cidade"
         name="city"
-        value={data.city || ""}
+        value={data.cidade || ""}
         handleOnChange={handleOnChange}
         disable={true}
       />
       <Input
         placeholder="Ponto de referência"
         name="landmark"
-        value={data.landmark || ""}
+        value={data.ponto_referencia || ""}
         handleOnChange={handleOnChange}
       />
       <Submit
