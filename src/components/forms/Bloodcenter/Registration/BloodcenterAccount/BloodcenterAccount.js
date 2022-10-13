@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { pwd } from "../../../../../utils/regex";
 
@@ -38,6 +39,8 @@ const BloodcenterAccount = () => {
       errorMessage: false,
     },
   });
+
+  const navigate = useNavigate(); 
 
   const handleValidate = (e) => {
     e.preventDefault();
@@ -141,6 +144,8 @@ const BloodcenterAccount = () => {
         localStorage.removeItem("data");
       })
       .catch((err) => console.log(err));
+
+    navigate("/login")
   };
 
   return (
@@ -190,6 +195,7 @@ const BloodcenterAccount = () => {
         instruction="Já possui cadastro?"
         link="Entrar"
         to="/login"
+        handleOnClick={handleValidate}
       />
     </form>
   );
