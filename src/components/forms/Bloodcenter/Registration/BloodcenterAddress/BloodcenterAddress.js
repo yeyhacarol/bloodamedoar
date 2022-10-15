@@ -133,7 +133,7 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
         action="Próximo"
         instruction="Já possui cadastro?"
         link="Entrar"
-        to="/login"
+        to="/bloodcenter/login"
       />
     </form>
   );

@@ -130,6 +130,40 @@
       "email": "sr.gotasdecholate@gmail.com",
       "senha": "123TYU**asd",
       "id": 7
+    },
+    {
+      "nome_unidade": "FPS/HSP",
+      "unidade_sede": true,
+      "nome_sede": "FUNDACAO PRO-SANGUE HEMOCENTRO DE SAO PAULO",
+      "cnpj": "52030830000165",
+      "id_tipo_servico": "1",
+      "cep": "05403900",
+      "logradouro": "Avenida Doutor Enéas Carvalho de Aguiar, 255",
+      "bairro": "Pinheiros",
+      "estado": "SP",
+      "cidade": "São Paulo",
+      "numero": "233",
+      "telefone": "41414414232",
+      "email": "looktothehorizon4@gmail.com",
+      "senha": "ABC123abc#",
+      "id": 8
+    },
+    {
+      "nome_unidade": "FPS/HSP",
+      "unidade_sede": true,
+      "nome_sede": "FUNDACAO PRO-SANGUE HEMOCENTRO DE SAO PAULO",
+      "cnpj": "52030830000165",
+      "id_tipo_servico": "1",
+      "cep": "05403900",
+      "logradouro": "Avenida Doutor Enéas Carvalho de Aguiar, 255",
+      "bairro": "Pinheiros",
+      "estado": "SP",
+      "cidade": "São Paulo",
+      "numero": "brp000364878",
+      "telefone": "41414414232",
+      "email": "looktothehorizon4@gmail.com",
+      "senha": "shiuSHIU89*",
+      "id": 9
     }
   ]
 }

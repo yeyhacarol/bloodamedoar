@@ -28,17 +28,44 @@
     user-select: none;
 }
 
+.login_content form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .about_pwd {
+    width: 100%;
     margin-bottom: 70px;
+    gap: 10px;
 
     display: flex;
     justify-content: space-between;
 }
 
-.about_pwd a {
+.about_pwd a,
+.hasnt_account a {
     color: var(--red);
     text-decoration: none;
     font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.hasnt_account p {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.hasnt_account a {
+    font-weight: 700;
+    padding: 0 5px;
+}
+
+.hasnt_account {
+    padding-top: 10px;
+}
+
+.signin {
+    width: clamp(180px, 25vw, 280px);
+    height: clamp(45px, 10vw, 55px);
 }
 
 .bloobers {

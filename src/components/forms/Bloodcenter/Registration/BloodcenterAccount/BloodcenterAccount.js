@@ -40,7 +40,7 @@ const BloodcenterAccount = () => {
     },
   });
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleValidate = (e) => {
     e.preventDefault();
@@ -145,7 +145,7 @@ const BloodcenterAccount = () => {
       })
       .catch((err) => console.log(err));
 
-    navigate("/login")
+    navigate("/bloodcenter/login");
   };
 
   return (
@@ -194,7 +194,7 @@ const BloodcenterAccount = () => {
         action="Cadastrar"
         instruction="Já possui cadastro?"
         link="Entrar"
-        to="/login"
+        to="/bloodcenter/login"
         handleOnClick={handleValidate}
       />
     </form>

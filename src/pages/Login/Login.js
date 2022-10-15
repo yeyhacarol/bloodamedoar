@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./Login.module.css";
 
@@ -9,7 +9,6 @@ import bloobers from "../../assets/bloobs/bloobers.svg";
 import Heading from "../../components/Heading/Heading";
 import IconLogo from "../../components/logo/IconLogo/IconLogo";
 import Input from "../../components/form/Input/Input";
-import Submit from "../../components/form/Submit/Submit";
 import Button from "../../components/layout/Button/Button";
 
 const Login = () => {
@@ -65,7 +64,18 @@ const Login = () => {
             <Link to="/forgetpassword">Esqueceu a senha?</Link>
           </div>
 
-          <Button action="Entrar" link="/profile" onClick={handleOnSubmit} />
+          <Button
+            customClass={styles.signin}
+            action="Entrar"
+            link="/profile"
+            onClick={handleOnSubmit}
+          />
+          <div className={styles.hasnt_account}>
+            <p>
+              Novo por aqui?
+              <Link to="/bloodcenter/registration">Cadastre-se</Link>
+            </p>
+          </div>
 
           {/* <Submit
             action="Entrar"
