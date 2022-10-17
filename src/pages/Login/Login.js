@@ -26,10 +26,13 @@ const Login = () => {
 
   const handleOnSubmit = async () => {
     if (data.cnpj && data.senha) {
-      const isLogged = await auth.signin(data.cnpj, data.senha);
+      const isLogged = await auth.signin({
+        cnpj: data.cnpj,
+        senha: data.senha,
+      });
 
       if (isLogged) {
-        navigate("/profile");
+        navigate("/bloodcenter/profile");
       } else {
         alert("Não foi possível logar.");
       }
@@ -67,7 +70,7 @@ const Login = () => {
           <Button
             customClass={styles.signin}
             action="Entrar"
-            link="/profile"
+            link="/bloodcenter/profile"
             onClick={handleOnSubmit}
           />
           <div className={styles.hasnt_account}>
@@ -76,13 +79,6 @@ const Login = () => {
               <Link to="/bloodcenter/registration">Cadastre-se</Link>
             </p>
           </div>
-
-          {/* <Submit
-            action="Entrar"
-            instruction="Novo por aqui?"
-            link="Cadastre-se"
-            to="/bloodcenterregistration"
-          /> */}
         </form>
       </div>
       <img src={bloobers} alt="Decoração" className={styles.bloobers} />

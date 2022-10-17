@@ -5,12 +5,11 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import styles from "./CampaignSlider.module.css";
 
 import Container from "../../layout/Container/Container";
-import CampaignCard from "../CampaignCard/CampaignCard";
 
-import background from "../../../assets/blood-donation.jpg";
-
-const CompaignSlider = () => {
+const CompaignSlider = ({ customClass, title, children }) => {
   const [scrollX, setScrollX] = useState(0);
+
+  /* PASSAR LISTWIDTH POR PROPS */
 
   const handleLeftArrow = () => {
     let scroll = scrollX + Math.round(window.innerWidth / 2);
@@ -33,10 +32,8 @@ const CompaignSlider = () => {
     setScrollX(scroll);
   };
 
-  /* CONSUMIR API E PASSAR DADOS DINÂMICOS */
-
   return (
-    <Container title="Campanhas" customClass={styles.container}>
+    <Container title={title} customClass={`${styles.container} ${customClass}`}>
       <div className={styles.arrow_left} onClick={handleLeftArrow}>
         <IoIosArrowBack size={45} color="#fff" />
       </div>
@@ -50,27 +47,7 @@ const CompaignSlider = () => {
           className={styles.slider_content}
           style={{ marginLeft: scrollX, width: 3 * 390 }}
         >
-          <div className={styles.slider_item}>
-            <CampaignCard
-              background={background}
-              title="SEJA O HERÓI DE ALGÚEM!"
-              catchphrase="Doe sangue e seja o herói de alguém."
-            />
-          </div>
-          <div className={styles.slider_item}>
-            <CampaignCard
-              background={background}
-              title="SEJA O HERÓI DE ALGÚEM!"
-              catchphrase="Doe sangue e seja o herói de alguém."
-            />
-          </div>
-          <div className={styles.slider_item}>
-            <CampaignCard
-              background={background}
-              title="SEJA O HERÓI DE ALGÚEM!"
-              catchphrase="Doe sangue e seja o herói de alguém."
-            />
-          </div>
+          <div className={styles.slider_item}>{children}</div>
         </div>
       </div>
     </Container>

@@ -1,0 +1,70 @@
+.header {
+    width: calc(100vw - 300px);
+    height: 200px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+
+    user-select: none;
+}
+
+.header img {
+    width: inherit;
+    height: inherit;
+
+    position: relative;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+.profile {
+    width: inherit;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: absolute;
+    bottom: -30%;
+
+    padding: 0 35px 0 50px;
+}
+
+.profile img {
+    width: 125px;
+    height: 125px;
+
+    border-radius: 100%;
+}
+
+.edit {
+    width: clamp(140px, 20vw, 180px);
+
+    background-color: #fff;
+    border: 1.5px solid #000;
+    color: #000;
+}
+
+@media screen and (max-width: 1025px) {
+    .header {
+        width: 100vw;
+    }
+
+    .profile {
+        bottom: -20%;
+    }
+
+    .profile img {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile {
+        padding: 0 10px 0px 15px;
+    }
+}

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
-import { auth, logout, validateToken } from "../../services/apiBlood/auth";
 import { AuthContext } from "./AuthContext";
+import {
+  login,
+  logout,
+  validateToken,
+} from "../../services/apiBlood/authentication";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -22,10 +26,10 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const signin = async (cnpj, password) => {
-    const data = await auth(cnpj, password);
+    const data = await login(cnpj, password);
 
-    if (data.user && data.token) {
-      setUser(data.user);
+    if (data.id && data.token) {
+      setUser(data.id);
       setToken(data.token);
       return true;
     }

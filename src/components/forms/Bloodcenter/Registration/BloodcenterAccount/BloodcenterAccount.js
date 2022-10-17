@@ -11,7 +11,7 @@ const BloodcenterAccount = () => {
 
   const [data, setData] = useState(
     initialData || {
-      telefone: "",
+      celular: "",
       email: "",
       senha: "",
     }
@@ -45,7 +45,7 @@ const BloodcenterAccount = () => {
   const handleValidate = (e) => {
     e.preventDefault();
 
-    if (!data.telefone) {
+    if (!data.celular) {
       return setErrors({
         ...errors,
         telephone: {
@@ -55,7 +55,7 @@ const BloodcenterAccount = () => {
       });
     }
 
-    if (data.telefone.length !== 11) {
+    if (data.celular.length !== 11) {
       return setErrors({
         ...errors,
         telephone: {
@@ -129,9 +129,9 @@ const BloodcenterAccount = () => {
 
     delete data["confirmPassword"];
 
-    data["id_tipo_servico"] = data["id_tipo_servico"].value;
+    /* data["id_tipo_servico"] = data["id_tipo_servico"].value; */
 
-    fetch("http://localhost:5000/cadastrarHemocentro", {
+    fetch("http://localhost:3000/cadastrarHemocentro", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -153,11 +153,11 @@ const BloodcenterAccount = () => {
       <h3>Contato</h3>
       <Input
         mask="(00) 00000-0000"
-        placeholder="Número de telefone"
+        placeholder="Número de celular"
         error={errors.telephone.number}
         errorMessage={errors.telephone.errorMessage}
-        name="telefone"
-        value={data.telefone || ""}
+        name="celular"
+        value={data.celular || ""}
         handleOnChange={handleOnChange}
       />
       <Input

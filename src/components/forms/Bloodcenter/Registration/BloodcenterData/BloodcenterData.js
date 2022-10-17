@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./BloodcenterData.module.css";
 
 import CNPJService from "../../../../../services/apiBrasil/CNPJService";
-import getTypeDonation from "../../../../../services/apiBlood/getTypeDonationService";
+import typeDonation from "../../../../../services/apiBlood/typeDonationService";
 
 import Input from "../../../../form/Input/Input";
 import Selection from "../../../../form/Select/Selection";
@@ -21,13 +21,13 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
         unidade_sede: false,
         nome_sede: "",
         cnpj: "",
-        id_tipo_servico: [],
+        /* id_tipo_servico: [], */
         cep: "",
       };
 
   const [data, setData] = useState(initialData);
 
-  const [id_tipo_servico, setId_tipo_servico] = useState([]);
+  /*   const [id_tipo_servico, setId_tipo_servico] = useState([]); */
 
   const handleOnChange = (input, value) => {
     setData((prevState) => ({ ...prevState, [value]: input }));
@@ -38,10 +38,10 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
       number: false,
       errorMessage: false,
     },
-    id_tipo_servico: {
+    /* id_tipo_servico: {
       type: false,
       errorMessage: false,
-    },
+    }, */
   });
 
   const handleValidate = (e) => {
@@ -57,7 +57,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
       });
     }
 
-    if (data.id_tipo_servico.length === 0) {
+    /*  if (data.id_tipo_servico.length === 0) {
       return setErrors({
         ...errors,
         id_tipo_servico: {
@@ -65,7 +65,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
           errorMessage: "Escolha ao menos um tipo de serviço.",
         },
       });
-    }
+    } */
 
     if (!errors.cnpj.number) {
       setTabIndex(TAB_INDEX);
@@ -79,10 +79,10 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
     }
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     let id_tipo_servico = [];
 
-    getTypeDonation().then((resp) => {
+    typeDonation().then((resp) => {
       resp.map((service) => {
         return id_tipo_servico.push({
           value: `${service.id}`,
@@ -92,7 +92,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
 
       setId_tipo_servico(id_tipo_servico);
     });
-  }, []);
+  }, []); */
 
   useEffect(() => {
     if (data.cnpj.length === 14) {
@@ -136,10 +136,10 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
           number: false,
           errorMessage: false,
         },
-        id_tipo_servico: {
+        /* id_tipo_servico: {
           type: false,
           errorMessage: false,
-        },
+        }, */
       });
     }
   }, [data.cnpj]);
@@ -192,7 +192,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
           disable={true}
         />
       )}
-      <Selection
+      {/* <Selection
         closeMenuOnSelect="false"
         placeholder="Tipos de serviço"
         error={errors.id_tipo_servico.type}
@@ -202,7 +202,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
         value={data.id_tipo_servico}
         options={id_tipo_servico && id_tipo_servico}
         handleOnChange={handleOnChange}
-      />
+      /> */}
       <Submit
         customClass={styles.custom_button}
         action="Próximo"

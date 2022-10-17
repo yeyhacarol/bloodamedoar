@@ -1,0 +1,53 @@
+.all_about_us {
+    width: calc(100vw - 300px);
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 15px 45px;
+    margin-bottom: 60px;
+}
+
+.about_us {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about_us h3 {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    font-weight: 600;
+
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+.about_us p {
+    font-size: clamp(0.813rem, 3vw, 1.063rem);
+} 
+
+.services {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.line {
+    width: 1px;
+    height: 20px;
+
+    background-color: #000;
+}
+
+@media screen and (max-width: 1025px) {
+    .all_about_us {
+        width: 100vw;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .all_about_us {
+        padding: 15px 15px;
+    }
+}

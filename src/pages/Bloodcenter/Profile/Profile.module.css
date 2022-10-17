@@ -1,0 +1,59 @@
+.profile_container {
+    width: 100vw;
+    height: 100%;
+}
+
+.profile_content {
+    width: calc(100vw - 300px);
+
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    right: 0;
+}
+
+.introduction {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 25px 25px 0px 200px;
+    margin-bottom: 25px;
+}
+
+.introduction h2 {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    font-weight: 600;
+
+    margin-bottom: 5px;
+}
+
+.introduction p {
+    font-size: clamp(0.813rem, 3vw, 1.063rem);
+}
+
+.our_campaigns {
+    width: calc(100vw - 300px);
+}
+
+@media screen and (max-width: 1025px) {
+    .profile_content,
+    .our_campaigns {
+        width: 100vw;
+    }
+
+    .introduction {
+        width: 100%;
+        padding: 25px 25px 0px 140px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .introduction {
+        width: 100%;
+        padding: 45px 20px;
+    }
+}

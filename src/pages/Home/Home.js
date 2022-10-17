@@ -8,6 +8,9 @@ import ContactUs from "../../components/forms/ContactUs/ContactUs";
 import Footer from "../../components/layout/Footer/Footer";
 import Requirements from "../../components/Requirements/Requirements";
 import StepByStep from "../../components/StepByStep/StepByStep";
+import CampaignCard from "../../components/donativeCampaign/CampaignCard/CampaignCard";
+
+import donation from "../../assets/blood-donation.jpg";
 
 const Home = () => {
   return (
@@ -21,7 +24,13 @@ const Home = () => {
       <div className={styles.home_content}>
         <Header action="Entrar" />
 
-        <CampaignSlider />
+        <CampaignSlider title="Campanhas para você">
+          <CampaignCard
+            title="Doe sangue!"
+            catchphrase="Salve a vida de muitos!"
+            background={donation}
+          />
+        </CampaignSlider>
 
         <List />
 

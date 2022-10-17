@@ -15,15 +15,15 @@ const App = () => {
         <Route path="/identification" element={<Identification />} />
         <Route path="/bloodcenter/login" element={<Login />} />
         <Route path="/bloodcenter/registration" element={<Registration />} />
-        {/* <Route path="/profile" element={<Profile />} /> */}
-        <Route
-          path="/profile"
+        <Route path="/bloodcenter/profile" element={<Profile />} />
+        {/* <Route
+          path="/bloodcenter/profile"
           element={
             <RequireAuth>
               <Profile />
             </RequireAuth>
           }
-        />
+        /> */}
       </Routes>
     </Router>
   );
