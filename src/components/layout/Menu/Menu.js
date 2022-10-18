@@ -27,7 +27,7 @@ const Menu = ({ label, alt, title }) => {
             <p>{label}</p>
           </div>
         </Link>
-        <Link to="/profile" className={styles.a}>
+        <Link to="/identification" className={styles.a}>
           <div className={`${styles.menu_item} ${styles.profile}`}>
             <img src={Profile} alt="Perfil" title="Perfil" />
             <p>Perfil</p>

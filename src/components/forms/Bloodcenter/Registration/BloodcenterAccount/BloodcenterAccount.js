@@ -131,7 +131,7 @@ const BloodcenterAccount = () => {
 
     /* data["id_tipo_servico"] = data["id_tipo_servico"].value; */
 
-    fetch("http://localhost:3000/cadastrarHemocentro", {
+    fetch("http://localhost:5000/cadastrarHemocentro", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

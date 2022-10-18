@@ -10,6 +10,21 @@
     }
   ],
   "cadastrarHemocentro": [
-  
+    {
+      "nome_unidade": "AUTO CENTER BUTANTA",
+      "unidade_sede": true,
+      "nome_sede": "ADRIANA ALVES DA SILVA RAMALHO",
+      "cnpj": "09236108000152",
+      "cep": "05363000",
+      "logradouro": "Avenida Otacílio Tomanik",
+      "bairro": "Vila Polopoli",
+      "estado": "SP",
+      "cidade": "São Paulo",
+      "numero": "143",
+      "celular": "11976557454",
+      "email": "looktothehorizon4@gmail.com",
+      "senha": "abcABC123!",
+      "id": 1
+    }
   ]
 }

@@ -39,15 +39,40 @@
     width: calc(100vw - 300px);
 }
 
+.menu {
+    position: fixed !important;
+    top: 88vh;
+    right: 60px;
+}
+
+.menu button,
+.menu a {
+    border: 1.5px solid;
+}
+
 @media screen and (max-width: 1025px) {
     .profile_content,
     .our_campaigns {
         width: 100vw;
     }
 
+    .our_campaigns {
+        margin-bottom: 150px;
+    }
+
     .introduction {
         width: 100%;
         padding: 25px 25px 0px 140px;
+    }
+
+    .menu {
+        top: 85vh;
+        right: 15px;
+    }
+
+    .menu button {
+        width: 18px;
+        height: 18px;
     }
 }
 
