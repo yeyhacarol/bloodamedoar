@@ -6,9 +6,13 @@ import Button from "../../components/layout/Button/Button";
 const Header = ({ span, action }) => {
   return (
     <div className={styles.header_container}>
-      <div className={styles.logo}>
-        <IconLogo />
-      </div>
+      {action ? (
+        <div className={styles.logo}>
+          <IconLogo />
+        </div>
+      ) : (
+        <></>
+      )}
 
       {span ? <div>{span ? <span>{span}</span> : <></>}</div> : <></>}
 
