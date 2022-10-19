@@ -50,4 +50,8 @@
     .all_about_us {
         padding: 15px 15px;
     }
+
+    .all_about_us { 
+        margin-bottom: 30px;
+    }
 }

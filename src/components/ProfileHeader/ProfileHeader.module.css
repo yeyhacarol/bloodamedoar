@@ -41,10 +41,11 @@
 }
 
 .edit {
-    width: clamp(140px, 20vw, 180px);
+    width: clamp(110px, 20vw, 180px);
 
     background-color: #fff;
     border: 1.5px solid #000;
+    font-size: clamp(1rem, 3vw, 1.375rem);
     color: #000;
 }
 

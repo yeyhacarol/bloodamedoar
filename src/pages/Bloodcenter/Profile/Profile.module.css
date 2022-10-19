@@ -79,6 +79,7 @@
 @media screen and (max-width: 480px) {
     .introduction {
         width: 100%;
-        padding: 45px 20px;
+        margin-bottom: 0;
+        padding: 45px 20px 25px 20px;
     }
 }
