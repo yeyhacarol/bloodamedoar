@@ -3,9 +3,9 @@ import { onlyLetters } from "../../../utils/regex";
 
 import styles from "./ContactUs.module.css";
 
-import Container from "../../layout/Container/Container";
-import Input from "../../form/Input/Input";
-import Submit from "../../form/Submit/Submit";
+import Container from "../../../components/layout/Container/Container";
+import Input from "../../../components/form/Input/Input";
+import Submit from "../../../components/form/Submit/Submit";
 
 const ContactUs = () => {
   const [inputs, setInputs] = useState({

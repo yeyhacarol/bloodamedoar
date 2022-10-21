@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import { pwd } from "../../../../../utils/regex";
 
-import Input from "../../../../form/Input/Input";
-import Submit from "../../../../form/Submit/Submit";
+import Input from "../../../../../components/form/Input/Input";
+import Submit from "../../../../../components/form/Submit/Submit";
 
 const BloodcenterAccount = () => {
   const initialData = JSON.parse(localStorage.getItem("data"));

@@ -4,7 +4,7 @@ import Menu from "../../components/layout/Menu/Menu";
 import Header from "../../components/Header/Header";
 import CampaignSlider from "../../components/donativeCampaign/CampaignSlider/CampaignSlider";
 import List from "../../components/list/List/List";
-import ContactUs from "../../components/forms/ContactUs/ContactUs";
+import ContactUs from "./ContactUs/ContactUs";
 import Footer from "../../components/layout/Footer/Footer";
 import Requirements from "../../components/Requirements/Requirements";
 import StepByStep from "../../components/StepByStep/StepByStep";

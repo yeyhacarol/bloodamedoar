@@ -10,9 +10,9 @@ import IconLogo from "../../../components/logo/IconLogo/IconLogo";
 import Heading from "../../../components/Heading/Heading";
 import Bloodflow from "../../../components/Bloodflow/Bloodflow";
 
-import BloodcenterData from "../../../components/forms/Bloodcenter/Registration/BloodcenterData/BloodcenterData";
-import BloodcenterAddress from "../../../components/forms/Bloodcenter/Registration/BloodcenterAddress/BloodcenterAddress";
-import BloodcenterAccount from "../../../components/forms/Bloodcenter/Registration/BloodcenterAccount/BloodcenterAccount";
+import BloodcenterData from "./forms/BloodcenterData/BloodcenterData";
+import BloodcenterAddress from "./forms/BloodcenterAddress/BloodcenterAddress";
+import BloodcenterAccount from "./forms/BloodcenterAccount/BloodcenterAccount";
 import { useState } from "react";
 
 const Registration = () => {

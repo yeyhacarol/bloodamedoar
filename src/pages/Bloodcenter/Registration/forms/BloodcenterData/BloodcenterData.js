@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import styles from "./BloodcenterData.module.css";
 
 import CNPJService from "../../../../../services/apiBrasil/CNPJService";
-import typeDonation from "../../../../../services/apiBlood/typeDonationService";
+/* import typeDonation from "../../../../../services/apiBlood/typeDonationService"; */
 
-import Input from "../../../../form/Input/Input";
-import Selection from "../../../../form/Select/Selection";
-import Submit from "../../../../form/Submit/Submit";
+import Input from "../../../../../components/form/Input/Input";
+/* import Selection from "../../../../form/Select/Selection"; */
+import Submit from "../../../../../components/form/Submit/Submit";
 
 const TAB_INDEX = 1;
 
@@ -142,7 +142,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
         }, */
       });
     }
-  }, [data.cnpj]);
+  }, [data.cnpj, errors]);
 
   return (
     <form onSubmit={handleValidate}>
