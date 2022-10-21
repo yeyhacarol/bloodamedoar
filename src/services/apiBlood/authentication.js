@@ -1,7 +1,7 @@
 const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
 const validateToken = async (token) => {
-  return await fetch("http://localhost:3000/loginHemocentro", {
+  return await fetch(BASE_URL + "/loginHemocentro", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

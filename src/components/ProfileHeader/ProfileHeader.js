@@ -8,7 +8,7 @@ import hemocentro from "../../assets/hemocentro-campinas.jpg";
 const ProfileHeader = ({ customHeader, cape, profile, bloodcenter }) => {
   return (
     <div className={`${styles.header} ${customHeader}`}>
-      <img src={capa} alt={bloodcenter} />
+      <img className={cape} src={capa} alt={bloodcenter} />
       <div className={styles.profile}>
         <img src={hemocentro} alt={bloodcenter} />
         <Button

@@ -1,24 +1,18 @@
 .edit_profile_container {
-    width: calc(100vw - 240px);
+
 }
 
 .edit_profile_content {
-    width: calc(100vw - 300px);
 
-    display: flex;
-    flex-direction: column;
+}
 
+.header {
     position: absolute;
     right: 0;
 }
 
 .profile_header {
-    width: calc(100vw - 300px);
-
-}
-
-@media screen and (max-width: 1025px) {
-    .edit_profile_content {
-        width: 100vw;
-    }
+    position: absolute;
+    right: 0;
+    top: 160px;
 }

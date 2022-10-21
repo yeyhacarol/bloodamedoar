@@ -13,10 +13,14 @@ const EditProfile = () => {
         title="Lista de consultas"
       />
 
-      <Header span="Edite seu perfil" />
-
       <div className={styles.edit_profile_content}>
-        <ProfileHeader customHeader={styles.profile_header} />
+        <div className={styles.header}>
+          <Header span="Edite seu perfil" />
+        </div>
+        <ProfileHeader
+          customHeader={styles.profile_header}
+          cape={styles.cape}
+        />
       </div>
     </div>
   );
