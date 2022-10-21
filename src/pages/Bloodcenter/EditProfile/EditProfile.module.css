@@ -16,3 +16,41 @@
     right: 0;
     top: 160px;
 }
+
+.edit_container {
+    width: calc(100vw - 300px);
+
+    display: flex;
+    flex-direction: row;
+
+    position: absolute;
+    right: 0;
+    top: 455px;
+}
+
+.edit_nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit {
+    width: 170px;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1.5px solid #d0d0d0;
+    border-right: 0;
+    border-radius: 10px 0 0 10px;
+
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1025px) {
+    .forms {
+        width: 100vw;
+    }
+}

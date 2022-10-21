@@ -1,0 +1,23 @@
+.container {
+    width: calc(100vw - 480px);
+    margin-bottom: 30px;
+}
+
+.content {
+    width: clamp(260px, 38vw, 490px);
+    padding-left: 45px;
+}
+
+.chk {
+    display: flex;
+    justify-content: space-between;
+}
+
+.address {
+    display: flex;
+    gap: 20px;
+}
+
+.text_area {
+    width: 920px;
+}

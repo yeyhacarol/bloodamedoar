@@ -19,6 +19,7 @@ const Input = ({
   onClick,
   checked,
   disable,
+  custom,
 }) => {
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -30,7 +31,7 @@ const Input = ({
     <div className={styles.input_container}>
       {mask ? (
         <IMaskInput
-          className={styles.input}
+          className={`${styles.input} ${custom}`}
           placeholder={placeholder}
           mask={mask}
           unmask={true}
@@ -43,7 +44,7 @@ const Input = ({
           {type === "password" ? (
             <>
               <input
-                className={styles.input}
+                className={`${styles.input} ${custom}`}
                 type={passwordShown ? "text" : "password"}
                 placeholder={placeholder}
                 name={name}
@@ -86,7 +87,7 @@ const Input = ({
                 </div>
               ) : (
                 <input
-                  className={styles.input}
+                  className={`${styles.input} ${custom}`}
                   type={type}
                   placeholder={placeholder}
                   name={name}
