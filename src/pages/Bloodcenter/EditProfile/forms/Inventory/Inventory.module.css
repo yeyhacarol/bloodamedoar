@@ -1,25 +1,15 @@
+.inventory {
+    
+}
+
 .container {
     width: calc(100vw - 471px);
+    min-height: 100px;
     margin-bottom: 30px;
 }
 
 .content {
     padding-left: 45px;
-}
-
-.chk {
-    width: clamp(260px, 35vw, 450px);
-    display: flex;
-    justify-content: space-between;
-}
-
-.content.address {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.right {
-    margin-right: 25px;
 }
 
 .action {
@@ -43,22 +33,13 @@
         align-items: center;
     }
 
-    .container h3 {
-        padding: 20px 0px 20px 0px;
+    .levels {
+        display: flex;
+        justify-content: center;
     }
 
     .content {
         padding: 0;
-    }
-
-    .content.address {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .right {
-        margin-right: 0;
     }
 
     .action {
@@ -73,5 +54,4 @@
     .save {
         margin-bottom: 0;
     }
-
 }

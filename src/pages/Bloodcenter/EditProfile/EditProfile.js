@@ -8,6 +8,8 @@ import Menu from "../../../components/layout/Menu/Menu";
 import Header from "../../../components/Header/Header";
 import ProfileHeader from "../../../components/ProfileHeader/ProfileHeader";
 import BloodcenterData from "./forms/BloodcenterData/BloodcenterData";
+import CurrentInventory from "./forms/Inventory/Inventory";
+import Campaign from "./forms/Campaign/Campaign";
 
 const EditProfile = () => {
   const openNav = () => {
@@ -15,7 +17,7 @@ const EditProfile = () => {
 
     if (nav.style.display === "block") {
       nav.style.display = "flex";
-      nav.style.transform = "translateX(clamp(-100px, .548vw, -155px))";
+      nav.style.transform = "translateX(clamp(-100px, 25vw, -155px))";
     } else {
       nav.style.display = "block";
       nav.style.transform = "translateX(0px)";
@@ -56,7 +58,13 @@ const EditProfile = () => {
             <BloodcenterData />
           </TabPanel>
           <TabPanel>
-            <h2>Any content 2</h2>
+            <CurrentInventory />
+          </TabPanel>
+          <TabPanel>
+            <h1>AGENDA</h1>
+          </TabPanel>
+          <TabPanel>
+           <Campaign />
           </TabPanel>
         </Tabs>
       </div>

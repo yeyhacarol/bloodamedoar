@@ -6,12 +6,12 @@ import critical from "../../assets/bloodLevels/critical.png";
 import warning from "../../assets/bloodLevels/warning.png";
 import stable from "../../assets/bloodLevels/stable.png";
 
-const Inventory = () => {
+const Inventory = ({ title, custom, customLevels }) => {
   return (
-    <Container customClass={styles.our_inventory}>
-      <h3>Nosso estoque</h3>
+    <Container customClass={`${styles.our_inventory} ${custom}`}>
+      <h3>{title}</h3>
 
-      <div className={styles.blood_levels}>
+      <div className={`${styles.blood_levels} ${customLevels}`}>
         <div className={styles.level}>
           <img src={critical} alt="Sangue: A+" />
           <p>A+</p>

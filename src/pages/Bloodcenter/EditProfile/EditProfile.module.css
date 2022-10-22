@@ -33,6 +33,7 @@
 }
 
 .nav {
+    border-right: .5px solid #d0d0d0;
     flex-direction: column;
 }
 
@@ -44,7 +45,7 @@
     justify-content: center;
     align-items: center;
 
-    margin-bottom: 10px;
+    margin-bottom: 16.5px;
 
     font-size: clamp(0.875rem, 2vw, 1rem);
 
@@ -79,6 +80,7 @@
 
     .nav {
         transition: all .5s;
+        border-right: 0;
     }
 
     .edit {  

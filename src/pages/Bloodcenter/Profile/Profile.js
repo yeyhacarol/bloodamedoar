@@ -60,7 +60,7 @@ const Profile = () => {
 
         <AboutBloodcenter />
 
-        <Inventory />
+        <Inventory title="Nosso estoque" />
 
         <CampaignSlider
           customClass={styles.our_campaigns}

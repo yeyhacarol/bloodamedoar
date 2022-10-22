@@ -11,7 +11,7 @@
 }
 
 .our_inventory h3 {
-    font-size: clamp(1rem, 3vw, 1.25rem);
+    font-size: clamp(1rem, 5vw, 1.125em);
     font-weight: 600;
 
     margin-bottom: 5px;

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styles from "./BloodcenterData.module.css";
 
 import typeDonation from "../../../../../services/apiBlood/typeDonationService";
@@ -7,7 +8,6 @@ import Container from "../../../../../components/layout/Container/Container";
 import Input from "../../../../../components/form/Input/Input";
 import Selection from "../../../../../components/form/Select/Selection";
 import Submit from "../../../../../components/form/Submit/Submit";
-import { Link } from "react-router-dom";
 
 const BloodcenterData = () => {
   const [data, setData] = useState({
@@ -73,7 +73,7 @@ const BloodcenterData = () => {
 
       <Container title="Biografia" customClass={styles.container}>
         <div className={styles.content}>
-          <Input placeholder="Sobre nós" custom={styles.text_area} />
+          <Input placeholder="Sobre nós"/>
           <Input
             placeholder="Horário de atendimento"
             custom={styles.text_area}
@@ -92,7 +92,7 @@ const BloodcenterData = () => {
         </div>
       </Container>
 
-      <Container title="Contato" customClass={styles.container}>
+      <Container title="Contato" customClass={`${styles.container} ${styles.contact}`}>
         <div className={styles.content}>
           <Input placeholder="Telefone" mask="(00) 0000-0000" />
           <Input placeholder="Celular" mask="(00) 00000-0000" />
@@ -101,7 +101,7 @@ const BloodcenterData = () => {
       </Container>
 
       <div className={styles.action}>
-        <Submit action="Salvar" />
+        <Submit action="Salvar" customClass={styles.save}/>
         <Link>Desativar conta</Link>
       </div>
     </form>

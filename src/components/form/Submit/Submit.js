@@ -12,7 +12,7 @@ const Submit = ({
   handleOnClick,
 }) => {
   return (
-    <div className={styles.button_container}>
+    <div className={`${styles.button_container} ${customClass}`}>
       <button
         type="submit"
         className={`${styles.button} ${customClass}`}
