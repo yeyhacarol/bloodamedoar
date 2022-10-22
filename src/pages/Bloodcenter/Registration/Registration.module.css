@@ -28,7 +28,7 @@
   z-index: 999;
 }
 
-form h3 {
+.registration_content form h3 {
   font-size: clamp(1rem, 5vw, 1.125rem);
   font-weight: 500;
 

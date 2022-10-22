@@ -1,0 +1,115 @@
+.container {
+    width: calc(100vw - 471px);
+    margin-bottom: 30px;
+
+    position: relative;
+}
+
+.content {
+    padding-left: 45px;
+}
+
+.bottom,
+.form.partners {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 25px;
+}
+
+.content h3 {
+    padding: 0 0 20px 0px;
+}
+
+.form { 
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+}
+
+.form.campaign_data {
+    display: flex;
+    flex-direction: column;
+}
+
+.right {
+    margin-right: 25px;
+}
+
+.input {
+    width: clamp(115px, 16.5vw, 200px);
+}
+
+.action {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.action a {
+    color: #000;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.save {
+    margin-bottom: 0;
+}
+
+.trash_campaign {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1025px) {
+    .container {
+        width: 100vw;
+    }
+
+    .container h3 {
+        display: flex;
+        justify-content: center;
+        padding: 20px 0px 20px 0px;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding-left: 0;
+    }
+
+    .content h3 {
+        padding: 0px 0px 20px 0px;
+    }
+
+    .form,
+    .bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form.date {
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+    }
+
+    .right {
+        margin-right: 0;
+    }
+
+    .action {
+        height: 160px;
+        display: flex;
+        flex-direction: column;
+        display: flex;
+        justify-content: flex-start;
+        gap: 20px;
+    }
+}
