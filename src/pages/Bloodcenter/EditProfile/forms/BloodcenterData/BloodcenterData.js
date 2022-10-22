@@ -56,20 +56,18 @@ const BloodcenterData = () => {
       </Container>
 
       <Container title="Endereço" customClass={styles.container}>
-        <div className={styles.content}>
-          <div className={styles.address}>
+        <div className={`${styles.content} ${styles.address}`}>
+          <div className={styles.right}>
             <Input placeholder="CEP" />
-            <Input placeholder="Bairro" />
-          </div>
-          <div className={styles.address}>
             <Input placeholder="Logradouro" />
             <Input placeholder="Estado" />
+            <Input placeholder="Ponto de referência" />
           </div>
-          <div className={styles.address}>
+          <div className={styles.left}>
+            <Input placeholder="Bairro" />
             <Input placeholder="Número" />
             <Input placeholder="Cidade" />
           </div>
-          <Input placeholder="Ponto de referência" custom={styles.text_area} />
         </div>
       </Container>
 
@@ -81,12 +79,11 @@ const BloodcenterData = () => {
             custom={styles.text_area}
           />
           <Selection
-            width=""
             closeMenuOnSelect="false"
             placeholder="Tipos de serviço"
             /* error={errors.id_tipo_servico.type}
-          errorMessage={errors.id_tipo_servico.errorMessage}
-          name="id_tipo_servico" */
+               errorMessage={errors.id_tipo_servico.errorMessage}
+               name="id_tipo_servico" */
             message="Sem serviços"
             value={data.id_tipo_servico}
             options={id_tipo_servico && id_tipo_servico}
@@ -97,8 +94,8 @@ const BloodcenterData = () => {
 
       <Container title="Contato" customClass={styles.container}>
         <div className={styles.content}>
-          <Input placeholder="Telefone" />
-          <Input placeholder="Celular" />
+          <Input placeholder="Telefone" mask="(00) 0000-0000" />
+          <Input placeholder="Celular" mask="(00) 00000-0000" />
           <Input type="email" placeholder="E-mail" />
         </div>
       </Container>

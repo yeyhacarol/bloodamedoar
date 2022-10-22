@@ -2,6 +2,7 @@ import styles from "./EditProfile.module.css";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { FiMoreVertical } from "react-icons/fi";
 
 import Menu from "../../../components/layout/Menu/Menu";
 import Header from "../../../components/Header/Header";
@@ -9,6 +10,18 @@ import ProfileHeader from "../../../components/ProfileHeader/ProfileHeader";
 import BloodcenterData from "./forms/BloodcenterData/BloodcenterData";
 
 const EditProfile = () => {
+  const openNav = () => {
+    let nav = document.getElementById("nav");
+
+    if (nav.style.display === "block") {
+      nav.style.display = "flex";
+      nav.style.transform = "translateX(clamp(-100px, .548vw, -155px))";
+    } else {
+      nav.style.display = "block";
+      nav.style.transform = "translateX(0px)";
+    }
+  };
+
   return (
     <div className={styles.edit_profile_container}>
       <Menu
@@ -28,10 +41,15 @@ const EditProfile = () => {
 
         <Tabs className={styles.edit_container}>
           <TabList className={styles.edit_nav}>
-            <Tab className={styles.edit}>Hemocentro</Tab>
-            <Tab className={styles.edit}>Estoque</Tab>
-            <Tab className={styles.edit}>Agenda</Tab>
-            <Tab className={styles.edit}>Campanhas</Tab>
+            <div className={styles.open_nav} onClick={openNav}>
+              <FiMoreVertical size={25} color="#757575" />
+            </div>
+            <div id="nav" className={styles.nav}>
+              <Tab className={styles.edit}>Hemocentro</Tab>
+              <Tab className={styles.edit}>Estoque</Tab>
+              <Tab className={styles.edit}>Agenda</Tab>
+              <Tab className={styles.edit}>Campanhas</Tab>
+            </div>
           </TabList>
 
           <TabPanel>
