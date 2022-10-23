@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./BloodcenterData.module.css";
 
-/* import typeDonation from "../../../../../services/apiBlood/typeDonation"; */
+import getById from "../../../../../services/apiBlood/getById";
+import { formatCep } from "../../../../../utils/masks";
 
 import Container from "../../../../../components/layout/Container/Container";
 import Input from "../../../../../components/form/Input/Input";
 import Submit from "../../../../../components/form/Submit/Submit";
-import bloodcenter from "../../../../../services/apiBlood/bloodcenter";
-import { formatCep } from "../../../../../utils/masks";
 
 const BloodcenterData = () => {
   const [data, setData] = useState({
@@ -38,7 +37,7 @@ const BloodcenterData = () => {
   let id = 2;
 
   useEffect(() => {
-    bloodcenter(id).then((resp) => {
+    getById("/cadastrarHemocentro", id).then((resp) => {
       setData((prevState) => {
         return {
           ...prevState,

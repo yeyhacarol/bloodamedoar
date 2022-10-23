@@ -9,6 +9,11 @@ import { AiOutlineHistory } from "react-icons/ai";
 
 import styles from "./Profile.module.css";
 
+import { login } from "../../../services/apiBlood/authentication";
+import getById from "../../../services/apiBlood/getById";
+import { capitalize } from "../../../utils/capitalize";
+import { phoneMask } from "../../../utils/masks";
+
 import Menu from "../../../components/layout/Menu/Menu";
 import ProfileHeader from "../../../components/ProfileHeader/ProfileHeader";
 import AboutBloodcenter from "../../../components/AboutBloodcenter/AboutBloodcenter";
@@ -17,10 +22,6 @@ import CampaignSlider from "../../../components/donativeCampaign/CampaignSlider/
 import CampaignCard from "../../../components/donativeCampaign/CampaignCard/CampaignCard";
 
 import donation from "../../../assets/blood-donation.jpg";
-import { login } from "../../../services/apiBlood/authentication";
-import bloodcenter from "../../../services/apiBlood/bloodcenter";
-import { capitalize } from "../../../utils/capitalize";
-import { phoneMask } from "../../../utils/masks";
 
 const Profile = () => {
   const [tabIndex, setTabIndex] = useState();
@@ -54,7 +55,7 @@ const Profile = () => {
   });
 
   useEffect(() => {
-    bloodcenter(id).then((resp) => {
+    getById("/cadastrarHemocentro", id).then((resp) => {
       setData((prevState) => {
         return {
           ...prevState,
