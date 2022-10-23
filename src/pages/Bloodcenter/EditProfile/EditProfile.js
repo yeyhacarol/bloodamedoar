@@ -1,8 +1,10 @@
 import styles from "./EditProfile.module.css";
 
+import { useNavigate } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { FiMoreVertical } from "react-icons/fi";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 import Menu from "../../../components/layout/Menu/Menu";
 import Header from "../../../components/Header/Header";
@@ -17,12 +19,14 @@ const EditProfile = () => {
 
     if (nav.style.display === "block") {
       nav.style.display = "flex";
-      nav.style.transform = "translateX(clamp(-100px, 25vw, -155px))";
+      nav.style.transform = "translateX(-113px)";
     } else {
       nav.style.display = "block";
       nav.style.transform = "translateX(0px)";
     }
   };
+
+  const back = useNavigate();
 
   return (
     <div className={styles.edit_profile_container}>
@@ -36,11 +40,19 @@ const EditProfile = () => {
         <div className={styles.header}>
           <Header span="Edite seu perfil" />
         </div>
+
+        <div
+          className={styles.back}
+          onClick={() => back("/bloodcenter/profile")}
+        >
+          <IoMdArrowRoundBack size={30} />
+          <p>Voltar</p>
+        </div>
+
         <ProfileHeader
           customHeader={styles.profile_header}
           cape={styles.cape}
         />
-
         <Tabs className={styles.edit_container}>
           <TabList className={styles.edit_nav}>
             <div className={styles.open_nav} onClick={openNav}>
@@ -64,7 +76,7 @@ const EditProfile = () => {
             <h1>AGENDA</h1>
           </TabPanel>
           <TabPanel>
-           <Campaign />
+            <Campaign />
           </TabPanel>
         </Tabs>
       </div>

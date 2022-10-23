@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import styles from "./BloodcenterData.module.css";
 
 import CNPJService from "../../../../../services/apiBrasil/CNPJService";
-/* import typeDonation from "../../../../../services/apiBlood/typeDonationService"; */
 
 import Input from "../../../../../components/form/Input/Input";
-/* import Selection from "../../../../form/Select/Selection"; */
+
 import Submit from "../../../../../components/form/Submit/Submit";
 
 const TAB_INDEX = 1;
@@ -17,17 +16,14 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
     ? JSON.parse(dataStorage)
     : {
         nome_unidade: "",
-        /* unity: false, */
         unidade_sede: false,
         nome_sede: "",
         cnpj: "",
-        /* id_tipo_servico: [], */
         cep: "",
+        numero: "",
       };
 
   const [data, setData] = useState(initialData);
-
-  /*   const [id_tipo_servico, setId_tipo_servico] = useState([]); */
 
   const handleOnChange = (input, value) => {
     setData((prevState) => ({ ...prevState, [value]: input }));
@@ -38,10 +34,6 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
       number: false,
       errorMessage: false,
     },
-    /* id_tipo_servico: {
-      type: false,
-      errorMessage: false,
-    }, */
   });
 
   const handleValidate = (e) => {
@@ -57,16 +49,6 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
       });
     }
 
-    /*  if (data.id_tipo_servico.length === 0) {
-      return setErrors({
-        ...errors,
-        id_tipo_servico: {
-          type: true,
-          errorMessage: "Escolha ao menos um tipo de serviço.",
-        },
-      });
-    } */
-
     if (!errors.cnpj.number) {
       setTabIndex(TAB_INDEX);
       setTabSteps((tabSteps) => {
@@ -78,21 +60,6 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
       localStorage.setItem("data", JSON.stringify(data));
     }
   };
-
-  /* useEffect(() => {
-    let id_tipo_servico = [];
-
-    typeDonation().then((resp) => {
-      resp.map((service) => {
-        return id_tipo_servico.push({
-          value: `${service.id}`,
-          label: service.tipo_servico,
-        });
-      });
-
-      setId_tipo_servico(id_tipo_servico);
-    });
-  }, []); */
 
   useEffect(() => {
     if (data.cnpj.length === 14) {
@@ -114,10 +81,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
             nome_unidade: resp.nome_fantasia
               ? resp.nome_fantasia
               : resp.razao_social,
-            /* unity:
-              resp.descricao_identificador_matriz_filial === "FILIAL"
-                ? setData((value) => ({ ...value, unity: true }))
-                : setData((value) => ({ ...value, unity: false })), */
+
             unidade_sede:
               resp.descricao_identificador_matriz_filial === "MATRIZ"
                 ? setData((value) => ({ ...value, unidade_sede: true }))
@@ -127,6 +91,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
                 ? resp.nome_fantasia
                 : resp.razao_social,
             cep: resp.cep,
+            numero: resp.numero,
           };
         });
       });
@@ -136,13 +101,9 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
           number: false,
           errorMessage: false,
         },
-        /* id_tipo_servico: {
-          type: false,
-          errorMessage: false,
-        }, */
       });
     }
-  }, [data.cnpj, errors]);
+  }, [data.cnpj]);
 
   return (
     <form onSubmit={handleValidate}>
@@ -164,15 +125,6 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
         disable={true}
       />
       <div className={styles.chk}>
-        {/* <Input
-          type="checkbox"
-          label="Sou unidade"
-          id="1"
-          name="unity"
-          checked={data.unity ? true : false}
-          onClick={(value, name) => handleOnChange(value, name)}
-          disable={true}
-        /> */}
         <Input
           type="checkbox"
           label="Sou sede"
@@ -192,17 +144,6 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
           disable={true}
         />
       )}
-      {/* <Selection
-        closeMenuOnSelect="false"
-        placeholder="Tipos de serviço"
-        error={errors.id_tipo_servico.type}
-        errorMessage={errors.id_tipo_servico.errorMessage}
-        name="id_tipo_servico"
-        message="Sem serviços"
-        value={data.id_tipo_servico}
-        options={id_tipo_servico && id_tipo_servico}
-        handleOnChange={handleOnChange}
-      /> */}
       <Submit
         customClass={styles.custom_button}
         action="Próximo"

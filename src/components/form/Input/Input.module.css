@@ -92,7 +92,8 @@ input[type="checkbox"]:checked::before {
   gap: 5px;
 }
 
-.checkbox label {
+.checkbox label,
+.input_container label {
   font-size: clamp(0.875rem, 2vw, 1rem);
 }
 

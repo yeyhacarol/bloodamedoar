@@ -25,6 +25,25 @@
       "email": "looktothehorizon4@gmail.com",
       "senha": "abcABC123!",
       "id": 1
+    },
+    {
+      "cnpj": "36823204000170",
+      "nome_unidade": "RC ADMINISTRACAO E CONSULTORIA LTDA",
+      "unidade_sede": true,
+      "nome_sede": "RC ADMINISTRACAO E CONSULTORIA LTDA",
+      "cep": "24420-390",
+      "logradouro": "Rua Maisa Monjardim",
+      "numero": "233",
+      "bairro": "Rocha",
+      "cidade": "São Gonçalo",
+      "estado": "RJ",
+      "biografia": "Nós salvamos vidas com a sua ajuda. ",
+      "horario_atendimento": "Atendemos das 8:00 às 17:00 todos os dias, até aos finais de semana e feriados.",
+      "tipo_servico": [],
+      "telefone": "4141441423",
+      "celular": "25213564165",
+      "email": "lucasdelmondes@gmail.com",
+      "id": 2
     }
   ]
 }

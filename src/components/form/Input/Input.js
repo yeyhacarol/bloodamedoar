@@ -20,6 +20,7 @@ const Input = ({
   checked,
   disable,
   custom,
+  info,
 }) => {
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -30,19 +31,23 @@ const Input = ({
   return (
     <div className={styles.input_container}>
       {mask ? (
-        <IMaskInput
-          className={`${styles.input} ${custom}`}
-          placeholder={placeholder}
-          mask={mask}
-          unmask={true}
-          name={name}
-          value={value}
-          onAccept={(value) => handleOnChange(value, name)}
-        />
+        <>
+          <label>{info}</label>
+          <IMaskInput
+            className={`${styles.input} ${custom}`}
+            placeholder={placeholder}
+            mask={mask}
+            unmask={true}
+            name={name}
+            value={value}
+            onAccept={(value) => handleOnChange(value, name)}
+          />
+        </>
       ) : (
         <>
           {type === "password" ? (
             <>
+              <label>{info}</label>
               <input
                 className={`${styles.input} ${custom}`}
                 type={passwordShown ? "text" : "password"}
@@ -86,15 +91,18 @@ const Input = ({
                   <label htmlFor={id}>{label}</label>
                 </div>
               ) : (
-                <input
-                  className={`${styles.input} ${custom}`}
-                  type={type}
-                  placeholder={placeholder}
-                  name={name}
-                  value={value}
-                  onChange={(e) => handleOnChange(e.target.value, name)}
-                  disabled={disable}
-                />
+                <>
+                  <label>{info}</label>
+                  <input
+                    className={`${styles.input} ${custom}`}
+                    type={type}
+                    placeholder={placeholder}
+                    name={name}
+                    value={value}
+                    onChange={(e) => handleOnChange(e.target.value, name)}
+                    disabled={disable}
+                  />
+                </>
               )}
             </>
           )}

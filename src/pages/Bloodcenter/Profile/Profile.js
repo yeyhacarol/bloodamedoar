@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../contexts/Auth/AuthContext";
 
 import { CircleMenu, CircleMenuItem } from "react-circular-menu";
@@ -17,8 +17,14 @@ import CampaignSlider from "../../../components/donativeCampaign/CampaignSlider/
 import CampaignCard from "../../../components/donativeCampaign/CampaignCard/CampaignCard";
 
 import donation from "../../../assets/blood-donation.jpg";
+import { login } from "../../../services/apiBlood/authentication";
+import bloodcenter from "../../../services/apiBlood/bloodcenter";
+import { capitalize } from "../../../utils/capitalize";
+import { phoneMask } from "../../../utils/masks";
 
 const Profile = () => {
+  const [tabIndex, setTabIndex] = useState();
+
   const auth = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -37,7 +43,44 @@ const Profile = () => {
     rotationAngle = 360;
   }
 
-  /* CONSUMIR API PARA TRAZER OS DADOS DINÂMICOS */
+  let id = 2;
+
+  const [data, setData] = useState({
+    nome_unidade: "",
+    logradouro: "",
+    bairro: "",
+    estado: "",
+    cidade: "",
+  });
+
+  useEffect(() => {
+    bloodcenter(id).then((resp) => {
+      setData((prevState) => {
+        return {
+          ...prevState,
+          nome_unidade: capitalize(resp.nome_unidade),
+          logradouro: resp.logradouro,
+          numero: resp.numero,
+          bairro: resp.bairro,
+          cidade: resp.cidade,
+          estado: resp.estado,
+          cep: resp.cep,
+          biografia: resp.biografia
+            ? resp.biografia
+            : "Você ainda não cadastrou essa informação.",
+          horario_atendimento: resp.horario_atendimento
+            ? resp.horario_atendimento
+            : "Você ainda não cadastrou essa informação.",
+          telefone: resp.telefone ? phoneMask(resp.telefone) : null,
+          celular: phoneMask(resp.celular),
+          email: resp.email,
+          tipo_servico: ["Sangue", "Plaqueta"],
+        };
+      });
+
+      console.log(resp);
+    });
+  }, []);
 
   return (
     <div className={styles.profile_container}>
@@ -51,14 +94,30 @@ const Profile = () => {
         <ProfileHeader />
 
         <div className={styles.introduction}>
-          <h2>Hemocentro Campinas</h2>
+          <h2>{data.nome_unidade}</h2>
           <p>
-            Universidade Estadual de Campinas - R. Carlos Chagas, 480 - Cidade
-            Universitária, Campinas - SP, 13083-878
+            {data.logradouro +
+              ", " +
+              data.numero +
+              " - " +
+              data.bairro +
+              ", " +
+              data.cidade +
+              " - " +
+              data.estado +
+              ", " +
+              data.cep}
           </p>
         </div>
 
-        <AboutBloodcenter />
+        <AboutBloodcenter
+          biography={data.biografia}
+          opening={data.horario_atendimento}
+          telephone={data.telefone}
+          celular={data.celular}
+          email={data.email}
+          services={data.tipo_servico}
+        />
 
         <Inventory title="Nosso estoque" />
 
@@ -84,7 +143,8 @@ const Profile = () => {
         >
           <CircleMenuItem
             tooltip="Criar campanha"
-            className={`${styles.menu_item} ${styles.first}`}
+            className={styles.menu_item}
+            onClick={() => setTabIndex(tabIndex)}
           >
             <FiSmile size={20} />
           </CircleMenuItem>

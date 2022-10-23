@@ -31,13 +31,8 @@
     display: flex;
     align-items: center;
     gap: 10px;
-}
 
-.line {
-    width: 1px;
-    height: 20px;
-
-    background-color: #000;
+    font-size: clamp(0.813rem, 3vw, 1.063rem);
 }
 
 @media screen and (max-width: 1025px) {

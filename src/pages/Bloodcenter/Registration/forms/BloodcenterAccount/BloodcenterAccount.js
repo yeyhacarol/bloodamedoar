@@ -129,8 +129,6 @@ const BloodcenterAccount = () => {
 
     delete data["confirmPassword"];
 
-    /* data["id_tipo_servico"] = data["id_tipo_servico"].value; */
-
     const BASE_URL = process.env.REACT_APP_BASE_URL;
 
     fetch(BASE_URL + "/cadastrarHemocentro", {

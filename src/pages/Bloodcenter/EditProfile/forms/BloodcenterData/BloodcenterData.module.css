@@ -7,12 +7,6 @@
     padding-left: 45px;
 }
 
-.chk {
-    width: clamp(260px, 35vw, 450px);
-    display: flex;
-    justify-content: space-between;
-}
-
 .content.address {
     display: flex;
     flex-wrap: wrap;

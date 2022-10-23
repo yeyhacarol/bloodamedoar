@@ -18,14 +18,14 @@ const App = () => {
         <Route path="/bloodcenter/registration" element={<Registration />} />
         <Route path="/bloodcenter/profile" element={<Profile />} />
         <Route path="/bloodcenter/profile/edit" element={<EditProfile />} />
-        {/* <Route
+        <Route
           path="/bloodcenter/profile"
           element={
             <RequireAuth>
               <Profile />
             </RequireAuth>
           }
-        /> */}
+        />
       </Routes>
     </Router>
   );

@@ -92,7 +92,7 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
         name="street"
         value={data.logradouro || ""}
         handleOnChange={handleOnChange}
-        disable={true}
+        disable={!data.logradouro ? false : true}
       />
       <Input
         placeholder="Número"
@@ -101,27 +101,28 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
         errorMessage={errors.cep.errorMessage}
         value={data.numero || ""}
         handleOnChange={handleOnChange}
+        disable={!data.numero ? false : true}
       />
       <Input
         placeholder="Bairro"
         name="neighbourhood"
         value={data.bairro || ""}
         handleOnChange={handleOnChange}
-        disable={true}
+        disable={!data.bairro ? false : true}
       />
       <Input
         placeholder="Estado"
         name="state"
         value={data.estado || ""}
         handleOnChange={handleOnChange}
-        disable={true}
+        disable={!data.estado ? false : true}
       />
       <Input
         placeholder="Cidade"
         name="city"
         value={data.cidade || ""}
         handleOnChange={handleOnChange}
-        disable={true}
+        disable={!data.cidade ? false : true}
       />
       <Input
         placeholder="Ponto de referência"
