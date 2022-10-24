@@ -11,6 +11,7 @@ const BloodcenterAccount = () => {
 
   const [data, setData] = useState(
     initialData || {
+      telefone: "",
       celular: "",
       email: "",
       senha: "",
@@ -45,7 +46,7 @@ const BloodcenterAccount = () => {
   const handleValidate = (e) => {
     e.preventDefault();
 
-    if (!data.celular) {
+    if (!data.telefone) {
       return setErrors({
         ...errors,
         telephone: {
@@ -55,7 +56,7 @@ const BloodcenterAccount = () => {
       });
     }
 
-    if (data.celular.length !== 11) {
+    /*     if (data.telefone.length !== 11) {
       return setErrors({
         ...errors,
         telephone: {
@@ -64,7 +65,7 @@ const BloodcenterAccount = () => {
         },
       });
     }
-
+ */
     if (!data.email) {
       return setErrors({
         ...errors,
@@ -129,7 +130,7 @@ const BloodcenterAccount = () => {
 
     delete data["confirmPassword"];
 
-    const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
     fetch(BASE_URL + "/cadastrarHemocentro", {
       method: "POST",
@@ -143,7 +144,9 @@ const BloodcenterAccount = () => {
         console.log(data);
         localStorage.removeItem("data");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
 
     navigate("/bloodcenter/login");
   };
@@ -156,8 +159,8 @@ const BloodcenterAccount = () => {
         placeholder="Número de celular"
         error={errors.telephone.number}
         errorMessage={errors.telephone.errorMessage}
-        name="celular"
-        value={data.celular || ""}
+        name="telefone"
+        value={data.telefone || ""}
         handleOnChange={handleOnChange}
       />
       <Input

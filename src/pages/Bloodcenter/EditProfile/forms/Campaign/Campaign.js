@@ -1,5 +1,6 @@
 import styles from "./Campaign.module.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { HiOutlineTrash } from "react-icons/hi";
 
 import Input from "../../../../../components/form/Input/Input";
@@ -7,16 +8,33 @@ import Submit from "../../../../../components/form/Submit/Submit";
 import Container from "../../../../../components/layout/Container/Container";
 
 const Campaign = () => {
+  const [data, setData] = useState({
+    nome: "",
+    data_inicio: "",
+    data_termino: "",
+    descricao: "",
+    nome_parceria: "",
+    foto_capa: "naosei.png",
+    logo_parceria: "",
+    id_unidade_hemocentro: 2,
+  });
+
+  const handleOnChange = (input, value) => {
+    setData((prevState) => ({ ...prevState, [value]: input }));
+  };
+
   return (
     <form className={styles.campaign}>
       <Container title="Campanha" customClass={styles.container}>
         <div className={styles.content}>
           <div className={`${styles.form} ${styles.campaign_data}`}>
-            <Input placeholder="Nome da campanha" />
-            <div className={styles.bottom}>
-              <Input placeholder="Frase de efeito" />
-              <Input type="file" placeholder="Foto de capa" />
-            </div>
+            <Input
+              placeholder="Nome da campanha"
+              /* error={} errorMessage={} */ name="nome"
+              value={data.nome || ""}
+              handleOnChange={handleOnChange}
+            />
+            <Input type="file" placeholder="Foto de capa" />
           </div>
         </div>
       </Container>
@@ -40,24 +58,10 @@ const Campaign = () => {
         </div>
 
         <div className={styles.content}>
-          <h3>Data e hora</h3>
+          <h3>Datas</h3>
           <div className={`${styles.form} ${styles.date}`}>
-            <div className={styles.right}>
-              <Input
-                custom={styles.input}
-                type="date"
-                placeholder="Data início"
-              />
-              <Input
-                custom={styles.input}
-                type="time"
-                placeholder="Hora início"
-              />
-            </div>
-            <div className={styles.left}>
-              <Input custom={styles.input} type="date" placeholder="Data fim" />
-              <Input custom={styles.input} type="time" placeholder="Hora fim" />
-            </div>
+            <Input custom={styles.input} type="date" info="Data início" />
+            <Input custom={styles.input} type="date" info="Hora início" />
           </div>
         </div>
         <div className={styles.content}>

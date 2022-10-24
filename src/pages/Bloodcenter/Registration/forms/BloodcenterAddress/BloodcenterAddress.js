@@ -71,6 +71,7 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
           bairro: resp.neighborhood,
           estado: resp.state,
           cidade: resp.city,
+          ponto_referencia: data.ponto_referencia,
         };
       });
     });
@@ -89,7 +90,7 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
       />
       <Input
         placeholder="Logradouro"
-        name="street"
+        name="logradouro"
         value={data.logradouro || ""}
         handleOnChange={handleOnChange}
         disable={!data.logradouro ? false : true}
@@ -105,28 +106,28 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
       />
       <Input
         placeholder="Bairro"
-        name="neighbourhood"
+        name="bairro"
         value={data.bairro || ""}
         handleOnChange={handleOnChange}
         disable={!data.bairro ? false : true}
       />
       <Input
         placeholder="Estado"
-        name="state"
+        name="estado"
         value={data.estado || ""}
         handleOnChange={handleOnChange}
         disable={!data.estado ? false : true}
       />
       <Input
         placeholder="Cidade"
-        name="city"
+        name="cidade"
         value={data.cidade || ""}
         handleOnChange={handleOnChange}
         disable={!data.cidade ? false : true}
       />
       <Input
         placeholder="Ponto de referência"
-        name="landmark"
+        name="ponto_referencia"
         value={data.ponto_referencia || ""}
         handleOnChange={handleOnChange}
       />

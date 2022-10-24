@@ -9,7 +9,6 @@
     padding-left: 45px;
 }
 
-.bottom,
 .form.partners {
     display: flex;
     flex-wrap: wrap;
@@ -29,6 +28,11 @@
 .form.campaign_data {
     display: flex;
     flex-direction: column;
+}
+
+.form.date {
+    display: flex;
+    gap: 50px;
 }
 
 .right {

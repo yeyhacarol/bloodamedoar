@@ -40,7 +40,7 @@
     },
     {
       "id": 8,
-      "tipo_sanguineo": "0-"
+      "tipo_sanguineo": "O-"
     }
   ],
   "listarNiveis": [
@@ -59,16 +59,28 @@
   ],
   "estoqueSangue": [
     {
-      "id_tipo_sanguineo": "2",
+      "id_tipo_sanguineo": "3",
       "id_nivel_sangue": "1",
       "id_unidade_hemocentro": 2,
       "id": 1
     },
     {
       "id_tipo_sanguineo": "1",
-      "id_nivel_sangue": "3",
+      "id_nivel_sangue": "1",
       "id_unidade_hemocentro": 2,
       "id": 2
+    },
+    {
+      "id_tipo_sanguineo": "1",
+      "id_nivel_sangue": "1",
+      "id_unidade_hemocentro": 2,
+      "id": 3
+    },
+    {
+      "id_tipo_sanguineo": "1",
+      "id_nivel_sangue": "1",
+      "id_unidade_hemocentro": 2,
+      "id": 4
     }
   ],
   "cadastrarHemocentro": [
@@ -99,13 +111,31 @@
       "bairro": "Rocha",
       "cidade": "São Gonçalo",
       "estado": "RJ",
-      "biografia": "Nós salvamos vidas com a sua ajuda. ",
+      "biografia": "TESTE",
       "horario_atendimento": "Atendemos das 8:00 às 17:00 todos os dias, até aos finais de semana e feriados.",
       "tipo_servico": [],
       "telefone": "4141441423",
       "celular": "25213564165",
-      "email": "lucasdelmondes@gmail.com",
+      "email": "NRANGEL@GMAIL.COM",
       "id": 2
+    },
+    {
+      "cnpj": "46563746000104",
+      "nome_unidade": "NRANGEL",
+      "unidade_sede": true,
+      "nome_sede": "NELIO MARCELLO RANGEL 15502865797",
+      "cep": "24731-130",
+      "logradouro": "Rua Joaquim Torres",
+      "numero": "388",
+      "bairro": "Miriambi",
+      "cidade": "São Gonçalo",
+      "estado": "RJ",
+      "biografia": "TESTE",
+      "horario_atendimento": "TESTE",
+      "tipo_servico": [],
+      "celular": "12222121212",
+      "email": "looktothehorizon4@gmail.com",
+      "id": 3
     }
   ]
 }

@@ -63,8 +63,6 @@ const CurrentInventory = () => {
       .then((resp) => resp.json())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
-
-    console.log(data);
   };
 
   return (
