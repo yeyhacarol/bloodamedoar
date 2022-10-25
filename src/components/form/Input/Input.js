@@ -21,6 +21,7 @@ const Input = ({
   disable,
   custom,
   info,
+  ...props
 }) => {
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -40,6 +41,7 @@ const Input = ({
             unmask={true}
             name={name}
             value={value}
+            {...props}
             onAccept={(value) => handleOnChange(value, name)}
           />
         </>

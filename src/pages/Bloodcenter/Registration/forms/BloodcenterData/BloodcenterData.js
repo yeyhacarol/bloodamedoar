@@ -40,12 +40,55 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
     e.preventDefault();
 
     if (!data.cnpj) {
-      return setErrors({
+      setErrors({
         ...errors,
         cnpj: {
           number: true,
           errorMessage: "Campo obrigatório.",
         },
+      });
+
+      setData((prevState) => {
+        return {
+          nome_unidade: "",
+          unidade_sede: false,
+          nome_sede: "",
+          cnpj: prevState.cnpj,
+        };
+      });
+
+      return;
+    }
+
+    if (data.cnpj.length !== 14) {
+      setErrors({
+        ...errors,
+        cnpj: {
+          number: true,
+          errorMessage: "CNPJ inválido.",
+        },
+      });
+
+      setData((prevState) => {
+        return {
+          nome_unidade: "",
+          unidade_sede: false,
+          nome_sede: "",
+          cnpj: prevState.cnpj,
+        };
+      });
+
+      return;
+    }
+
+    if (errors.cnpj.number) {
+      setData((prevState) => {
+        return {
+          nome_unidade: "",
+          unidade_sede: false,
+          nome_sede: "",
+          cnpj: prevState.cnpj,
+        };
       });
     }
 
@@ -81,7 +124,6 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
             nome_unidade: resp.nome_fantasia
               ? resp.nome_fantasia
               : resp.razao_social,
-
             unidade_sede:
               resp.descricao_identificador_matriz_filial === "MATRIZ"
                 ? setData((value) => ({ ...value, unidade_sede: true }))
@@ -110,7 +152,8 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
       <h3>Dados do hemocentro</h3>
       <Input
         mask="00.000.000-0000/00"
-        placeholder="CNPJ"
+        info="CNPJ"
+        placeholder="00.000.000-0000/00"
         error={errors.cnpj.number}
         errorMessage={errors.cnpj.errorMessage}
         name="cnpj"
@@ -118,30 +161,32 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
         handleOnChange={handleOnChange}
       />
       <Input
+        info="Nome do hemocentro"
         placeholder="Nome do hemocentro"
-        name="bloodcenterName"
+        name="nome_unidade"
         value={data.nome_unidade || ""}
         handleOnChange={handleOnChange}
-        disable={true}
+        disable
       />
       <div className={styles.chk}>
         <Input
           type="checkbox"
           label="Sou sede"
           id="2"
-          name="headOffice"
+          name="unidade_sede"
           checked={data.unidade_sede ? true : false}
           onClick={(value, name) => handleOnChange(value, name)}
-          disable={true}
+          disable
         />
       </div>
       {data.unity && (
         <Input
+          info="Nome da sede"
           placeholder="Nome da sede"
-          name="unityName"
+          name="nome_sede"
           value={data.nome_sede || ""}
           handleOnChange={handleOnChange}
-          disable={true}
+          disable
         />
       )}
       <Submit

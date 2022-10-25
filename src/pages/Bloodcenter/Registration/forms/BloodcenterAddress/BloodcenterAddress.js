@@ -62,18 +62,30 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
     localStorage.setItem("data", JSON.stringify({ ...initialData, ...data }));
   };
 
+  const [disable, setDisable] = useState();
+
   useEffect(() => {
-    CEPService(data.cep).then((resp) => {
-      setData((prevState) => {
-        return {
-          ...prevState,
-          logradouro: resp.street,
-          bairro: resp.neighborhood,
-          estado: resp.state,
-          cidade: resp.city,
-        };
+    CEPService(data.cep)
+      .then((resp) => {
+        setData((prevState) => {
+          return {
+            ...prevState,
+            logradouro: resp.street || data.logradouro,
+            bairro: resp.neighborhood,
+            estado: resp.state,
+            cidade: resp.city,
+          };
+        });
+
+        console.log(resp.street);
+
+        if (!data.logradouro) {
+          setDisable(false);
+        }
+      })
+      .catch(() => {
+        setDisable(true);
       });
-    });
   }, [data.cep]);
 
   return (
@@ -85,14 +97,14 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
         name="cep"
         value={data.cep}
         handleOnChange={handleOnChange}
-        disable={true}
+        disabled
       />
       <Input
         placeholder="Logradouro"
         name="street"
         value={data.logradouro || ""}
         handleOnChange={handleOnChange}
-        disable={!data.logradouro ? false : true}
+        disable={disable}
       />
       <Input
         placeholder="Número"
