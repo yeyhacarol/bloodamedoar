@@ -77,11 +77,7 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
           };
         });
 
-        console.log(resp.street);
-
-        if (!data.logradouro) {
-          setDisable(false);
-        }
+        console.log(resp);
       })
       .catch(() => {
         setDisable(true);
