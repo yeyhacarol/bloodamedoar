@@ -7,6 +7,7 @@ import Registration from "./pages/Bloodcenter/Registration/Registration";
 import Profile from "./pages/Bloodcenter/Profile/Profile";
 import EditProfile from "./pages/Bloodcenter/EditProfile/EditProfile";
 import RequireAuth from "./contexts/Auth/RequireAuth";
+import RecoverPassword from "./pages/Login/RecoverPassword/RecoverPassword";
 
 const App = () => {
   return (
@@ -26,7 +27,9 @@ const App = () => {
             </RequireAuth>
           }
         />
+        <Route path = "/forgetpassword" element={<RecoverPassword/>}/>
       </Routes>
+
     </Router>
   );
 };
