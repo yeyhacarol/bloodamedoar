@@ -113,20 +113,20 @@ const BloodcenterData = () => {
             info="Nome unidade"
             name="nome_unidade"
             value={data.nome_unidade}
-            disable={true}
+            disabled={true}
           />
           <Input
             name="unidade_sede"
             type="checkbox"
             label="Sou sede"
             checked={data.unidade_sede}
-            disable={true}
+            disabled={true}
           />
           <Input
             info="Nome sede"
             name="nome_sede"
             value={data.nome_sede && data.nome_sede}
-            disable={true}
+            disabled={true}
           />
         </div>
       </Container>
@@ -134,18 +134,18 @@ const BloodcenterData = () => {
       <Container title="Endereço" customClass={styles.container}>
         <div className={`${styles.content} ${styles.address}`}>
           <div className={styles.right}>
-            <Input info="CEP" name="cep" value={data.cep} disable={true} />
+            <Input info="CEP" name="cep" value={data.cep} disabled={true} />
             <Input
               name="logradouro"
               info="Logradouro"
               value={data.logradouro}
-              disable={true}
+              disabled={true}
             />
             <Input
               name="estado"
               info="Estado"
               value={data.estado}
-              disable={true}
+              disabled={true}
             />
             <Input
               name="ponto_referencia"
@@ -162,19 +162,19 @@ const BloodcenterData = () => {
               name="bairro"
               info="Bairro"
               value={data.bairro}
-              disable={true}
+              disabled={true}
             />
             <Input
               name="numero"
               info="Número"
               value={data.numero}
-              disable={true}
+              disabled={true}
             />
             <Input
               name="cidade"
               info="Cidade"
               value={data.cidade}
-              disable={true}
+              disabled={true}
             />
           </div>
         </div>

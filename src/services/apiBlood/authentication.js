@@ -16,7 +16,7 @@ const validateToken = async (token) => {
 };
 
 const login = async (data) => {
-  return await fetch("http://localhost:3000/loginHemocentro", {
+  return await fetch(BASE_URL + "/loginHemocentro", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

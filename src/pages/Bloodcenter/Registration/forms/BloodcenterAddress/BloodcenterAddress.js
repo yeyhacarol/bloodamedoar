@@ -62,32 +62,25 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
     localStorage.setItem("data", JSON.stringify({ ...initialData, ...data }));
   };
 
-  const [disable, setDisable] = useState();
-
   useEffect(() => {
-    CEPService(data.cep)
-      .then((resp) => {
-        setData((prevState) => {
-          return {
-            ...prevState,
-            logradouro: resp.street || data.logradouro,
-            bairro: resp.neighborhood,
-            estado: resp.state,
-            cidade: resp.city,
-          };
-        });
-
-        console.log(resp);
-      })
-      .catch(() => {
-        setDisable(true);
+    CEPService(data.cep).then((resp) => {
+      setData((prevState) => {
+        return {
+          ...prevState,
+          logradouro: resp.street || "",
+          bairro: resp.neighborhood || "",
+          estado: resp.state || "",
+          cidade: resp.city || "",
+        };
       });
+    });
   }, [data.cep]);
 
   return (
     <form onSubmit={handleOnSubmit}>
       <h3>Endereço</h3>
       <Input
+        info="CEP"
         placeholder="CEP"
         mask="00000-000"
         name="cep"
@@ -96,43 +89,49 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
         disabled
       />
       <Input
+        info="Logradouro"
         placeholder="Logradouro"
         name="logradouro"
         value={data.logradouro || ""}
         handleOnChange={handleOnChange}
-        disable={disable}
+        disabled
       />
       <Input
+        info="Número"
         placeholder="Número"
         name="numero"
         error={errors.cep.number}
         errorMessage={errors.cep.errorMessage}
         value={data.numero || ""}
         handleOnChange={handleOnChange}
-        disable={!data.numero ? false : true}
+        disabled
       />
       <Input
+        info="Bairro"
         placeholder="Bairro"
         name="bairro"
         value={data.bairro || ""}
         handleOnChange={handleOnChange}
-        disable={!data.bairro ? false : true}
+        disabled
       />
       <Input
+        info="Estado"
         placeholder="Estado"
         name="estado"
         value={data.estado || ""}
         handleOnChange={handleOnChange}
-        disable={!data.estado ? false : true}
+        disabled
       />
       <Input
+        info="Cidade"
         placeholder="Cidade"
         name="cidade"
         value={data.cidade || ""}
         handleOnChange={handleOnChange}
-        disable={!data.cidade ? false : true}
+        disabled
       />
       <Input
+        info="Ponto de referência"
         placeholder="Ponto de referência"
         name="ponto_referencia"
         value={data.ponto_referencia || ""}

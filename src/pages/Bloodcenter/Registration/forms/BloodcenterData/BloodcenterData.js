@@ -166,7 +166,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
         name="nome_unidade"
         value={data.nome_unidade || ""}
         handleOnChange={handleOnChange}
-        disable
+        disabled
       />
       <div className={styles.chk}>
         <Input
@@ -176,7 +176,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
           name="unidade_sede"
           checked={data.unidade_sede ? true : false}
           onClick={(value, name) => handleOnChange(value, name)}
-          disable
+          disabled
         />
       </div>
       {data.unity && (
@@ -186,7 +186,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
           name="nome_sede"
           value={data.nome_sede || ""}
           handleOnChange={handleOnChange}
-          disable
+          disabled
         />
       )}
       <Submit

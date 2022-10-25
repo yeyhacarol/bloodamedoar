@@ -28,6 +28,8 @@ const AuthProvider = ({ children }) => {
   const signin = async (cnpj, password) => {
     const data = await login(cnpj, password);
 
+    console.log(data);
+
     if (data.id && data.token) {
       setUser(data.id);
       setToken(data.token);

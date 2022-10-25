@@ -18,7 +18,6 @@ const Input = ({
   handleOnChange,
   onClick,
   checked,
-  disable,
   custom,
   info,
   ...props
@@ -57,7 +56,7 @@ const Input = ({
                 name={name}
                 value={value}
                 onChange={(e) => handleOnChange(e.target.value, name)}
-                disabled={disable}
+                {...props}
               />
               {passwordShown ? (
                 <AiOutlineEye
@@ -88,7 +87,7 @@ const Input = ({
                     id={id}
                     onChange={(e) => onClick(e.currentTarget.checked, name)}
                     checked={checked}
-                    disabled={disable}
+                    {...props}
                   />
                   <label htmlFor={id}>{label}</label>
                 </div>
@@ -102,7 +101,7 @@ const Input = ({
                     name={name}
                     value={value}
                     onChange={(e) => handleOnChange(e.target.value, name)}
-                    disabled={disable}
+                    {...props}
                   />
                 </>
               )}

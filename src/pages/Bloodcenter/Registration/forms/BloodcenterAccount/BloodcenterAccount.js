@@ -46,7 +46,7 @@ const BloodcenterAccount = () => {
   const handleValidate = (e) => {
     e.preventDefault();
 
-    if (!data.telefone) {
+    if (!data.celular) {
       return setErrors({
         ...errors,
         telephone: {
@@ -56,7 +56,7 @@ const BloodcenterAccount = () => {
       });
     }
 
-    /*     if (data.telefone.length !== 11) {
+    if (data.celular.length !== 11) {
       return setErrors({
         ...errors,
         telephone: {
@@ -65,7 +65,7 @@ const BloodcenterAccount = () => {
         },
       });
     }
- */
+
     if (!data.email) {
       return setErrors({
         ...errors,
@@ -143,12 +143,11 @@ const BloodcenterAccount = () => {
       .then((data) => {
         console.log(data);
         localStorage.removeItem("data");
+        navigate("/bloodcenter/login");
       })
       .catch((err) => {
         console.log(err);
       });
-
-    navigate("/bloodcenter/login");
   };
 
   return (
@@ -159,8 +158,8 @@ const BloodcenterAccount = () => {
         placeholder="Número de celular"
         error={errors.telephone.number}
         errorMessage={errors.telephone.errorMessage}
-        name="telefone"
-        value={data.telefone || ""}
+        name="celular"
+        value={data.celular || ""}
         handleOnChange={handleOnChange}
       />
       <Input
