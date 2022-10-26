@@ -1,20 +1,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { pwd } from "../../../../../utils/regex";
 
 import Input from "../../../../../components/form/Input/Input";
 import Submit from "../../../../../components/form/Submit/Submit";
 
-const BloodcenterAccount = () => {
+const TAB_INDEX = 0;
+
+const BloodcenterAccount = ({ setTabIndex }) => {
   const initialData = JSON.parse(localStorage.getItem("data"));
 
   const [data, setData] = useState(
     initialData || {
-      telefone: "",
       celular: "",
       email: "",
       senha: "",
+      confirmacaoSenha: "",
     }
   );
 
@@ -23,20 +26,20 @@ const BloodcenterAccount = () => {
   };
 
   const [errors, setErrors] = useState({
-    telephone: {
-      number: false,
+    celular: {
+      error: false,
       errorMessage: false,
     },
     email: {
-      field: false,
+      error: false,
       errorMessage: false,
     },
-    password: {
-      number: false,
+    senha: {
+      error: false,
       errorMessage: false,
     },
-    confirmPassword: {
-      number: false,
+    confirmacaoSenha: {
+      error: false,
       errorMessage: false,
     },
   });
@@ -49,8 +52,8 @@ const BloodcenterAccount = () => {
     if (!data.celular) {
       return setErrors({
         ...errors,
-        telephone: {
-          number: true,
+        celular: {
+          error: true,
           errorMessage: "Campo obrigatório.",
         },
       });
@@ -59,8 +62,8 @@ const BloodcenterAccount = () => {
     if (data.celular.length !== 11) {
       return setErrors({
         ...errors,
-        telephone: {
-          number: true,
+        celular: {
+          error: true,
           errorMessage: "Número inválido.",
         },
       });
@@ -70,7 +73,7 @@ const BloodcenterAccount = () => {
       return setErrors({
         ...errors,
         email: {
-          field: true,
+          error: true,
           errorMessage: "Campo obrigatório.",
         },
       });
@@ -79,8 +82,8 @@ const BloodcenterAccount = () => {
     if (!data.senha) {
       return setErrors({
         ...errors,
-        password: {
-          number: true,
+        senha: {
+          error: true,
           errorMessage: "Campo obrigatório.",
         },
       });
@@ -89,46 +92,27 @@ const BloodcenterAccount = () => {
     if (!pwd.test(data.senha)) {
       return setErrors({
         ...errors,
-        password: {
-          number: true,
+        senha: {
+          error: true,
           errorMessage:
             "Senha deve conter 8 dígitos incluindo letras de A-z, números e caracteres especiais.",
         },
       });
     }
 
-    if (data.confirmPassword !== data.senha) {
+    if (data.confirmacaoSenha !== data.senha) {
       return setErrors({
         ...errors,
-        confirmPassword: {
-          number: true,
+        confirmacaoSenha: {
+          error: true,
           errorMessage: "Senhas não coincidem.",
         },
       });
     }
 
-    setErrors({
-      telephone: {
-        number: false,
-        errorMessage: false,
-      },
-      email: {
-        field: false,
-        errorMessage: false,
-      },
-      password: {
-        number: false,
-        errorMessage: false,
-      },
-      confirmPassword: {
-        number: false,
-        errorMessage: false,
-      },
-    });
-
     localStorage.setItem("data", JSON.stringify({ ...initialData, ...data }));
 
-    delete data["confirmPassword"];
+    delete data["confirmacaoSenha"];
 
     const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
@@ -141,12 +125,23 @@ const BloodcenterAccount = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        if (data.message) {
+          console.log(data.message);
+          toast.success(data.message);
+          localStorage.removeItem("data");
+          navigate("/bloodcenter/login");
+          return;
+        } else if (data.error) {
+          toast.error(data.error);
+          localStorage.removeItem("data");
+          setTabIndex(TAB_INDEX);
+          return;
+        }
+
         localStorage.removeItem("data");
-        navigate("/bloodcenter/login");
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
@@ -156,40 +151,44 @@ const BloodcenterAccount = () => {
       <Input
         mask="(00) 00000-0000"
         placeholder="Número de celular"
-        error={errors.telephone.number}
-        errorMessage={errors.telephone.errorMessage}
+        error={errors.celular.error}
+        errorMessage={errors.celular.errorMessage}
         name="celular"
         value={data.celular || ""}
         handleOnChange={handleOnChange}
+        onFocus={() => setErrors({ ...errors, celular: false })}
       />
       <Input
         type="email"
         placeholder="E-mail"
-        error={errors.email.field}
+        error={errors.email.error}
         errorMessage={errors.email.errorMessage}
         name="email"
         value={data.email || ""}
         handleOnChange={handleOnChange}
+        onFocus={() => setErrors({ ...errors, email: false })}
       />
 
       <h3>Conta</h3>
       <Input
         type="password"
         placeholder="Senha"
-        error={errors.password.number}
-        errorMessage={errors.password.errorMessage}
+        error={errors.senha.error}
+        errorMessage={errors.senha.errorMessage}
         name="senha"
         value={data.senha || ""}
         handleOnChange={handleOnChange}
+        onFocus={() => setErrors({ ...errors, senha: false })}
       />
       <Input
         type="password"
         placeholder="Confirmação de senha"
-        error={errors.confirmPassword.number}
-        errorMessage={errors.confirmPassword.errorMessage}
-        name="confirmPassword"
-        value={data.confirmPassword || ""}
+        error={errors.confirmacaoSenha.error}
+        errorMessage={errors.confirmacaoSenha.errorMessage}
+        name="confirmacaoSenha"
+        value={data.confirmacaoSenha || ""}
         handleOnChange={handleOnChange}
+        onFocus={() => setErrors({ ...errors, confirmacaoSenha: false })}
       />
 
       <Submit
