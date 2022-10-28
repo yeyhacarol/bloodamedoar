@@ -12,7 +12,7 @@ const validateToken = async (token) => {
     .then((data) => {
       return data;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.error(err));
 };
 
 const login = async (data) => {
@@ -29,7 +29,7 @@ const login = async (data) => {
 
       return data;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.error(err));
 };
 
 const logout = async () => {
