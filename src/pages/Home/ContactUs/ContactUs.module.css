@@ -14,10 +14,9 @@
 }
 
 .contact_us_form {
-  width: 50%;
-
   padding: 20px;
 
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;

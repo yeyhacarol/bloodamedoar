@@ -5,6 +5,7 @@ import {
   logout,
   validateToken,
 } from "../../services/apiBlood/authentication";
+import { toast } from "react-toastify";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -28,7 +29,13 @@ const AuthProvider = ({ children }) => {
   const signin = async (cnpj, password) => {
     const data = await login(cnpj, password);
 
-    console.log(data);
+    if (data.error === "Senha incorreta.") {
+      toast.error(data.error);
+    }
+
+    if (data.error === "CNPJ inválido.") {
+      toast.error(data.error);
+    }
 
     if (data.id && data.token) {
       setUser(data.id);

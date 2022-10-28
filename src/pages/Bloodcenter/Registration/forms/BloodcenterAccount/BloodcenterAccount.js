@@ -150,7 +150,8 @@ const BloodcenterAccount = ({ setTabIndex }) => {
       <h3>Contato</h3>
       <Input
         mask="(00) 00000-0000"
-        placeholder="Número de celular"
+        placeholder="(00) 00000-0000"
+        info="Número de celular"
         error={errors.celular.error}
         errorMessage={errors.celular.errorMessage}
         name="celular"
@@ -160,7 +161,8 @@ const BloodcenterAccount = ({ setTabIndex }) => {
       />
       <Input
         type="email"
-        placeholder="E-mail"
+        placeholder="seuemail@gmail.com"
+        info="E-mail"
         error={errors.email.error}
         errorMessage={errors.email.errorMessage}
         name="email"
@@ -196,7 +198,7 @@ const BloodcenterAccount = ({ setTabIndex }) => {
         instruction="Já possui cadastro?"
         link="Entrar"
         to="/bloodcenter/login"
-        handleOnClick={handleValidate}
+        //handleOnClick={handleValidate}
       />
     </form>
   );

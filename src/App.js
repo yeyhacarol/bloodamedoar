@@ -22,13 +22,19 @@ const App = () => {
           <Route path="/identification" element={<Identification />} />
           <Route path="/bloodcenter/login" element={<Login />} />
           <Route path="/bloodcenter/registration" element={<Registration />} />
-          <Route path="/bloodcenter/profile" element={<Profile />} />
-          <Route path="/bloodcenter/profile/edit" element={<EditProfile />} />
           <Route
             path="/bloodcenter/profile"
             element={
               <RequireAuth>
                 <Profile />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/bloodcenter/profile/edit"
+            element={
+              <RequireAuth>
+                <EditProfile />
               </RequireAuth>
             }
           />
@@ -38,7 +44,7 @@ const App = () => {
 
       <ToastContainer
         position="top-center"
-        autoClose={5000}
+        autoClose={2500}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

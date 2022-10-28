@@ -44,8 +44,6 @@ const Profile = () => {
     rotationAngle = 360;
   }
 
-  let id = 2;
-
   const [data, setData] = useState({
     nome_unidade: "",
     logradouro: "",
@@ -54,7 +52,9 @@ const Profile = () => {
     cidade: "",
   });
 
-  useEffect(() => {
+  /* let id = 2; */
+
+  /* useEffect(() => {
     getById("/cadastrarHemocentro", id).then((resp) => {
       setData((prevState) => {
         return {
@@ -81,7 +81,7 @@ const Profile = () => {
 
       console.log(resp);
     });
-  }, []);
+  }, []); */
 
   return (
     <div className={styles.profile_container}>
