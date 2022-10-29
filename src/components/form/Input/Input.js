@@ -20,6 +20,7 @@ const Input = ({
   checked,
   custom,
   info,
+  onFocus,
   ...props
 }) => {
   const [passwordShown, setPasswordShown] = useState(false);
@@ -41,6 +42,7 @@ const Input = ({
             name={name}
             value={value}
             {...props}
+            onFocus={onFocus}
             onAccept={(value) => handleOnChange(value, name)}
           />
         </>
@@ -56,6 +58,7 @@ const Input = ({
                 name={name}
                 value={value}
                 onChange={(e) => handleOnChange(e.target.value, name)}
+                onFocus={onFocus}
                 {...props}
               />
               {passwordShown ? (
@@ -101,6 +104,7 @@ const Input = ({
                     name={name}
                     value={value}
                     onChange={(e) => handleOnChange(e.target.value, name)}
+                    onFocus={onFocus}
                     {...props}
                   />
                 </>

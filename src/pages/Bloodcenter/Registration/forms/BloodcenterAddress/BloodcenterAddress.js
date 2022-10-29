@@ -69,7 +69,7 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
           ...prevState,
           logradouro: resp.street || "",
           bairro: resp.neighborhood || "",
-          estado: resp.state || "",
+          estado: resp.state || "SP",
           cidade: resp.city || "",
         };
       });

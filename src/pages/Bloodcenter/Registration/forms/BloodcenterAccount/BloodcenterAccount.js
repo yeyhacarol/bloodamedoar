@@ -1,20 +1,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { pwd } from "../../../../../utils/regex";
 
 import Input from "../../../../../components/form/Input/Input";
 import Submit from "../../../../../components/form/Submit/Submit";
 
-const BloodcenterAccount = () => {
+const TAB_INDEX = 0;
+
+const BloodcenterAccount = ({ setTabIndex, setTabSteps }) => {
   const initialData = JSON.parse(localStorage.getItem("data"));
 
   const [data, setData] = useState(
     initialData || {
-      telefone: "",
       celular: "",
       email: "",
       senha: "",
+      confirmacaoSenha: "",
     }
   );
 
@@ -23,21 +26,21 @@ const BloodcenterAccount = () => {
   };
 
   const [errors, setErrors] = useState({
-    telephone: {
-      number: false,
-      errorMessage: false,
+    celular: {
+      error: false,
+      errorMessage: "",
     },
     email: {
-      field: false,
-      errorMessage: false,
+      error: false,
+      errorMessage: "",
     },
-    password: {
-      number: false,
-      errorMessage: false,
+    senha: {
+      error: false,
+      errorMessage: "",
     },
-    confirmPassword: {
-      number: false,
-      errorMessage: false,
+    confirmacaoSenha: {
+      error: false,
+      errorMessage: "",
     },
   });
 
@@ -49,8 +52,8 @@ const BloodcenterAccount = () => {
     if (!data.celular) {
       return setErrors({
         ...errors,
-        telephone: {
-          number: true,
+        celular: {
+          error: true,
           errorMessage: "Campo obrigatório.",
         },
       });
@@ -59,8 +62,8 @@ const BloodcenterAccount = () => {
     if (data.celular.length !== 11) {
       return setErrors({
         ...errors,
-        telephone: {
-          number: true,
+        celular: {
+          error: true,
           errorMessage: "Número inválido.",
         },
       });
@@ -70,7 +73,7 @@ const BloodcenterAccount = () => {
       return setErrors({
         ...errors,
         email: {
-          field: true,
+          error: true,
           errorMessage: "Campo obrigatório.",
         },
       });
@@ -79,8 +82,8 @@ const BloodcenterAccount = () => {
     if (!data.senha) {
       return setErrors({
         ...errors,
-        password: {
-          number: true,
+        senha: {
+          error: true,
           errorMessage: "Campo obrigatório.",
         },
       });
@@ -89,46 +92,45 @@ const BloodcenterAccount = () => {
     if (!pwd.test(data.senha)) {
       return setErrors({
         ...errors,
-        password: {
-          number: true,
+        senha: {
+          error: true,
           errorMessage:
             "Senha deve conter 8 dígitos incluindo letras de A-z, números e caracteres especiais.",
         },
       });
     }
 
-    if (data.confirmPassword !== data.senha) {
+    if (data.confirmacaoSenha !== data.senha) {
       return setErrors({
         ...errors,
-        confirmPassword: {
-          number: true,
+        confirmacaoSenha: {
+          error: true,
           errorMessage: "Senhas não coincidem.",
         },
       });
     }
 
     setErrors({
-      telephone: {
-        number: false,
-        errorMessage: false,
+      celular: {
+        error: false,
+        errorMessage: "",
       },
       email: {
-        field: false,
-        errorMessage: false,
+        error: false,
+        errorMessage: "",
       },
-      password: {
-        number: false,
-        errorMessage: false,
+      senha: {
+        error: false,
+        errorMessage: "",
       },
-      confirmPassword: {
-        number: false,
-        errorMessage: false,
+      confirmacaoSenha: {
+        error: false,
+        errorMessage: "",
       },
     });
 
     localStorage.setItem("data", JSON.stringify({ ...initialData, ...data }));
-
-    delete data["confirmPassword"];
+    delete data["confirmacaoSenha"];
 
     const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
@@ -142,11 +144,20 @@ const BloodcenterAccount = () => {
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data);
-        localStorage.removeItem("data");
-        navigate("/bloodcenter/login");
+        if (data.message) {
+          localStorage.removeItem("data");
+          toast(data.message);
+          setInterval(500, navigate("/bloodcenter/login"));
+          return;
+        } else if (data.error) {
+          localStorage.removeItem("data");
+          toast.error(data.error);
+          setInterval(500, setTabIndex(TAB_INDEX));
+          return;
+        }
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
@@ -155,41 +166,47 @@ const BloodcenterAccount = () => {
       <h3>Contato</h3>
       <Input
         mask="(00) 00000-0000"
-        placeholder="Número de celular"
-        error={errors.telephone.number}
-        errorMessage={errors.telephone.errorMessage}
+        info="Número de celular"
+        placeholder="(00) 00000-0000"
+        error={errors.celular.error}
+        errorMessage={errors.celular.errorMessage}
         name="celular"
         value={data.celular || ""}
         handleOnChange={handleOnChange}
+        onFocus={() => setErrors({ ...errors, celular: false })}
       />
       <Input
         type="email"
-        placeholder="E-mail"
-        error={errors.email.field}
+        info="E-mail"
+        placeholder="seuemail@gmail.com"
+        error={errors.email.error}
         errorMessage={errors.email.errorMessage}
         name="email"
         value={data.email || ""}
         handleOnChange={handleOnChange}
+        onFocus={() => setErrors({ ...errors, email: false })}
       />
 
       <h3>Conta</h3>
       <Input
         type="password"
         placeholder="Senha"
-        error={errors.password.number}
-        errorMessage={errors.password.errorMessage}
+        error={errors.senha.error}
+        errorMessage={errors.senha.errorMessage}
         name="senha"
         value={data.senha || ""}
         handleOnChange={handleOnChange}
+        onFocus={() => setErrors({ ...errors, senha: false })}
       />
       <Input
         type="password"
         placeholder="Confirmação de senha"
-        error={errors.confirmPassword.number}
-        errorMessage={errors.confirmPassword.errorMessage}
-        name="confirmPassword"
-        value={data.confirmPassword || ""}
+        error={errors.confirmacaoSenha.error}
+        errorMessage={errors.confirmacaoSenha.errorMessage}
+        name="confirmacaoSenha"
+        value={data.confirmacaoSenha || ""}
         handleOnChange={handleOnChange}
+        onFocus={() => setErrors({ ...errors, confirmacaoSenha: false })}
       />
 
       <Submit

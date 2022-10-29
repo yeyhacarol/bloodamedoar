@@ -108,13 +108,24 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
     if (data.cnpj.length === 14) {
       CNPJService(data.cnpj).then((resp) => {
         if (resp.message) {
-          return setErrors({
+          setErrors({
             ...errors,
             cnpj: {
               number: true,
               errorMessage: "CNPJ não encontrado.",
             },
           });
+
+          setData((prevState) => {
+            return {
+              nome_unidade: "",
+              unidade_sede: false,
+              nome_sede: "",
+              cnpj: prevState.cnpj,
+            };
+          });
+
+          return;
         }
 
         setData((prevState) => {
@@ -179,7 +190,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
           disabled
         />
       </div>
-      {data.unity && (
+      {data.unidade_sede && (
         <Input
           info="Nome da sede"
           placeholder="Nome da sede"

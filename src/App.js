@@ -1,4 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+
+import styles from "./App.module.css";
 
 import Home from "./pages/Home/Home";
 import Identification from "./pages/Identification/Identification";
@@ -27,9 +31,22 @@ const App = () => {
             </RequireAuth>
           }
         />
-        <Route path = "/forgetpassword" element={<RecoverPassword/>}/>
+        <Route path="/forgetpassword" element={<RecoverPassword />} />
       </Routes>
 
+      <ToastContainer
+        limit={3}
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Router>
   );
 };
