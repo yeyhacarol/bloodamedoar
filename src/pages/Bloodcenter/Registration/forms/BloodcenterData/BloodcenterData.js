@@ -128,6 +128,8 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
           return;
         }
 
+        console.log(resp.descricao_identificador_matriz_filial === "MATRIZ");
+
         setData((prevState) => {
           return {
             ...prevState,
@@ -137,16 +139,18 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
               : resp.razao_social,
             unidade_sede:
               resp.descricao_identificador_matriz_filial === "MATRIZ"
-                ? setData((value) => ({ ...value, unidade_sede: true }))
-                : setData((value) => ({ ...value, unidade_sede: false })),
+                ? true
+                : false,
             nome_sede:
               resp.descricao_identificador_matriz_filial === "FILIAL"
-                ? resp.nome_fantasia
-                : resp.razao_social,
+                ? resp.razao_social
+                : resp.nome_fantasia,
             cep: resp.cep,
             numero: resp.numero,
           };
         });
+
+        console.log(data);
       });
 
       return setErrors({
@@ -185,17 +189,18 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
           label="Sou sede"
           id="2"
           name="unidade_sede"
-          checked={data.unidade_sede ? true : false}
+          checked={data.unidade_sede}
           onClick={(value, name) => handleOnChange(value, name)}
           disabled
         />
       </div>
-      {data.unidade_sede && (
+
+      {!data.unidade_sede && (
         <Input
           info="Nome da sede"
           placeholder="Nome da sede"
           name="nome_sede"
-          value={data.nome_sede || ""}
+          value={data.nome_sede && data.nome_sede}
           handleOnChange={handleOnChange}
           disabled
         />

@@ -24,7 +24,38 @@ const Login = () => {
     setData((prevState) => ({ ...prevState, [value]: input }));
   };
 
+  const [errors, setErrors] = useState({
+    cnpj: {
+      error: false,
+      errorMessage: false,
+    },
+    senha: {
+      error: false,
+      errorMessage: false,
+    },
+  });
+
   const handleOnSubmit = async () => {
+    if (!data.cnpj) {
+      return setErrors({
+        ...errors,
+        cnpj: {
+          error: true,
+          errorMessage: "Preencha este campo.",
+        },
+      });
+    }
+
+    if (!data.senha) {
+      return setErrors({
+        ...errors,
+        senha: {
+          error: true,
+          errorMessage: "Preencha este campo.",
+        },
+      });
+    }
+
     if (data.cnpj && data.senha) {
       const isLogged = await auth.signin({
         cnpj: data.cnpj,
@@ -33,8 +64,6 @@ const Login = () => {
 
       if (isLogged) {
         navigate("/bloodcenter/profile");
-      } else {
-        alert("Não foi possível logar.");
       }
     }
   };
@@ -53,6 +82,9 @@ const Login = () => {
             name="cnpj"
             value={data.cnpj}
             handleOnChange={handleOnChange}
+            error={errors.cnpj.error}
+            errorMessage={errors.cnpj.errorMessage}
+            onFocus={() => setErrors({ ...errors, cnpj: false })}
           />
           <Input
             type="password"
@@ -60,6 +92,9 @@ const Login = () => {
             name="senha"
             value={data.senha}
             handleOnChange={handleOnChange}
+            error={errors.senha.error}
+            errorMessage={errors.senha.errorMessage}
+            onFocus={() => setErrors({ ...errors, senha: false })}
           />
 
           <div className={styles.about_pwd}>

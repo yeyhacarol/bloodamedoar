@@ -9,7 +9,7 @@ import Submit from "../../../../../components/form/Submit/Submit";
 
 const TAB_INDEX = 0;
 
-const BloodcenterAccount = ({ setTabIndex, setTabSteps }) => {
+const BloodcenterAccount = ({ setTabIndex }) => {
   const initialData = JSON.parse(localStorage.getItem("data"));
 
   const [data, setData] = useState(
@@ -36,11 +36,23 @@ const BloodcenterAccount = ({ setTabIndex, setTabSteps }) => {
     },
     senha: {
       error: false,
-      errorMessage: "",
+      errorMessage: false,
     },
     confirmacaoSenha: {
       error: false,
-      errorMessage: "",
+      errorMessage: false,
+    },
+    email: {
+      error: false,
+      errorMessage: false,
+    },
+    senha: {
+      error: false,
+      errorMessage: false,
+    },
+    confirmacaoSenha: {
+      error: false,
+      errorMessage: false,
     },
   });
 
@@ -155,6 +167,21 @@ const BloodcenterAccount = ({ setTabIndex, setTabSteps }) => {
           setInterval(500, setTabIndex(TAB_INDEX));
           return;
         }
+
+        if (data.message) {
+          console.log(data.message);
+          toast.success(data.message);
+          localStorage.removeItem("data");
+          navigate("/bloodcenter/login");
+          return;
+        } else if (data.error) {
+          toast.error(data.error);
+          localStorage.removeItem("data");
+          setTabIndex(TAB_INDEX);
+          return;
+        }
+
+        localStorage.removeItem("data");
       })
       .catch((err) => {
         console.error(err);
@@ -166,8 +193,8 @@ const BloodcenterAccount = ({ setTabIndex, setTabSteps }) => {
       <h3>Contato</h3>
       <Input
         mask="(00) 00000-0000"
-        info="Número de celular"
         placeholder="(00) 00000-0000"
+        info="Número de celular"
         error={errors.celular.error}
         errorMessage={errors.celular.errorMessage}
         name="celular"
@@ -214,7 +241,7 @@ const BloodcenterAccount = ({ setTabIndex, setTabSteps }) => {
         instruction="Já possui cadastro?"
         link="Entrar"
         to="/bloodcenter/login"
-        handleOnClick={handleValidate}
+        //handleOnClick={handleValidate}
       />
     </form>
   );

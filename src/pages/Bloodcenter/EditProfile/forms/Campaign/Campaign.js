@@ -58,10 +58,24 @@ const Campaign = () => {
         </div>
 
         <div className={styles.content}>
-          <h3>Datas</h3>
+          <h3>Data e hora</h3>
           <div className={`${styles.form} ${styles.date}`}>
-            <Input custom={styles.input} type="date" info="Data início" />
-            <Input custom={styles.input} type="date" info="Hora início" />
+            <div className={styles.right}>
+              <Input
+                custom={styles.input}
+                type="date"
+                placeholder="Data início"
+              />
+              <Input custom={styles.input} type="date" placeholder="Data fim" />
+            </div>
+            <div className={styles.left}>
+              <Input custom={styles.input} type="time" placeholder="Hora fim" />
+              <Input
+                custom={styles.input}
+                type="time"
+                placeholder="Hora início"
+              />
+            </div>
           </div>
         </div>
         <div className={styles.content}>

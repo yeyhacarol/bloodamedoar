@@ -36,6 +36,8 @@ const Profile = () => {
     navigate("/");
   };
 
+  console.log(auth.user);
+
   let rotationAngle = Math.round(window.innerWidth);
 
   if (rotationAngle < 1025) {
@@ -44,22 +46,28 @@ const Profile = () => {
     rotationAngle = 360;
   }
 
-  let id = 2;
-
   const [data, setData] = useState({
     nome_unidade: "",
     logradouro: "",
+    numero: "",
     bairro: "",
-    estado: "",
     cidade: "",
+    estado: "",
+    cep: "",
+    biografia: "",
+    horario_atendimento: "",
+    telefone: "",
+    celular: "",
+    email: "",
+    tipo_servico: "",
   });
 
   useEffect(() => {
-    getById("/cadastrarHemocentro", id).then((resp) => {
+    getById("/listarHemocentroPorId", auth.user).then((resp) => {
       setData((prevState) => {
         return {
           ...prevState,
-          nome_unidade: capitalize(resp.nome_unidade),
+          nome_unidade: resp.nome_unidade,
           logradouro: resp.logradouro,
           numero: resp.numero,
           bairro: resp.bairro,
@@ -72,8 +80,8 @@ const Profile = () => {
           horario_atendimento: resp.horario_atendimento
             ? resp.horario_atendimento
             : "Você ainda não cadastrou essa informação.",
-          telefone: resp.telefone ? phoneMask(resp.telefone) : null,
-          celular: phoneMask(resp.celular),
+          telefone: resp.telefone ? resp.telefone : null,
+          celular: resp.celular,
           email: resp.email,
           tipo_servico: ["Sangue", "Plaqueta"],
         };

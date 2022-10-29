@@ -34,7 +34,7 @@ const BloodcenterData = () => {
     setData((prevState) => ({ ...prevState, [value]: input }));
   };
 
-  let id = 2;
+  /* let id = 2;
 
   useEffect(() => {
     getById("/cadastrarHemocentro", id).then((resp) => {
@@ -83,7 +83,7 @@ const BloodcenterData = () => {
         console.log(data);
       })
       .catch((err) => console.log(err));
-  };
+  }; */
 
   /*   const [id_tipo_servico, setId_tipo_servico] = useState([]);
 
@@ -103,7 +103,7 @@ const BloodcenterData = () => {
   }, []);
  */
   return (
-    <form className={styles.bloodcenter_data} onSubmit={edit}>
+    <form className={styles.bloodcenter_data} /* onSubmit={edit} */>
       <Container
         title="Hemocentro"
         customClass={`${styles.container} ${styles.bloodcenter}`}
@@ -247,7 +247,7 @@ const BloodcenterData = () => {
         <Submit
           action="Salvar"
           customClass={styles.save}
-          handleOnClick={edit}
+          //handleOnClick={edit}
         />
         <Link>Desativar conta</Link>
       </div>
