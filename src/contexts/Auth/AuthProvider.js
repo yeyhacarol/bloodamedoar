@@ -19,6 +19,7 @@ const AuthProvider = ({ children }) => {
 
         if (data.user) {
           setUser(data.user);
+          setToken(data.token);
         }
       }
     };

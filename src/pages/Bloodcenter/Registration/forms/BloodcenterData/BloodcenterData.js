@@ -21,6 +21,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
         cnpj: "",
         cep: "",
         numero: "",
+        bairro: "",
       };
 
   const [data, setData] = useState(initialData);
@@ -128,8 +129,6 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
           return;
         }
 
-        console.log(resp.descricao_identificador_matriz_filial === "MATRIZ");
-
         setData((prevState) => {
           return {
             ...prevState,
@@ -147,10 +146,9 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
                 : resp.nome_fantasia,
             cep: resp.cep,
             numero: resp.numero,
+            bairro: resp.bairro,
           };
         });
-
-        console.log(data);
       });
 
       return setErrors({
@@ -174,6 +172,7 @@ const BloodcenterData = ({ setTabIndex, setTabSteps }) => {
         name="cnpj"
         value={data.cnpj || ""}
         handleOnChange={handleOnChange}
+        autoComplete="off"
       />
       <Input
         info="Nome do hemocentro"

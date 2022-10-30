@@ -1,15 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "./BloodcenterData.module.css";
 
+import { AuthContext } from "../../../../../contexts/Auth/AuthContext";
 import getById from "../../../../../services/apiBlood/getById";
 import { formatCep } from "../../../../../utils/masks";
 
 import Container from "../../../../../components/layout/Container/Container";
 import Input from "../../../../../components/form/Input/Input";
 import Submit from "../../../../../components/form/Submit/Submit";
+import { toast } from "react-toastify";
+import Textarea from "../../../../../components/form/Textarea/Textarea";
 
 const BloodcenterData = () => {
+  const auth = useContext(AuthContext);
+
   const [data, setData] = useState({
     cnpj: "",
     nome_unidade: "",
@@ -34,10 +39,10 @@ const BloodcenterData = () => {
     setData((prevState) => ({ ...prevState, [value]: input }));
   };
 
-  /* let id = 2;
-
   useEffect(() => {
-    getById("/cadastrarHemocentro", id).then((resp) => {
+    getById("/listarHemocentroPorId", auth.user).then((response) => {
+      const resp = response[0][0];
+
       setData((prevState) => {
         return {
           ...prevState,
@@ -61,29 +66,72 @@ const BloodcenterData = () => {
           email: resp.email,
         };
       });
-
-      console.log(data);
     });
   }, []);
 
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const [errors, setErrors] = useState({
+    telefone: {
+      error: false,
+      errorMessage: false,
+    },
+    celular: {
+      error: false,
+      errorMessage: false,
+    },
+  });
+
+  const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
   const edit = (e) => {
     e.preventDefault();
 
-    fetch(BASE_URL + `/cadastrarHemocentro/${id}`, {
+    if (!data.celular) {
+      return setErrors({
+        ...errors,
+        celular: {
+          error: true,
+          errorMessage: "Preencha este campo.",
+        },
+      });
+    }
+
+    if (data.celular.length != 11) {
+      return setErrors({
+        ...errors,
+        celular: {
+          error: true,
+          errorMessage: "Número inválido.",
+        },
+      });
+    }
+
+    if (data.telefone && data.telefone.length !== 10) {
+      return setErrors({
+        ...errors,
+        telefone: {
+          error: true,
+          errorMessage: "Número inválido.",
+        },
+      });
+    }
+
+    fetch(BASE_URL + `/atualizarHemocentro/${auth.user}`, {
       method: "PUT",
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        if (data.message) {
+          toast.success(data.message);
+        } else if (data.error) {
+          toast.error(data.error);
+        }
       })
-      .catch((err) => console.log(err));
-  }; */
+      .catch((err) => console.error(err));
+  };
 
   /*   const [id_tipo_servico, setId_tipo_servico] = useState([]);
 
@@ -103,7 +151,7 @@ const BloodcenterData = () => {
   }, []);
  */
   return (
-    <form className={styles.bloodcenter_data} /* onSubmit={edit} */>
+    <form className={styles.bloodcenter_data} onSubmit={edit}>
       <Container
         title="Hemocentro"
         customClass={`${styles.container} ${styles.bloodcenter}`}
@@ -182,19 +230,17 @@ const BloodcenterData = () => {
 
       <Container title="Biografia" customClass={styles.container}>
         <div className={styles.content}>
-          <Input
+          <Textarea
             name="biografia"
             placeholder="Sobre nós"
             info="Sobre nós"
-            custom={styles.text_area}
             value={data.biografia || ""}
             handleOnChange={handleOnChange}
           />
-          <Input
+          <Textarea
             name="horario_atendimento"
             placeholder="Horário de atendimento"
             info="Horário de atendimento"
-            custom={styles.text_area}
             value={data.horario_atendimento || ""}
             handleOnChange={handleOnChange}
           />
@@ -221,16 +267,24 @@ const BloodcenterData = () => {
             placeholder="Telefone"
             info="Telefone"
             mask="(00) 0000-0000"
+            error={errors.telefone.error}
+            errorMessage={errors.telefone.errorMessage}
             value={data.telefone || ""}
             handleOnChange={handleOnChange}
+            onFocus={() => setErrors({ ...errors, telefone: false })}
+            autoComplete="off"
           />
           <Input
             name="celular"
             placeholder="Celular"
             info="Celular"
+            error={errors.celular.error}
+            errorMessage={errors.celular.errorMessage}
             mask="(00) 00000-0000"
             value={data.celular || ""}
             handleOnChange={handleOnChange}
+            onFocus={() => setErrors({ ...errors, celular: false })}
+            autoComplete="off"
           />
           <Input
             name="email"

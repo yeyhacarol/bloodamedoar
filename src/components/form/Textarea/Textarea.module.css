@@ -1,0 +1,31 @@
+.textarea {
+    width: clamp(260px, 50vw, 700px);
+    min-height: 100px;
+    padding: 10px;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    font-family: var(--font);
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    cursor: context-menu;
+    resize: none;
+}
+
+.textarea_container label {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.textarea_container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.textarea:hover {
+    border-color: #b3b3b3;
+}
+  
+.textarea:focus {
+    outline-color: var(--red);
+}

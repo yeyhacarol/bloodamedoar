@@ -68,7 +68,7 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
         return {
           ...prevState,
           logradouro: resp.street || "",
-          bairro: resp.neighborhood || "",
+          bairro: data.bairro || resp.neighborhood,
           estado: resp.state || "SP",
           cidade: resp.city || "",
         };
@@ -115,18 +115,18 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
         disabled
       />
       <Input
-        info="Estado"
-        placeholder="Estado"
-        name="estado"
-        value={data.estado || ""}
-        handleOnChange={handleOnChange}
-        disabled
-      />
-      <Input
         info="Cidade"
         placeholder="Cidade"
         name="cidade"
         value={data.cidade || ""}
+        handleOnChange={handleOnChange}
+        disabled
+      />
+      <Input
+        info="Estado"
+        placeholder="Estado"
+        name="estado"
+        value={data.estado || ""}
         handleOnChange={handleOnChange}
         disabled
       />

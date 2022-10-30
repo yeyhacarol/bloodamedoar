@@ -85,6 +85,7 @@ const Login = () => {
             error={errors.cnpj.error}
             errorMessage={errors.cnpj.errorMessage}
             onFocus={() => setErrors({ ...errors, cnpj: false })}
+            autoComplete="off"
           />
           <Input
             type="password"

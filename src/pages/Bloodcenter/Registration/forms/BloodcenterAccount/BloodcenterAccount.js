@@ -42,18 +42,6 @@ const BloodcenterAccount = ({ setTabIndex }) => {
       error: false,
       errorMessage: false,
     },
-    email: {
-      error: false,
-      errorMessage: false,
-    },
-    senha: {
-      error: false,
-      errorMessage: false,
-    },
-    confirmacaoSenha: {
-      error: false,
-      errorMessage: false,
-    },
   });
 
   const navigate = useNavigate();
@@ -122,25 +110,6 @@ const BloodcenterAccount = ({ setTabIndex }) => {
       });
     }
 
-    setErrors({
-      celular: {
-        error: false,
-        errorMessage: "",
-      },
-      email: {
-        error: false,
-        errorMessage: "",
-      },
-      senha: {
-        error: false,
-        errorMessage: "",
-      },
-      confirmacaoSenha: {
-        error: false,
-        errorMessage: "",
-      },
-    });
-
     localStorage.setItem("data", JSON.stringify({ ...initialData, ...data }));
     delete data["confirmacaoSenha"];
 
@@ -155,21 +124,7 @@ const BloodcenterAccount = ({ setTabIndex }) => {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
         if (data.message) {
-          localStorage.removeItem("data");
-          toast(data.message);
-          setInterval(500, navigate("/bloodcenter/login"));
-          return;
-        } else if (data.error) {
-          localStorage.removeItem("data");
-          toast.error(data.error);
-          setInterval(500, setTabIndex(TAB_INDEX));
-          return;
-        }
-
-        if (data.message) {
-          console.log(data.message);
           toast.success(data.message);
           localStorage.removeItem("data");
           navigate("/bloodcenter/login");
@@ -201,6 +156,7 @@ const BloodcenterAccount = ({ setTabIndex }) => {
         value={data.celular || ""}
         handleOnChange={handleOnChange}
         onFocus={() => setErrors({ ...errors, celular: false })}
+        autoComplete="off"
       />
       <Input
         type="email"
@@ -212,6 +168,7 @@ const BloodcenterAccount = ({ setTabIndex }) => {
         value={data.email || ""}
         handleOnChange={handleOnChange}
         onFocus={() => setErrors({ ...errors, email: false })}
+        autoComplete="off"
       />
 
       <h3>Conta</h3>
@@ -241,7 +198,6 @@ const BloodcenterAccount = ({ setTabIndex }) => {
         instruction="Já possui cadastro?"
         link="Entrar"
         to="/bloodcenter/login"
-        //handleOnClick={handleValidate}
       />
     </form>
   );

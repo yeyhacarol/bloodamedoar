@@ -12,7 +12,7 @@ import styles from "./Profile.module.css";
 import { login } from "../../../services/apiBlood/authentication";
 import getById from "../../../services/apiBlood/getById";
 import { capitalize } from "../../../utils/capitalize";
-import { phoneMask } from "../../../utils/masks";
+import { phoneMask, formatCep } from "../../../utils/masks";
 
 import Menu from "../../../components/layout/Menu/Menu";
 import ProfileHeader from "../../../components/ProfileHeader/ProfileHeader";
@@ -35,8 +35,6 @@ const Profile = () => {
 
     navigate("/");
   };
-
-  console.log(auth.user);
 
   let rotationAngle = Math.round(window.innerWidth);
 
@@ -63,31 +61,31 @@ const Profile = () => {
   });
 
   useEffect(() => {
-    getById("/listarHemocentroPorId", auth.user).then((resp) => {
+    getById("/listarHemocentroPorId", auth.user).then((response) => {
+      const resp = response[0][0];
+
       setData((prevState) => {
         return {
           ...prevState,
           nome_unidade: resp.nome_unidade,
-          logradouro: resp.logradouro,
+          logradouro: resp.logradouro.split(",")[0],
           numero: resp.numero,
-          bairro: resp.bairro,
+          bairro: capitalize(resp.bairro),
           cidade: resp.cidade,
-          estado: resp.estado,
-          cep: resp.cep,
+          estado: resp.uf,
+          cep: formatCep(resp.cep),
           biografia: resp.biografia
             ? resp.biografia
             : "Você ainda não cadastrou essa informação.",
           horario_atendimento: resp.horario_atendimento
             ? resp.horario_atendimento
             : "Você ainda não cadastrou essa informação.",
-          telefone: resp.telefone ? resp.telefone : null,
-          celular: resp.celular,
+          telefone: resp.telefone ? phoneMask(resp.telefone) : null,
+          celular: phoneMask(resp.celular),
           email: resp.email,
-          tipo_servico: ["Sangue", "Plaqueta"],
+          tipo_servico: [],
         };
       });
-
-      console.log(resp);
     });
   }, []);
 
