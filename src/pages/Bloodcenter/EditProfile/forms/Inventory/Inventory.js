@@ -1,6 +1,8 @@
-import { json, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./Inventory.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+
+import { AuthContext } from "../../../../../contexts/Auth/AuthContext";
 
 import Inventory from "../../../../../components/Inventory/Inventory";
 import Container from "../../../../../components/layout/Container/Container";
@@ -9,10 +11,12 @@ import Submit from "../../../../../components/form/Submit/Submit";
 import get from "../../../../../services/apiBlood/get";
 
 const CurrentInventory = () => {
+  const auth = useContext(AuthContext);
+
   const [data, setData] = useState({
     id_tipo_sanguineo: "",
     id_nivel_sangue: "",
-    id_unidade_hemocentro: 2,
+    id_unidade_hemocentro: auth.user,
   });
   const [bloodType, setBloodType] = useState([]);
   const [level, setLevel] = useState([]);

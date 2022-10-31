@@ -1,21 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "./AuthContext";
 import {
   login,
   logout,
-  validateToken,
+  /* validateToken, */
 } from "../../services/apiBlood/authentication";
 import { toast } from "react-toastify";
 
 const AuthProvider = ({ children }) => {
+  const auth = useContext(AuthContext);
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const token = async () => {
       const storageData = localStorage.getItem("authToken");
 
+      console.log(storageData);
+
       if (storageData) {
         const data = await validateToken(storageData);
+
+        console.log(auth.user);
 
         if (data.user) {
           setUser(data.user);
@@ -25,7 +30,7 @@ const AuthProvider = ({ children }) => {
     };
 
     token();
-  }, []);
+  }, []); */
 
   const signin = async (cnpj, password) => {
     const data = await login(cnpj, password);

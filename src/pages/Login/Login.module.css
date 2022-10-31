@@ -19,6 +19,8 @@
     height: 100%;
 
     z-index: 89;
+
+    padding-top: 50px;
     
     display: flex;
     flex-direction: column;
@@ -36,7 +38,7 @@
 
 .about_pwd {
     width: 100%;
-    margin-bottom: 70px;
+    margin-bottom: 50px;
     gap: 10px;
 
     display: flex;

@@ -30,7 +30,7 @@ const Input = ({
   };
 
   return (
-    <div className={styles.input_container}>
+    <div className={`${styles.input_container} ${custom}`}>
       {mask ? (
         <>
           <label>{info}</label>

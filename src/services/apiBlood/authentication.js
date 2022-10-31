@@ -1,6 +1,6 @@
 const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
-const validateToken = async (token) => {
+/* const validateToken = async (token) => {
   return await fetch(BASE_URL + "/loginHemocentro", {
     method: "POST",
     headers: {
@@ -14,7 +14,7 @@ const validateToken = async (token) => {
       return data;
     })
     .catch((err) => console.error(err));
-};
+}; */
 
 const login = async (data) => {
   return await fetch(BASE_URL + "/loginHemocentro", {
@@ -37,4 +37,4 @@ const logout = async () => {
   return { status: true };
 };
 
-export { validateToken, login, logout };
+export { /* validateToken, */ login, logout };

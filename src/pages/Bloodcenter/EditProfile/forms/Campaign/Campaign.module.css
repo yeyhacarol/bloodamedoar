@@ -9,12 +9,6 @@
     padding-left: 45px;
 }
 
-.form.partners {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 25px;
-}
-
 .content h3 {
     padding: 0 0 20px 0px;
 }
@@ -32,7 +26,30 @@
 
 .form.date {
     display: flex;
-    gap: 50px;
+    flex-direction: column;
+}
+
+.date_right,
+.date_left {
+    display: flex;
+    gap: 25px;
+}
+
+.message {
+    width: clamp(260px, 35vw, 450px);
+
+    padding-top: 5px;
+    gap: 5px;
+    margin-bottom: 25px;
+  
+    display: flex;
+    align-items: center;
+}
+
+.message span {
+    color: var(--primary-red);
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    font-weight: 600;
 }
 
 .right {
@@ -40,7 +57,13 @@
 }
 
 .input {
-    width: clamp(115px, 16.5vw, 200px);
+    width: clamp(115px, 23vw, 210px);
+    margin-bottom: 0px;
+}
+
+.right span,
+.left span {
+    width: clamp(115px, 23vw, 445px);
 }
 
 .action {
@@ -99,8 +122,6 @@
     }
 
     .form.date {
-        display: flex;
-        flex-direction: row;
         gap: 25px;
     }
 
