@@ -4,12 +4,11 @@ import { AuthContext } from "../../../contexts/Auth/AuthContext";
 
 import { CircleMenu, CircleMenuItem } from "react-circular-menu";
 
-import { FiCalendar, FiSmile, FiDroplet } from "react-icons/fi";
+import { FiCalendar, FiSmile, FiDroplet, FiLogIn } from "react-icons/fi";
 import { AiOutlineHistory } from "react-icons/ai";
 
 import styles from "./Profile.module.css";
 
-import { login } from "../../../services/apiBlood/authentication";
 import getById from "../../../services/apiBlood/getById";
 import { capitalize } from "../../../utils/capitalize";
 import { phoneMask, formatCep } from "../../../utils/masks";
@@ -97,6 +96,13 @@ const Profile = () => {
         title="Lista de consultas"
       />
 
+      {auth.user && (
+        <div className={styles.out}>
+          <FiLogIn size={40} title="Sair?" onClick={handleLogout} />
+          <span className={styles.tooltip}>Sair?</span>
+        </div>
+      )}
+
       <div className={styles.profile_content}>
         <ProfileHeader />
 
@@ -169,9 +175,6 @@ const Profile = () => {
           </CircleMenuItem>
         </CircleMenu>
       </div>
-
-      {/* <div>PERFIL DO HEMOCENTRO</div>
-      {auth.user && <button onClick={handleLogout}>sair</button>} */}
     </div>
   );
 };

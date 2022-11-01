@@ -67,6 +67,17 @@ const Campaign = () => {
     },
   });
 
+  const handleFile = (e) => {
+    console.log(e.target);
+    const file = e.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    setData({ ...data, foto_capa: file });
+  };
+
   const handleValidate = (e) => {
     e.preventDefault();
 
@@ -201,6 +212,16 @@ const Campaign = () => {
       }
     }
 
+    const formData = new FormData();
+
+    // Criando um objeto form data com os dados do usuário
+    const userFormData = Object.keys(userData).forEach((key) =>
+      formData.append(key, userData[key])
+    );
+
+    // Adicionando o objeto criado ao objeto formdata
+    formData.append("user", userFormData);
+
     const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
     fetch(BASE_URL + "/cadastrarCampanha", {
@@ -214,6 +235,23 @@ const Campaign = () => {
       .then((data) => {
         if (data.message) {
           toast.success(data.message);
+          window.screenTop(0);
+          setData({
+            nome: "",
+            foto_capa: "",
+            data_inicio: "",
+            hora_inicio: "",
+            data_termino: "",
+            hora_termino: "",
+            descricao: "",
+            cep: "",
+            logradouro: "",
+            numero: "",
+            bairro: "",
+            cidade: "",
+            estado: "",
+            ponto_referencia: "",
+          });
           return;
         } else if (data.error) {
           toast.error(data.error);
@@ -223,6 +261,8 @@ const Campaign = () => {
       .catch((err) => {
         console.error(err);
       });
+
+    console.log(data);
   };
 
   useEffect(() => {
@@ -287,17 +327,19 @@ const Campaign = () => {
               handleOnChange={handleOnChange}
               onFocus={() => setErrors({ ...errors, nome: false })}
             />
-            <Input
+            <input type="file" onChange={handleFile} />
+            {/* <Input
               type="file"
+              accept="image/*"
               info="Foto de capa"
               placeholder="Foto de capa"
               error={errors.foto_capa.error}
               errorMessage={errors.foto_capa.errorMessage}
               name="foto_capa"
               value={data.foto_capa || ""}
-              handleOnChange={handleOnChange}
+              handleOnChange={handleFile}
               onFocus={() => setErrors({ ...errors, foto_capa: false })}
-            />
+            /> */}
           </div>
         </div>
       </Container>

@@ -57,10 +57,43 @@
       "nivel_sangue": "Crítico"
     }
   ],
-  "estoqueSangue": [
-
-  ],
-  "cadastrarHemocentro": [
-
+  "estoqueSangue": [],
+  "cadastrarCampanha": [
+    {
+      "nome": "SEJA HERÓI",
+      "foto_capa": "C:\\fakepath\\Group 12.png",
+      "data_inicio": "2022-11-01",
+      "hora_inicio": "16:20",
+      "data_termino": "2022-11-01",
+      "hora_termino": "18:30",
+      "descricao": "TESTETSXE",
+      "cep": "06600025",
+      "logradouro": "Rua Elton Silva",
+      "numero": "905",
+      "bairro": "Centro",
+      "cidade": "Jandira",
+      "estado": "SP",
+      "ponto_referencia": "",
+      "id_unidade_hemocentro": 1,
+      "id": 1
+    },
+    {
+      "nome": "SEJA HERÓI",
+      "foto_capa": "C:\\fakepath\\Group 12.png",
+      "data_inicio": "2022-11-01",
+      "hora_inicio": "16:20",
+      "data_termino": "2022-11-01",
+      "hora_termino": "18:30",
+      "descricao": "TESTETSXE",
+      "cep": "06600025",
+      "logradouro": "Rua Elton Silva",
+      "numero": "905",
+      "bairro": "Centro",
+      "cidade": "Jandira",
+      "estado": "SP",
+      "ponto_referencia": "",
+      "id_unidade_hemocentro": 1,
+      "id": 2
+    }
   ]
 }

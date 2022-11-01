@@ -3,7 +3,7 @@ import styles from "./EditProfile.module.css";
 import { useNavigate } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { FiMoreVertical } from "react-icons/fi";
+import { FiMoreVertical, FiLogIn } from "react-icons/fi";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
 import Menu from "../../../components/layout/Menu/Menu";
@@ -12,6 +12,8 @@ import ProfileHeader from "../../../components/ProfileHeader/ProfileHeader";
 import BloodcenterData from "./forms/BloodcenterData/BloodcenterData";
 import CurrentInventory from "./forms/Inventory/Inventory";
 import Campaign from "./forms/Campaign/Campaign";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/Auth/AuthContext";
 
 const EditProfile = () => {
   const openNav = () => {
@@ -26,7 +28,15 @@ const EditProfile = () => {
     }
   };
 
-  const back = useNavigate();
+  const auth = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await auth.signout();
+
+    navigate("/");
+  };
 
   return (
     <div className={styles.edit_profile_container}>
@@ -36,6 +46,12 @@ const EditProfile = () => {
         title="Lista de consultas"
       />
 
+      {auth.user && (
+        <div className={styles.out}>
+          <FiLogIn size={40} title="Sair?" onClick={handleLogout} />
+        </div>
+      )}
+
       <div className={styles.edit_profile_content}>
         <div className={styles.header}>
           <Header span="Edite seu perfil" />
@@ -43,7 +59,7 @@ const EditProfile = () => {
 
         <div
           className={styles.back}
-          onClick={() => back("/bloodcenter/profile")}
+          onClick={() => navigate("/bloodcenter/profile")}
         >
           <IoMdArrowRoundBack size={30} />
           <p>Voltar</p>

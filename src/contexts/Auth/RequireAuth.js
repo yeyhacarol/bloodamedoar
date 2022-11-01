@@ -5,8 +5,6 @@ import { AuthContext } from "./AuthContext";
 const RequireAuth = ({ children }) => {
   const auth = useContext(AuthContext);
 
-  console.log(auth);
-
   if (!auth.user) {
     return <Login />;
   }

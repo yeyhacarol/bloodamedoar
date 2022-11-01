@@ -18,6 +18,7 @@ const CurrentInventory = () => {
     id_nivel_sangue: "",
     id_unidade_hemocentro: auth.user,
   });
+
   const [bloodType, setBloodType] = useState([]);
   const [level, setLevel] = useState([]);
 
@@ -36,7 +37,7 @@ const CurrentInventory = () => {
       setBloodType(id_bloodType);
     });
 
-    get("/listarNiveis").then((resp) => {
+    get("/listarNiveisSangue").then((resp) => {
       resp.map((level) => {
         return id_level.push({
           value: `${level.id}`,
@@ -52,12 +53,43 @@ const CurrentInventory = () => {
     setData((prevState) => ({ ...prevState, [value]: input.value }));
   };
 
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const [errors, setErrors] = useState({
+    tipo_sanguineo: {
+      error: false,
+      errorMessage: false,
+    },
+    nivel_sangue: {
+      error: false,
+      errorMessage: false,
+    },
+  });
+
+  const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
   const bloodInventory = (e) => {
     e.preventDefault();
 
-    fetch(BASE_URL + "/estoqueSangue", {
+    if (!data.id_tipo_sanguineo) {
+      return setErrors({
+        ...errors,
+        tipo_sanguineo: {
+          error: true,
+          errorMessage: "Selecione um tipo sanguíneo.",
+        },
+      });
+    }
+
+    if (!data.id_nivel_sangue) {
+      return setErrors({
+        ...errors,
+        nivel_sangue: {
+          error: true,
+          errorMessage: "Selecione o nível de sangue.",
+        },
+      });
+    }
+
+    fetch(BASE_URL + "/cadastrarEstoqueSangue", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -82,20 +114,24 @@ const CurrentInventory = () => {
           <Selection
             closeMenuOnSelect={true}
             placeholder="Tipo sanguíneo"
-            /* error={} errorMessage={} */ name="id_tipo_sanguineo"
+            error={errors.tipo_sanguineo.error}
+            errorMessage={errors.tipo_sanguineo.errorMessage}
+            name="id_tipo_sanguineo"
             message="Sem tipos sanguíneos"
             options={bloodType}
             handleOnChange={handleOnChange}
-            // value={data.id_tipo_sanguineo}
+            onFocus={() => setErrors({ ...errors, tipo_sanguineo: false })}
           />
           <Selection
             closeMenuOnSelect={true}
             placeholder="Nível"
-            /* error={} errorMessage={} */ name="id_nivel_sangue"
+            error={errors.nivel_sangue.error}
+            errorMessage={errors.nivel_sangue.errorMessage}
+            name="id_nivel_sangue"
             message="Sem níveis"
             options={level}
             handleOnChange={handleOnChange}
-            // value={data.id_nivel_sangue}
+            onFocus={() => setErrors({ ...errors, nivel_sangue: false })}
           />
         </div>
       </Container>

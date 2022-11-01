@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./Menu.module.css";
 
@@ -6,8 +6,20 @@ import IconLogo from "../../logo/IconLogo/IconLogo";
 import Home from "../../../assets/menuIcons/home.png";
 import List from "../../../assets/menuIcons/list.png";
 import Profile from "../../../assets/menuIcons/profile.png";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/Auth/AuthContext";
 
 const Menu = ({ label, alt, title }) => {
+  const auth = useContext(AuthContext);
+
+  let navigation;
+
+  if (!auth.user) {
+    navigation = "/identification";
+  } else {
+    navigation = "/bloodcenter/profile";
+  }
+
   return (
     <div className={styles.container_menu}>
       <div className={styles.logo}>
@@ -27,7 +39,7 @@ const Menu = ({ label, alt, title }) => {
             <p>{label}</p>
           </div>
         </Link>
-        <Link to="/identification" className={styles.a}>
+        <Link to={navigation} className={styles.a}>
           <div className={`${styles.menu_item} ${styles.profile}`}>
             <img src={Profile} alt="Perfil" title="Perfil" />
             <p>Perfil</p>

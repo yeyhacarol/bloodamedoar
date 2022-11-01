@@ -3,7 +3,7 @@ import { AuthContext } from "./AuthContext";
 import {
   login,
   logout,
-  /* validateToken, */
+  validateToken,
 } from "../../services/apiBlood/authentication";
 import { toast } from "react-toastify";
 
@@ -11,26 +11,17 @@ const AuthProvider = ({ children }) => {
   const auth = useContext(AuthContext);
   const [user, setUser] = useState(null);
 
-  /*   useEffect(() => {
+  useEffect(() => {
     const token = async () => {
-      const storageData = localStorage.getItem("authToken");
-
-      console.log(storageData);
+      const storageData = JSON.parse(localStorage.getItem("authToken"));
 
       if (storageData) {
-        const data = await validateToken(storageData);
-
-        console.log(auth.user);
-
-        if (data.user) {
-          setUser(data.user);
-          setToken(data.token);
-        }
+        setUser(storageData.id);
       }
     };
 
     token();
-  }, []); */
+  }, []);
 
   const signin = async (cnpj, password) => {
     const data = await login(cnpj, password);
@@ -45,7 +36,7 @@ const AuthProvider = ({ children }) => {
 
     if (data.id && data.token) {
       setUser(data.id);
-      setToken(data.token);
+      setToken(data);
       return true;
     }
 
@@ -55,11 +46,11 @@ const AuthProvider = ({ children }) => {
   const signout = async () => {
     await logout();
     setUser(null);
-    setToken("");
+    localStorage.removeItem("authToken");
   };
 
   const setToken = (token) => {
-    localStorage.setItem("authToken", token);
+    localStorage.setItem("authToken", JSON.stringify(token));
   };
 
   return (
