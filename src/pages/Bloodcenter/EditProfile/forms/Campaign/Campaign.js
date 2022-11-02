@@ -68,7 +68,6 @@ const Campaign = () => {
   });
 
   const handleFile = (e) => {
-    console.log(e.target);
     const file = e.target.files[0];
 
     if (!file) {
@@ -78,7 +77,7 @@ const Campaign = () => {
     setData({ ...data, foto_capa: file });
   };
 
-  const handleValidate = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
 
     if (!data.nome) {
@@ -212,30 +211,26 @@ const Campaign = () => {
       }
     }
 
-    const formData = new FormData();
+    let formData = new FormData();
 
-    // Criando um objeto form data com os dados do usuário
-    const userFormData = Object.keys(userData).forEach((key) =>
-      formData.append(key, userData[key])
+    const userFormData = Object.keys(data).forEach((key) =>
+      formData.append(key, data[key])
     );
 
     // Adicionando o objeto criado ao objeto formdata
-    formData.append("user", userFormData);
+    formData.append("data", userFormData);
 
     const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
     fetch(BASE_URL + "/cadastrarCampanha", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
+      headers: {},
+      body: formData,
     })
       .then((resp) => resp.json())
       .then((data) => {
         if (data.message) {
           toast.success(data.message);
-          window.screenTop(0);
           setData({
             nome: "",
             foto_capa: "",
@@ -262,6 +257,8 @@ const Campaign = () => {
         console.error(err);
       });
 
+    console.log(formData);
+    console.log(userFormData);
     console.log(data);
   };
 
@@ -312,7 +309,7 @@ const Campaign = () => {
   }, [data.cep]);
 
   return (
-    <form className={styles.campaign} onSubmit={handleValidate}>
+    <form className={styles.campaign} onSubmit={onSubmit}>
       <Container title="Campanha" customClass={styles.container}>
         <div className={styles.content}>
           <div className={`${styles.form} ${styles.campaign_data}`}>
@@ -327,7 +324,20 @@ const Campaign = () => {
               handleOnChange={handleOnChange}
               onFocus={() => setErrors({ ...errors, nome: false })}
             />
-            <input type="file" onChange={handleFile} />
+            <input
+              type="file"
+              //name="foto_capa"
+              onChange={handleFile}
+              onFocus={() => setErrors({ ...errors, foto_capa: false })}
+            />
+            <div className={styles.message}>
+              {errors.foto_capa.error && (
+                <>
+                  <MdErrorOutline size={20} color="#AA1E1E" />
+                  <span>{errors.foto_capa.errorMessage}</span>
+                </>
+              )}
+            </div>
             {/* <Input
               type="file"
               accept="image/*"

@@ -54,7 +54,7 @@ const BloodcenterData = () => {
           numero: resp.numero,
           bairro: resp.bairro,
           cidade: resp.cidade,
-          estado: resp.estado,
+          estado: resp.uf,
           ponto_referencia: data.ponto_referencia || resp.ponto_referencia,
           cep: formatCep(resp.cep),
           biografia: data.biografia || resp.biografia,
@@ -131,6 +131,8 @@ const BloodcenterData = () => {
         }
       })
       .catch((err) => console.error(err));
+
+    console.log(data);
   };
 
   /*   const [id_tipo_servico, setId_tipo_servico] = useState([]);

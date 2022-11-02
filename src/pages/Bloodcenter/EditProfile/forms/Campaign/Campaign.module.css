@@ -121,10 +121,6 @@
         align-items: center;
     }
 
-    .form.date {
-        gap: 25px;
-    }
-
     .right {
         margin-right: 0;
     }

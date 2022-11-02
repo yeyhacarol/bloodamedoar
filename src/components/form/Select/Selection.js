@@ -16,6 +16,7 @@ const Selection = ({
   options,
   handleOnChange,
   value,
+  onFocus,
 }) => {
   const styles = {
     container: (styles) => {
@@ -91,6 +92,7 @@ const Selection = ({
         })}
         options={options}
         noOptionsMessage={() => message}
+        onFocus={onFocus}
         onChange={(value) => handleOnChange(value, name)}
       />
       {error && (

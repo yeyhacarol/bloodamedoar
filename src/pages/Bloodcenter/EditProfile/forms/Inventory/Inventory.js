@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./Inventory.module.css";
 import { useEffect, useState, useContext } from "react";
+import { toast } from "react-toastify";
 
 import { AuthContext } from "../../../../../contexts/Auth/AuthContext";
 
@@ -9,9 +10,12 @@ import Container from "../../../../../components/layout/Container/Container";
 import Selection from "../../../../../components/form/Select/Selection";
 import Submit from "../../../../../components/form/Submit/Submit";
 import get from "../../../../../services/apiBlood/get";
+import getById from "../../../../../services/apiBlood/getById";
 
 const CurrentInventory = () => {
   const auth = useContext(AuthContext);
+
+  const [currentInventory, setCurrentInventory] = useState();
 
   const [data, setData] = useState({
     id_tipo_sanguineo: "",
@@ -97,9 +101,25 @@ const CurrentInventory = () => {
       body: JSON.stringify(data),
     })
       .then((resp) => resp.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        if (data.message) {
+          getById("/listarEstoqueSangue", auth.user).then((data) =>
+            setCurrentInventory(data[0])
+          );
+          toast.success(data.message);
+          return;
+        } else if (data.error) {
+          return toast.error(data.error);
+        }
+      })
       .catch((err) => console.log(err));
   };
+
+  useEffect(() => {
+    getById("/listarEstoqueSangue", auth.user).then((data) =>
+      setCurrentInventory(data[0])
+    );
+  }, [auth.user]);
 
   return (
     <form className={styles.inventory}>
@@ -107,6 +127,7 @@ const CurrentInventory = () => {
         title="Estoque atual"
         custom={styles.container}
         customLevels={styles.levels}
+        currentInventory={currentInventory}
       />
 
       <Container title="Posições de estoque" customClass={styles.container}>
