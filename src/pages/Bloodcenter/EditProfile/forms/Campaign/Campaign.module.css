@@ -91,6 +91,26 @@
     cursor: pointer;
 }
 
+.file_input {
+    width: clamp(260px, 50vw, 450px);
+    height: clamp(45px, 10vw, 55px);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    font-family: var(--font);
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    cursor: pointer;
+}
+
+.file {
+   visibility: hidden;
+}
+
 @media screen and (max-width: 1025px) {
     .container {
         width: 100vw;

@@ -10,6 +10,7 @@ const Submit = ({
   id,
   customClass,
   handleOnClick,
+  disable,
 }) => {
   return (
     <div className={`${styles.button_container} ${customClass}`}>
@@ -18,6 +19,7 @@ const Submit = ({
         className={`${styles.button} ${customClass}`}
         onClick={handleOnClick}
         id={id}
+        disabled={disable}
       >
         {action}
       </button>

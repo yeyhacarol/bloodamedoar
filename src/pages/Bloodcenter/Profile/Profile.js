@@ -24,6 +24,7 @@ import donation from "../../../assets/blood-donation.jpg";
 
 const Profile = () => {
   const [tabIndex, setTabIndex] = useState();
+  const [currentInventory, setCurrentInventory] = useState();
 
   const auth = useContext(AuthContext);
 
@@ -59,6 +60,12 @@ const Profile = () => {
     tipo_servico: "",
   });
 
+  const [campaign, setCampain] = useState({
+    id: "",
+    nome: "",
+    foto_capa: "",
+  });
+
   useEffect(() => {
     getById("/listarHemocentroPorId", auth.user).then((response) => {
       const resp = response[0][0];
@@ -86,7 +93,26 @@ const Profile = () => {
         };
       });
     });
-  }, []);
+
+    getById("/listarEstoqueSangue", auth.user).then((data) =>
+      setCurrentInventory(data[0])
+    );
+
+    getById("/listarCampanhas", auth.user).then((resp) => {
+      const response = resp[0];
+
+      console.log(response.foto_capa);
+
+      setCampain((prevState) => {
+        return {
+          ...prevState,
+          id: response.id,
+          nome: response.nome,
+          foto_capa: response.foto_capa,
+        };
+      });
+    });
+  }, [auth.user]);
 
   return (
     <div className={styles.profile_container}>
@@ -132,18 +158,19 @@ const Profile = () => {
           services={data.tipo_servico}
         />
 
-        <Inventory title="Nosso estoque" />
+        <Inventory title="Nosso estoque" currentInventory={currentInventory} />
 
         <CampaignSlider
           customClass={styles.our_campaigns}
           title="Nossas campanhas"
         >
-          <CampaignCard
-            bloodcenterCard={true}
-            title="SEJA O HERÓI DE ALGUÉM"
-            catchphrase="Você pode salvar muitas vidas em apenas 15 minutos!"
-            background={donation}
-          />
+          {
+            <CampaignCard
+              bloodcenterCard={true}
+              title={campaign.nome}
+              background={campaign.foto_capa}
+            />
+          }
         </CampaignSlider>
 
         <CircleMenu

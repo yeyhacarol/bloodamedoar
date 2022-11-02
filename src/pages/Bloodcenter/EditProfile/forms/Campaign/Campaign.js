@@ -1,12 +1,16 @@
 import styles from "./Campaign.module.css";
+
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { HiOutlineTrash } from "react-icons/hi";
-import { MdErrorOutline } from "react-icons/md";
+import { MdErrorOutline, MdOutlinePhoto } from "react-icons/md";
 import { toast } from "react-toastify";
 
 import { AuthContext } from "../../../../../contexts/Auth/AuthContext";
+
+import { storage } from "../../../../../firebaseConfig";
+import uuid from "react-uuid";
 
 import Input from "../../../../../components/form/Input/Input";
 import Textarea from "../../../../../components/form/Textarea/Textarea";
@@ -14,9 +18,11 @@ import Submit from "../../../../../components/form/Submit/Submit";
 import Container from "../../../../../components/layout/Container/Container";
 import { useEffect } from "react";
 import CEPService from "../../../../../services/apiBrasil/CEPService";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const Campaign = () => {
   const auth = useContext(AuthContext);
+  const [disable, setDisable] = useState(false);
 
   const [data, setData] = useState({
     nome: "",
@@ -77,7 +83,7 @@ const Campaign = () => {
     setData({ ...data, foto_capa: file });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     if (!data.nome) {
@@ -211,21 +217,20 @@ const Campaign = () => {
       }
     }
 
-    let formData = new FormData();
-
-    const userFormData = Object.keys(data).forEach((key) =>
-      formData.append(key, data[key])
-    );
-
-    // Adicionando o objeto criado ao objeto formdata
-    formData.append("data", userFormData);
+    const storageRef = ref(storage, `images/${uuid()}`);
+    await uploadBytes(storageRef, data.foto_capa);
+    const url = await getDownloadURL(storageRef);
+    const fileData = data;
+    fileData.foto_capa = url;
 
     const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
     fetch(BASE_URL + "/cadastrarCampanha", {
       method: "POST",
-      headers: {},
-      body: formData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(fileData),
     })
       .then((resp) => resp.json())
       .then((data) => {
@@ -256,10 +261,6 @@ const Campaign = () => {
       .catch((err) => {
         console.error(err);
       });
-
-    console.log(formData);
-    console.log(userFormData);
-    console.log(data);
   };
 
   useEffect(() => {
@@ -324,9 +325,16 @@ const Campaign = () => {
               handleOnChange={handleOnChange}
               onFocus={() => setErrors({ ...errors, nome: false })}
             />
+            <label htmlFor="file" className={styles.file_input}>
+              <MdOutlinePhoto size={30} />
+              {data.foto_capa.name
+                ? data.foto_capa.name
+                : "Selecione uma foto de capa"}
+            </label>
             <input
+              id="file"
+              className={styles.file}
               type="file"
-              //name="foto_capa"
               onChange={handleFile}
               onFocus={() => setErrors({ ...errors, foto_capa: false })}
             />
@@ -525,7 +533,8 @@ const Campaign = () => {
       </Container>
 
       <div className={styles.action}>
-        <Submit action="Salvar" customClass={styles.save} />
+        <Submit action="Salvar" customClass={styles.save} disable={disable} />
+
         <Link>Desativar conta</Link>
       </div>
     </form>
