@@ -9,9 +9,9 @@ import { AiOutlineHistory } from "react-icons/ai";
 
 import styles from "./Profile.module.css";
 
-import getById from "../../../services/apiBlood/getById";
+import { getById } from "../../../services/apiBlood/http/get";
 import { capitalize } from "../../../utils/capitalize";
-import { phoneMask, formatCep } from "../../../utils/masks";
+import { phoneMask, cepMask } from "../../../utils/masks";
 
 import Menu from "../../../components/layout/Menu/Menu";
 import ProfileHeader from "../../../components/ProfileHeader/ProfileHeader";
@@ -19,8 +19,6 @@ import AboutBloodcenter from "../../../components/AboutBloodcenter/AboutBloodcen
 import Inventory from "../../../components/Inventory/Inventory";
 import CampaignSlider from "../../../components/donativeCampaign/CampaignSlider/CampaignSlider";
 import CampaignCard from "../../../components/donativeCampaign/CampaignCard/CampaignCard";
-
-import donation from "../../../assets/blood-donation.jpg";
 
 const Profile = () => {
   const [tabIndex, setTabIndex] = useState();
@@ -60,11 +58,7 @@ const Profile = () => {
     tipo_servico: "",
   });
 
-  const [campaign, setCampain] = useState({
-    id: "",
-    nome: "",
-    foto_capa: "",
-  });
+  const [campaign, setCampain] = useState([]);
 
   useEffect(() => {
     getById("/listarHemocentroPorId", auth.user).then((response) => {
@@ -79,7 +73,7 @@ const Profile = () => {
           bairro: capitalize(resp.bairro),
           cidade: resp.cidade,
           estado: resp.uf,
-          cep: formatCep(resp.cep),
+          cep: cepMask(resp.cep),
           biografia: resp.biografia
             ? resp.biografia
             : "Você ainda não cadastrou essa informação.",
@@ -97,22 +91,15 @@ const Profile = () => {
     getById("/listarEstoqueSangue", auth.user).then((data) =>
       setCurrentInventory(data[0])
     );
-
-    getById("/listarCampanhas", auth.user).then((resp) => {
-      const response = resp[0];
-
-      console.log(response.foto_capa);
-
-      setCampain((prevState) => {
-        return {
-          ...prevState,
-          id: response.id,
-          nome: response.nome,
-          foto_capa: response.foto_capa,
-        };
-      });
-    });
   }, [auth.user]);
+
+  useEffect(() => {
+    getById("/listarCampanhas", auth.user)
+      .then((response) => {
+        setCampain(response);
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
   return (
     <div className={styles.profile_container}>
@@ -145,7 +132,9 @@ const Profile = () => {
               " - " +
               data.estado +
               ", " +
-              data.cep}
+              data.cep +
+              ". " +
+              data.ponto_referencia}
           </p>
         </div>
 
@@ -159,26 +148,31 @@ const Profile = () => {
         />
 
         <Inventory title="Nosso estoque" currentInventory={currentInventory} />
-
-        <CampaignSlider
-          customClass={styles.our_campaigns}
-          title="Nossas campanhas"
-        >
-          {
-            <CampaignCard
-              bloodcenterCard={true}
-              title={campaign.nome}
-              background={campaign.foto_capa}
-            />
-          }
-        </CampaignSlider>
+        {campaign.length > 0 && (
+          <CampaignSlider
+            customClass={styles.our_campaigns}
+            title="Nossas campanhas"
+            items={campaign.length}
+          >
+            {campaign &&
+              campaign.map((item) => (
+                <CampaignCard
+                  link={`/campaign/${item.id}`}
+                  key={item.id}
+                  bloodcenterCard={true}
+                  title={item.nome}
+                  background={item.foto_capa}
+                />
+              ))}
+          </CampaignSlider>
+        )}
 
         <CircleMenu
           className={styles.menu}
           startAngle={-90}
           rotationAngle={rotationAngle}
           itemSize={1.5}
-          radius={3}
+          radius={2.5}
           rotationAngleInclusive={false}
         >
           <CircleMenuItem

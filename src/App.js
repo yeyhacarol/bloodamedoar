@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import styles from "./App.module.css";
 
 import Home from "./pages/Home/Home";
+import Campaign from "./pages/Campaign/Campaign";
 import Identification from "./pages/Identification/Identification";
 import Login from "./pages/Login/Login";
 import Registration from "./pages/Bloodcenter/Registration/Registration";
@@ -20,6 +21,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/campaign/:id" element={<Campaign />} />
           <Route path="/identification" element={<Identification />} />
           <Route path="/bloodcenter/login" element={<Login />} />
           <Route path="/bloodcenter/registration" element={<Registration />} />

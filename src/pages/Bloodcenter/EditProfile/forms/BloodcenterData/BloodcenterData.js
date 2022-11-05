@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import styles from "./BloodcenterData.module.css";
 
 import { AuthContext } from "../../../../../contexts/Auth/AuthContext";
-import getById from "../../../../../services/apiBlood/getById";
-import { formatCep } from "../../../../../utils/masks";
+import { getById } from "../../../../../services/apiBlood/http/get";
+import { cepMask } from "../../../../../utils/masks";
 
 import Container from "../../../../../components/layout/Container/Container";
 import Input from "../../../../../components/form/Input/Input";
@@ -56,7 +56,7 @@ const BloodcenterData = () => {
           cidade: resp.cidade,
           estado: resp.uf,
           ponto_referencia: data.ponto_referencia || resp.ponto_referencia,
-          cep: formatCep(resp.cep),
+          cep: cepMask(resp.cep),
           biografia: data.biografia || resp.biografia,
           horario_atendimento:
             data.horario_atendimento || resp.horario_atendimento,

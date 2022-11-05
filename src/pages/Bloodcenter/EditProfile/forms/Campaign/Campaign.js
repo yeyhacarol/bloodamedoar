@@ -22,7 +22,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const Campaign = () => {
   const auth = useContext(AuthContext);
-  const [disable, setDisable] = useState(false);
+  //const [disable, setDisable] = useState(false);
 
   const [data, setData] = useState({
     nome: "",
@@ -223,6 +223,8 @@ const Campaign = () => {
     const fileData = data;
     fileData.foto_capa = url;
 
+    console.log(url);
+
     const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
     fetch(BASE_URL + "/cadastrarCampanha", {
@@ -236,7 +238,7 @@ const Campaign = () => {
       .then((data) => {
         if (data.message) {
           toast.success(data.message);
-          setData({
+          /* setData({
             nome: "",
             foto_capa: "",
             data_inicio: "",
@@ -251,7 +253,7 @@ const Campaign = () => {
             cidade: "",
             estado: "",
             ponto_referencia: "",
-          });
+          }); */
           return;
         } else if (data.error) {
           toast.error(data.error);
@@ -533,7 +535,7 @@ const Campaign = () => {
       </Container>
 
       <div className={styles.action}>
-        <Submit action="Salvar" customClass={styles.save} disable={disable} />
+        <Submit action="Salvar" customClass={styles.save} />
 
         <Link>Desativar conta</Link>
       </div>

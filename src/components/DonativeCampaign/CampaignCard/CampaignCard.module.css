@@ -1,6 +1,6 @@
 .card_container {
-    width: 230px;
-    height: 330px;
+    width: 200px;
+    height: 300px;
 
     border-radius: 10px;
 
@@ -46,16 +46,14 @@
 }
 
 .card_content h2 {
-    font-size: clamp(1rem, 5vw, 1.25rem);
+    font-size: clamp(1rem, 5.5vw, 1.125rem);
     font-weight: 500;
 }
 
-.card_content p {
-    font-size: clamp(0.875rem, 2vw, 1rem);
-}
-
 .custom_button {
-    width: clamp(35px, 35vw, 140px);
+    width: clamp(35px, 50vw, 140px);
+    font-size: clamp(1rem, 5.5vw, 1.125rem);
+
     background-color: transparent;
     border: 1px solid #fff;
 
@@ -67,9 +65,9 @@
     border: none;
 }
 
-@media screen and (max-width: 1025px) {
+@media screen and (max-width: 480px) {
     .card_container {
-        width: 200px;
-        height: 300px;
+        width: 190px;
+        height: 250px;
     }
 }

@@ -9,8 +9,7 @@ import Inventory from "../../../../../components/Inventory/Inventory";
 import Container from "../../../../../components/layout/Container/Container";
 import Selection from "../../../../../components/form/Select/Selection";
 import Submit from "../../../../../components/form/Submit/Submit";
-import get from "../../../../../services/apiBlood/get";
-import getById from "../../../../../services/apiBlood/getById";
+import { get, getById } from "../../../../../services/apiBlood/http/get";
 
 const CurrentInventory = () => {
   const auth = useContext(AuthContext);

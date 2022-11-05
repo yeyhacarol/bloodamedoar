@@ -6,7 +6,7 @@ import styles from "./CampaignSlider.module.css";
 
 import Container from "../../layout/Container/Container";
 
-const CompaignSlider = ({ customClass, title, children }) => {
+const CompaignSlider = ({ customClass, title, children, items }) => {
   const [scrollX, setScrollX] = useState(0);
 
   /* PASSAR LISTWIDTH POR PROPS */
@@ -23,10 +23,10 @@ const CompaignSlider = ({ customClass, title, children }) => {
 
   const handleRightArrow = () => {
     let scroll = scrollX - Math.round(window.innerWidth / 2);
-    let listWidth = 8 * 330;
+    let listWidth = items * 245;
 
     if (window.innerWidth - listWidth > scroll) {
-      scroll = window.innerWidth - listWidth - 35;
+      scroll = window.innerWidth - listWidth - 40;
     }
 
     setScrollX(scroll);
@@ -45,9 +45,9 @@ const CompaignSlider = ({ customClass, title, children }) => {
       <div className={styles.slider}>
         <div
           className={styles.slider_content}
-          style={{ marginLeft: scrollX, width: 3 * 390 }}
+          style={{ marginLeft: scrollX, width: items * 300 }}
         >
-          <div className={styles.slider_item}>{children}</div>
+          {children}
         </div>
       </div>
     </Container>

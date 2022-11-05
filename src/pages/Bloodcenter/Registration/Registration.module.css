@@ -16,8 +16,6 @@
   width: 30%;
   min-height: 100vh;
 
-  z-index: 89;
-
   display: flex;
   justify-content: center;
   flex-direction: column;

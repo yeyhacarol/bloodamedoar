@@ -16,8 +16,17 @@ const phoneMask = (phoneNumber) => {
   return number;
 };
 
-function formatCep(cep) {
+const cepMask = (cep) => {
   return cep.replace(/^(\d{5})(\d)/, "$1-$2");
-}
+};
 
-export { phoneMask, formatCep };
+const dateMask = (data) => {
+  let date = new Date(data);
+  let newData = date.toLocaleDateString("pt-BR", {
+    timeZone: "UTC",
+  });
+
+  return newData;
+};
+
+export { phoneMask, cepMask, dateMask };

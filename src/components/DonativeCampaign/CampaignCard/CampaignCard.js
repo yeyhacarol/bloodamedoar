@@ -2,7 +2,7 @@ import styles from "./CampaignCard.module.css";
 
 import Button from "../../layout/Button/Button";
 
-const CampaignCard = ({ background, title, catchphrase, bloodcenterCard }) => {
+const CampaignCard = ({ background, title, bloodcenterCard, link }) => {
   return (
     <div
       className={styles.card_container}
@@ -10,11 +10,11 @@ const CampaignCard = ({ background, title, catchphrase, bloodcenterCard }) => {
     >
       <div className={styles.card_content}>
         <h2>{title}</h2>
-        <p>{catchphrase}</p>
+
         <Button
           customClass={styles.custom_button}
           action="Ver mais"
-          link="/seemorecampaign"
+          link={link}
         />
         {bloodcenterCard ? (
           <Button

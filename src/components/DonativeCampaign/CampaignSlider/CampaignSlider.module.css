@@ -6,6 +6,9 @@
 .slider_content {
     padding: 0px 45px;
 
+    gap: 25px;
+    display: flex;
+
     transition: all ease .5s;
 }
 
@@ -22,7 +25,7 @@
 .arrow_left,
 .arrow_right {
     width: 40px;
-    height: 330px;
+    height: 300px;
 
     background-color: rgba(173, 56, 56, 0.75);
     opacity: 0;
