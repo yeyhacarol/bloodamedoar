@@ -1,7 +1,9 @@
+import { toast } from "react-toastify";
+
 const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
-const put = (url, id, data) => {
-  fetch(BASE_URL + `/${url}/${id}`, {
+export const put = (url, id, data) => {
+  fetch(BASE_URL + `${url}/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
     headers: {

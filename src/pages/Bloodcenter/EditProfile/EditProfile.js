@@ -1,6 +1,6 @@
 import styles from "./EditProfile.module.css";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { FiMoreVertical, FiLogIn } from "react-icons/fi";
@@ -14,8 +14,19 @@ import CurrentInventory from "./forms/Inventory/Inventory";
 import Campaign from "./forms/Campaign/Campaign";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/Auth/AuthContext";
+import { useState } from "react";
 
 const EditProfile = () => {
+  const auth = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await auth.signout();
+
+    navigate("/");
+  };
+
   const openNav = () => {
     let nav = document.getElementById("nav");
 
@@ -28,15 +39,7 @@ const EditProfile = () => {
     }
   };
 
-  const auth = useContext(AuthContext);
-
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    await auth.signout();
-
-    navigate("/");
-  };
+  const { tab, id } = useParams();
 
   return (
     <div className={styles.edit_profile_container}>
@@ -69,7 +72,10 @@ const EditProfile = () => {
           customHeader={styles.profile_header}
           cape={styles.cape}
         />
-        <Tabs className={styles.edit_container}>
+        <Tabs
+          className={styles.edit_container}
+          defaultIndex={parseInt(tab) || 0}
+        >
           <TabList className={styles.edit_nav}>
             <div className={styles.open_nav} onClick={openNav}>
               <FiMoreVertical size={25} color="#757575" />

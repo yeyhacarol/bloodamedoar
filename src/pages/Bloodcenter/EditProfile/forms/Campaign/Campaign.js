@@ -1,11 +1,9 @@
 import styles from "./Campaign.module.css";
 
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useState, useContext, useEffect, useMemo } from "react";
 import { HiOutlineTrash } from "react-icons/hi";
 import { MdErrorOutline, MdOutlinePhoto } from "react-icons/md";
-import { toast } from "react-toastify";
 
 import { AuthContext } from "../../../../../contexts/Auth/AuthContext";
 
@@ -16,13 +14,18 @@ import Input from "../../../../../components/form/Input/Input";
 import Textarea from "../../../../../components/form/Textarea/Textarea";
 import Submit from "../../../../../components/form/Submit/Submit";
 import Container from "../../../../../components/layout/Container/Container";
-import { useEffect } from "react";
 import CEPService from "../../../../../services/apiBrasil/CEPService";
+import { post } from "../../../../../services/apiBlood/http/post";
+import { put } from "../../../../../services/apiBlood/http/put";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getById } from "../../../../../services/apiBlood/http/get";
+import { exclude } from "../../../../../services/apiBlood/http/delete";
 
 const Campaign = () => {
   const auth = useContext(AuthContext);
   //const [disable, setDisable] = useState(false);
+
+  const { id } = useParams();
 
   const [data, setData] = useState({
     nome: "",
@@ -221,48 +224,29 @@ const Campaign = () => {
     await uploadBytes(storageRef, data.foto_capa);
     const url = await getDownloadURL(storageRef);
     const fileData = data;
-    fileData.foto_capa = url;
+    fileData.foto_capa = getFileType(data.foto_capa) ? url : data.foto_capa;
 
-    console.log(url);
-
-    const BASE_URL = process.env.REACT_APP_API_BLOOD;
-
-    fetch(BASE_URL + "/cadastrarCampanha", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(fileData),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        if (data.message) {
-          toast.success(data.message);
-          /* setData({
-            nome: "",
-            foto_capa: "",
-            data_inicio: "",
-            hora_inicio: "",
-            data_termino: "",
-            hora_termino: "",
-            descricao: "",
-            cep: "",
-            logradouro: "",
-            numero: "",
-            bairro: "",
-            cidade: "",
-            estado: "",
-            ponto_referencia: "",
-          }); */
-          return;
-        } else if (data.error) {
-          toast.error(data.error);
-          return;
-        }
-      })
-      .catch((err) => {
-        console.error(err);
+    if (!id) {
+      post("/cadastrarCampanha", fileData);
+      setData({
+        nome: "",
+        foto_capa: "",
+        data_inicio: "",
+        hora_inicio: "",
+        data_termino: "",
+        hora_termino: "",
+        descricao: "",
+        cep: "",
+        logradouro: "",
+        numero: "",
+        bairro: "",
+        cidade: "",
+        estado: "",
+        ponto_referencia: "",
       });
+    } else if (id) {
+      put("/editarCampanha", id, fileData);
+    }
   };
 
   useEffect(() => {
@@ -311,10 +295,56 @@ const Campaign = () => {
     }
   }, [data.cep]);
 
+  useEffect(() => {
+    if (id) {
+      getById("/listarCampanha", id)
+        .then((response) => {
+          const cep = response.cep.toString();
+
+          setData({
+            nome: response.nome || data.nome,
+            foto_capa: response.foto_capa,
+            data_inicio: response.data_inicio || data.data_inicio,
+            hora_inicio: response.hora_inicio || data.hora_inicio,
+            data_termino: response.data_termino || data.data_termino,
+            hora_termino: response.hora_termino || data.hora_termino,
+            descricao: response.descricao || data.descricao,
+            cep: cep,
+            logradouro: response.logradouro,
+            numero: response.numero || data.numero,
+            bairro: response.bairro,
+            cidade: response.cidade,
+            estado: response.estado,
+            ponto_referencia:
+              response.ponto_referencia || data.ponto_referencia,
+          });
+        })
+        .catch((error) => console.error(error));
+    }
+  }, [id]);
+
+  const getFileType = (file) => {
+    if (file.type?.match("image.*")) return "image";
+    return false;
+  };
+
+  const formatImage = useMemo(() => {
+    return getFileType(data.foto_capa)
+      ? URL.createObjectURL(data.foto_capa)
+      : data.foto_capa;
+  }, [data.foto_capa]);
+
+  const navigate = useNavigate();
+
+  const deleteCampaign = () => {
+    exclude("deletarCampanha", id);
+    navigate("/bloodcenter/profile");
+  };
+
   return (
     <form className={styles.campaign} onSubmit={onSubmit}>
       <Container title="Campanha" customClass={styles.container}>
-        <div className={styles.content}>
+        <div className={`${styles.content} ${styles.campaign_data}`}>
           <div className={`${styles.form} ${styles.campaign_data}`}>
             <Input
               id="nome"
@@ -327,12 +357,21 @@ const Campaign = () => {
               handleOnChange={handleOnChange}
               onFocus={() => setErrors({ ...errors, nome: false })}
             />
-            <label htmlFor="file" className={styles.file_input}>
-              <MdOutlinePhoto size={30} />
-              {data.foto_capa.name
-                ? data.foto_capa.name
-                : "Selecione uma foto de capa"}
-            </label>
+            <div className={styles.input_container}>
+              <label>Foto de capa</label>
+              <label htmlFor="file" className={styles.file_input}>
+                <MdOutlinePhoto size={30} />
+                {data.foto_capa ? (
+                  <>
+                    <label htmlFor="file" title="Escolha uma foto de capa">
+                      <img src={formatImage} className={styles.foto_capa} />
+                    </label>
+                  </>
+                ) : (
+                  "Foto de capa"
+                )}
+              </label>
+            </div>
             <input
               id="file"
               className={styles.file}
@@ -348,19 +387,8 @@ const Campaign = () => {
                 </>
               )}
             </div>
-            {/* <Input
-              type="file"
-              accept="image/*"
-              info="Foto de capa"
-              placeholder="Foto de capa"
-              error={errors.foto_capa.error}
-              errorMessage={errors.foto_capa.errorMessage}
-              name="foto_capa"
-              value={data.foto_capa || ""}
-              handleOnChange={handleFile}
-              onFocus={() => setErrors({ ...errors, foto_capa: false })}
-            /> */}
           </div>
+          <div></div>
         </div>
       </Container>
 
@@ -526,12 +554,14 @@ const Campaign = () => {
             />
           </div> */}
         </div>
-
-        <HiOutlineTrash
-          size={30}
-          className={styles.trash_campaign}
-          title="Desativar campanha"
-        />
+        {id && (
+          <HiOutlineTrash
+            size={30}
+            className={styles.trash_campaign}
+            title="Desativar campanha"
+            onClick={deleteCampaign}
+          />
+        )}
       </Container>
 
       <div className={styles.action}>

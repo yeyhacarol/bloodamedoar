@@ -16,8 +16,6 @@ const Campaign = () => {
   useEffect(() => {
     getById("/listarCampanha", id)
       .then((resp) => {
-        console.log(resp);
-
         setCampain(resp);
       })
       .catch((error) => console.error(error));
@@ -40,7 +38,7 @@ const Campaign = () => {
               <img
                 className={styles.cape_photo}
                 src={campaign.foto_capa}
-                alt="Decoração"
+                alt={campaign.nome}
               ></img>
             </div>
             <div className={styles.container_content}>

@@ -33,14 +33,33 @@ const App = () => {
               </RequireAuth>
             }
           />
-          <Route
-            path="/bloodcenter/profile/edit"
-            element={
-              <RequireAuth>
-                <EditProfile />
-              </RequireAuth>
-            }
-          />
+          <Route path="/bloodcenter/profile/edit/">
+            <Route
+              path=""
+              element={
+                <RequireAuth>
+                  <EditProfile />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path=":tab"
+              element={
+                <RequireAuth>
+                  <EditProfile />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path=":tab/:id"
+              element={
+                <RequireAuth>
+                  <EditProfile />
+                </RequireAuth>
+              }
+            />
+          </Route>
+
           <Route path="/forgetpassword" element={<RecoverPassword />} />
         </Routes>
       </Router>

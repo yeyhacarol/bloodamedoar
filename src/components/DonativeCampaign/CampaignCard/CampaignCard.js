@@ -2,7 +2,13 @@ import styles from "./CampaignCard.module.css";
 
 import Button from "../../layout/Button/Button";
 
-const CampaignCard = ({ background, title, bloodcenterCard, link }) => {
+const CampaignCard = ({
+  background,
+  title,
+  bloodcenterCard,
+  link,
+  editLink,
+}) => {
   return (
     <div
       className={styles.card_container}
@@ -20,7 +26,7 @@ const CampaignCard = ({ background, title, bloodcenterCard, link }) => {
           <Button
             customClass={styles.custom_button}
             action="Editar"
-            link="/bloodcenter/profile/edit"
+            link={editLink}
           />
         ) : (
           <></>

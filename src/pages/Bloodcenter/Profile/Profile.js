@@ -50,6 +50,7 @@ const Profile = () => {
     cidade: "",
     estado: "",
     cep: "",
+    ponto_referencia: "",
     biografia: "",
     horario_atendimento: "",
     telefone: "",
@@ -74,6 +75,7 @@ const Profile = () => {
           cidade: resp.cidade,
           estado: resp.uf,
           cep: cepMask(resp.cep),
+          ponto_referencia: resp.ponto_referencia ? resp.ponto_referencia : "",
           biografia: resp.biografia
             ? resp.biografia
             : "Você ainda não cadastrou essa informação.",
@@ -158,6 +160,7 @@ const Profile = () => {
               campaign.map((item) => (
                 <CampaignCard
                   link={`/campaign/${item.id}`}
+                  editLink={`/bloodcenter/profile/edit/${3}/${item.id}`}
                   key={item.id}
                   bloodcenterCard={true}
                   title={item.nome}

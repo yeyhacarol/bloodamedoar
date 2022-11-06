@@ -1,31 +1,27 @@
 .campaign_container {
-    height: 100vh;
     display: flex;
 }
 
 .logo {
-    position: absolute;
-    right: 0;
-
-    padding: 20px 30px 0 0;
+    display: none;
 }
 
 .cape {
-    width: 100%;
+    width: 85%;
     height: 100vh;
 
     position: fixed;
     left: 240px;
 
-    background-image: url(../../assets/bloodFlow/campaign-flow.svg);
+    background-image: url(../../assets/bloodFlow/camp-flow.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
 .cape_photo {
-    width: 300px;
-    height: 400px;
+    width: 25%;
+    height: 54%;
 
     object-fit: cover;
 
@@ -44,31 +40,28 @@
 }
 
 .content {
-    width: 45%;
+    width: 51%;
     height: 100%;
 
-    padding: 80px 50px 80px 55px;
-  
+    padding: 50px 30px 75px 0;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+
     align-items: center;
-  
+    flex-direction: column;
+
     z-index: 999;
 }
 
 .content h1 {
-    font-size: clamp(1.125rem, 5vw, 1.5rem)
+    font-size: clamp(1.125rem, 5vw, 1.375rem);
+    margin-bottom: 10px;
 }
 .data h3 {
-    font-size: clamp(1rem, 5vw, 1.125rem)
+    font-size: clamp(1rem, 5vw, 1.125rem);
 }
 .data p {
-    font-size: clamp(0.875rem, 3vw, 1rem)
-}
-
-.data:last-child {
-    padding-bottom: 80px;
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    text-align: justify;
 }
 
 .content .data_container {
@@ -95,63 +88,49 @@
 }
 
 @media screen and (max-width: 1025px) {
-    .cape {
-        left: 0;
+    .logo {
+        display: block;
+
+        position: absolute;
+        right: 0;
+
+        padding: 30px 20px 0 0;
     }
 
-    .content {
-        width: 68%;
-        padding: 100px 25px 80px 50px;
-    } 
-
-    .cape_photo {
-        width: 250px;
-        height: 350px;
-    }
-}
-
-@media screen and (max-width: 940px) {
     .campaign_container {
         width: 100%;
         height: 100%;
-        padding-top: 100px;
-        display: flex;
-        justify-content: center;
+
+        padding-top: 120px;
     }
 
     .cape {
         width: auto;
         height: auto;
 
-        padding-left: 50px;
-        margin-right: 50px;
-    
         display: flex;
         justify-content: center;
+        
         position: relative;
-
         left: 0;
         background-image: none;
     }
 
     .cape_photo {
+        width: 350px;
+        height: 400px;
+
+        margin-right: 25px;
+        padding-left: 25px;
+
         position: sticky;
         top: 0;
         left: 0;
     }
 
-    .container_content {
-        justify-content: flex-start;
-    }
-
     .content {
         width: 100%;
-        padding-left: 0px;
         padding-top: 0px;
-    }
-
-    .data_container {
-        padding-right: 0;
     }
 }
 
@@ -162,22 +141,15 @@
     }
 
     .cape {
-        padding-left: 0;
-        padding-right: 0;
-        margin-right: 0;
-        padding-top: 0px;
+        left: 0;
     }
     
     .cape_photo {
-        width: 200px;
-        height: 250px;
-    
-        position: relative;
-        top: 0;
-        left: 0;
+        margin-right: 0;
+        padding-left: 0;
     }
 
-    .content .data_container {
+    .container_content .content {
         padding-right: 0;
         padding-left: 0;
     }
@@ -190,4 +162,4 @@
         width: 90%;
         padding-top: 30px;
     }
-}
+} 

@@ -1,6 +1,8 @@
+import { toast } from "react-toastify";
+
 const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
-const post = (url, data) => {
+export const post = (url, data) => {
   fetch(BASE_URL + url, {
     method: "POST",
     headers: {

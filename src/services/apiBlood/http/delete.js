@@ -1,9 +1,10 @@
+import { toast } from "react-toastify";
+
 const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
-const exclude = (url, id, data) => {
+export const exclude = (url, id) => {
   fetch(BASE_URL + `/${url}/${id}`, {
     method: "DELETE",
-    body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
     },

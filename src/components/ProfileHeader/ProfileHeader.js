@@ -13,7 +13,7 @@ const ProfileHeader = ({ customHeader, cape, profile, bloodcenter }) => {
         <img src={hemocentro} alt={bloodcenter} />
         <Button
           action="Editar perfil"
-          link="/bloodcenter/profile/edit"
+          link="/bloodcenter/profile/edit/"
           customClass={styles.edit}
         />
       </div>

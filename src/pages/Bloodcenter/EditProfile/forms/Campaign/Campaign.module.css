@@ -19,9 +19,20 @@
     padding-left: 0;
 }
 
+.content.campaign_data {
+    display: flex;
+    flex-wrap: wrap;
+}
 .form.campaign_data {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+}
+.foto_capa {
+    width: 180px;
+    padding-left: 20px;
+
+    cursor: pointer;
 }
 
 .form.date {
@@ -91,9 +102,13 @@
     cursor: pointer;
 }
 
+.input_container {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
 .file_input {
     width: clamp(260px, 50vw, 450px);
-    height: clamp(45px, 10vw, 55px);
+    overflow: hidden;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -120,6 +135,10 @@
         display: flex;
         justify-content: center;
         padding: 20px 0px 20px 0px;
+    }
+
+    .foto_capa {
+        width: 155px;
     }
 
     .content {

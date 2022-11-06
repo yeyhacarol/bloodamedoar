@@ -23,7 +23,7 @@ const CompaignSlider = ({ customClass, title, children, items }) => {
 
   const handleRightArrow = () => {
     let scroll = scrollX - Math.round(window.innerWidth / 2);
-    let listWidth = items * 245;
+    let listWidth = items * 300;
 
     if (window.innerWidth - listWidth > scroll) {
       scroll = window.innerWidth - listWidth - 40;
