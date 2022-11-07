@@ -21,7 +21,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { getById } from "../../../../../services/apiBlood/http/get";
 import { exclude } from "../../../../../services/apiBlood/http/delete";
 
-const Campaign = () => {
+const Campaign = ({ setVisible }) => {
   const auth = useContext(AuthContext);
   //const [disable, setDisable] = useState(false);
 
@@ -567,7 +567,14 @@ const Campaign = () => {
       <div className={styles.action}>
         <Submit action="Salvar" customClass={styles.save} />
 
-        <Link>Desativar conta</Link>
+        <Link
+          onClick={(e) => {
+            e.preventDefault();
+            setVisible(true);
+          }}
+        >
+          Desativar conta
+        </Link>
       </div>
     </form>
   );

@@ -11,7 +11,7 @@ import Selection from "../../../../../components/form/Select/Selection";
 import Submit from "../../../../../components/form/Submit/Submit";
 import { get, getById } from "../../../../../services/apiBlood/http/get";
 
-const CurrentInventory = () => {
+const CurrentInventory = ({ setVisible }) => {
   const auth = useContext(AuthContext);
 
   const [currentInventory, setCurrentInventory] = useState();
@@ -162,7 +162,14 @@ const CurrentInventory = () => {
           customClass={styles.save}
           handleOnClick={bloodInventory}
         />
-        <Link>Desativar conta</Link>
+        <Link
+          onClick={(e) => {
+            e.preventDefault();
+            setVisible(true);
+          }}
+        >
+          Desativar conta
+        </Link>
       </div>
     </form>
   );

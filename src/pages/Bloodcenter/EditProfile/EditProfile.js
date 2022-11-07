@@ -15,9 +15,12 @@ import Campaign from "./forms/Campaign/Campaign";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/Auth/AuthContext";
 import { useState } from "react";
+import Disable from "./forms/Disable/Disable";
 
 const EditProfile = () => {
   const auth = useContext(AuthContext);
+
+  const [visible, setVisible] = useState(false);
 
   const navigate = useNavigate();
 
@@ -89,17 +92,20 @@ const EditProfile = () => {
           </TabList>
 
           <TabPanel>
-            <BloodcenterData />
+            <BloodcenterData setVisible={setVisible} />
           </TabPanel>
           <TabPanel>
-            <CurrentInventory />
+            <CurrentInventory setVisible={setVisible} />
           </TabPanel>
           <TabPanel>
             <h1>AGENDA</h1>
           </TabPanel>
           <TabPanel>
-            <Campaign />
+            <Campaign setVisible={setVisible} />
           </TabPanel>
+          <div className={styles.disable}>
+            <Disable setVisible={setVisible} visible={visible} />
+          </div>
         </Tabs>
       </div>
     </div>

@@ -12,7 +12,7 @@ import Submit from "../../../../../components/form/Submit/Submit";
 import { toast } from "react-toastify";
 import Textarea from "../../../../../components/form/Textarea/Textarea";
 
-const BloodcenterData = () => {
+const BloodcenterData = ({ setVisible }) => {
   const auth = useContext(AuthContext);
 
   const [data, setData] = useState({
@@ -305,7 +305,14 @@ const BloodcenterData = () => {
           customClass={styles.save}
           //handleOnClick={edit}
         />
-        <Link>Desativar conta</Link>
+        <Link
+          onClick={(e) => {
+            e.preventDefault();
+            setVisible(true);
+          }}
+        >
+          Desativar conta
+        </Link>
       </div>
     </form>
   );

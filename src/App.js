@@ -14,6 +14,7 @@ import Profile from "./pages/Bloodcenter/Profile/Profile";
 import EditProfile from "./pages/Bloodcenter/EditProfile/EditProfile";
 import RequireAuth from "./contexts/Auth/RequireAuth";
 import RecoverPassword from "./pages/Login/RecoverPassword/RecoverPassword";
+import Disable from "./pages/Bloodcenter/EditProfile/forms/Disable/Disable";
 
 const App = () => {
   return (
