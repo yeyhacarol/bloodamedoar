@@ -5,9 +5,13 @@ import Container from "../../layout/Container/Container";
 import ListItem from "../ListItem/ListItem";
 
 import logo from "../../../assets/hemocentro-campinas.jpg";
+import { get } from "../../../services/apiBlood/http/get";
 
 const List = () => {
   /* CONSUMIR API E TRAZER DADOS DINÂMICOS */
+  get("/listarHemocentros")
+    .then((resp) => console.log(resp))
+    .catch((error) => console.error(error));
 
   return (
     <Container title="Hemocentros" customClass={styles.container}>

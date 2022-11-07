@@ -131,8 +131,6 @@ const BloodcenterData = ({ setVisible }) => {
         }
       })
       .catch((err) => console.error(err));
-
-    console.log(data);
   };
 
   /*   const [id_tipo_servico, setId_tipo_servico] = useState([]);

@@ -148,7 +148,6 @@ const Profile = () => {
           email={data.email}
           services={data.tipo_servico}
         />
-
         <Inventory title="Nosso estoque" currentInventory={currentInventory} />
         {campaign.length > 0 && (
           <CampaignSlider
