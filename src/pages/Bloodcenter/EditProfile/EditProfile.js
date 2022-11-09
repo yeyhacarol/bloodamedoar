@@ -16,6 +16,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contexts/Auth/AuthContext";
 import { useState } from "react";
 import Disable from "./forms/Disable/Disable";
+import EditProfileHeader from "../../../components/ProfileHeader/EditProfileHeader/EditProfileHeader";
 
 const EditProfile = () => {
   const auth = useContext(AuthContext);
@@ -71,10 +72,7 @@ const EditProfile = () => {
           <p>Voltar</p>
         </div>
 
-        <ProfileHeader
-          customHeader={styles.profile_header}
-          cape={styles.cape}
-        />
+        <EditProfileHeader />
         <Tabs
           className={styles.edit_container}
           defaultIndex={parseInt(tab) || 0}

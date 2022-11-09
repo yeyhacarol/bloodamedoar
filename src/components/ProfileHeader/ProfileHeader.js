@@ -5,7 +5,7 @@ import Button from "../layout/Button/Button";
 import capa from "../../assets/cape.png";
 import hemocentro from "../../assets/hemocentro-campinas.jpg";
 
-const ProfileHeader = ({ customHeader, cape, profile, bloodcenter }) => {
+const ProfileHeader = ({ customHeader, cape, bloodcenter }) => {
   return (
     <div className={`${styles.header} ${customHeader}`}>
       <img className={cape} src={capa} alt={bloodcenter} />

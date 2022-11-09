@@ -1,0 +1,117 @@
+.header_container {
+    width: calc(100vw - 300px);
+    height: 250px;
+
+    position: absolute;
+    right: 0;
+    top: 160px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    width: inherit;
+    height: 200px;
+
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url(../../../assets/cape.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.edit_cape {
+    width: clamp(110px, 15vw, 180px);
+    height: clamp(45px, 10vw, 55px);
+
+    background-color: #fff;
+    border: 1.5px solid #000;
+    font-size: clamp(1rem, 2vw, 1.375rem);
+    font-weight: 600;
+    color: #000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    opacity: 0;
+    transition: all .3s;
+}
+
+.edit_cape_input,
+.edit_photo_input {
+    display: none;
+}
+
+.header:hover .edit_cape  {
+    opacity: 1;
+}
+
+.header:hover {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.45)), url(../../../assets/cape.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.edit_photo {
+    position: absolute;
+    left: 50px;
+    bottom: -10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+
+.edit_photo img {
+    width: 125px;
+    height: 125px;
+    object-fit: cover;
+
+    cursor: pointer;
+
+    position: relative;
+
+    border-radius: 100%;
+
+    transition: all .3s;
+}
+
+.edit_photo p {
+    position: absolute;
+
+    opacity: 0;
+
+    color: #fff;
+    font-weight: 600;
+
+    z-index: 99;
+
+    cursor: pointer;
+}
+
+.edit_photo:hover p {
+    opacity: 1;
+}
+
+.edit_photo:hover img {
+    filter: brightness(30%);
+}
+
+
+@media screen and (max-width: 1025px) {
+    .header_container {
+        width: 100vw;
+    }
+}
