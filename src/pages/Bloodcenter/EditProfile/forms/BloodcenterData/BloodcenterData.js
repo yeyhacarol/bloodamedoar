@@ -11,6 +11,11 @@ import Input from "../../../../../components/form/Input/Input";
 import Submit from "../../../../../components/form/Submit/Submit";
 import { toast } from "react-toastify";
 import Textarea from "../../../../../components/form/Textarea/Textarea";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import uuid from "react-uuid";
+import { put } from "../../../../../services/apiBlood/http/put";
+import { storage } from "../../../../../firebaseConfig";
+import { useMemo } from "react";
 
 const BloodcenterData = ({ setVisible }) => {
   const auth = useContext(AuthContext);
@@ -33,10 +38,32 @@ const BloodcenterData = ({ setVisible }) => {
     telefone: "",
     celular: "",
     email: "",
+    foto_capa: "",
+    foto_perfil: "",
   });
 
   const handleOnChange = (input, value) => {
     setData((prevState) => ({ ...prevState, [value]: input }));
+  };
+
+  const handleCape = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    setData({ ...data, foto_capa: file });
+  };
+
+  const handlePhoto = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    setData({ ...data, foto_perfil: file });
   };
 
   useEffect(() => {
@@ -80,9 +107,7 @@ const BloodcenterData = ({ setVisible }) => {
     },
   });
 
-  const BASE_URL = process.env.REACT_APP_API_BLOOD;
-
-  const edit = (e) => {
+  const edit = async (e) => {
     e.preventDefault();
 
     if (!data.celular) {
@@ -115,22 +140,13 @@ const BloodcenterData = ({ setVisible }) => {
       });
     }
 
-    fetch(BASE_URL + `/atualizarHemocentro/${auth.user}`, {
-      method: "PUT",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        if (data.message) {
-          toast.success(data.message);
-        } else if (data.error) {
-          toast.error(data.error);
-        }
-      })
-      .catch((err) => console.error(err));
+    const storageRef = ref(storage, `bloodcenterProfile/${uuid()}`);
+    await uploadBytes(storageRef, data.foto_capa);
+    const url = await getDownloadURL(storageRef);
+    const fileData = data;
+    fileData.foto_capa = getFileType(data.foto_capa) ? url : data.foto_capa;
+
+    put("/atualizarHemocentro", auth.user, data);
   };
 
   /*   const [id_tipo_servico, setId_tipo_servico] = useState([]);
@@ -150,6 +166,18 @@ const BloodcenterData = ({ setVisible }) => {
     });
   }, []);
  */
+
+  const getFileType = (file) => {
+    if (file.type?.match("image.*")) return "image";
+    return false;
+  };
+
+  const formatImage = useMemo(() => {
+    return getFileType(data.foto_capa)
+      ? URL.createObjectURL(data.foto_capa)
+      : data.foto_capa;
+  }, [data.foto_capa]);
+
   return (
     <form className={styles.bloodcenter_data} onSubmit={edit}>
       <Container

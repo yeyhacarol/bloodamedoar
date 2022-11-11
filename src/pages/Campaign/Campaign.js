@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { getById } from "../../services/apiBlood/http/get";
-import { dateMask } from "../../utils/masks";
+import { cepMask, dateMask } from "../../utils/masks";
 
 import styles from "./Campaign.module.css";
 
@@ -29,7 +29,11 @@ const Campaign = () => {
     <>
       {campaign && (
         <>
-          <Menu label="Consultas" title="Consultas" />
+          <Menu
+            label="Hemocentros"
+            alt="Lista de hemocentros"
+            title="Lista de hemocentros"
+          />
           <div className={styles.logo}>
             <Logo />
           </div>
@@ -59,7 +63,7 @@ const Campaign = () => {
                         " - " +
                         campaign.estado +
                         ", " +
-                        campaign.cep +
+                        cepMask(campaign.cep) +
                         ". " +
                         campaign.ponto_referencia}
                     </p>
@@ -84,7 +88,7 @@ const Campaign = () => {
                     <p>
                       {campaign.descricao
                         ? campaign.descricao
-                        : "Não há mais detalhes sobre o evento. "}
+                        : "Não há mais detalhes sobre o evento."}
                     </p>
                   </div>
                 </div>

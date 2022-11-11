@@ -18,7 +18,7 @@ const Header = ({ span, action }) => {
 
       {action ? (
         <div className={styles.button}>
-          <Button action={action} link="/identification" />
+          <Button action={action} link="/bloodcenter/login" />
         </div>
       ) : (
         <></>

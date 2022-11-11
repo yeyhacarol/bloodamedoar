@@ -299,7 +299,7 @@ const Campaign = ({ setVisible }) => {
     if (id) {
       getById("/listarCampanha", id)
         .then((response) => {
-          const cep = response.cep.toString();
+          //const cep = response.cep.toString();
 
           setData({
             nome: response.nome || data.nome,
@@ -309,7 +309,7 @@ const Campaign = ({ setVisible }) => {
             data_termino: response.data_termino || data.data_termino,
             hora_termino: response.hora_termino || data.hora_termino,
             descricao: response.descricao || data.descricao,
-            cep: cep,
+            cep: response.cep,
             logradouro: response.logradouro,
             numero: response.numero || data.numero,
             bairro: response.bairro,

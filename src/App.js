@@ -7,14 +7,14 @@ import styles from "./App.module.css";
 
 import Home from "./pages/Home/Home";
 import Campaign from "./pages/Campaign/Campaign";
-import Identification from "./pages/Identification/Identification";
+//import Identification from "./pages/Identification/Identification";
 import Login from "./pages/Login/Login";
 import Registration from "./pages/Bloodcenter/Registration/Registration";
 import Profile from "./pages/Bloodcenter/Profile/Profile";
 import EditProfile from "./pages/Bloodcenter/EditProfile/EditProfile";
 import RequireAuth from "./contexts/Auth/RequireAuth";
 import RecoverPassword from "./pages/Login/RecoverPassword/RecoverPassword";
-import Disable from "./pages/Bloodcenter/EditProfile/forms/Disable/Disable";
+import Bloodcenters from "./pages/Bloodcenters.js/Bloodcenters";
 
 const App = () => {
   return (
@@ -23,7 +23,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/campaign/:id" element={<Campaign />} />
-          <Route path="/identification" element={<Identification />} />
+          <Route path="/bloodcenters" element={<Bloodcenters />} />
+          {/* <Route path="/identification" element={<Identification />} /> */}
           <Route path="/bloodcenter/login" element={<Login />} />
           <Route path="/bloodcenter/registration" element={<Registration />} />
           <Route

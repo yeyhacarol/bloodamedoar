@@ -106,9 +106,9 @@ const Profile = () => {
   return (
     <div className={styles.profile_container}>
       <Menu
-        label="Consultas"
-        alt="Lista de consultas"
-        title="Lista de consultas"
+        label="Hemocentros"
+        alt="Lista de hemocentros"
+        title="Lista de hemocentros"
       />
 
       {auth.user && (

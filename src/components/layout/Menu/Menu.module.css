@@ -38,6 +38,17 @@
     align-items: center;
 
     cursor: pointer;
+
+    transition: all .3s;
+}
+
+.menu_item:hover {
+    background-color: var(--opaque-red);
+    color: #fff;
+}
+
+.menu_item:hover img {
+    filter: brightness(0) saturate(100%) invert(99%) sepia(20%) saturate(0%) hue-rotate(115deg) brightness(114%) contrast(100%);
 }
 
 .menu_item img {

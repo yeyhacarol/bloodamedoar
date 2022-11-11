@@ -5,8 +5,12 @@ import Heading from "../../../../../components/Heading/Heading";
 import Button from "../../../../../components/layout/Button/Button";
 
 import close from "../../../../../assets/bloobs/close.png";
+import { useState } from "react";
+import ConfirmDisable from "./ConfirmDisable/ConfirmDisable";
 
 const Disable = ({ setVisible, visible }) => {
+  const [visibility, setVisibility] = useState(false);
+
   if (visible) {
     document.getElementById("html").style.overflow = "hidden";
   } else {
@@ -38,7 +42,13 @@ const Disable = ({ setVisible, visible }) => {
             quer realmente desativar sua conta.
           </p>
           <div className={styles.options}>
-            <Button action="Confirmar" />
+            <Button
+              action="Confirmar"
+              onClick={() => {
+                setVisibility(true);
+                setVisible(false);
+              }}
+            />
             <Button
               action="Negar"
               onClick={() => {
@@ -48,6 +58,8 @@ const Disable = ({ setVisible, visible }) => {
           </div>
         </div>
       </div>
+
+      <ConfirmDisable visibility={visibility} />
     </div>
   );
 };

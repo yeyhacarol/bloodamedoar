@@ -17,6 +17,7 @@ import { AuthContext } from "../../../contexts/Auth/AuthContext";
 import { useState } from "react";
 import Disable from "./forms/Disable/Disable";
 import EditProfileHeader from "../../../components/ProfileHeader/EditProfileHeader/EditProfileHeader";
+import ConfirmDisable from "./forms/Disable/ConfirmDisable/ConfirmDisable";
 
 const EditProfile = () => {
   const auth = useContext(AuthContext);

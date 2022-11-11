@@ -6,24 +6,49 @@ import ListItem from "../ListItem/ListItem";
 
 import logo from "../../../assets/hemocentro-campinas.jpg";
 import { get } from "../../../services/apiBlood/http/get";
+import { useState, useEffect } from "react";
+import { capitalize } from "../../../utils/capitalize";
+import { cepMask } from "../../../utils/masks";
 
 const List = () => {
-  /* CONSUMIR API E TRAZER DADOS DINÂMICOS */
-  get("/listarHemocentros")
-    .then((resp) => console.log(resp))
-    .catch((error) => console.error(error));
+  const [bloodcenter, setBloodcenter] = useState([]);
+
+  useEffect(() => {
+    get("/listaHemocentroLimitada")
+      .then((response) => {
+        const resp = response[0];
+        setBloodcenter(resp);
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
   return (
     <Container title="Hemocentros" customClass={styles.container}>
       <div className={styles.list_content}>
-        <ListItem
-          logo={logo}
-          name="Hemocentro Campinas"
-          address="Universidade Estadual de Campinas - R. Carlos Chagas, 480 - Cidade Universitária, Campinas - SP, 13083-878"
-          link="/seebloodcenter"
-        />
+        {bloodcenter.map((data) => (
+          <ListItem
+            key={data.id}
+            logo={logo}
+            name={data.nome_unidade}
+            address={
+              data.logradouro +
+              ", " +
+              data.numero +
+              " - " +
+              capitalize(data.bairro) +
+              ", " +
+              data.cidade +
+              " - " +
+              data.uf +
+              ", " +
+              cepMask(data.cep) +
+              "."
+            }
+            link={`/bloodcenters/${data.id}`}
+          />
+        ))}
       </div>
-      <Link to="/seeallbloodcenters" className={styles.bloodcenters}>
+      <Link to="/bloodcenters" className={styles.bloodcenters}>
         Ver todos hemocentros.
       </Link>
     </Container>

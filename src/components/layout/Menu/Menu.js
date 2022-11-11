@@ -15,7 +15,7 @@ const Menu = ({ label, alt, title }) => {
   let navigation;
 
   if (!auth.user) {
-    navigation = "/identification";
+    navigation = "/bloodcenter/login";
   } else {
     navigation = "/bloodcenter/profile";
   }
@@ -33,10 +33,14 @@ const Menu = ({ label, alt, title }) => {
             <p>Página inicial</p>
           </div>
         </Link>
-        <Link to="/hemocenterlist" className={styles.a}>
+        <Link to="/bloodcenters" className={styles.a}>
           <div className={`${styles.menu_item} ${styles.list}`}>
-            <img src={List} alt={alt} title={title} />
-            <p>{label}</p>
+            <img
+              src={List}
+              alt="Lista de hemocentros"
+              title="Lista de hemocentros"
+            />
+            <p>Hemocentros</p>
           </div>
         </Link>
         <Link to={navigation} className={styles.a}>
