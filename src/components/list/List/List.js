@@ -4,7 +4,8 @@ import styles from "./List.module.css";
 import Container from "../../layout/Container/Container";
 import ListItem from "../ListItem/ListItem";
 
-import logo from "../../../assets/hemocentro-campinas.jpg";
+import profile from "../../../assets/bloobs/profile.svg";
+
 import { get } from "../../../services/apiBlood/http/get";
 import { useState, useEffect } from "react";
 import { capitalize } from "../../../utils/capitalize";
@@ -28,7 +29,7 @@ const List = () => {
         {bloodcenter.map((data) => (
           <ListItem
             key={data.id}
-            logo={logo}
+            logo={data.foto_perfil ? data.foto_perfil : profile}
             name={data.nome_unidade}
             address={
               data.logradouro +

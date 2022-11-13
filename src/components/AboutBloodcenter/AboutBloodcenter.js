@@ -23,7 +23,7 @@ const AboutBloodcenter = ({
       <div className={styles.about_us}>
         <h3>Contato</h3>
         {telephone && <p>Telefone: {telephone} </p>}
-        <p>Celular: {celular} </p>
+        {celular && <p>Celular: {celular} </p>}
         <p>Email: {email}</p>
       </div>
       <div className={styles.about_us}>

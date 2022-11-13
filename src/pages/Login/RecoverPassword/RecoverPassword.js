@@ -14,8 +14,8 @@ const RecoverPassword = () => {
         <IconLogo />
       </div>
 
-      <div className={styles.container_center}>
-        <div className={styles.heading}>
+      <div className={styles.recover_password}>
+        <form className={styles.recover_password_content}>
           <Heading heading="Alterar senha" />
 
           <Input
@@ -28,28 +28,28 @@ const RecoverPassword = () => {
           />
 
           <Input
+            custom={styles.input}
             type="password"
-            placeholder="Senha"
-            name="senha"
-            // value={data.senha}
-            // handleOnChange={handleOnChange}
+            placeholder="Sua senha"
+            name="senha" /*error={} errorMessage={} value={} handleOnChange={}*/
           />
 
           <Input
+            custom={styles.input}
             type="password"
-            placeholder="Confirmar senha "
+            placeholder="Confirme sua senha"
             name="senha"
             // value={data.senha}
             // handleOnChange={handleOnChange}
           />
 
           <Button
-            customClass={styles.signin}
-            action=" Salvar senha "
+            customClass={styles.submit}
+            action="Confirmar"
             // link=""
             // onClick={handleOnSubmit}
           />
-        </div>
+        </form>
       </div>
     </div>
   );

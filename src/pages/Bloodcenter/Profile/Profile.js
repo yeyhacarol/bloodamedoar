@@ -7,6 +7,9 @@ import { CircleMenu, CircleMenuItem } from "react-circular-menu";
 import { FiCalendar, FiSmile, FiDroplet, FiLogIn } from "react-icons/fi";
 import { AiOutlineHistory } from "react-icons/ai";
 
+import profile from "../../../assets/bloobs/profile 1.1.svg";
+import cape from "../../../assets/bloobs/cape.svg";
+
 import styles from "./Profile.module.css";
 
 import { getById } from "../../../services/apiBlood/http/get";
@@ -22,7 +25,7 @@ import CampaignCard from "../../../components/donativeCampaign/CampaignCard/Camp
 
 const Profile = () => {
   const [tabIndex, setTabIndex] = useState();
-  const [currentInventory, setCurrentInventory] = useState();
+  const [currentInventory, setCurrentInventory] = useState([]);
 
   const auth = useContext(AuthContext);
 
@@ -57,6 +60,8 @@ const Profile = () => {
     celular: "",
     email: "",
     tipo_servico: "",
+    foto_perfil: "",
+    foto_capa: "",
   });
 
   const [campaign, setCampain] = useState([]);
@@ -85,6 +90,8 @@ const Profile = () => {
           telefone: resp.telefone ? phoneMask(resp.telefone) : null,
           celular: phoneMask(resp.celular),
           email: resp.email,
+          foto_perfil: resp.foto_perfil,
+          foto_capa: resp.foto_capa,
           tipo_servico: [],
         };
       });
@@ -119,7 +126,11 @@ const Profile = () => {
       )}
 
       <div className={styles.profile_content}>
-        <ProfileHeader />
+        <ProfileHeader
+          cape={data.foto_capa ? data.foto_capa : cape}
+          photo={data.foto_perfil ? data.foto_perfil : profile}
+          bloodcenter={data.nome_unidade}
+        />
 
         <div className={styles.introduction}>
           <h2>{data.nome_unidade}</h2>
@@ -148,7 +159,19 @@ const Profile = () => {
           email={data.email}
           services={data.tipo_servico}
         />
-        <Inventory title="Nosso estoque" currentInventory={currentInventory} />
+        {currentInventory.length > 0 ? (
+          <Inventory
+            title="Nosso estoque"
+            currentInventory={currentInventory}
+          />
+        ) : (
+          <Inventory title="Nosso estoque" currentInventory={currentInventory}>
+            <p>
+              Você ainda não cadastrou nada no seu estoque. Pode realizar essa
+              ação por meio da aba de editar perfil.
+            </p>
+          </Inventory>
+        )}
         {campaign.length > 0 && (
           <CampaignSlider
             customClass={styles.our_campaigns}

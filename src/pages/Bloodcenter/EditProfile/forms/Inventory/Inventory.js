@@ -10,6 +10,7 @@ import Container from "../../../../../components/layout/Container/Container";
 import Selection from "../../../../../components/form/Select/Selection";
 import Submit from "../../../../../components/form/Submit/Submit";
 import { get, getById } from "../../../../../services/apiBlood/http/get";
+import ProfileHeader from "../../../../../components/ProfileHeader/ProfileHeader";
 
 const CurrentInventory = ({ setVisible }) => {
   const auth = useContext(AuthContext);
@@ -122,54 +123,58 @@ const CurrentInventory = ({ setVisible }) => {
 
   return (
     <form className={styles.inventory}>
-      <Inventory
-        title="Estoque atual"
-        custom={styles.container}
-        customLevels={styles.levels}
-        currentInventory={currentInventory}
-      />
+      <ProfileHeader customHeader={styles.header} />
 
-      <Container title="Posições de estoque" customClass={styles.container}>
-        <div className={styles.content}>
-          <Selection
-            closeMenuOnSelect={true}
-            placeholder="Tipo sanguíneo"
-            error={errors.tipo_sanguineo.error}
-            errorMessage={errors.tipo_sanguineo.errorMessage}
-            name="id_tipo_sanguineo"
-            message="Sem tipos sanguíneos"
-            options={bloodType}
-            handleOnChange={handleOnChange}
-            onFocus={() => setErrors({ ...errors, tipo_sanguineo: false })}
-          />
-          <Selection
-            closeMenuOnSelect={true}
-            placeholder="Nível"
-            error={errors.nivel_sangue.error}
-            errorMessage={errors.nivel_sangue.errorMessage}
-            name="id_nivel_sangue"
-            message="Sem níveis"
-            options={level}
-            handleOnChange={handleOnChange}
-            onFocus={() => setErrors({ ...errors, nivel_sangue: false })}
-          />
-        </div>
-      </Container>
-
-      <div className={styles.action}>
-        <Submit
-          action="Salvar"
-          customClass={styles.save}
-          handleOnClick={bloodInventory}
+      <div className={styles.inventory_tab}>
+        <Inventory
+          title="Estoque atual"
+          custom={styles.container}
+          customLevels={styles.levels}
+          currentInventory={currentInventory}
         />
-        <Link
-          onClick={(e) => {
-            e.preventDefault();
-            setVisible(true);
-          }}
-        >
-          Desativar conta
-        </Link>
+
+        <Container title="Posições de estoque" customClass={styles.container}>
+          <div className={styles.content}>
+            <Selection
+              closeMenuOnSelect={true}
+              placeholder="Tipo sanguíneo"
+              error={errors.tipo_sanguineo.error}
+              errorMessage={errors.tipo_sanguineo.errorMessage}
+              name="id_tipo_sanguineo"
+              message="Sem tipos sanguíneos"
+              options={bloodType}
+              handleOnChange={handleOnChange}
+              onFocus={() => setErrors({ ...errors, tipo_sanguineo: false })}
+            />
+            <Selection
+              closeMenuOnSelect={true}
+              placeholder="Nível"
+              error={errors.nivel_sangue.error}
+              errorMessage={errors.nivel_sangue.errorMessage}
+              name="id_nivel_sangue"
+              message="Sem níveis"
+              options={level}
+              handleOnChange={handleOnChange}
+              onFocus={() => setErrors({ ...errors, nivel_sangue: false })}
+            />
+          </div>
+        </Container>
+
+        <div className={styles.action}>
+          <Submit
+            action="Salvar"
+            customClass={styles.save}
+            handleOnClick={bloodInventory}
+          />
+          <Link
+            onClick={(e) => {
+              e.preventDefault();
+              setVisible(true);
+            }}
+          >
+            Desativar conta
+          </Link>
+        </div>
       </div>
     </form>
   );

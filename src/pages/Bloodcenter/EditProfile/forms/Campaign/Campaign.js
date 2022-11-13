@@ -20,6 +20,7 @@ import { put } from "../../../../../services/apiBlood/http/put";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { getById } from "../../../../../services/apiBlood/http/get";
 import { exclude } from "../../../../../services/apiBlood/http/delete";
+import ProfileHeader from "../../../../../components/ProfileHeader/ProfileHeader";
 
 const Campaign = ({ setVisible }) => {
   const auth = useContext(AuthContext);
@@ -226,6 +227,8 @@ const Campaign = ({ setVisible }) => {
     const fileData = data;
     fileData.foto_capa = getFileType(data.foto_capa) ? url : data.foto_capa;
 
+    console.log(fileData);
+
     if (!id) {
       post("/cadastrarCampanha", fileData);
       setData({
@@ -343,199 +346,202 @@ const Campaign = ({ setVisible }) => {
 
   return (
     <form className={styles.campaign} onSubmit={onSubmit}>
-      <Container title="Campanha" customClass={styles.container}>
-        <div className={`${styles.content} ${styles.campaign_data}`}>
-          <div className={`${styles.form} ${styles.campaign_data}`}>
-            <Input
-              id="nome"
-              info="Nome da campanha"
-              placeholder="Nome da campanha"
-              error={errors.nome.error}
-              errorMessage={errors.nome.errorMessage}
-              name="nome"
-              value={data.nome || ""}
-              handleOnChange={handleOnChange}
-              onFocus={() => setErrors({ ...errors, nome: false })}
-            />
-            <div className={styles.input_container}>
-              <label>Foto de capa</label>
-              <label htmlFor="file" className={styles.file_input}>
-                <MdOutlinePhoto size={30} />
-                {data.foto_capa ? (
+      <ProfileHeader customHeader={styles.header} />
+
+      <div className={styles.campaign_tab}>
+        <Container title="Campanha" customClass={styles.container}>
+          <div className={`${styles.content} ${styles.campaign_data}`}>
+            <div className={`${styles.form} ${styles.campaign_data}`}>
+              <Input
+                id="nome"
+                info="Nome da campanha"
+                placeholder="Nome da campanha"
+                error={errors.nome.error}
+                errorMessage={errors.nome.errorMessage}
+                name="nome"
+                value={data.nome || ""}
+                handleOnChange={handleOnChange}
+                onFocus={() => setErrors({ ...errors, nome: false })}
+              />
+              <div className={styles.input_container}>
+                <label>Foto de capa</label>
+                <label htmlFor="file" className={styles.file_input}>
+                  <MdOutlinePhoto size={30} />
+                  {data.foto_capa ? (
+                    <>
+                      <label htmlFor="file" title="Escolha uma foto de capa">
+                        <img src={formatImage} className={styles.foto_capa} />
+                      </label>
+                    </>
+                  ) : (
+                    "Foto de capa"
+                  )}
+                </label>
+              </div>
+              <input
+                id="file"
+                className={styles.file}
+                type="file"
+                onChange={handleFile}
+                onFocus={() => setErrors({ ...errors, foto_capa: false })}
+              />
+              <div className={styles.message}>
+                {errors.foto_capa.error && (
                   <>
-                    <label htmlFor="file" title="Escolha uma foto de capa">
-                      <img src={formatImage} className={styles.foto_capa} />
-                    </label>
+                    <MdErrorOutline size={20} color="#AA1E1E" />
+                    <span>{errors.foto_capa.errorMessage}</span>
                   </>
-                ) : (
-                  "Foto de capa"
                 )}
-              </label>
+              </div>
             </div>
-            <input
-              id="file"
-              className={styles.file}
-              type="file"
-              onChange={handleFile}
-              onFocus={() => setErrors({ ...errors, foto_capa: false })}
+            <div></div>
+          </div>
+        </Container>
+
+        <Container title="Mais sobre campanha" customClass={styles.container}>
+          <div className={styles.content}>
+            <h3>Endereço</h3>
+            <div className={styles.form}>
+              <div className={styles.right}>
+                <Input
+                  id="cep"
+                  mask="00000-000"
+                  placeholder="CEP"
+                  info="CEP"
+                  name="cep"
+                  error={errors.cep.error}
+                  errorMessage={errors.cep.errorMessage}
+                  value={data.cep || ""}
+                  handleOnChange={handleOnChange}
+                  onFocus={() => setErrors({ ...errors, cep: false })}
+                />
+                <Input
+                  placeholder="Logradouro"
+                  info="Logradouro"
+                  name="logradouro"
+                  value={data.logradouro || ""}
+                  handleOnChange={handleOnChange}
+                  disabled
+                />
+                <Input
+                  placeholder="Número"
+                  info="Número"
+                  name="numero"
+                  error={errors.numero.error}
+                  errorMessage={errors.numero.errorMessage}
+                  value={data.numero || ""}
+                  handleOnChange={handleOnChange}
+                  onFocus={() => setErrors({ ...errors, numero: false })}
+                />
+
+                <Input
+                  placeholder="Ponto de referência"
+                  info="Ponto de referência"
+                  value={data.ponto_referencia || ""}
+                  name="ponto_referencia"
+                  handleOnChange={handleOnChange}
+                />
+              </div>
+              <div className={styles.left}>
+                <Input
+                  placeholder="Bairro"
+                  info="Bairro"
+                  name="bairro"
+                  value={data.bairro || ""}
+                  handleOnChange={handleOnChange}
+                  disabled
+                />
+                <Input
+                  placeholder="Cidade"
+                  info="Cidade"
+                  name="cidade"
+                  value={data.cidade || ""}
+                  handleOnChange={handleOnChange}
+                  disabled
+                />
+                <Input
+                  placeholder="Estado"
+                  info="Estado"
+                  name="estado"
+                  value={data.estado || ""}
+                  handleOnChange={handleOnChange}
+                  disabled
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.content}>
+            <h3>Data e hora</h3>
+            <div className={`${styles.form} ${styles.date}`}>
+              <div className={styles.date_right}>
+                <Input
+                  custom={styles.input}
+                  type="date"
+                  info="Data início"
+                  name="data_inicio"
+                  value={data.data_inicio || ""}
+                  handleOnChange={handleOnChange}
+                  onFocus={() => setErrors({ ...errors, data_inicio: false })}
+                />
+                <Input
+                  custom={styles.input}
+                  type="time"
+                  info="Hora início"
+                  name="hora_inicio"
+                  value={data.hora_inicio || ""}
+                  handleOnChange={handleOnChange}
+                  onFocus={() => setErrors({ ...errors, data_inicio: false })}
+                />
+              </div>
+              <div className={styles.message}>
+                {errors.data_inicio.error && (
+                  <>
+                    <MdErrorOutline size={20} color="#AA1E1E" />{" "}
+                    <span>{errors.data_inicio.errorMessage}</span>
+                  </>
+                )}
+              </div>
+              <div className={styles.date_left}>
+                <Input
+                  custom={styles.input}
+                  type="date"
+                  info="Data término"
+                  name="data_termino"
+                  value={data.data_termino || ""}
+                  handleOnChange={handleOnChange}
+                  onFocus={() => setErrors({ ...errors, data_termino: false })}
+                />
+                <Input
+                  custom={styles.input}
+                  type="time"
+                  info="Hora término"
+                  name="hora_termino"
+                  value={data.hora_termino || ""}
+                  handleOnChange={handleOnChange}
+                  onFocus={() => setErrors({ ...errors, data_termino: false })}
+                />
+              </div>
+              <div className={styles.message}>
+                {errors.data_termino.error && (
+                  <>
+                    <MdErrorOutline size={20} color="#AA1E1E" />{" "}
+                    <span>{errors.data_termino.errorMessage}</span>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className={styles.content}>
+            <h3>Descrição</h3>
+            <Textarea
+              placeholder="Descrição"
+              info="Descrição"
+              name="descricao"
+              value={data.descricao || ""}
+              handleOnChange={handleOnChange}
             />
-            <div className={styles.message}>
-              {errors.foto_capa.error && (
-                <>
-                  <MdErrorOutline size={20} color="#AA1E1E" />
-                  <span>{errors.foto_capa.errorMessage}</span>
-                </>
-              )}
-            </div>
-          </div>
-          <div></div>
-        </div>
-      </Container>
-
-      <Container title="Mais sobre campanha" customClass={styles.container}>
-        <div className={styles.content}>
-          <h3>Endereço</h3>
-          <div className={styles.form}>
-            <div className={styles.right}>
-              <Input
-                id="cep"
-                mask="00000-000"
-                placeholder="CEP"
-                info="CEP"
-                name="cep"
-                error={errors.cep.error}
-                errorMessage={errors.cep.errorMessage}
-                value={data.cep || ""}
-                handleOnChange={handleOnChange}
-                onFocus={() => setErrors({ ...errors, cep: false })}
-              />
-              <Input
-                placeholder="Logradouro"
-                info="Logradouro"
-                name="logradouro"
-                value={data.logradouro || ""}
-                handleOnChange={handleOnChange}
-                disabled
-              />
-              <Input
-                placeholder="Número"
-                info="Número"
-                name="numero"
-                error={errors.numero.error}
-                errorMessage={errors.numero.errorMessage}
-                value={data.numero || ""}
-                handleOnChange={handleOnChange}
-                onFocus={() => setErrors({ ...errors, numero: false })}
-              />
-
-              <Input
-                placeholder="Ponto de referência"
-                info="Ponto de referência"
-                value={data.ponto_referencia || ""}
-                name="ponto_referencia"
-                handleOnChange={handleOnChange}
-              />
-            </div>
-            <div className={styles.left}>
-              <Input
-                placeholder="Bairro"
-                info="Bairro"
-                name="bairro"
-                value={data.bairro || ""}
-                handleOnChange={handleOnChange}
-                disabled
-              />
-              <Input
-                placeholder="Cidade"
-                info="Cidade"
-                name="cidade"
-                value={data.cidade || ""}
-                handleOnChange={handleOnChange}
-                disabled
-              />
-              <Input
-                placeholder="Estado"
-                info="Estado"
-                name="estado"
-                value={data.estado || ""}
-                handleOnChange={handleOnChange}
-                disabled
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.content}>
-          <h3>Data e hora</h3>
-          <div className={`${styles.form} ${styles.date}`}>
-            <div className={styles.date_right}>
-              <Input
-                custom={styles.input}
-                type="date"
-                info="Data início"
-                name="data_inicio"
-                value={data.data_inicio || ""}
-                handleOnChange={handleOnChange}
-                onFocus={() => setErrors({ ...errors, data_inicio: false })}
-              />
-              <Input
-                custom={styles.input}
-                type="time"
-                info="Hora início"
-                name="hora_inicio"
-                value={data.hora_inicio || ""}
-                handleOnChange={handleOnChange}
-                onFocus={() => setErrors({ ...errors, data_inicio: false })}
-              />
-            </div>
-            <div className={styles.message}>
-              {errors.data_inicio.error && (
-                <>
-                  <MdErrorOutline size={20} color="#AA1E1E" />{" "}
-                  <span>{errors.data_inicio.errorMessage}</span>
-                </>
-              )}
-            </div>
-            <div className={styles.date_left}>
-              <Input
-                custom={styles.input}
-                type="date"
-                info="Data término"
-                name="data_termino"
-                value={data.data_termino || ""}
-                handleOnChange={handleOnChange}
-                onFocus={() => setErrors({ ...errors, data_termino: false })}
-              />
-              <Input
-                custom={styles.input}
-                type="time"
-                info="Hora término"
-                name="hora_termino"
-                value={data.hora_termino || ""}
-                handleOnChange={handleOnChange}
-                onFocus={() => setErrors({ ...errors, data_termino: false })}
-              />
-            </div>
-            <div className={styles.message}>
-              {errors.data_termino.error && (
-                <>
-                  <MdErrorOutline size={20} color="#AA1E1E" />{" "}
-                  <span>{errors.data_termino.errorMessage}</span>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-        <div className={styles.content}>
-          <h3>Descrição</h3>
-          <Textarea
-            placeholder="Descrição"
-            info="Descrição"
-            name="descricao"
-            value={data.descricao || ""}
-            handleOnChange={handleOnChange}
-          />
-          {/* <h3>Parceiros</h3>
+            {/* <h3>Parceiros</h3>
           <div className={`${styles.form} ${styles.partners}`}>
             <Input
               placeholder="Nome"
@@ -553,28 +559,29 @@ const Campaign = ({ setVisible }) => {
               handleOnChange={handleOnChange}
             />
           </div> */}
+          </div>
+          {id && (
+            <HiOutlineTrash
+              size={30}
+              className={styles.trash_campaign}
+              title="Desativar campanha"
+              onClick={deleteCampaign}
+            />
+          )}
+        </Container>
+
+        <div className={styles.action}>
+          <Submit action="Salvar" customClass={styles.save} />
+
+          <Link
+            onClick={(e) => {
+              e.preventDefault();
+              setVisible(true);
+            }}
+          >
+            Desativar conta
+          </Link>
         </div>
-        {id && (
-          <HiOutlineTrash
-            size={30}
-            className={styles.trash_campaign}
-            title="Desativar campanha"
-            onClick={deleteCampaign}
-          />
-        )}
-      </Container>
-
-      <div className={styles.action}>
-        <Submit action="Salvar" customClass={styles.save} />
-
-        <Link
-          onClick={(e) => {
-            e.preventDefault();
-            setVisible(true);
-          }}
-        >
-          Desativar conta
-        </Link>
       </div>
     </form>
   );

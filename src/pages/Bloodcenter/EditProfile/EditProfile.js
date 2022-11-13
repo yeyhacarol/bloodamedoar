@@ -8,7 +8,6 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 
 import Menu from "../../../components/layout/Menu/Menu";
 import Header from "../../../components/Header/Header";
-import ProfileHeader from "../../../components/ProfileHeader/ProfileHeader";
 import BloodcenterData from "./forms/BloodcenterData/BloodcenterData";
 import CurrentInventory from "./forms/Inventory/Inventory";
 import Campaign from "./forms/Campaign/Campaign";
@@ -16,8 +15,6 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contexts/Auth/AuthContext";
 import { useState } from "react";
 import Disable from "./forms/Disable/Disable";
-import EditProfileHeader from "../../../components/ProfileHeader/EditProfileHeader/EditProfileHeader";
-import ConfirmDisable from "./forms/Disable/ConfirmDisable/ConfirmDisable";
 
 const EditProfile = () => {
   const auth = useContext(AuthContext);
@@ -57,6 +54,7 @@ const EditProfile = () => {
       {auth.user && (
         <div className={styles.out}>
           <FiLogIn size={40} title="Sair?" onClick={handleLogout} />
+          <span className={styles.tooltip}>Sair?</span>
         </div>
       )}
 
@@ -73,7 +71,6 @@ const EditProfile = () => {
           <p>Voltar</p>
         </div>
 
-        <EditProfileHeader />
         <Tabs
           className={styles.edit_container}
           defaultIndex={parseInt(tab) || 0}

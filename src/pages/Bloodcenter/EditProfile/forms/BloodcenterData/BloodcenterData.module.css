@@ -3,6 +3,12 @@
     margin-bottom: 30px;
 }
 
+.bloodcenter_tab {
+    position: absolute;
+    top: 455px;
+    right: 0;
+}
+
 .content {
     padding-left: 45px;
 }

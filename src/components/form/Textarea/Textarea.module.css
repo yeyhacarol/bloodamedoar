@@ -29,3 +29,19 @@
 .textarea:focus {
     outline-color: var(--red);
 }
+  
+.textarea_container span {
+    color: var(--primary-red);
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    font-weight: 600;
+}
+
+.error_message {
+    width: clamp(260px, 35vw, 450px);
+  
+    padding-top: 5px;
+    gap: 5px;
+  
+    display: flex;
+    align-items: center;
+}

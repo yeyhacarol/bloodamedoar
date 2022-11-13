@@ -9,13 +9,13 @@ import { cepMask } from "../../../../../utils/masks";
 import Container from "../../../../../components/layout/Container/Container";
 import Input from "../../../../../components/form/Input/Input";
 import Submit from "../../../../../components/form/Submit/Submit";
-import { toast } from "react-toastify";
 import Textarea from "../../../../../components/form/Textarea/Textarea";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import uuid from "react-uuid";
 import { put } from "../../../../../services/apiBlood/http/put";
 import { storage } from "../../../../../firebaseConfig";
 import { useMemo } from "react";
+import EditProfileHeader from "../../../../../components/ProfileHeader/EditProfileHeader/EditProfileHeader";
 
 const BloodcenterData = ({ setVisible }) => {
   const auth = useContext(AuthContext);
@@ -91,6 +91,8 @@ const BloodcenterData = ({ setVisible }) => {
           telefone: data.telefone || resp.telefone,
           celular: data.celular || resp.celular,
           email: resp.email,
+          foto_capa: resp.foto_capa,
+          foto_perfil: resp.foto_perfil,
         };
       });
     });
@@ -120,7 +122,7 @@ const BloodcenterData = ({ setVisible }) => {
       });
     }
 
-    if (data.celular.length != 11) {
+    if (data.celular.length !== 11) {
       return setErrors({
         ...errors,
         celular: {
@@ -140,14 +142,39 @@ const BloodcenterData = ({ setVisible }) => {
       });
     }
 
-    const storageRef = ref(storage, `bloodcenterProfile/${uuid()}`);
-    await uploadBytes(storageRef, data.foto_capa);
+    const storageRef = ref(storage, `bloodcenter/profile/${uuid()}`);
+    await uploadBytes(storageRef, data.foto_perfil);
     const url = await getDownloadURL(storageRef);
     const fileData = data;
-    fileData.foto_capa = getFileType(data.foto_capa) ? url : data.foto_capa;
+    fileData.foto_perfil = getFileType(data.foto_perfil)
+      ? url
+      : data.foto_perfil;
 
-    put("/atualizarHemocentro", auth.user, data);
+    const storageRef2 = ref(storage, `bloodcenter/cape/${uuid()}`);
+    await uploadBytes(storageRef2, data.foto_capa);
+    const url2 = await getDownloadURL(storageRef2);
+    const fileData2 = fileData;
+    fileData2.foto_capa = getFileType(data.foto_capa) ? url2 : data.foto_capa;
+
+    put("/atualizarHemocentro", auth.user, fileData2);
   };
+
+  const getFileType = (file) => {
+    if (file.type?.match("image.*")) return "image";
+    return false;
+  };
+
+  const formatImage = useMemo(() => {
+    return getFileType(data.foto_perfil)
+      ? URL.createObjectURL(data.foto_perfil)
+      : data.foto_perfil;
+  }, [data.foto_perfil]);
+
+  const formatImage2 = useMemo(() => {
+    return getFileType(data.foto_capa)
+      ? URL.createObjectURL(data.foto_capa)
+      : data.foto_capa;
+  }, [data.foto_capa]);
 
   /*   const [id_tipo_servico, setId_tipo_servico] = useState([]);
 
@@ -167,112 +194,110 @@ const BloodcenterData = ({ setVisible }) => {
   }, []);
  */
 
-  const getFileType = (file) => {
-    if (file.type?.match("image.*")) return "image";
-    return false;
-  };
-
-  const formatImage = useMemo(() => {
-    return getFileType(data.foto_capa)
-      ? URL.createObjectURL(data.foto_capa)
-      : data.foto_capa;
-  }, [data.foto_capa]);
-
   return (
-    <form className={styles.bloodcenter_data} onSubmit={edit}>
-      <Container
-        title="Hemocentro"
-        customClass={`${styles.container} ${styles.bloodcenter}`}
-      >
-        <div className={styles.content}>
-          <Input
-            info="Nome unidade"
-            name="nome_unidade"
-            value={data.nome_unidade}
-            disabled={true}
-          />
-          <Input
-            name="unidade_sede"
-            type="checkbox"
-            label="Sou sede"
-            checked={data.unidade_sede}
-            disabled={true}
-          />
-          <Input
-            info="Nome sede"
-            name="nome_sede"
-            value={data.nome_sede && data.nome_sede}
-            disabled={true}
-          />
-        </div>
-      </Container>
+    <div className={styles.bloodcenter_container}>
+      <form className={styles.bloodcenter_data} onSubmit={edit}>
+        <EditProfileHeader
+          capeOnChange={handleCape}
+          photoOnChange={handlePhoto}
+          background={formatImage2}
+          bloodcenter={formatImage}
+        />
 
-      <Container title="Endereço" customClass={styles.container}>
-        <div className={`${styles.content} ${styles.address}`}>
-          <div className={styles.right}>
-            <Input info="CEP" name="cep" value={data.cep} disabled={true} />
-            <Input
-              name="logradouro"
-              info="Logradouro"
-              value={data.logradouro}
-              disabled={true}
-            />
-            <Input
-              name="estado"
-              info="Estado"
-              value={data.estado}
-              disabled={true}
-            />
-            <Input
-              name="ponto_referencia"
-              info="Ponto de referência"
-              placeholder="Ponto de referência"
-              custom={styles.text_area}
-              value={data.ponto_referencia || ""}
-              handleOnChange={handleOnChange}
-            />
-          </div>
+        <div className={styles.bloodcenter_tab}>
+          <Container
+            title="Hemocentro"
+            customClass={`${styles.container} ${styles.bloodcenter}`}
+          >
+            <div className={styles.content}>
+              <Input
+                info="Nome unidade"
+                name="nome_unidade"
+                value={data.nome_unidade}
+                disabled={true}
+              />
+              <Input
+                name="unidade_sede"
+                type="checkbox"
+                label="Sou sede"
+                checked={data.unidade_sede}
+                disabled={true}
+              />
+              <Input
+                info="Nome sede"
+                name="nome_sede"
+                value={data.nome_sede && data.nome_sede}
+                disabled={true}
+              />
+            </div>
+          </Container>
 
-          <div className={styles.left}>
-            <Input
-              name="bairro"
-              info="Bairro"
-              value={data.bairro}
-              disabled={true}
-            />
-            <Input
-              name="numero"
-              info="Número"
-              value={data.numero}
-              disabled={true}
-            />
-            <Input
-              name="cidade"
-              info="Cidade"
-              value={data.cidade}
-              disabled={true}
-            />
-          </div>
-        </div>
-      </Container>
+          <Container title="Endereço" customClass={styles.container}>
+            <div className={`${styles.content} ${styles.address}`}>
+              <div className={styles.right}>
+                <Input info="CEP" name="cep" value={data.cep} disabled={true} />
+                <Input
+                  name="logradouro"
+                  info="Logradouro"
+                  value={data.logradouro}
+                  disabled={true}
+                />
+                <Input
+                  name="estado"
+                  info="Estado"
+                  value={data.estado}
+                  disabled={true}
+                />
+                <Input
+                  name="ponto_referencia"
+                  info="Ponto de referência"
+                  placeholder="Ponto de referência"
+                  custom={styles.text_area}
+                  value={data.ponto_referencia || ""}
+                  handleOnChange={handleOnChange}
+                />
+              </div>
 
-      <Container title="Biografia" customClass={styles.container}>
-        <div className={styles.content}>
-          <Textarea
-            name="biografia"
-            placeholder="Sobre nós"
-            info="Sobre nós"
-            value={data.biografia || ""}
-            handleOnChange={handleOnChange}
-          />
-          <Textarea
-            name="horario_atendimento"
-            placeholder="Horário de atendimento"
-            info="Horário de atendimento"
-            value={data.horario_atendimento || ""}
-            handleOnChange={handleOnChange}
-          />
-          {/* <Selection
+              <div className={styles.left}>
+                <Input
+                  name="bairro"
+                  info="Bairro"
+                  value={data.bairro}
+                  disabled={true}
+                />
+                <Input
+                  name="numero"
+                  info="Número"
+                  value={data.numero}
+                  disabled={true}
+                />
+                <Input
+                  name="cidade"
+                  info="Cidade"
+                  value={data.cidade}
+                  disabled={true}
+                />
+              </div>
+            </div>
+          </Container>
+
+          <Container title="Biografia" customClass={styles.container}>
+            <div className={styles.content}>
+              <Textarea
+                name="biografia"
+                placeholder="Sobre nós"
+                info="Sobre nós"
+                value={data.biografia || ""}
+                handleOnChange={handleOnChange}
+              />
+              <Textarea
+                name="horario_atendimento"
+                placeholder="Horário de atendimento"
+                info="Horário de atendimento"
+                value={data.horario_atendimento || ""}
+                handleOnChange={handleOnChange}
+              />
+              {/* <Selection
             isMulti={true}
             closeMenuOnSelect="false"
             placeholder="Tipos de serviço"
@@ -282,65 +307,67 @@ const BloodcenterData = ({ setVisible }) => {
             options={id_tipo_servico && id_tipo_servico}
             handleOnChange={handleOnChange}
           /> */}
-        </div>
-      </Container>
+            </div>
+          </Container>
 
-      <Container
-        title="Contato"
-        customClass={`${styles.container} ${styles.contact}`}
-      >
-        <div className={styles.content}>
-          <Input
-            name="telefone"
-            placeholder="Telefone"
-            info="Telefone"
-            mask="(00) 0000-0000"
-            error={errors.telefone.error}
-            errorMessage={errors.telefone.errorMessage}
-            value={data.telefone || ""}
-            handleOnChange={handleOnChange}
-            onFocus={() => setErrors({ ...errors, telefone: false })}
-            autoComplete="off"
-          />
-          <Input
-            name="celular"
-            placeholder="Celular"
-            info="Celular"
-            error={errors.celular.error}
-            errorMessage={errors.celular.errorMessage}
-            mask="(00) 00000-0000"
-            value={data.celular || ""}
-            handleOnChange={handleOnChange}
-            onFocus={() => setErrors({ ...errors, celular: false })}
-            autoComplete="off"
-          />
-          <Input
-            name="email"
-            type="email"
-            placeholder="E-mail"
-            info="E-mail"
-            value={data.email || ""}
-            handleOnChange={handleOnChange}
-          />
-        </div>
-      </Container>
+          <Container
+            title="Contato"
+            customClass={`${styles.container} ${styles.contact}`}
+          >
+            <div className={styles.content}>
+              <Input
+                name="telefone"
+                placeholder="Telefone"
+                info="Telefone"
+                mask="(00) 0000-0000"
+                error={errors.telefone.error}
+                errorMessage={errors.telefone.errorMessage}
+                value={data.telefone || ""}
+                handleOnChange={handleOnChange}
+                onFocus={() => setErrors({ ...errors, telefone: false })}
+                autoComplete="off"
+              />
+              <Input
+                name="celular"
+                placeholder="Celular"
+                info="Celular"
+                error={errors.celular.error}
+                errorMessage={errors.celular.errorMessage}
+                mask="(00) 00000-0000"
+                value={data.celular || ""}
+                handleOnChange={handleOnChange}
+                onFocus={() => setErrors({ ...errors, celular: false })}
+                autoComplete="off"
+              />
+              <Input
+                name="email"
+                type="email"
+                placeholder="E-mail"
+                info="E-mail"
+                value={data.email || ""}
+                handleOnChange={handleOnChange}
+              />
+            </div>
+          </Container>
 
-      <div className={styles.action}>
-        <Submit
-          action="Salvar"
-          customClass={styles.save}
-          //handleOnClick={edit}
-        />
-        <Link
-          onClick={(e) => {
-            e.preventDefault();
-            setVisible(true);
-          }}
-        >
-          Desativar conta
-        </Link>
-      </div>
-    </form>
+          <div className={styles.action}>
+            <Submit
+              action="Salvar"
+              customClass={styles.save}
+              //handleOnClick={edit}
+            />
+            <Link
+              onClick={(e) => {
+                e.preventDefault();
+                setVisible(true);
+              }}
+            >
+              Desativar conta
+            </Link>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 

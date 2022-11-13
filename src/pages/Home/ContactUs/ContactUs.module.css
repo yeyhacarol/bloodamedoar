@@ -1,5 +1,5 @@
 .contact_us {
-  width: calc(100vw - 240px);
+  width: calc(100vw - 255px);
 
   display: flex;
   flex-direction: column;
@@ -45,6 +45,11 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.textarea {
+  width: clamp(260px, 50vw, 450px) !important;
+  min-height: 150px !important; 
 }
 
 @media screen and (max-width: 1025px) {

@@ -1,5 +1,15 @@
-.inventory {
-    
+.inventory_tab {
+    position: absolute;
+    top: 455px;
+    right: 0;
+}
+
+.header {
+    top: 160px;
+}
+
+.header a {
+    display: none;
 }
 
 .container {

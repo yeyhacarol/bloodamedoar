@@ -1,20 +1,27 @@
 import styles from "./EditProfileHeader.module.css";
 
-import Button from "../../layout/Button/Button";
+import profile from "../../../assets/bloobs/profile 1.1.svg";
+import cape from "../../../assets/bloobs/cape.svg";
 
-import capa from "../../../assets/cape.png";
-import bloodcenter from "../../../assets/hemocentro-campinas.jpg";
+const EditProfileHeader = ({
+  capeOnChange,
+  photoOnChange,
+  background,
+  bloodcenter,
+}) => {
+  console.log(background);
 
-const EditProfileHeader = ({ capeOnChange, photoOnChange, background }) => {
   return (
     <div className={styles.header_container}>
       <div
         className={styles.header}
-        //style={{ backgroundImage: `url(${background})` }}
+        style={{ backgroundImage: `url(${background ? background : cape})` }}
       >
-        <label htmlFor="capeImg" className={styles.edit_cape}>
-          <div className={styles.edit}>Editar capa</div>
-        </label>
+        <div className={styles.edit_container}>
+          <label htmlFor="capeImg" className={styles.edit_cape}>
+            <div className={styles.edit}>Editar capa</div>
+          </label>
+        </div>
         <input
           id="capeImg"
           type="file"
@@ -24,7 +31,7 @@ const EditProfileHeader = ({ capeOnChange, photoOnChange, background }) => {
       </div>
       <label htmlFor="profileImg" className={styles.edit_photo}>
         <p>Editar foto</p>
-        <img src={bloodcenter} />
+        <img src={bloodcenter ? bloodcenter : profile} />
       </label>
       <input
         id="profileImg"

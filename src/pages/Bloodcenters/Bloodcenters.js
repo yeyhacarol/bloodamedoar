@@ -2,7 +2,7 @@ import styles from "./Bloodcenters.module.css";
 
 import { BsSearch } from "react-icons/bs";
 
-import logo from "../../assets/hemocentro-campinas.jpg";
+import profile from "../../assets/bloobs/profile.svg";
 
 import Menu from "../../components/layout/Menu/Menu";
 import Header from "../../components/Header/Header";
@@ -46,7 +46,7 @@ const Bloodcenters = () => {
           {bloodcenter.map((data) => (
             <ListItem
               key={data.id}
-              logo={logo}
+              logo={data.foto_perfil ? data.foto_perfil : profile}
               name={data.nome_unidade}
               address={
                 data.logradouro.split(",")[0] +

@@ -2,8 +2,21 @@ import styles from "./Header.module.css";
 
 import IconLogo from "../logo/IconLogo/IconLogo";
 import Button from "../../components/layout/Button/Button";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/Auth/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ span, action }) => {
+  const auth = useContext(AuthContext);
+
+  let navigate = useNavigate();
+
+  if (auth.user) {
+    navigate = "/bloodcenter/profile";
+  } else {
+    navigate = "/bloodcenter/login";
+  }
+
   return (
     <div className={styles.header_container}>
       {action ? (
@@ -18,7 +31,7 @@ const Header = ({ span, action }) => {
 
       {action ? (
         <div className={styles.button}>
-          <Button action={action} link="/bloodcenter/login" />
+          <Button action={action} link={navigate} />
         </div>
       ) : (
         <></>

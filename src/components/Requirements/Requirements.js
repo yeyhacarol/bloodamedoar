@@ -116,7 +116,7 @@ const Requirements = () => {
         rel="noreferrer"
         href="https://www.gov.br/saude/pt-br/composicao/saes/sangue#:~:text=Quais%20s%C3%A3o%20os%20requisitos%20para,com%20consentimento%20formal%20dos%20respons%C3%A1veis."
       >
-        Ver todos hemocentros
+        Ver todos requisitos e impeditivos
       </a>
     </section>
   );

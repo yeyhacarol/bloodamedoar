@@ -6,7 +6,13 @@ import critical from "../../assets/bloodLevels/critical.png";
 import warning from "../../assets/bloodLevels/warning.png";
 import stable from "../../assets/bloodLevels/stable.png";
 
-const Inventory = ({ title, custom, customLevels, currentInventory }) => {
+const Inventory = ({
+  title,
+  custom,
+  customLevels,
+  currentInventory,
+  children,
+}) => {
   if (currentInventory === undefined) {
     return <>Carregando...</>;
   }
@@ -30,6 +36,8 @@ const Inventory = ({ title, custom, customLevels, currentInventory }) => {
             </div>
           );
         })}
+
+        {children}
       </div>
     </Container>
   );

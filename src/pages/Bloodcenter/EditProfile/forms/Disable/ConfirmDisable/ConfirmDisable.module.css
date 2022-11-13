@@ -1,8 +1,10 @@
 .confirm_disable {
-    width: 700px;
-    height: 550px;
+    width: 100vw;
+    height: 100vh;
 
     padding: 60px 30px;
+
+    position: absolute;
 
     display: flex;
     justify-content: center;
@@ -51,16 +53,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
-.disable_content .logo {
-    margin-bottom: 80px;
+.disable_content header {
+    margin: 0;
 }
 
 .obs {
     font-size: clamp(0.875rem, 2vw, 1.125rem);
     text-align: center;
+}
 
-    margin-bottom: 55px;
+.confirm {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.input {
+    margin: 0;
 }

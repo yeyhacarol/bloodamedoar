@@ -5,6 +5,20 @@
     position: relative;
 }
 
+.header {
+    top: 160px;
+}
+
+.header a {
+    display: none;
+}
+
+.campaign_tab {
+    position: absolute;
+    top: 455px;
+    right: 0;
+}
+
 .content {
     padding-left: 45px;
 }

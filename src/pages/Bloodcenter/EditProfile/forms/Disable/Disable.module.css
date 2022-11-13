@@ -20,14 +20,15 @@
 }
 
 .disable_container {
-    width: 700px;
-    height: 550px;
+    width: inherit;
+    height: inherit;
 
     padding: 60px 30px;
 
     position: relative;
 
     display: flex;
+    justify-content: center;
     align-items: center;
     
     background-color: #fff;
@@ -83,4 +84,15 @@
 .options {
     display: flex;
     gap: 100px;
+}
+
+@media screen and (max-width: 480px) {
+    .options {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .close img {
+        width: 40px;
+    }
 }

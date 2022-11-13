@@ -18,49 +18,54 @@ const Disable = ({ setVisible, visible }) => {
   }
 
   return (
-    <div className={`${styles.disable} ${visible && styles.active}`}>
-      <div className={styles.disable_container}>
-        <div className={styles.close_container}>
-          <div
-            className={styles.close}
-            onClick={() => {
-              setVisible(false);
-            }}
-          >
-            <img src={close} alt="Fechar modal" title="Fechar modal?" />
-            <span>X</span>
+    <>
+      <div className={`${styles.disable} ${visible && styles.active}`}>
+        <div className={styles.disable_container}>
+          <div className={styles.close_container}>
+            <div
+              className={styles.close}
+              onClick={() => {
+                setVisible(false);
+              }}
+            >
+              <img src={close} alt="Fechar modal" title="Fechar modal?" />
+              <span>X</span>
+            </div>
+          </div>
+
+          <div className={styles.disable_content}>
+            <div className={styles.logo}>
+              <ModalLogo />
+            </div>
+            <Heading heading="Desativar conta" />
+            <p className={styles.obs}>
+              Para ajudar a proteger sua conta, nós queremos confirmar se você
+              quer realmente desativar sua conta.
+            </p>
+            <div className={styles.options}>
+              <Button
+                action="Confirmar"
+                onClick={() => {
+                  setVisibility(true);
+                }}
+              />
+              <Button
+                action="Negar"
+                onClick={() => {
+                  setVisible(false);
+                }}
+              />
+            </div>
           </div>
         </div>
 
-        <div className={styles.disable_content}>
-          <div className={styles.logo}>
-            <ModalLogo />
-          </div>
-          <Heading heading="Desativar conta" />
-          <p className={styles.obs}>
-            Para ajudar a proteger sua conta, nós queremos confirmar se você
-            quer realmente desativar sua conta.
-          </p>
-          <div className={styles.options}>
-            <Button
-              action="Confirmar"
-              onClick={() => {
-                setVisibility(true);
-                setVisible(false);
-              }}
-            />
-            <Button
-              action="Negar"
-              onClick={() => {
-                setVisible(false);
-              }}
-            />
-          </div>
-        </div>
+        <ConfirmDisable
+          setVisible={setVisible}
+          visibility={visibility}
+          setVisibility={setVisibility}
+        />
       </div>
-
-      <ConfirmDisable visibility={visibility} />
-    </div>
+    </>
   );
 };
 

@@ -25,6 +25,11 @@
 
     position: absolute;
     right: 0;
+    /* top: 455px; */
+}
+
+.edit_nav {
+    position: absolute;
     top: 455px;
 }
 
@@ -63,6 +68,8 @@
     left: 300px;
     top: 120px;
 
+    z-index: 999;
+
     cursor: pointer;
 }
 
@@ -72,6 +79,27 @@
     right: 10px;
     top: 10px;
     cursor: pointer;
+}
+
+.out .tooltip {
+    opacity: 0;
+
+    width: 80px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    transition: all .3s;
+  
+    position: absolute;
+    right: 45px;
+    z-index: 999;
+}
+  
+.out:hover .tooltip {
+    opacity: 1;
 }
 
 @media screen and (max-width: 1025px) {

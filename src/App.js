@@ -14,9 +14,15 @@ import Profile from "./pages/Bloodcenter/Profile/Profile";
 import EditProfile from "./pages/Bloodcenter/EditProfile/EditProfile";
 import RequireAuth from "./contexts/Auth/RequireAuth";
 import RecoverPassword from "./pages/Login/RecoverPassword/RecoverPassword";
-import Bloodcenters from "./pages/Bloodcenters.js/Bloodcenters";
+import Bloodcenters from "./pages/Bloodcenters/Bloodcenters";
+import { useContext } from "react";
+import { AuthContext } from "./contexts/Auth/AuthContext";
+import ForgetPassword from "./pages/Login/ForgetPassword/ForgetPassword";
+import BloodcenterProfile from "./pages/BloodcenterProfile/BloodcenterProfile";
 
 const App = () => {
+  const auth = useContext(AuthContext);
+
   return (
     <>
       <Router>
@@ -24,8 +30,13 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/campaign/:id" element={<Campaign />} />
           <Route path="/bloodcenters" element={<Bloodcenters />} />
+          <Route path="/bloodcenters/:id" element={<BloodcenterProfile />} />
           {/* <Route path="/identification" element={<Identification />} /> */}
-          <Route path="/bloodcenter/login" element={<Login />} />
+          {!auth.user ? (
+            <Route path="/bloodcenter/login" element={<Login />} />
+          ) : (
+            <Route path="/bloodcenter/login" element={<Profile />} />
+          )}
           <Route path="/bloodcenter/registration" element={<Registration />} />
           <Route
             path="/bloodcenter/profile"
@@ -62,7 +73,8 @@ const App = () => {
             />
           </Route>
 
-          <Route path="/forgetpassword" element={<RecoverPassword />} />
+          <Route path="/recoverpassword" element={<RecoverPassword />} />
+          <Route path="/forgetpassword" element={<ForgetPassword />} />
         </Routes>
       </Router>
 

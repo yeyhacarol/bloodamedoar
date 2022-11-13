@@ -31,8 +31,7 @@
     margin-bottom: 5px;
 }
 
-.introduction p,
-.profile_container p {
+.introduction p {
     font-size: clamp(0.813rem, 3vw, 1.063rem);
 }
 
@@ -42,43 +41,20 @@
 
 .menu {
     position: fixed !important;
-    top: 90vh;
+    top: 88vh;
     right: 60px;
 }
 
-.menu button,
-.menu a {
-    border: 1.5px solid;
+.header a {
+    display: none;
 }
 
-.out {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    z-index: 999;
-
+.whatsapp {
+    position: fixed;
+    top: 90vh;
+    right: 30px;
     cursor: pointer;
-}
-  
-.out .tooltip {
-    opacity: 0;
-
-    width: 80px;
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-
-    transition: all .3s;
-  
-    position: absolute;
-    right: 45px;
     z-index: 999;
-}
-  
-.out:hover .tooltip {
-    opacity: 1;
 }
 
 @media screen and (max-width: 1025px) {
@@ -94,16 +70,6 @@
     .introduction {
         width: 100%;
         padding: 25px 25px 0px 140px;
-    }
-
-    .menu {
-        top: 85vh;
-        right: 15px;
-    }
-
-    .menu button {
-        width: 18px;
-        height: 18px;
     }
 }
 

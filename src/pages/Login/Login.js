@@ -15,6 +15,8 @@ const Login = () => {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const [visible, setVisible] = useState(false);
+
   const [data, setData] = useState({
     cnpj: "",
     senha: "",
@@ -106,7 +108,6 @@ const Login = () => {
           <Button
             customClass={styles.signin}
             action="Entrar"
-            link="/bloodcenter/profile"
             onClick={handleOnSubmit}
           />
           <div className={styles.hasnt_account}>
