@@ -12,7 +12,7 @@ import Submit from "../../../../../components/form/Submit/Submit";
 import { get, getById } from "../../../../../services/apiBlood/http/get";
 import ProfileHeader from "../../../../../components/ProfileHeader/ProfileHeader";
 
-const CurrentInventory = ({ setVisible }) => {
+const CurrentInventory = ({ setVisible, cape, photo, bloodcenter }) => {
   const auth = useContext(AuthContext);
 
   const [currentInventory, setCurrentInventory] = useState();
@@ -123,7 +123,12 @@ const CurrentInventory = ({ setVisible }) => {
 
   return (
     <form className={styles.inventory}>
-      <ProfileHeader customHeader={styles.header} />
+      <ProfileHeader
+        customHeader={styles.header}
+        cape={cape}
+        photo={photo}
+        bloodcenter={bloodcenter}
+      />
 
       <div className={styles.inventory_tab}>
         <Inventory

@@ -22,7 +22,7 @@ import { getById } from "../../../../../services/apiBlood/http/get";
 import { exclude } from "../../../../../services/apiBlood/http/delete";
 import ProfileHeader from "../../../../../components/ProfileHeader/ProfileHeader";
 
-const Campaign = ({ setVisible }) => {
+const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
   const auth = useContext(AuthContext);
   //const [disable, setDisable] = useState(false);
 
@@ -346,7 +346,12 @@ const Campaign = ({ setVisible }) => {
 
   return (
     <form className={styles.campaign} onSubmit={onSubmit}>
-      <ProfileHeader customHeader={styles.header} />
+      <ProfileHeader
+        customHeader={styles.header}
+        cape={cape}
+        photo={photo}
+        bloodcenter={bloodcenter}
+      />
 
       <div className={styles.campaign_tab}>
         <Container title="Campanha" customClass={styles.container}>

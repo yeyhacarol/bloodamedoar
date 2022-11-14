@@ -11,15 +11,18 @@ import Header from "../../../components/Header/Header";
 import BloodcenterData from "./forms/BloodcenterData/BloodcenterData";
 import CurrentInventory from "./forms/Inventory/Inventory";
 import Campaign from "./forms/Campaign/Campaign";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../contexts/Auth/AuthContext";
 import { useState } from "react";
 import Disable from "./forms/Disable/Disable";
+import { getById } from "../../../services/apiBlood/http/get";
 
 const EditProfile = () => {
   const auth = useContext(AuthContext);
 
   const [visible, setVisible] = useState(false);
+
+  const [data, setData] = useState();
 
   const navigate = useNavigate();
 
@@ -42,6 +45,18 @@ const EditProfile = () => {
   };
 
   const { tab, id } = useParams();
+
+  useEffect(() => {
+    getById("/listarHemocentroPorId", auth.user).then((response) => {
+      const resp = response[0][0];
+
+      setData(resp);
+    });
+  }, []);
+
+  if (!data) {
+    return;
+  }
 
   return (
     <div className={styles.edit_profile_container}>
@@ -91,13 +106,23 @@ const EditProfile = () => {
             <BloodcenterData setVisible={setVisible} />
           </TabPanel>
           <TabPanel>
-            <CurrentInventory setVisible={setVisible} />
+            <CurrentInventory
+              setVisible={setVisible}
+              cape={data.foto_capa}
+              photo={data.foto_perfil}
+              bloodcenter={data.nome_unidade}
+            />
           </TabPanel>
           <TabPanel>
             <h1>AGENDA</h1>
           </TabPanel>
           <TabPanel>
-            <Campaign setVisible={setVisible} />
+            <Campaign
+              setVisible={setVisible}
+              cape={data.foto_capa}
+              photo={data.foto_perfil}
+              bloodcenter={data.nome_unidade}
+            />
           </TabPanel>
           <div className={styles.disable}>
             <Disable setVisible={setVisible} visible={visible} />

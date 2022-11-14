@@ -9,8 +9,6 @@ const EditProfileHeader = ({
   background,
   bloodcenter,
 }) => {
-  console.log(background);
-
   return (
     <div className={styles.header_container}>
       <div
