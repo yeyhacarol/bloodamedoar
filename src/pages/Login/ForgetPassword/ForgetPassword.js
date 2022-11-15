@@ -79,8 +79,8 @@ const ForgetPassword = () => {
         <Heading heading="Recuperação de senha" />
 
         <p className={styles.obs}>
-          Para ajudar a proteger sua conta, nós queremos confirmar se é
-          realmente você que está tentando fazer login.
+          Informe-nos seu e-mail para que possamos possibilitar a recuperação de
+          senha.
         </p>
 
         <form onSubmit={handleOnSubmit}>

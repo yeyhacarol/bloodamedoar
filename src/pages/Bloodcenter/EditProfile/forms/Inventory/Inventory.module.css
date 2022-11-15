@@ -13,7 +13,7 @@
 }
 
 .container {
-    width: calc(100vw - 471px);
+    width: calc(100vw - 470px);
     min-height: 100px;
     margin-bottom: 30px;
 }

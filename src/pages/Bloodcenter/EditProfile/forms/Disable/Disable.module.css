@@ -14,6 +14,7 @@
 
     position: absolute;
     right: 0;
+    top: 0;
     bottom: 0;
 
     background-color: rgba(0, 0, 0, 0.8);
@@ -25,7 +26,7 @@
 
     padding: 60px 30px;
 
-    position: relative;
+    position: fixed;
 
     display: flex;
     justify-content: center;

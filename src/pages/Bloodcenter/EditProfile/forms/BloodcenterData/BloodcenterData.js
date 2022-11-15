@@ -160,7 +160,7 @@ const BloodcenterData = ({ setVisible }) => {
   };
 
   const getFileType = (file) => {
-    if (file.type?.match("image.*")) return "image";
+    if (file?.type?.match("image.*")) return "image";
     return false;
   };
 
@@ -357,8 +357,7 @@ const BloodcenterData = ({ setVisible }) => {
               //handleOnClick={edit}
             />
             <Link
-              onClick={(e) => {
-                e.preventDefault();
+              onClick={() => {
                 setVisible(true);
               }}
             >

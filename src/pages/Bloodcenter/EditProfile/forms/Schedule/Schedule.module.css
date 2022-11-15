@@ -1,0 +1,24 @@
+.schedule_container {
+  
+}
+
+.schedule_tab {
+    position: absolute;
+    top: 455px;
+    right: 0;
+}
+
+.container {
+    width: calc(100vw - 471px);
+    margin-bottom: 30px;
+
+    position: relative;
+}
+
+.header {
+    top: 160px;
+}
+
+.header a {
+    display: none;
+}

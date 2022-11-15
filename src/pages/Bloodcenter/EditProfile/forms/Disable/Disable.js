@@ -47,6 +47,7 @@ const Disable = ({ setVisible, visible }) => {
                 action="Confirmar"
                 onClick={() => {
                   setVisibility(true);
+                  //setVisible(false);
                 }}
               />
               <Button

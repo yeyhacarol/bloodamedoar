@@ -14,7 +14,12 @@ const Inventory = ({
   children,
 }) => {
   if (currentInventory === undefined) {
-    return <>Carregando...</>;
+    return (
+      <Container
+        customClass={`${styles.our_inventory} ${custom}`}
+        title="Estoque atual"
+      ></Container>
+    );
   }
 
   const getBloodLevel = (bloodLevel) => {

@@ -73,7 +73,7 @@ const App = () => {
             />
           </Route>
 
-          <Route path="/recoverpassword" element={<RecoverPassword />} />
+          <Route path="/recoverpassword/:token" element={<RecoverPassword />} />
           <Route path="/forgetpassword" element={<ForgetPassword />} />
         </Routes>
       </Router>

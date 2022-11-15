@@ -16,6 +16,7 @@ import { AuthContext } from "../../../contexts/Auth/AuthContext";
 import { useState } from "react";
 import Disable from "./forms/Disable/Disable";
 import { getById } from "../../../services/apiBlood/http/get";
+import Schedule from "./forms/Schedule/Schedule";
 
 const EditProfile = () => {
   const auth = useContext(AuthContext);
@@ -114,7 +115,12 @@ const EditProfile = () => {
             />
           </TabPanel>
           <TabPanel>
-            <h1>AGENDA</h1>
+            <Schedule
+              setVisible={setVisible}
+              cape={data.foto_capa}
+              photo={data.foto_perfil}
+              bloodcenter={data.nome_unidade}
+            />
           </TabPanel>
           <TabPanel>
             <Campaign
@@ -124,10 +130,10 @@ const EditProfile = () => {
               bloodcenter={data.nome_unidade}
             />
           </TabPanel>
-          <div className={styles.disable}>
-            <Disable setVisible={setVisible} visible={visible} />
-          </div>
         </Tabs>
+        <div className={styles.disable}>
+          <Disable setVisible={setVisible} visible={visible} />
+        </div>
       </div>
     </div>
   );
