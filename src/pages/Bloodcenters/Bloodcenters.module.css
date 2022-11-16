@@ -1,37 +1,9 @@
 .bloodcenter_list_content {
-    
-
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
 
-.filter {
-    display: flex;
-    align-items: center;
-
-    margin-bottom: 35px;
-}
-
-.custom_input {
-    border-radius: 10px 0px 0px 10px;
-    margin-bottom: 0;
-}
-
-.search {
-    width: clamp(30px, 10vw, 45px);
-    height: clamp(45px, 10vw, 55px);
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border: 1px solid #d0d0d0;
-    border-left: none;
-    border-radius: 0px 10px 10px 0px;
-
-    cursor: pointer;
-}
 
 .listing {
     width: calc(100vw - 255px);
@@ -39,10 +11,6 @@
 }
 
 @media screen and (max-width: 1025px) {
-    .custom_input {
-        width: 100%;
-    }
-
     .listing {
         width: 100vw;
     }
@@ -51,14 +19,6 @@
 @media screen and (max-width: 480px) {
     .custom_input {
         width: clamp(280px, 5vw, 380px);
-    }
-
-    .search svg {
-        width: 20px;
-    }
-
-    .listing .filter {
-        justify-content: center;
     }
 
     .listing {

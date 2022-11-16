@@ -1,5 +1,9 @@
-.schedule_container {
-  
+.header {
+    top: 160px;
+}
+
+.header a {
+    display: none;
 }
 
 .schedule_tab {
@@ -9,16 +13,110 @@
 }
 
 .container {
-    width: calc(100vw - 471px);
+    width: calc(100vw - 470px);
+
     margin-bottom: 30px;
+    padding-left: 45px;
+    padding-bottom: 25px;
 
     position: relative;
 }
 
-.header {
-    top: 160px;
+.container h3 {
+    padding: 20px 0 20px 0px;
 }
 
-.header a {
-    display: none;
+.top {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.select {
+    margin-right: 20px;
+}
+
+.time {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 25px;
+}
+
+.time_input {
+    display: flex;
+    gap: 25px;
+}
+
+.bottom h3 {
+    padding: 0 0 20px 0px;
+}
+
+.submit_container {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+
+    padding-right: 45px;
+}
+
+.default_submit {
+    width: clamp(180px, 25vw, 180px);
+    height: clamp(45px, 10vw, 50px);
+
+    font-size: clamp(1rem, 4vw, 1.125rem);
+
+    margin-bottom: 0;
+}
+
+.hour {
+    width: clamp(115px, 23vw, 210px);
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 1025px) {
+    .container {
+        width: 100vw;
+
+        padding-left: 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }    
+    
+    .top {
+        flex-direction: column;
+    }
+
+    .select {
+        margin: 0;
+    }
+
+    .time {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .submit_container {
+        padding-right: 0px;
+    }
+}
+
+@media screen and (max-width: 1213px) {
+    .submit_container {
+        justify-content: center;   
+    }
+
+    .container {
+        padding-bottom: 25px;
+    }
 }

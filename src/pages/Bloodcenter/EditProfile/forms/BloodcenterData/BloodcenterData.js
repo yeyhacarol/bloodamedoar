@@ -107,6 +107,10 @@ const BloodcenterData = ({ setVisible }) => {
       error: false,
       errorMessage: false,
     },
+    email: {
+      error: false,
+      errorMessage: false,
+    },
   });
 
   const edit = async (e) => {
@@ -138,6 +142,16 @@ const BloodcenterData = ({ setVisible }) => {
         telefone: {
           error: true,
           errorMessage: "Número inválido.",
+        },
+      });
+    }
+
+    if (!data.email) {
+      return setErrors({
+        ...errors,
+        email: {
+          error: true,
+          errorMessage: "Preencha este campo.",
         },
       });
     }
@@ -175,24 +189,6 @@ const BloodcenterData = ({ setVisible }) => {
       ? URL.createObjectURL(data.foto_capa)
       : data.foto_capa;
   }, [data.foto_capa]);
-
-  /*   const [id_tipo_servico, setId_tipo_servico] = useState([]);
-
-  useEffect(() => {
-    let id_tipo_servico = [];
-
-    typeDonation().then((resp) => {
-      resp.map((service) => {
-        return id_tipo_servico.push({
-          value: `${service.id}`,
-          label: service.tipo_servico,
-        });
-      });
-
-      setId_tipo_servico(id_tipo_servico);
-    });
-  }, []);
- */
 
   return (
     <div className={styles.bloodcenter_container}>
@@ -297,16 +293,6 @@ const BloodcenterData = ({ setVisible }) => {
                 value={data.horario_atendimento || ""}
                 handleOnChange={handleOnChange}
               />
-              {/* <Selection
-            isMulti={true}
-            closeMenuOnSelect="false"
-            placeholder="Tipos de serviço"
-            name="tipo_servico"
-            message="Sem serviços"
-            value={data.tipo_servico}
-            options={id_tipo_servico && id_tipo_servico}
-            handleOnChange={handleOnChange}
-          /> */}
             </div>
           </Container>
 
@@ -344,18 +330,17 @@ const BloodcenterData = ({ setVisible }) => {
                 type="email"
                 placeholder="E-mail"
                 info="E-mail"
+                error={errors.email.error}
+                errorMessage={errors.email.errorMessage}
                 value={data.email || ""}
                 handleOnChange={handleOnChange}
+                onFocus={() => setErrors({ ...errors, email: false })}
               />
             </div>
           </Container>
 
           <div className={styles.action}>
-            <Submit
-              action="Salvar"
-              customClass={styles.save}
-              //handleOnClick={edit}
-            />
+            <Submit action="Salvar" customClass={styles.save} />
             <Link
               onClick={() => {
                 setVisible(true);

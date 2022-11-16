@@ -141,6 +141,7 @@ const CurrentInventory = ({ setVisible, cape, photo, bloodcenter }) => {
         <Container title="Posições de estoque" customClass={styles.container}>
           <div className={styles.content}>
             <Selection
+              label="Tipo sanguíneo"
               closeMenuOnSelect={true}
               placeholder="Tipo sanguíneo"
               error={errors.tipo_sanguineo.error}
@@ -152,8 +153,9 @@ const CurrentInventory = ({ setVisible, cape, photo, bloodcenter }) => {
               onFocus={() => setErrors({ ...errors, tipo_sanguineo: false })}
             />
             <Selection
-              closeMenuOnSelect={true}
               placeholder="Nível"
+              label="Nível"
+              closeMenuOnSelect={true}
               error={errors.nivel_sangue.error}
               errorMessage={errors.nivel_sangue.errorMessage}
               name="id_nivel_sangue"

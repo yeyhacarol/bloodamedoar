@@ -2,6 +2,10 @@
     margin-bottom: 25px;
 }
 
+.select_container label {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
 .error_message {
     color: var(--primary-red);
     font-size: clamp(0.75rem, 2vw, 0.875rem);

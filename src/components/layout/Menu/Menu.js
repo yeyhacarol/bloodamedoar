@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import styles from "./Menu.module.css";
 
@@ -6,10 +6,12 @@ import IconLogo from "../../logo/IconLogo/IconLogo";
 import Home from "../../../assets/menuIcons/home.png";
 import List from "../../../assets/menuIcons/list.png";
 import Profile from "../../../assets/menuIcons/profile.png";
+import Query from "../../../assets/menuIcons/query.png";
+
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/Auth/AuthContext";
 
-const Menu = ({ label, alt, title }) => {
+const Menu = () => {
   const auth = useContext(AuthContext);
 
   let navigation;
@@ -49,6 +51,18 @@ const Menu = ({ label, alt, title }) => {
             <p>Perfil</p>
           </div>
         </Link>
+        {auth.user && (
+          <Link to="/scheduledappointment" className={styles.a}>
+            <div className={`${styles.menu_item} ${styles.query}`}>
+              <img
+                src={Query}
+                alt="Consultas agendadas"
+                title="Consultas agendadas"
+              />
+              <p>Consultas agendadas</p>
+            </div>
+          </Link>
+        )}
       </nav>
 
       <div className={styles.copyright}>

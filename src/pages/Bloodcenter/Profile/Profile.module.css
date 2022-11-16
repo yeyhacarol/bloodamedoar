@@ -32,7 +32,7 @@
 }
 
 .introduction p,
-.profile_container p {
+.profile_content p {
     font-size: clamp(0.813rem, 3vw, 1.063rem);
 }
 

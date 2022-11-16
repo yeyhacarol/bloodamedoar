@@ -57,6 +57,7 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
     },
     foto_capa: {
       error: false,
+      icon: "",
       errorMessage: false,
     },
     data_inicio: {
@@ -105,6 +106,7 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
         ...errors,
         foto_capa: {
           error: true,
+          icon: <MdErrorOutline size={20} color="#AA1E1E" />,
           errorMessage: "Escolha uma imagem de capa.",
         },
       });
@@ -302,8 +304,6 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
     if (id) {
       getById("/listarCampanha", id)
         .then((response) => {
-          //const cep = response.cep.toString();
-
           setData({
             nome: response.nome || data.nome,
             foto_capa: response.foto_capa,
@@ -371,15 +371,18 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
               <div className={styles.input_container}>
                 <label>Foto de capa</label>
                 <label htmlFor="file" className={styles.file_input}>
-                  <MdOutlinePhoto size={30} />
                   {data.foto_capa ? (
                     <>
+                      <MdOutlinePhoto size={30} />
                       <label htmlFor="file" title="Escolha uma foto de capa">
                         <img src={formatImage} className={styles.foto_capa} />
                       </label>
                     </>
                   ) : (
-                    "Foto de capa"
+                    <>
+                      <MdOutlinePhoto size={30} />
+                      Foto de capa
+                    </>
                   )}
                 </label>
               </div>
@@ -388,12 +391,11 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
                 className={styles.file}
                 type="file"
                 onChange={handleFile}
-                onFocus={() => setErrors({ ...errors, foto_capa: false })}
               />
               <div className={styles.message}>
-                {errors.foto_capa.error && (
+                {!errors.foto_capa && (
                   <>
-                    <MdErrorOutline size={20} color="#AA1E1E" />
+                    <span>{errors.foto_capa.icon}</span>
                     <span>{errors.foto_capa.errorMessage}</span>
                   </>
                 )}

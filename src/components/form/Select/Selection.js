@@ -8,7 +8,7 @@ const Selection = ({
   isMulti,
   closeMenuOnSelect,
   placeholder,
-  width = " clamp(260px, 35vw, 450px);",
+  width = "clamp(260px, 50vw, 450px);",
   error,
   errorMessage,
   name,
@@ -17,20 +17,22 @@ const Selection = ({
   handleOnChange,
   value,
   onFocus,
+  label,
+  custom,
 }) => {
   const styles = {
-    container: (styles) => {
+    /* container: (styles) => {
       return {
         ...styles,
         width: width,
       };
-    },
+    }, */
     control: (styles) => {
       return {
         ...styles,
         width: width,
         minHeight: "clamp(45px, 10vw, 55px);",
-        fontSize: "clamp(0.75rem, 2vw, 1.125rem)",
+        fontSize: "clamp(0.875rem, 2vw, 1rem);",
       };
     },
     placeholder: (styles) => {
@@ -38,7 +40,7 @@ const Selection = ({
         ...styles,
         color: "rgba(0, 0, 0, 0.6)",
         fontFamily: "var(--font)",
-        fontSize: "clamp(0.75rem, 2vw, 1.125rem)",
+        fontSize: "clamp(0.875rem, 2vw, 1rem);",
         fontWeight: 400,
       };
     },
@@ -73,7 +75,9 @@ const Selection = ({
 
   return (
     <div className={style.select_container}>
+      <label>{label}</label>
       <Select
+        className={custom}
         isMulti={isMulti}
         closeMenuOnSelect={closeMenuOnSelect}
         placeholder={placeholder}

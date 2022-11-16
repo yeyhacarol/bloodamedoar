@@ -1,17 +1,15 @@
 import styles from "./Bloodcenters.module.css";
 
-import { BsSearch } from "react-icons/bs";
-
 import profile from "../../assets/bloobs/profile.svg";
 
 import Menu from "../../components/layout/Menu/Menu";
 import Header from "../../components/Header/Header";
-import Input from "../../components/form/Input/Input";
 import ListItem from "../../components/list/ListItem/ListItem";
 import { useState, useEffect } from "react";
 import { get } from "../../services/apiBlood/http/get";
 import { capitalize } from "../../utils/capitalize";
 import { cepMask } from "../../utils/masks";
+import Filter from "../../components/Filter/Filter";
 
 const Bloodcenters = () => {
   const [bloodcenter, setBloodcenter] = useState([]);
@@ -33,15 +31,7 @@ const Bloodcenters = () => {
         <Header action="Entrar" />
 
         <div className={styles.listing}>
-          <div className={styles.filter}>
-            <Input
-              custom={styles.custom_input}
-              placeholder="Pesquise hemocentros perto de você"
-            />
-            <div className={styles.search}>
-              <BsSearch size={30} />
-            </div>
-          </div>
+          <Filter placeholder="Pesquise hemocentros perto de você" />
 
           {bloodcenter.map((data) => (
             <ListItem
