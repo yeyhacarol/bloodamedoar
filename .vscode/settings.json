@@ -1,0 +1,5 @@
+{
+  "appService.showBuildDuringDeployPrompt": false,
+  "appService.defaultWebAppToDeploy": "/subscriptions/cb0a2831-5d03-497f-becb-27ca21bd4447/AppServices/subscriptions/cb0a2831-5d03-497f-becb-27ca21bd4447/resourceGroups/Blood-AmeDoar_group/providers/Microsoft.Web/sites/Blood-AmeDoar",
+  "appService.deploySubpath": "."
+}
