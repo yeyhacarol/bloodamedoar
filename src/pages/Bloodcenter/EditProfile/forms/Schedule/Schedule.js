@@ -126,7 +126,12 @@ const Schedule = ({ cape, photo, bloodcenter }) => {
 
     setDefaultData({ ...defaultData, id_tipo_servico: selectedValue });
 
-    post("/cadastrarConfigAgenda", defaultData);
+    console.log();
+
+    post("/cadastrarConfigAgenda", {
+      ...defaultData,
+      id_tipo_servico: selectedValue,
+    });
   };
 
   return (
@@ -216,6 +221,10 @@ const Schedule = ({ cape, photo, bloodcenter }) => {
 
         <Container title="Agenda personalizada" customClass={styles.container}>
           <Calendar />
+
+          <div className={styles.timeslots}>
+            <div className={styles.timeslot}></div>
+          </div>
         </Container>
       </div>
     </>

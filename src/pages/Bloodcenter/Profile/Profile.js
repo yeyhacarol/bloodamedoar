@@ -200,11 +200,7 @@ const Profile = () => {
           radius={2.5}
           rotationAngleInclusive={false}
         >
-          <CircleMenuItem
-            tooltip="Criar campanha"
-            className={styles.menu_item}
-            onClick={() => setTabIndex(tabIndex)}
-          >
+          <CircleMenuItem tooltip="Criar campanha" className={styles.menu_item}>
             <FiSmile size={20} />
           </CircleMenuItem>
           <CircleMenuItem tooltip="Estoque" className={styles.menu_item}>

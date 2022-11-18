@@ -18,6 +18,9 @@ import Disable from "./forms/Disable/Disable";
 import { getById } from "../../../services/apiBlood/http/get";
 import Schedule from "./forms/Schedule/Schedule";
 
+import profile from "../../../assets/bloobs/profile 1.1.svg";
+import cape from "../../../assets/bloobs/cape.svg";
+
 const EditProfile = () => {
   const auth = useContext(AuthContext);
 
@@ -109,24 +112,24 @@ const EditProfile = () => {
           <TabPanel>
             <CurrentInventory
               setVisible={setVisible}
-              cape={data.foto_capa}
-              photo={data.foto_perfil}
+              cape={data.foto_capa ? data.foto_capa : cape}
+              photo={data.foto_perfil ? data.foto_perfil : profile}
               bloodcenter={data.nome_unidade}
             />
           </TabPanel>
           <TabPanel>
             <Schedule
               setVisible={setVisible}
-              cape={data.foto_capa}
-              photo={data.foto_perfil}
+              cape={data.foto_capa ? data.foto_capa : cape}
+              photo={data.foto_perfil ? data.foto_perfil : profile}
               bloodcenter={data.nome_unidade}
             />
           </TabPanel>
           <TabPanel>
             <Campaign
               setVisible={setVisible}
-              cape={data.foto_capa}
-              photo={data.foto_perfil}
+              cape={data.foto_capa ? data.foto_capa : cape}
+              photo={data.foto_perfil ? data.foto_perfil : profile}
               bloodcenter={data.nome_unidade}
             />
           </TabPanel>

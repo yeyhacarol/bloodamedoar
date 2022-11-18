@@ -4,6 +4,7 @@ import styles from "./ScheduleDetails.module.css";
 import close from "../../../../assets/bloobs/close.png";
 import ModalLogo from "../../../../components/logo/ModalLogo/ModalLogo";
 import Heading from "../../../../components/Heading/Heading";
+import Submit from "../../../../components/form/Submit/Submit";
 
 import patient from "../../../../assets/pacient.png";
 
@@ -65,6 +66,8 @@ const ScheduleDetails = () => {
               </tbody>
             </table>
           </div>
+
+          <Submit action="Concluir agendamento" customClass={styles.button} />
         </div>
       </div>
     </div>
