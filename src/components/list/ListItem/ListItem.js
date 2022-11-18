@@ -2,14 +2,14 @@ import styles from "./ListItem.module.css";
 
 import Button from "../../layout/Button/Button";
 
-const ListItem = ({ logo, name, address, link }) => {
+const ListItem = ({ logo, name, info, link }) => {
   return (
     <div className={styles.list_item_container}>
       <div className={styles.list_item_content}>
         <img src={logo} alt={name} />
         <div className={styles.list_item_data}>
           <h4>{name}</h4>
-          <p>{address}</p>
+          <p>{info}</p>
         </div>
       </div>
       <Button

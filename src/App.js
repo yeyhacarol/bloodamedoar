@@ -19,6 +19,7 @@ import { useContext } from "react";
 import { AuthContext } from "./contexts/Auth/AuthContext";
 import ForgetPassword from "./pages/Login/ForgetPassword/ForgetPassword";
 import BloodcenterProfile from "./pages/BloodcenterProfile/BloodcenterProfile";
+import ScheduledAppointment from "./pages/Bloodcenter/ScheduledAppointment/ScheduledAppointment";
 
 const App = () => {
   const auth = useContext(AuthContext);
@@ -72,6 +73,14 @@ const App = () => {
               }
             />
           </Route>
+          <Route
+            path="/scheduledappointment"
+            element={
+              <RequireAuth>
+                <ScheduledAppointment />
+              </RequireAuth>
+            }
+          />
 
           <Route path="/recoverpassword/:token" element={<RecoverPassword />} />
           <Route path="/forgetpassword" element={<ForgetPassword />} />

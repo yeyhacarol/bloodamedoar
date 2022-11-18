@@ -6,6 +6,8 @@
 .profile_content {
     width: calc(100vw - 300px);
 
+    padding-bottom: 80px;
+
     display: flex;
     flex-direction: column;
 

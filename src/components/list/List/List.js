@@ -31,7 +31,7 @@ const List = () => {
             key={data.id}
             logo={data.foto_perfil ? data.foto_perfil : profile}
             name={data.nome_unidade}
-            address={
+            info={
               data.logradouro +
               ", " +
               data.numero +

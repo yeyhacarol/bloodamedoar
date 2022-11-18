@@ -25,7 +25,7 @@ const Bloodcenters = () => {
 
   return (
     <>
-      <Menu label="Hemocentros" alt="Hemocentros" title="Hemocentros" />
+      <Menu />
 
       <div className={styles.bloodcenter_list_content}>
         <Header action="Entrar" />
@@ -38,7 +38,7 @@ const Bloodcenters = () => {
               key={data.id}
               logo={data.foto_perfil ? data.foto_perfil : profile}
               name={data.nome_unidade}
-              address={
+              info={
                 data.logradouro.split(",")[0] +
                 ", " +
                 data.numero +
