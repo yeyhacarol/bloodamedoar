@@ -45,7 +45,6 @@
     background: none;
     font-family: Poppins, sans-serif;
     font-size: 0.875rem;
-    
 }
 .react-calendar__navigation button:disabled {
     background-color: #f0f0f0;
@@ -130,4 +129,25 @@
 }
 .react-calendar--selectRange .react-calendar__tile--hover {
     background-color: #e6e6e6;
+}
+
+@media screen and (max-width: 480px) {
+    .react-calendar {
+        width: 280px;
+    }
+    .react-calendar__navigation button {
+        font-size: 0.75rem;
+    }
+    .react-calendar__month-view__weekdays {
+        display: flex;
+        justify-content: space-between;
+
+        font-size: 0.75rem !important;
+    }
+    .react-calendar__month-view__weekdays__weekday {
+        flex: none;
+    }
+    .react-calendar__tile {
+        font-size: 0.8rem !important;
+    }
 }

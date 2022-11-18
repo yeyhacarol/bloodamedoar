@@ -20,6 +20,7 @@ import { AuthContext } from "./contexts/Auth/AuthContext";
 import ForgetPassword from "./pages/Login/ForgetPassword/ForgetPassword";
 import BloodcenterProfile from "./pages/BloodcenterProfile/BloodcenterProfile";
 import ScheduledAppointment from "./pages/Bloodcenter/ScheduledAppointment/ScheduledAppointment";
+import ScheduleDetails from "./pages/Bloodcenter/ScheduledAppointment/ScheduleDetails/ScheduleDetails";
 
 const App = () => {
   const auth = useContext(AuthContext);
@@ -78,6 +79,14 @@ const App = () => {
             element={
               <RequireAuth>
                 <ScheduledAppointment />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/scheduledappointment/:id"
+            element={
+              <RequireAuth>
+                <ScheduleDetails />
               </RequireAuth>
             }
           />

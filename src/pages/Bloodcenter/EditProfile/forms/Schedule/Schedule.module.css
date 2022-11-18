@@ -109,6 +109,10 @@
     .submit_container {
         padding-right: 0px;
     }
+
+    .schedule_tab {
+        padding-bottom: 80px;
+    }
 }
 
 @media screen and (max-width: 1213px) {
