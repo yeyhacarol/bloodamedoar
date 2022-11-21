@@ -142,6 +142,7 @@ const CurrentInventory = ({ setVisible, cape, photo, bloodcenter }) => {
           <div className={styles.content}>
             <Selection
               label="Tipo sanguíneo"
+              custom={styles.select}
               closeMenuOnSelect={true}
               placeholder="Tipo sanguíneo"
               error={errors.tipo_sanguineo.error}
@@ -155,6 +156,7 @@ const CurrentInventory = ({ setVisible, cape, photo, bloodcenter }) => {
             <Selection
               placeholder="Nível"
               label="Nível"
+              custom={styles.select}
               closeMenuOnSelect={true}
               error={errors.nivel_sangue.error}
               errorMessage={errors.nivel_sangue.errorMessage}

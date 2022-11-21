@@ -24,7 +24,6 @@ import CampaignSlider from "../../../components/donativeCampaign/CampaignSlider/
 import CampaignCard from "../../../components/donativeCampaign/CampaignCard/CampaignCard";
 
 const Profile = () => {
-  const [tabIndex, setTabIndex] = useState();
   const [currentInventory, setCurrentInventory] = useState([]);
 
   const auth = useContext(AuthContext);
@@ -108,7 +107,7 @@ const Profile = () => {
         setCampain(response);
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [auth.user]);
 
   return (
     <div className={styles.profile_container}>

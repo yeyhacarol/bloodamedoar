@@ -24,35 +24,39 @@ const List = () => {
   }, []);
 
   return (
-    <Container title="Hemocentros" customClass={styles.container}>
-      <div className={styles.list_content}>
-        {bloodcenter.map((data) => (
-          <ListItem
-            key={data.id}
-            logo={data.foto_perfil ? data.foto_perfil : profile}
-            name={data.nome_unidade}
-            info={
-              data.logradouro +
-              ", " +
-              data.numero +
-              " - " +
-              capitalize(data.bairro) +
-              ", " +
-              data.cidade +
-              " - " +
-              data.uf +
-              ", " +
-              cepMask(data.cep) +
-              "."
-            }
-            link={`/bloodcenters/${data.id}`}
-          />
-        ))}
-      </div>
-      <Link to="/bloodcenters" className={styles.bloodcenters}>
-        Ver todos hemocentros.
-      </Link>
-    </Container>
+    <>
+      {bloodcenter.length > 0 && (
+        <Container title="Hemocentros" customClass={styles.container}>
+          <div className={styles.list_content}>
+            {bloodcenter.map((data) => (
+              <ListItem
+                key={data.id}
+                logo={data.foto_perfil ? data.foto_perfil : profile}
+                name={data.nome_unidade}
+                info={
+                  data.logradouro +
+                  ", " +
+                  data.numero +
+                  " - " +
+                  capitalize(data.bairro) +
+                  ", " +
+                  data.cidade +
+                  " - " +
+                  data.uf +
+                  ", " +
+                  cepMask(data.cep) +
+                  "."
+                }
+                link={`/bloodcenters/${data.id}`}
+              />
+            ))}
+          </div>
+          <Link to="/bloodcenters" className={styles.bloodcenters}>
+            Ver todos hemocentros.
+          </Link>
+        </Container>
+      )}
+    </>
   );
 };
 

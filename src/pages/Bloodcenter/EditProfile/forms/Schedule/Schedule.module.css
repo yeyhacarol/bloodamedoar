@@ -16,8 +16,7 @@
     width: calc(100vw - 470px);
 
     margin-bottom: 30px;
-    padding-left: 45px;
-    padding-bottom: 25px;
+    padding: 0 45px 25px 45px;
 
     position: relative;
 }
@@ -56,8 +55,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-
-    padding-right: 45px;
 }
 
 .default_submit {
@@ -74,11 +71,64 @@
     margin-bottom: 0;
 }
 
+.personalized {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.timeslots {
+    width: 400px;
+    justify-content: space-between;
+}
+
+.timeslot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.personalized_hour {
+    width: 80px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #d0d0d0;
+    border-radius: 10px;
+
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.personalized_quantity {
+    width: 200px;
+    height: 40px;
+}
+
+.action {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.action a {
+    color: #000;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.save {
+    margin-bottom: 0;
+}
+
 @media screen and (max-width: 1025px) {
     .container {
         width: 100vw;
 
-        padding-left: 0;
+        padding: 0 0 25px 0;
 
         display: flex;
         flex-direction: column;
@@ -113,14 +163,31 @@
     .schedule_tab {
         padding-bottom: 80px;
     }
+
+    .personalized {
+        justify-content: center;
+    }
+
+    .timeslots {
+        width: 280px;
+        gap: 5px;
+    }
+
+    .timeslot {
+        width: inherit;
+    }
+
+    .personalized_hour {
+        width: 60px;
+    }
+
+    .personalized_quantity {
+        width: 130px;
+    }
 }
 
 @media screen and (max-width: 1213px) {
     .submit_container {
         justify-content: center;   
-    }
-
-    .container {
-        padding-bottom: 25px;
     }
 }

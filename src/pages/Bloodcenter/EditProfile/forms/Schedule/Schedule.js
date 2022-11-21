@@ -13,8 +13,9 @@ import { post } from "../../../../../services/apiBlood/http/post";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./Calendar.css";
+import { Link } from "react-router-dom";
 
-const Schedule = ({ cape, photo, bloodcenter }) => {
+const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
   const auth = useContext(AuthContext);
 
   const [defaultData, setDefaultData] = useState({
@@ -126,8 +127,6 @@ const Schedule = ({ cape, photo, bloodcenter }) => {
 
     setDefaultData({ ...defaultData, id_tipo_servico: selectedValue });
 
-    console.log();
-
     post("/cadastrarConfigAgenda", {
       ...defaultData,
       id_tipo_servico: selectedValue,
@@ -158,15 +157,12 @@ const Schedule = ({ cape, photo, bloodcenter }) => {
                 label="Tipo de serviço"
                 options={id_tipo_servico && id_tipo_servico}
                 handleOnChange={handleChange}
-                /* value={id_tipo_servico.find(
-                  (service) => service.value === selectedValue
-                )} */
                 onFocus={() => setErrors({ ...errors, tipo_servico: false })}
               />
 
               <Input
-                info="Qtde. de vagas"
-                placeholder="Qtde. de vagas"
+                info="Qtde. de vagas média"
+                placeholder="Qtde. de vagas média"
                 mask={onlyNumbers}
                 error={errors.quantidade_vagas_media.error}
                 errorMessage={errors.quantidade_vagas_media.errorMessage}
@@ -220,12 +216,35 @@ const Schedule = ({ cape, photo, bloodcenter }) => {
         </Container>
 
         <Container title="Agenda personalizada" customClass={styles.container}>
-          <Calendar />
-
-          <div className={styles.timeslots}>
-            <div className={styles.timeslot}></div>
+          <div className={styles.personalized}>
+            <Calendar />
+            <div className={styles.timeslots}>
+              <div className={styles.timeslot}>
+                <div className={styles.personalized_hour}>08:00</div>
+                <div className={styles.personalized_hour}>09:00</div>
+                <Input
+                  placeholder="Qtde. de vagas"
+                  mask={onlyNumbers}
+                  name="quantidade_vagas"
+                  handleOnChange={handleOnChange}
+                  custom={styles.personalized_quantity}
+                />
+              </div>
+            </div>
           </div>
         </Container>
+
+        <div className={styles.action}>
+          <Submit action="Salvar" customClass={styles.save} />
+          <Link
+            onClick={(e) => {
+              e.preventDefault();
+              setVisible(true);
+            }}
+          >
+            Desativar conta
+          </Link>
+        </div>
       </div>
     </>
   );

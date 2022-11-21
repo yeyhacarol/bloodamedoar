@@ -48,7 +48,7 @@ const EditProfile = () => {
     }
   };
 
-  const { tab, id } = useParams();
+  const { tab } = useParams();
 
   useEffect(() => {
     getById("/listarHemocentroPorId", auth.user).then((response) => {
@@ -56,7 +56,7 @@ const EditProfile = () => {
 
       setData(resp);
     });
-  }, []);
+  }, [auth.user]);
 
   if (!data) {
     return;
