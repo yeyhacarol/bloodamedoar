@@ -12,26 +12,34 @@ const AboutBloodcenter = ({
 }) => {
   return (
     <Container customClass={styles.all_about_us}>
-      <div className={styles.about_us}>
-        <h3>Sobre nós</h3>
-        <p>{biography}</p>
-      </div>
-      <div className={styles.about_us}>
-        <h3>Horário de atendimento</h3>
-        <p>{opening}</p>
-      </div>
+      {biography && (
+        <div className={styles.about_us}>
+          <h3>Sobre nós</h3>
+          {biography && <p>{biography}</p>}
+        </div>
+      )}
+      {opening && (
+        <div className={styles.about_us}>
+          <h3>Horário de atendimento</h3>
+          <p>{opening}</p>
+        </div>
+      )}
+
       <div className={styles.about_us}>
         <h3>Contato</h3>
         {telephone && <p>Telefone: {telephone} </p>}
         {celular && <p>Celular: {celular} </p>}
-        <p>Email: {email}</p>
+        {email && <p>Celular: {email} </p>}
       </div>
-      <div className={styles.about_us}>
-        <h3>Tipos de serviço</h3>
-        <div className={styles.services}>
-          {services && services.join(" | ")}
+
+      {services && (
+        <div className={styles.about_us}>
+          <h3>Tipos de serviço</h3>
+          <div className={styles.services}>
+            {services && services.join(" | ")}
+          </div>
         </div>
-      </div>
+      )}
     </Container>
   );
 };

@@ -57,6 +57,13 @@
     z-index: 999;
 }
 
+.error {
+    text-align: center;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    font-weight: 600;
+    padding: 45px 20px 25px 20px;
+}
+
 @media screen and (max-width: 1025px) {
     .profile_content,
     .our_campaigns {

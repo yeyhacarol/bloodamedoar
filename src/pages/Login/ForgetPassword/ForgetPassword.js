@@ -11,11 +11,12 @@ import close from "../../../assets/bloobs/close.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { v4 as uuidv4 } from "uuid";
 
 const ForgetPassword = () => {
   const navigate = useNavigate();
 
-  const [data, setData] = useState({
+  const [email, setEmail] = useState({
     email: "",
   });
 
@@ -27,14 +28,14 @@ const ForgetPassword = () => {
   });
 
   const handleOnChange = (value, input) => {
-    setData((prevState) => ({ ...prevState, [input]: value }));
+    setEmail((prevState) => ({ ...prevState, [input]: value }));
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    if (!data.email) {
-      setError({
+    if (!email.email) {
+      return setError({
         email: {
           error: true,
           errorMessage: "Preencha este campo.",
@@ -42,24 +43,49 @@ const ForgetPassword = () => {
       });
     }
 
-    const templateParams = {
-      email: data.email,
-    };
+    const BASE_URL = process.env.REACT_APP_API_BLOOD;
 
-    emailjs
-      .send(
-        "service_d7j679c",
-        "template_vw2im6p",
-        templateParams,
-        "siS2mdPzClHgjeTlw"
-      )
-      .then((response) => {
-        toast.success("Verifique seu e-mail.");
-        setData("");
+    fetch(BASE_URL + "/verificarEmail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(email),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data);
+        if (data.message) {
+          toast.success(data.message);
+
+          const templateParams = {
+            email: email.email,
+            url: `http://localhost:3001/recoverpassword?token=${
+              data.token
+            }&protocol=${uuidv4()}`,
+          };
+
+          emailjs
+            .send(
+              "service_d7j679c",
+              "template_vw2im6p",
+              templateParams,
+              "siS2mdPzClHgjeTlw"
+            )
+            .then((response) => {
+              toast.success("Verifique seu e-mail.");
+              setEmail("");
+            })
+            .catch((error) => console.error(error));
+          return;
+        } else if (data.error) {
+          toast.error(data.error);
+          return;
+        }
       })
-      .catch((error) => console.error(error));
-
-    console.log(data);
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
@@ -91,7 +117,7 @@ const ForgetPassword = () => {
             name="email"
             error={error.email.error}
             errorMessage={error.email.errorMessage}
-            value={data.email || ""}
+            value={email.email || ""}
             handleOnChange={handleOnChange}
             onFocus={() => setError({ ...error, email: false })}
           />

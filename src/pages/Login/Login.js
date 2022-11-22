@@ -15,8 +15,6 @@ const Login = () => {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const [visible, setVisible] = useState(false);
-
   const [data, setData] = useState({
     cnpj: "",
     senha: "",

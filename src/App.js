@@ -91,8 +91,12 @@ const App = () => {
             }
           />
 
-          <Route path="/recoverpassword/:token" element={<RecoverPassword />} />
-          <Route path="/forgetpassword" element={<ForgetPassword />} />
+          {!auth.user && (
+            <Route path="/recoverpassword" element={<RecoverPassword />} />
+          )}
+          {!auth.user && (
+            <Route path="/forgetpassword" element={<ForgetPassword />} />
+          )}
         </Routes>
       </Router>
 

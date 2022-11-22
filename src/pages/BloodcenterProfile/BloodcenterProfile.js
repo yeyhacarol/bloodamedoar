@@ -34,34 +34,44 @@ const BloodcenterProfile = () => {
 
   useEffect(() => {
     getById("/listarHemocentroPorId", id).then((response) => {
-      const resp = response[0][0];
+      console.log(response);
 
-      setData((prevState) => {
-        return {
-          ...prevState,
-          nome_unidade: resp.nome_unidade,
-          logradouro: resp.logradouro.split(",")[0],
-          numero: resp.numero,
-          bairro: capitalize(resp.bairro),
-          cidade: resp.cidade,
-          estado: resp.uf,
-          cep: cepMask(resp.cep),
-          ponto_referencia: resp.ponto_referencia ? resp.ponto_referencia : "",
-          biografia: resp.biografia
-            ? resp.biografia
-            : "Ainda não temos essa informação.",
-          horario_atendimento: resp.horario_atendimento
-            ? resp.horario_atendimento
-            : "Ainda não temos essa informação.",
-          telefone: resp.telefone
-            ? phoneMask(resp.telefone)
-            : "Ainda não temos essa informação.",
-          celular: phoneMask(resp.celular),
-          email: resp.email,
-          foto_perfil: resp.foto_perfil,
-          foto_capa: resp.foto_capa,
-        };
-      });
+      let error = response.error;
+
+      if (response.error) {
+        return setData({ error });
+      } else {
+        const resp = response[0][0];
+
+        setData((prevState) => {
+          return {
+            ...prevState,
+            nome_unidade: resp.nome_unidade,
+            logradouro: resp.logradouro.split(",")[0],
+            numero: resp.numero,
+            bairro: capitalize(resp.bairro),
+            cidade: resp.cidade,
+            estado: resp.uf,
+            cep: cepMask(resp.cep),
+            ponto_referencia: resp.ponto_referencia
+              ? resp.ponto_referencia
+              : "",
+            biografia: resp.biografia
+              ? resp.biografia
+              : "Ainda não temos essa informação.",
+            horario_atendimento: resp.horario_atendimento
+              ? resp.horario_atendimento
+              : "Ainda não temos essa informação.",
+            telefone: resp.telefone
+              ? phoneMask(resp.telefone)
+              : "Ainda não temos essa informação.",
+            celular: phoneMask(resp.celular),
+            email: resp.email,
+            foto_perfil: resp.foto_perfil,
+            foto_capa: resp.foto_capa,
+          };
+        });
+      }
     });
 
     getById("/listarEstoqueSangue", id).then((data) =>
@@ -76,6 +86,8 @@ const BloodcenterProfile = () => {
       })
       .catch((error) => console.error(error));
   }, []);
+
+  console.log(data);
 
   return (
     <div className={styles.profile_container}>
@@ -92,70 +104,76 @@ const BloodcenterProfile = () => {
           photo={data.foto_perfil ? data.foto_perfil : profile}
           cape={data.foto_capa ? data.foto_capa : cape}
         />
+        {!data.error ? (
+          <>
+            <div className={styles.introduction}>
+              <h2>{data.nome_unidade}</h2>
+              <p>
+                {data.logradouro +
+                  ", " +
+                  data.numero +
+                  " - " +
+                  data.bairro +
+                  ", " +
+                  data.cidade +
+                  " - " +
+                  data.estado +
+                  ", " +
+                  data.cep +
+                  ". " +
+                  data.ponto_referencia}
+              </p>
+            </div>
 
-        <div className={styles.introduction}>
-          <h2>{data.nome_unidade}</h2>
-          <p>
-            {data.logradouro +
-              ", " +
-              data.numero +
-              " - " +
-              data.bairro +
-              ", " +
-              data.cidade +
-              " - " +
-              data.estado +
-              ", " +
-              data.cep +
-              ". " +
-              data.ponto_referencia}
-          </p>
-        </div>
+            <AboutBloodcenter
+              biography={data.biografia}
+              opening={data.horario_atendimento}
+              telephone={data.telefone}
+              celular={data.celular}
+              email={data.email}
+              services={data.tipo_servico}
+            />
 
-        <AboutBloodcenter
-          biography={data.biografia}
-          opening={data.horario_atendimento}
-          telephone={data.telefone}
-          email={data.email}
-          services={data.tipo_servico}
-        />
+            {currentInventory.length > 0 && (
+              <Inventory
+                title="Nosso estoque"
+                currentInventory={currentInventory}
+              />
+            )}
 
-        {currentInventory.length > 0 && (
-          <Inventory
-            title="Nosso estoque"
-            currentInventory={currentInventory}
-          />
+            {campaign.length > 0 && (
+              <CampaignSlider
+                customClass={styles.our_campaigns}
+                title="Nossas campanhas"
+                items={campaign.length}
+              >
+                {campaign &&
+                  campaign.map((item) => (
+                    <CampaignCard
+                      link={`/campaign/${item.id}`}
+                      key={item.id}
+                      title={item.nome}
+                      background={item.foto_capa}
+                    />
+                  ))}
+              </CampaignSlider>
+            )}
+
+            <div className={styles.whatsapp}>
+              <a
+                href={`https://wa.me/55${
+                  data.celular && data.celular.replace(/[^0-9]+/g, "")
+                }`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <AiOutlineWhatsApp size={50} color="#000" />
+              </a>
+            </div>
+          </>
+        ) : (
+          <h1 className={styles.error}>{data.error}</h1>
         )}
-
-        {campaign.length > 0 && (
-          <CampaignSlider
-            customClass={styles.our_campaigns}
-            title="Nossas campanhas"
-            items={campaign.length}
-          >
-            {campaign &&
-              campaign.map((item) => (
-                <CampaignCard
-                  link={`/campaign/${item.id}`}
-                  key={item.id}
-                  title={item.nome}
-                  background={item.foto_capa}
-                />
-              ))}
-          </CampaignSlider>
-        )}
-
-        <div className={styles.whatsapp}>
-          <a
-            href={`https://wa.me/55${
-              data.celular && data.celular.replace(/[^0-9]+/g, "")
-            }`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <AiOutlineWhatsApp size={50} color="#000" />
-          </a>
-        </div>
       </div>
     </div>
   );

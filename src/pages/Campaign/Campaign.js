@@ -22,7 +22,12 @@ const Campaign = () => {
   }, [id]);
 
   if (!campaign) {
-    return <>Carregando...</>;
+    return (
+      <div className={styles.loading}>
+        <h2>Estamos processando... talvez essa campanha não exista.</h2>
+        <span className={styles.loader}></span>
+      </div>
+    );
   }
 
   return (
