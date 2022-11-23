@@ -29,7 +29,7 @@ const AboutBloodcenter = ({
         <h3>Contato</h3>
         {telephone && <p>Telefone: {telephone} </p>}
         {celular && <p>Celular: {celular} </p>}
-        {email && <p>Celular: {email} </p>}
+        {email && <p>E-mail: {email} </p>}
       </div>
 
       {services && (
