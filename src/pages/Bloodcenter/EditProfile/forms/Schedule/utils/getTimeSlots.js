@@ -30,7 +30,7 @@ export const getTimeSlots = (startTime, endTime) => {
     const hours = Math.floor(totalInitMinutes / 60);
     selectableHours.push(`${padTo2Digits(hours)}:${padTo2Digits(minutes)}`);
 
-    var date = new Date();
+    let date = new Date();
     date.setHours(totalInitMinutes / 60);
     totalInitMinutes = totalInitMinutes + 40;
   }

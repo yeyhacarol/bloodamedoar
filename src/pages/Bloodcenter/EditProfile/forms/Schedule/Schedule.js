@@ -5,7 +5,7 @@ import Input from "../../../../../components/form/Input/Input";
 import Submit from "../../../../../components/form/Submit/Submit";
 import styles from "./Schedule.module.css";
 import { onlyNumbers } from "../../../../../utils/regex";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { get } from "../../../../../services/apiBlood/http/get";
 import { useContext } from "react";
 import { AuthContext } from "../../../../../contexts/Auth/AuthContext";
@@ -140,7 +140,28 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
     setSelectableHours(() => {
       return getTimeSlots(defaultData.hora_inicio, defaultData.hora_termino);
     });
+
+    console.log(selectableHours);
   };
+
+  function getAllDaysInMonth(year, month) {
+    const date = new Date(year, month, 1);
+
+    const dates = [];
+
+    while (date.getMonth() === month) {
+      console.log("date", dates.push(new Date(date)));
+      date.setDate(date.getDate() + 1);
+    }
+
+    console.log(dates);
+
+    return dates;
+  }
+
+  const dt = new Date();
+
+  console.log(getAllDaysInMonth(dt.getFullYear(), dt.getMonth(), dt.getDate()));
 
   return (
     <>
@@ -228,7 +249,6 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
           <div className={styles.personalized}>
             <Calendar
               onClickMonth={(e) => console.log("click month: ", e)}
-              onViewChange={(e) => console.log("view change: ", e)}
               onChange={(e) => {
                 setDate(e);
                 console.log("on change: ", e);

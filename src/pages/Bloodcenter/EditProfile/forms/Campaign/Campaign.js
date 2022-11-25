@@ -229,7 +229,11 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
     const fileData = data;
     fileData.foto_capa = getFileType(data.foto_capa) ? url : data.foto_capa;
 
-    console.log(fileData);
+    console.log(fileData.data_inicio);
+
+    let date = new Date(fileData.data_inicio).getDate();
+
+    console.log(date);
 
     if (!id) {
       post("/cadastrarCampanha", fileData);
@@ -307,10 +311,10 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
           setData({
             nome: response.nome || data.nome,
             foto_capa: response.foto_capa,
-            data_inicio: response.data_inicio || data.data_inicio,
-            hora_inicio: response.hora_inicio || data.hora_inicio,
-            data_termino: response.data_termino || data.data_termino,
-            hora_termino: response.hora_termino || data.hora_termino,
+            data_inicio: response.data_inicio,
+            hora_inicio: response.hora_inicio,
+            data_termino: response.data_termino,
+            hora_termino: response.hora_termino,
             descricao: response.descricao || data.descricao,
             cep: response.cep,
             logradouro: response.logradouro,
