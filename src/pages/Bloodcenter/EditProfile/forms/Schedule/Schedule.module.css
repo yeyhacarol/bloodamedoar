@@ -80,7 +80,10 @@
 
 .timeslots {
     width: 400px;
+    height: 287px;
     justify-content: space-between;
+    padding-right: 10px;
+    overflow-y: scroll;
 }
 
 .timeslot {
@@ -89,9 +92,6 @@
 }
 
 .personalized_hour {
-    width: 80px;
-    height: 40px;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,8 +102,9 @@
     font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
-.personalized_quantity {
-    width: 200px;
+.personalized_quantity,
+.personalized_hour {
+    width: 180px;
     height: 40px;
 }
 
@@ -177,11 +178,8 @@
         width: inherit;
     }
 
+    .personalized_quantity,
     .personalized_hour {
-        width: 60px;
-    }
-
-    .personalized_quantity {
         width: 130px;
     }
 }

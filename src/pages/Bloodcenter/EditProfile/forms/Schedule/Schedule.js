@@ -5,7 +5,7 @@ import Input from "../../../../../components/form/Input/Input";
 import Submit from "../../../../../components/form/Submit/Submit";
 import styles from "./Schedule.module.css";
 import { onlyNumbers } from "../../../../../utils/regex";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { get } from "../../../../../services/apiBlood/http/get";
 import { useContext } from "react";
 import { AuthContext } from "../../../../../contexts/Auth/AuthContext";
@@ -14,6 +14,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./Calendar.css";
 import { Link } from "react-router-dom";
+import { getTimeSlots } from "./utils/getTimeSlots";
 
 const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
   const auth = useContext(AuthContext);
@@ -25,6 +26,8 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
     id_tipo_servico: "",
     id_unidade_hemocentro: auth.user,
   });
+
+  const [selectableHours, setSelectableHours] = useState([]);
 
   const [errors, setErrors] = useState({
     hora_inicio: {
@@ -54,6 +57,8 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
   const handleChange = (e) => {
     setSelectedValue(e.value);
   };
+
+  const [date, setDate] = useState(new Date());
 
   const [id_tipo_servico, setId_tipo_servico] = useState([]);
 
@@ -115,7 +120,7 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
       });
     }
 
-    if (defaultData.hora_termino < defaultData.hora_inicio) {
+    if (defaultData.hora_termino <= defaultData.hora_inicio) {
       return setErrors({
         ...errors,
         hora_inicio: {
@@ -127,9 +132,13 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
 
     setDefaultData({ ...defaultData, id_tipo_servico: selectedValue });
 
-    post("/cadastrarConfigAgenda", {
-      ...defaultData,
-      id_tipo_servico: selectedValue,
+    // post("/cadastrarConfigAgenda", {
+    //   ...defaultData,
+    //   id_tipo_servico: selectedValue,
+    // });
+
+    setSelectableHours(() => {
+      return getTimeSlots(defaultData.hora_inicio, defaultData.hora_termino);
     });
   };
 
@@ -161,8 +170,8 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
               />
 
               <Input
-                info="Qtde. de vagas média"
-                placeholder="Qtde. de vagas média"
+                info="Qtde. de vagas"
+                placeholder="Qtde. de vagas"
                 mask={onlyNumbers}
                 error={errors.quantidade_vagas_media.error}
                 errorMessage={errors.quantidade_vagas_media.errorMessage}
@@ -217,19 +226,29 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
 
         <Container title="Agenda personalizada" customClass={styles.container}>
           <div className={styles.personalized}>
-            <Calendar />
+            <Calendar
+              onClickMonth={(e) => console.log("click month: ", e)}
+              onViewChange={(e) => console.log("view change: ", e)}
+              onChange={(e) => {
+                setDate(e);
+                console.log("on change: ", e);
+              }}
+              value={date}
+            />
             <div className={styles.timeslots}>
-              <div className={styles.timeslot}>
-                <div className={styles.personalized_hour}>08:00</div>
-                <div className={styles.personalized_hour}>09:00</div>
-                <Input
-                  placeholder="Qtde. de vagas"
-                  mask={onlyNumbers}
-                  name="quantidade_vagas"
-                  handleOnChange={handleOnChange}
-                  custom={styles.personalized_quantity}
-                />
-              </div>
+              {selectableHours.map((hour) => (
+                <div className={styles.timeslot}>
+                  <div className={styles.personalized_hour}>{hour}</div>
+                  <Input
+                    placeholder="Qtde. de vagas"
+                    mask={onlyNumbers}
+                    name="quantidade_vagas"
+                    value={defaultData.quantidade_vagas_media}
+                    handleOnChange={handleOnChange}
+                    custom={styles.personalized_quantity}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </Container>
