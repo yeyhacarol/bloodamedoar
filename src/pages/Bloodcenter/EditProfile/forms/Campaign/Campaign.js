@@ -229,12 +229,6 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
     const fileData = data;
     fileData.foto_capa = getFileType(data.foto_capa) ? url : data.foto_capa;
 
-    console.log(fileData.data_inicio);
-
-    let date = new Date(fileData.data_inicio).getDate();
-
-    console.log(date);
-
     if (!id) {
       post("/cadastrarCampanha", fileData);
       setData({
@@ -252,6 +246,7 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
         cidade: "",
         estado: "",
         ponto_referencia: "",
+        id_unidade_hemocentro: auth.user,
       });
     } else if (id) {
       put("/editarCampanha", id, fileData);

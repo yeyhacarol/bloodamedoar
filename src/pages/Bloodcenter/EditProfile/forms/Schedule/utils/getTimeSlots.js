@@ -1,4 +1,4 @@
-export const getTimeSlots = (startTime, endTime) => {
+export const getTimeSlots = (startTime, endTime, collectionTime) => {
   let initHour, initMinute;
   startTime = startTime.split(" ");
   startTime = startTime[0].split(":");
@@ -32,7 +32,7 @@ export const getTimeSlots = (startTime, endTime) => {
 
     let date = new Date();
     date.setHours(totalInitMinutes / 60);
-    totalInitMinutes = totalInitMinutes + 40;
+    totalInitMinutes = totalInitMinutes + collectionTime;
   }
 
   return selectableHours;
