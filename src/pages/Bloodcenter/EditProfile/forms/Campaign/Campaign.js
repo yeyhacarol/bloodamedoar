@@ -249,6 +249,7 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
         id_unidade_hemocentro: auth.user,
       });
     } else if (id) {
+      console.log(data);
       put("/editarCampanha", id, fileData);
     }
   };
@@ -319,6 +320,7 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
             estado: response.estado,
             ponto_referencia:
               response.ponto_referencia || data.ponto_referencia,
+            id_unidade_hemocentro: auth.user,
           });
         })
         .catch((error) => console.error(error));
