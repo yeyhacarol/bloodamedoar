@@ -54,7 +54,6 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
   };
 
   const handleChangeVacancies = (e) => {
-    console.log(e);
     // setVacancy(e);
   };
 
@@ -80,6 +79,14 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
       setId_tipo_servico(id_tipo_servico);
     });
   }, []);
+
+  useEffect(() => {
+    if (selectedValue == 1) {
+      setDefaultData({ ...defaultData, tempo_coleta: 90 });
+    } else {
+      setDefaultData({ ...defaultData, tempo_coleta: 45 });
+    }
+  }, [selectedValue]);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -134,15 +141,10 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
       });
     }
 
-    console.log(defaultData);
-
-    setDefaultData({ ...defaultData, id_tipo_servico: selectedValue });
-
-    if (defaultData.id_tipo_servico === "1") {
-      setDefaultData({ ...defaultData, tempo_coleta: 40 });
-    } else if (defaultData.id === "2") {
-      setDefaultData({ ...defaultData, tempo_coleta: 90 });
-    }
+    setDefaultData({
+      ...defaultData,
+      id_tipo_servico: selectedValue,
+    });
 
     // post("/cadastrarConfigAgenda", {
     //   ...defaultData,
@@ -198,17 +200,14 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
 
     setVacancy(collectionVacancy);
 
-    console.log(collectionVacancy);
-    console.log(vacancies);
-
     setCollect({ collection, id_unidade_hemocentro: auth.user });
   }, [selectableHours]);
+  console.log(collect);
 
-  console.log(selectedValue);
+  //console.log(vacancies);
 
   const personalized = () => {
-    console.log(collect);
-
+    // console.log(collect);
     // fetch("http://localhost:5000/cadastrarAgenda", {
     //   method: "POST",
     //   headers: {
@@ -222,8 +221,6 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
     //   })
     //   .catch((err) => console.log(err));
   };
-
-  const [id, setId] = useState();
 
   return (
     <>
@@ -267,6 +264,7 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
                 }
               />
             </div>
+
             <div className={styles.bottom}>
               <h3>Horário de atendimento</h3>
               <div className={styles.time}>
@@ -328,12 +326,7 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
                     name="quantidade_vagas_coleta"
                     value={vacancy.quantidade_vagas_coleta}
                     handleOnChange={handleChangeVacancies}
-                    onFocus={(e) => {
-                      console.log(e.target.offsetParent.parentElement);
-                      setId(vacancy.hora_coleta);
-                    }}
                     custom={styles.personalized_quantity}
-                    data-id={id}
                   />
                 </div>
               ))}
