@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./ScheduleDetails.module.css";
 
 import close from "../../../../assets/bloobs/close.png";
@@ -6,10 +6,29 @@ import ModalLogo from "../../../../components/logo/ModalLogo/ModalLogo";
 import Heading from "../../../../components/Heading/Heading";
 import Submit from "../../../../components/form/Submit/Submit";
 
-import patient from "../../../../assets/pacient.png";
+import patient from "../../../../assets/bloobs/profile.svg";
+import { useEffect, useState } from "react";
+import { getById } from "../../../../services/apiBlood/http/get";
+import { cpfMask, dateMask, phoneMask } from "../../../../utils/masks";
 
 const ScheduleDetails = () => {
   const navigation = useNavigate();
+
+  const { id } = useParams();
+
+  const [query, setQuery] = useState({});
+
+  useEffect(() => {
+    getById("/ListarConsultasPorId", id).then((response) => {
+      const resp = response[0];
+
+      resp.map((item) => {
+        setQuery(item);
+      });
+    });
+  }, []);
+
+  console.log(query);
 
   return (
     <div className={styles.schedule_details}>
@@ -32,9 +51,12 @@ const ScheduleDetails = () => {
         <Heading heading="Agendamento" />
 
         <div className={styles.patient_data_container}>
-          <img src={patient} alt="nomedopaciente" />
+          <img
+            src={query.foto_perfil ? query.foto_perfil : patient}
+            alt={query.nome_completo}
+          />
           <div className={styles.patient_data}>
-            <h3>Rosângela Ramos</h3>
+            <h3>{query.nome_completo}</h3>
             <table>
               <tbody className={styles.tbody}>
                 <tr className={styles.data}>
@@ -45,9 +67,17 @@ const ScheduleDetails = () => {
                 </tr>
                 <tr>
                   <td></td>
-                  <td>20/07/1999</td>
-                  <td>541.562.411-21</td>
-                  <td>(11) 96180-9546</td>
+                  <td>
+                    {query.data_nascimento
+                      ? dateMask(query.data_nascimento)
+                      : ""}
+                  </td>
+                  <td>{query.cpf ? cpfMask(query.cpf) : ""}</td>
+                  <td>
+                    {query.telefone_doador
+                      ? phoneMask(query.telefone_doador)
+                      : ""}
+                  </td>
                 </tr>
               </tbody>
               <tbody className={styles.tbody}>
@@ -59,16 +89,17 @@ const ScheduleDetails = () => {
                 </tr>
                 <tr>
                   <td></td>
-                  <td>Sangue</td>
-                  <td>AB+</td>
-                  <td>18/11/2022 | 09:00:00</td>
+                  <td>{query.tipo_servico}</td>
+                  <td>{query.tipo_sanguineo}</td>
+                  <td>
+                    {dateMask(query.data_agendada_doador)} | {query.hora}
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
-
-          <Submit action="Concluir agendamento" customClass={styles.button} />
         </div>
+        <Submit action="Concluir agendamento" customClass={styles.button} />
       </div>
     </div>
   );
