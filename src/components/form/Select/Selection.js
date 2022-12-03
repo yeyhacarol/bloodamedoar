@@ -19,6 +19,7 @@ const Selection = ({
   onFocus,
   label,
   custom,
+  customized,
 }) => {
   const styles = {
     /* container: (styles) => {
@@ -33,6 +34,11 @@ const Selection = ({
         width: width,
         minHeight: "clamp(45px, 10vw, 55px);",
         fontSize: "clamp(0.875rem, 2vw, 1rem);",
+      };
+    },
+    singleValue: (styles) => {
+      return {
+        ...styles,
       };
     },
     placeholder: (styles) => {
@@ -74,7 +80,7 @@ const Selection = ({
   };
 
   return (
-    <div className={style.select_container}>
+    <div className={`${style.select_container} ${customized}`}>
       <label>{label}</label>
       <Select
         className={custom}

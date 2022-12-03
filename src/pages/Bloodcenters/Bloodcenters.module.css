@@ -9,6 +9,30 @@
     padding: 0 45px 65px 45px;
 }
 
+.filter {
+    width: clamp(260px, 50vw, 450px);
+    margin-bottom: 25px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.filtered {
+    margin-bottom: 0;
+}
+
+.clear {
+    position: absolute;
+    color: #cccccc;
+    font-weight: 500;
+    right: 50px;
+}
+
+.clear:hover {
+    color: #999999;
+}
+
 @media screen and (max-width: 1025px) {
     .listing {
         width: 100vw;
