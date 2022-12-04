@@ -15,7 +15,7 @@
 }
 
 .step_by_step h2 {
-    font-size: clamp(1rem, 3vw, 1.175rem);
+    font-size: clamp(1rem, 5vw, 1.125rem);
     font-weight: 600;
     text-align: center;
 
@@ -23,7 +23,7 @@
 }
 
 .step_by_step img {
-    width: clamp(20px, 2vw, 30px);
+    width: clamp(20px, 2vw, 25px);
 
     position: absolute;
 }
@@ -77,7 +77,7 @@
     width: 100%;
     min-height: 200px;
 
-    padding: 0 9px;
+    padding: 0 5px;
 
     display: flex;
     flex-direction: column;
@@ -91,7 +91,7 @@
 
 .step_content p,
 .step h4 {
-    font-size: clamp(0.75rem, 1vw, 1rem);
+    font-size: clamp(0.813rem, 1vw, 1rem);
     text-align: justify;
 }
 
@@ -99,12 +99,34 @@
     .step_by_step {
         width: 100vw;
 
+        padding: 20px 20px 20px 20px;
+
         margin-bottom: 50px;
     }
-}
 
-@media screen and (max-width: 700px) {
-    .step_by_step {
+    .step_content {
+        min-height: 125px;
+
+        padding: 8px;
+    }
+
+    .top .step,
+    .bottom .step {
+        align-items: flex-start;
+    }
+
+    .top {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .next_step {
         display: none;
     }
 }
+
+/* @media screen and (max-width: 700px) {
+    .step_by_step {
+        display: none;
+    }
+} */

@@ -26,11 +26,7 @@ const Home = () => {
 
   return (
     <div className={styles.home_container}>
-      <Menu
-        label="Hemocentros"
-        alt="Lista de hemocentros"
-        title="Lista de hemocentros"
-      />
+      <Menu />
 
       <div className={styles.home_content}>
         <Header action="Entrar" />

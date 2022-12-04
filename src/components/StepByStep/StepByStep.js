@@ -16,11 +16,11 @@ const StepByStep = () => {
           <h4>VOTO DE AUTOEXCLUSÃO</h4>
           <div className={styles.step_content}>
             <p>
-              Visando máxima segurança para o paciente que receberá transfusão
-              de seu sangue, se ao final da análise da triagem você for
-              considerado apto para doação, mas não tiver respondido algumas
-              questões confidenciais, haverá a oportunidade íntima de você
-              indicar que seu sangue não deverá ser utilizado em transfusão.
+              Para a segurança do paciente que receberá seu sangue, se ao final
+              da análise da triagem você for considerado apto para doação, mas
+              não tiver respondido algumas questões confidenciais, haverá a
+              oportunidade íntima de você indicar que seu sangue não deverá ser
+              utilizado em transfusão.
             </p>
           </div>
           <img
