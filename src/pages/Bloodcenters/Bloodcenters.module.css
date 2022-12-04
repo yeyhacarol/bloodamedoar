@@ -19,6 +19,7 @@
 }
 
 .filtered {
+    width: clamp(260px, 50vw, 450px);
     margin-bottom: 0;
 }
 
@@ -36,6 +37,12 @@
 @media screen and (max-width: 1025px) {
     .listing {
         width: 100vw;
+    }
+
+    .filter,
+    .filtered,
+    .width {
+        width: 100%;
     }
 }
 

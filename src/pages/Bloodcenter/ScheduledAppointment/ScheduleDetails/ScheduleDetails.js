@@ -73,13 +73,13 @@ const ScheduleDetails = () => {
                   <td>
                     {query.data_nascimento
                       ? dateMask(query.data_nascimento)
-                      : ""}
+                      : "00/00/0000"}
                   </td>
-                  <td>{query.cpf ? cpfMask(query.cpf) : ""}</td>
+                  <td>{query.cpf ? cpfMask(query.cpf) : "000.000.000-00"}</td>
                   <td>
                     {query.telefone_doador
                       ? phoneMask(query.telefone_doador)
-                      : ""}
+                      : "(00) 00000-0000"}
                   </td>
                 </tr>
               </tbody>

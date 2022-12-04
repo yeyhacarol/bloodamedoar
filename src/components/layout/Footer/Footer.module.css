@@ -1,6 +1,6 @@
 footer {
     width: calc(100vw - 240px);
-    height: 150px;
+    height: 100px;
 
     padding: 0 20px;
 
@@ -11,21 +11,6 @@ footer {
     border-top: 1.5px solid #d0d0d0;
 
     user-select: none;
-}
-
-.follow_us {
-    width: 30%;
-
-    gap: 10px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.social_media {
-    display: flex;
-    gap: 10px;   
 }
 
 footer p,
@@ -43,53 +28,26 @@ footer p,
 @media screen and (max-width: 1025px) {
     footer {
         width: 100vw;
-        height: 200px;
     }
 }
 
 @media screen and (max-width: 700px) {
-    footer {
-        height: 250px;
-        padding-bottom: 50px;
-        position: relative;
-    }
-
     footer .copyright {
         align-items: center;
     }
 
-    .follow_us {
-        position: absolute;
-        bottom: 50px;
-        left: 0px;
-    }
-
-    .social_media {
-        flex-direction: column;
-    }
-
     .copyright {
         width: 90%;
-
-        position: absolute;
-        bottom: 50px;
     }
 }
 
 @media screen and (max-width: 500px) {
     footer {
-        height: 130px;
         justify-content: center;
         align-items: center;
     }
 
-    .follow_us {
-        display: none;
-    }
-
     .copyright {
         width: 100%;
-        height: 60px;
     }
-
 }

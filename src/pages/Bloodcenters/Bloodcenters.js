@@ -54,8 +54,8 @@ const Bloodcenters = () => {
         <div className={styles.listing}>
           <div className={styles.filter}>
             <Selection
+              width="inherit"
               customized={styles.filtered}
-              custom={styles.filtered}
               closeMenuOnSelect={true}
               placeholder="Pesquise hemocentros perto de você"
               name="bloodcenters"

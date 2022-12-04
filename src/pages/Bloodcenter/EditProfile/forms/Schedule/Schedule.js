@@ -112,11 +112,19 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
     });
   }, []);
 
+  function time_convert(num) {
+    var hours = Math.floor(num / 60);
+    var minutes = num % 60;
+    return "0" + hours + ":" + minutes;
+  }
+
   useEffect(() => {
     if (selectedValue == 1) {
-      setDefaultData({ ...defaultData, tempo_coleta: 90 });
+      const newTime = time_convert(90);
+      setDefaultData({ ...defaultData, tempo_coleta: newTime });
     } else {
-      setDefaultData({ ...defaultData, tempo_coleta: 45 });
+      const newTime = time_convert(45);
+      setDefaultData({ ...defaultData, tempo_coleta: newTime });
     }
   }, [selectedValue]);
 
@@ -178,13 +186,12 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
       id_tipo_servico: selectedValue,
     });
 
-    post(
-      "/cadastrarConfigAgenda",
-      setDefaultData({
-        ...defaultData,
-        id_tipo_servico: selectedValue,
-      })
-    );
+    console.log(defaultData);
+
+    post("/cadastrarConfigAgenda", {
+      ...defaultData,
+      id_tipo_servico: selectedValue,
+    });
 
     setSelectableHours(() => {
       return getTimeSlots(
@@ -241,15 +248,17 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
 
     vacancies.forEach((vacancy) => {
       Object.keys(vacancy).forEach((key) => {
+        const vacancyData = {
+          data_coleta: key.split("T")[0],
+          collectionVacancy: [],
+        };
         vacancy[key].forEach((item) =>
-          collectionData.push({
-            data_coleta: key.split("T")[0],
-            collectionVacancy: {
-              hora_coleta: item.hora_coleta,
-              quantidade_vagas_coleta: item.quantidade_vagas_coleta,
-            },
+          vacancyData.collectionVacancy.push({
+            hora_coleta: item.hora_coleta,
+            quantidade_vagas_coleta: item.quantidade_vagas_coleta,
           })
         );
+        collectionData.push(vacancyData);
       });
     });
 
@@ -260,18 +269,7 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
 
     console.log(formatedData);
 
-    fetch("http://localhost:5000/cadastrarAgenda", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formatedData),
-    })
-      .then((resp) => resp.json())
-
-      .catch((err) => {
-        console.error(err);
-      });
+    post("/CadastrarAgendaHemocentro", formatedData);
   };
 
   // O QUE É PRECISO FAZER?

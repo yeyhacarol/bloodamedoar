@@ -8,6 +8,7 @@
 .custom_input {
     border-radius: 10px 0px 0px 10px;
     margin-bottom: 0;
+    font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
 .search {
@@ -28,6 +29,7 @@
 input[type="date"]:before {
     color: lightgrey;
     content: attr(placeholder) !important;
+    font-size: clamp(0.8rem, 2vw, 1rem);
     margin-right: 0.5em;
 }
 
@@ -44,10 +46,6 @@ input[type="date"]:focus:before {
 @media screen and (max-width: 480px) {
     .filter {
         justify-content: center;
-    }
-
-    .custom_input {
-        width: clamp(280px, 5vw, 380px);
     }
 
     .search svg {

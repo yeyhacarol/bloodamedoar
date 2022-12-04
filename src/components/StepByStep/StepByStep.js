@@ -1,9 +1,5 @@
 import styles from "./StepByStep.module.css";
 
-import lfdownArrow from "../../assets/arrow/left-arrow-down.svg";
-import lfupArrow from "../../assets/arrow/left-arrow-up.svg";
-import downArrow from "../../assets/arrow/down-arrow.svg";
-
 const StepByStep = () => {
   return (
     <section className={styles.step_by_step}>
