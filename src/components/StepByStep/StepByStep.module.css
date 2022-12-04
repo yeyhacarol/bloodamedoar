@@ -15,7 +15,7 @@
 }
 
 .step_by_step h2 {
-    font-size: clamp(1rem, 5vw, 1.125rem);
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
     font-weight: 600;
     text-align: center;
 
@@ -23,7 +23,7 @@
 }
 
 .step_by_step img {
-    width: clamp(20px, 2vw, 25px);
+    width: 22.5px;
 
     position: absolute;
 }
@@ -91,7 +91,7 @@
 
 .step_content p,
 .step h4 {
-    font-size: clamp(0.813rem, 1vw, 1rem);
+    font-size: clamp(0.8rem, 2vw, 1rem);
     text-align: justify;
 }
 
@@ -124,9 +124,3 @@
         display: none;
     }
 }
-
-/* @media screen and (max-width: 700px) {
-    .step_by_step {
-        display: none;
-    }
-} */
