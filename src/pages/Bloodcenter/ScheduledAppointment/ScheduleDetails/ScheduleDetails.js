@@ -9,6 +9,7 @@ import Submit from "../../../../components/form/Submit/Submit";
 import patient from "../../../../assets/bloobs/profile.svg";
 import { useEffect, useState } from "react";
 import { getById } from "../../../../services/apiBlood/http/get";
+import { put } from "../../../../services/apiBlood/http/put";
 import { cpfMask, dateMask, phoneMask } from "../../../../utils/masks";
 
 const ScheduleDetails = () => {
@@ -28,7 +29,9 @@ const ScheduleDetails = () => {
     });
   }, []);
 
-  console.log(query);
+  const completeQuery = () => {
+    put("/FinalizarConsulta", id);
+  };
 
   return (
     <div className={styles.schedule_details}>
@@ -99,7 +102,13 @@ const ScheduleDetails = () => {
             </table>
           </div>
         </div>
-        <Submit action="Concluir agendamento" customClass={styles.button} />
+        {!query.concluido && (
+          <Submit
+            action="Concluir agendamento"
+            customClass={styles.button}
+            handleOnClick={completeQuery}
+          />
+        )}
       </div>
     </div>
   );

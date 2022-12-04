@@ -9,6 +9,15 @@
     padding: 0 45px 65px 45px;
 }
 
+.listing h3 {
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
+    padding: 15px 0;
+}
+
+.concluded {
+    padding-top: 50px;
+}
+
 @media screen and (max-width: 1025px) {
     .listing {
         width: 100vw;
@@ -23,4 +32,8 @@
     .listing {
         padding: 0 0 65px 0;
     }
+
+    .listing h3 {
+        padding: 15px 25px;
+    }    
 }

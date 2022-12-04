@@ -34,17 +34,40 @@ const ScheduledAppointment = () => {
 
         <div className={styles.listing}>
           <Filter placeholder="Agendamentos por dia" type="date" />
-          {queries.map((item) => (
-            <ListItem
-              key={item.id}
-              logo={item.foto_perfil ? item.foto_perfil : patient}
-              name={item.nome_completo}
-              info={`${dateMask(item.data_agendada_doador)} | ${item.hora} | ${
-                item.tipo_servico
-              } | ${item.tipo_sanguineo}`}
-              link={`/scheduledappointment/${item.id_agendamento_doador}`}
-            />
-          ))}
+          {queries.map((item) => {
+            return (
+              !item.concluido && (
+                <ListItem
+                  key={item.id}
+                  logo={item.foto_perfil ? item.foto_perfil : patient}
+                  name={item.nome_completo}
+                  info={`${dateMask(item.data_agendada_doador)} | ${
+                    item.hora
+                  } | ${item.tipo_servico} | ${item.tipo_sanguineo}`}
+                  link={`/scheduledappointment/${item.id_agendamento_doador}`}
+                />
+              )
+            );
+          })}
+
+          <div className={styles.concluded}>
+            <h3>Consultas concluídas</h3>
+            {queries.map((item) => {
+              return (
+                item.concluido && (
+                  <ListItem
+                    key={item.id}
+                    logo={item.foto_perfil ? item.foto_perfil : patient}
+                    name={item.nome_completo}
+                    info={`${dateMask(item.data_agendada_doador)} | ${
+                      item.hora
+                    } | ${item.tipo_servico} | ${item.tipo_sanguineo}`}
+                    link={`/scheduledappointment/${item.id_agendamento_doador}`}
+                  />
+                )
+              );
+            })}
+          </div>
         </div>
       </div>
     </>

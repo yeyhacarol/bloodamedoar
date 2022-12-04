@@ -5,7 +5,7 @@ import Input from "../../../../../components/form/Input/Input";
 import Submit from "../../../../../components/form/Submit/Submit";
 import styles from "./Schedule.module.css";
 import { onlyNumbers } from "../../../../../utils/regex";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { get } from "../../../../../services/apiBlood/http/get";
 import { useContext } from "react";
 import { AuthContext } from "../../../../../contexts/Auth/AuthContext";
@@ -16,8 +16,38 @@ import "./Calendar.css";
 import { Link } from "react-router-dom";
 import { getTimeSlots } from "./utils/getTimeSlots";
 
+export const clone = (data) => {
+  return JSON.parse(JSON.stringify(data));
+};
+
+const useCreateValues = (initial, selectedDay) => {
+  const [vacancies, setVacancy] = useState(initial);
+
+  const handleChangeVacancies = (e, vacancy) => {
+    setVacancy((oldVacancies) => {
+      let clonedVacancies = clone(oldVacancies);
+
+      const selectedDayHours = clonedVacancies.find((obj) => obj[selectedDay]);
+      const dayIndex = clonedVacancies.findIndex(
+        (obj) => obj == selectedDayHours
+      );
+      const hourIndex = selectedDayHours[selectedDay].findIndex(
+        (obj) => obj.hora_coleta == vacancy.hora_coleta
+      );
+
+      clonedVacancies[dayIndex][selectedDay][
+        hourIndex
+      ].quantidade_vagas_coleta = e;
+
+      return clonedVacancies;
+    });
+  };
+  return [vacancies, handleChangeVacancies, setVacancy];
+};
+
 const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
   const auth = useContext(AuthContext);
+  const now = new Date();
 
   const [defaultData, setDefaultData] = useState({
     hora_inicio: "",
@@ -29,6 +59,12 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
   });
 
   const [selectableHours, setSelectableHours] = useState([]);
+  const [collect, setCollect] = useState({});
+  const [selectedDay, setSelectedDay] = useState(now.toISOString());
+  const [vacancies, handleChangeVacancies, setVacancy] = useCreateValues(
+    [],
+    selectedDay
+  );
 
   const [errors, setErrors] = useState({
     hora_inicio: {
@@ -51,10 +87,6 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
 
   const handleOnChange = (input, value) => {
     setDefaultData((prevState) => ({ ...prevState, [value]: input }));
-  };
-
-  const handleChangeVacancies = (e) => {
-    // setVacancy(e);
   };
 
   const [selectedValue, setSelectedValue] = useState();
@@ -146,10 +178,13 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
       id_tipo_servico: selectedValue,
     });
 
-    // post("/cadastrarConfigAgenda", {
-    //   ...defaultData,
-    //   id_tipo_servico: selectedValue,
-    // });
+    post(
+      "/cadastrarConfigAgenda",
+      setDefaultData({
+        ...defaultData,
+        id_tipo_servico: selectedValue,
+      })
+    );
 
     setSelectableHours(() => {
       return getTimeSlots(
@@ -162,7 +197,7 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
 
   const [dates, setDates] = useState([]);
 
-  function getAllDaysInMonth(year, month) {
+  const getAllDaysInMonth = (year, month) => {
     const date = new Date(year, month, 1);
 
     const dates = [];
@@ -173,28 +208,26 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
     }
 
     return dates;
-  }
-
-  const now = new Date();
-
-  const [collect, setCollect] = useState({});
-  const [vacancies, setVacancy] = useState([]);
+  };
 
   useEffect(() => {
     setDates(getAllDaysInMonth(now.getFullYear(), now.getMonth()));
 
-    const collectionVacancy = selectableHours.map((selectableHour) => {
+    const formatedSelectableHours = selectableHours.map((selectableHour) => {
       return {
         hora_coleta: selectableHour,
         quantidade_vagas_coleta: defaultData.quantidade_vagas_media,
       };
     });
 
+    const collectionVacancy = dates.map((date) => {
+      return { [date]: formatedSelectableHours };
+    });
+
     const collection = dates.map((date) => {
-      const convert = date.split("T")[0];
       return {
-        data_coleta: convert,
-        collectionVacancy,
+        data_coleta: date.split("T")[0],
+        formatedSelectableHours,
       };
     });
 
@@ -202,25 +235,74 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
 
     setCollect({ collection, id_unidade_hemocentro: auth.user });
   }, [selectableHours]);
-  console.log(collect);
-
-  //console.log(vacancies);
 
   const personalized = () => {
-    // console.log(collect);
-    // fetch("http://localhost:5000/cadastrarAgenda", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(collect),
-    // })
-    //   .then((resp) => resp.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   })
-    //   .catch((err) => console.log(err));
+    const collectionData = [];
+
+    vacancies.forEach((vacancy) => {
+      Object.keys(vacancy).forEach((key) => {
+        vacancy[key].forEach((item) =>
+          collectionData.push({
+            data_coleta: key.split("T")[0],
+            collectionVacancy: {
+              hora_coleta: item.hora_coleta,
+              quantidade_vagas_coleta: item.quantidade_vagas_coleta,
+            },
+          })
+        );
+      });
+    });
+
+    const formatedData = {
+      collection: collectionData,
+      id_unidade_hemocentro: auth.user,
+    };
+
+    console.log(formatedData);
+
+    fetch("http://localhost:5000/cadastrarAgenda", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formatedData),
+    })
+      .then((resp) => resp.json())
+
+      .catch((err) => {
+        console.error(err);
+      });
   };
+
+  // O QUE É PRECISO FAZER?
+
+  // 3 - BUSCAR AGENDA POR TIPO SERVIÇO
+
+  const hours = useMemo(() => {
+    {
+      return vacancies.map((vacancy) => {
+        return vacancy[selectedDay]?.map((selectedDayVacancy) => {
+          return (
+            <div className={styles.timeslot}>
+              <div className={styles.personalized_hour}>
+                {selectedDayVacancy.hora_coleta}
+              </div>
+              <Input
+                placeholder="Qtde. de vagas"
+                mask={onlyNumbers}
+                name="quantidade_vagas_coleta"
+                value={selectedDayVacancy.quantidade_vagas_coleta}
+                handleOnChange={(event) =>
+                  handleChangeVacancies(event, selectedDayVacancy)
+                }
+                custom={styles.personalized_quantity}
+              />
+            </div>
+          );
+        });
+      });
+    }
+  }, [selectedDay]);
 
   return (
     <>
@@ -307,30 +389,20 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
 
         <Container title="Agenda personalizada" customClass={styles.container}>
           <form className={styles.personalized}>
-            <Calendar
-              onClickMonth={(e) => console.log("click month: ", e)}
-              onChange={(e) => {
-                console.log("on change: ", e);
-              }}
-              //value={date}
-            />
-            <div className={styles.timeslots}>
-              {vacancies.map((vacancy) => (
-                <div className={styles.timeslot}>
-                  <div className={styles.personalized_hour}>
-                    {vacancy.hora_coleta}
-                  </div>
-                  <Input
-                    placeholder="Qtde. de vagas"
-                    mask={onlyNumbers}
-                    name="quantidade_vagas_coleta"
-                    value={vacancy.quantidade_vagas_coleta}
-                    handleOnChange={handleChangeVacancies}
-                    custom={styles.personalized_quantity}
-                  />
-                </div>
-              ))}
+            <div className={styles.calendar}>
+              <div className={styles.date}>{`${now.toLocaleString("default", {
+                month: "long",
+              })} de ${now.getFullYear()}`}</div>
+              <Calendar
+                minDate={new Date(now.getFullYear(), now.getMonth(), 1)}
+                maxDate={new Date(now.getFullYear(), now.getMonth() + 1, 0)}
+                showNavigation={false}
+                onChange={(e) => {
+                  setSelectedDay(new Date(e).toISOString());
+                }}
+              />
             </div>
+            <div className={styles.timeslots}>{hours}</div>
           </form>
         </Container>
 

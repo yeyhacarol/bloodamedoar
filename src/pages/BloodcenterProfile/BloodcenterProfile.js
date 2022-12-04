@@ -34,8 +34,6 @@ const BloodcenterProfile = () => {
 
   useEffect(() => {
     getById("/listarHemocentroPorId", id).then((response) => {
-      console.log(response);
-
       let error = response.error;
 
       if (response.error) {
@@ -86,8 +84,6 @@ const BloodcenterProfile = () => {
       })
       .catch((error) => console.error(error));
   }, []);
-
-  console.log(data);
 
   return (
     <div className={styles.profile_container}>
