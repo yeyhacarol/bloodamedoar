@@ -23,11 +23,6 @@ const StepByStep = () => {
               utilizado em transfusão.
             </p>
           </div>
-          <img
-            className={`${styles.next_step} ${styles.first_step}`}
-            src={lfdownArrow}
-            alt="Próximo passo"
-          />
         </div>
         <div className={styles.step}>
           <h4>VOTO DE AUTOEXCLUSÃO</h4>
@@ -41,11 +36,7 @@ const StepByStep = () => {
             </p>
           </div>
         </div>
-        <img
-          className={`${styles.next_step} ${styles.second_step}`}
-          src={lfupArrow}
-          alt="Próximo passo"
-        />
+
         <div className={styles.step}>
           <h4>DESCANSO E LANCHE</h4>
           <div className={styles.step_content}>
@@ -60,11 +51,6 @@ const StepByStep = () => {
         </div>
       </div>
       <div className={styles.bottom}>
-        <img
-          className={`${styles.next_step} ${styles.third_step}`}
-          src={downArrow}
-          alt="Próximo passo"
-        />
         <div className={styles.step}>
           <h4>EXAMES</h4>
           <div className={styles.step_content}>
