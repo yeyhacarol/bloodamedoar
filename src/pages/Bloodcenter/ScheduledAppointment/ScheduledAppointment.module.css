@@ -18,6 +18,10 @@
     padding-top: 50px;
 }
 
+.no_scheduler {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
 @media screen and (max-width: 1025px) {
     .listing {
         width: 100vw;
@@ -36,4 +40,13 @@
     .listing h3 {
         padding: 15px 25px;
     }    
+
+    .no_scheduler {
+        padding: 0 5px 0 25px;
+    }
+
+    .concluded {
+        padding-top: 25px;
+    }
+    
 }

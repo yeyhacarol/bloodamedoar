@@ -34,6 +34,10 @@
     color: #999999;
 }
 
+.no_bloodcenter {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
 @media screen and (max-width: 1025px) {
     .listing {
         width: 100vw;
@@ -54,4 +58,8 @@
     .listing {
         padding: 0 0 65px 0;
     }
+
+    .no_bloodcenter {
+        padding: 0 5px 0 25px;
+    } 
 }

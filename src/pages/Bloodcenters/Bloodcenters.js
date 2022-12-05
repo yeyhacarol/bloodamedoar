@@ -97,28 +97,34 @@ const Bloodcenters = () => {
           />
 
           <div className={styles.bloodcenters}>
-            {filteredBloodcenter.map((data) => (
-              <ListItem
-                key={data.id}
-                logo={data.foto_perfil ? data.foto_perfil : profile}
-                name={data.nome_unidade}
-                info={
-                  data.logradouro.split(",")[0] +
-                  ", " +
-                  data.numero +
-                  " - " +
-                  capitalize(data.bairro) +
-                  ", " +
-                  data.cidade +
-                  " - " +
-                  data.uf +
-                  ", " +
-                  cepMask(data.cep) +
-                  "."
-                }
-                link={`/bloodcenters/${data.id}`}
-              />
-            ))}
+            {filteredBloodcenter.length > 0 ? (
+              filteredBloodcenter.map((data) => (
+                <ListItem
+                  key={data.id}
+                  logo={data.foto_perfil ? data.foto_perfil : profile}
+                  name={data.nome_unidade}
+                  info={
+                    data.logradouro.split(",")[0] +
+                    ", " +
+                    data.numero +
+                    " - " +
+                    capitalize(data.bairro) +
+                    ", " +
+                    data.cidade +
+                    " - " +
+                    data.uf +
+                    ", " +
+                    cepMask(data.cep) +
+                    "."
+                  }
+                  link={`/bloodcenters/${data.id}`}
+                />
+              ))
+            ) : (
+              <p className={styles.no_bloodcenter}>
+                Não temos esse hemocentro cadastrado.
+              </p>
+            )}
           </div>
         </div>
       </div>
