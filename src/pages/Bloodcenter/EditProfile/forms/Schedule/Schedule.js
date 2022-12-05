@@ -267,8 +267,6 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
       id_unidade_hemocentro: auth.user,
     };
 
-    console.log(formatedData);
-
     post("/CadastrarAgendaHemocentro", formatedData);
   };
 

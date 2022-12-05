@@ -6,7 +6,6 @@
 }
 
 .custom_input {
-    border-radius: 10px 0px 0px 10px;
     margin-bottom: 0;
     font-size: clamp(0.8rem, 2vw, 1rem);
 }
