@@ -51,6 +51,7 @@ const Bloodcenters = () => {
     else if (data.bloodcenter)
       return bloodcenters.filter(
         (item) =>
+          item.uf.toLowerCase().includes(data.bloodcenter.toLowerCase()) ||
           item.estado.toLowerCase().includes(data.bloodcenter.toLowerCase()) ||
           item.cidade.toLowerCase().includes(data.bloodcenter.toLowerCase()) ||
           item.bairro.toLowerCase().includes(data.bloodcenter.toLowerCase()) ||
@@ -58,15 +59,6 @@ const Bloodcenters = () => {
       );
     else return bloodcenters;
   }, [bloodcenter, bloodcenters, data.bloodcenter, selectedValue]);
-
-  console.log(
-    bloodcenters.filter(
-      (item) =>
-        item.estado.includes(data.bloodcenter) ||
-        item.cidade.includes(data.bloodcenter) ||
-        item.logradouro.includes(data.bloodcenter)
-    )
-  );
 
   return (
     <>
