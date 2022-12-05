@@ -8,7 +8,7 @@ import ListItem from "../../../components/list/ListItem/ListItem";
 import { getById } from "../../../services/apiBlood/http/get";
 
 import patient from "../../../assets/bloobs/profile.svg";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useMemo } from "react";
 import { AuthContext } from "../../../contexts/Auth/AuthContext";
 import { dateMask } from "../../../utils/masks";
 
@@ -16,6 +16,9 @@ const ScheduledAppointment = () => {
   const auth = useContext(AuthContext);
 
   const [queries, setQueries] = useState([]);
+  const [date, setDate] = useState({
+    date: "",
+  });
 
   useEffect(() => {
     getById("/ListarConsultasPorHemocentro", auth.user).then((response) => {
@@ -25,6 +28,18 @@ const ScheduledAppointment = () => {
     });
   }, []);
 
+  const handleOnChange = (input, value) => {
+    setDate((prevState) => ({ ...prevState, [value]: input }));
+  };
+
+  const filteredBloodcenter = useMemo(() => {
+    return date
+      ? queries.filter((item) => item.data_agendada_doador.includes(date.date))
+      : queries;
+  }, [queries, date.date]);
+
+  console.log(filteredBloodcenter);
+
   return (
     <>
       <Menu />
@@ -33,8 +48,14 @@ const ScheduledAppointment = () => {
         <Header action="Entrar" />
 
         <div className={styles.listing}>
-          <Filter placeholder="Agendamentos por dia" type="date" />
-          {queries.map((item) => {
+          <Filter
+            placeholder="Agendamentos por dia"
+            type="date"
+            name="date"
+            value={date.date || ""}
+            handleOnChange={handleOnChange}
+          />
+          {filteredBloodcenter.map((item) => {
             return (
               !item.concluido && (
                 <ListItem
