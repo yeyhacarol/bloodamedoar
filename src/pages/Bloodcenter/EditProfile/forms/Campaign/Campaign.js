@@ -275,6 +275,14 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
               cidade: "",
             };
           });
+        } else {
+          setErrors({
+            ...errors,
+            cep: {
+              error: false,
+              errorMessage: "",
+            },
+          });
         }
 
         setData((prevState) => {
@@ -368,10 +376,15 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
                 value={data.nome || ""}
                 handleOnChange={handleOnChange}
                 onFocus={() => setErrors({ ...errors, nome: false })}
+                autoFocus
               />
               <div className={styles.input_container}>
                 <label>Foto de capa</label>
-                <label htmlFor="file" className={styles.file_input}>
+                <label
+                  htmlFor="file"
+                  className={styles.file_input}
+                  onFocus={() => setErrors({ ...errors, foto_capa: false })}
+                >
                   {data.foto_capa ? (
                     <>
                       <MdOutlinePhoto size={30} />
@@ -394,7 +407,7 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
                 onChange={handleFile}
               />
               <div className={styles.message}>
-                {!errors.foto_capa && (
+                {errors.foto_capa.error && (
                   <>
                     <span>{errors.foto_capa.icon}</span>
                     <span>{errors.foto_capa.errorMessage}</span>
@@ -549,24 +562,6 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
               value={data.descricao || ""}
               handleOnChange={handleOnChange}
             />
-            {/* <h3>Parceiros</h3>
-          <div className={`${styles.form} ${styles.partners}`}>
-            <Input
-              placeholder="Nome"
-              info="Nome parceiro"
-              value={data.nome_parceria || ""}
-              handleOnChange={handleOnChange}
-            />
-            <Input
-              type="file"
-              placeholder="Logo"
-              info="Logo parceiro"
-              error={errors.logo_parceria.error}
-              errorMessage={errors.logo_parceria.errorMessage}
-              value={data.logo_parceria || ""}
-              handleOnChange={handleOnChange}
-            />
-          </div> */}
           </div>
           {id && (
             <HiOutlineTrash
