@@ -19,6 +19,7 @@ const Selection = ({
   onFocus,
   label,
   custom,
+  customized,
 }) => {
   const styles = {
     /* container: (styles) => {
@@ -32,7 +33,13 @@ const Selection = ({
         ...styles,
         width: width,
         minHeight: "clamp(45px, 10vw, 55px);",
-        fontSize: "clamp(0.875rem, 2vw, 1rem);",
+        fontSize: "clamp(0.8rem, 2vw, 1rem);",
+      };
+    },
+    singleValue: (styles) => {
+      return {
+        ...styles,
+        width: "93%",
       };
     },
     placeholder: (styles) => {
@@ -40,7 +47,7 @@ const Selection = ({
         ...styles,
         color: "rgba(0, 0, 0, 0.6)",
         fontFamily: "var(--font)",
-        fontSize: "clamp(0.875rem, 2vw, 1rem);",
+        fontSize: "clamp(0.8rem, 2vw, 1rem);",
         fontWeight: 400,
       };
     },
@@ -74,7 +81,7 @@ const Selection = ({
   };
 
   return (
-    <div className={style.select_container}>
+    <div className={`${style.select_container} ${customized}`}>
       <label>{label}</label>
       <Select
         className={custom}

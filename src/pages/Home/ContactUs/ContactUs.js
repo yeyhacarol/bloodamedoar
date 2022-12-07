@@ -92,7 +92,7 @@ const ContactUs = () => {
             handleOnChange={handleOnChange}
             onFocus={() => setErrors({ ...errors, message: false })}
           />
-          <Submit action="Enviar" />
+          <Submit action="Enviar" customClass={styles.submit} />
         </form>
 
         <div className={styles.bloobs}></div>

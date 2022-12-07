@@ -1,19 +1,18 @@
 import styles from "./Filter.module.css";
 
 import Input from "../../components/form/Input/Input";
-import { BsSearch } from "react-icons/bs";
 
-const Filter = ({ type, placeholder }) => {
+const Filter = ({ type, placeholder, handleOnChange, name, value }) => {
   return (
     <div className={styles.filter}>
       <Input
         type={type}
         custom={styles.custom_input}
         placeholder={placeholder}
+        handleOnChange={handleOnChange}
+        name={name}
+        value={value}
       />
-      <div className={styles.search}>
-        <BsSearch size={30} />
-      </div>
     </div>
   );
 };

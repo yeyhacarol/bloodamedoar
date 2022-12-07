@@ -47,6 +47,7 @@
 
 .custom_button {
   width: clamp(35px, 35vw, 140px);
+  font-size: clamp(1rem, 5.5vw, 1.125rem);
 }
 
 @media screen and (max-width: 800px) {

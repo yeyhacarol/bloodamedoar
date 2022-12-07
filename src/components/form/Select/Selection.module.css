@@ -16,3 +16,7 @@
     display: flex;
     align-items: center;
 }
+
+.css-qc6sy-singleValue {
+    color: tomato !important;
+}

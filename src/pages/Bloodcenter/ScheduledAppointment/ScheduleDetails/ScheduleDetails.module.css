@@ -38,6 +38,8 @@
     width: inherit;
     height: inherit;
 
+    gap: 30px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -110,7 +112,8 @@ td {
 }
 
 .button {
-    font-size: clamp(1rem, 4vw, 1.125rem);
+    width: clamp(200px, 25vw, 280px);
+    font-size: clamp(1rem, 2vw, 1.375rem);
 }
 
 @media screen and (max-width: 920px) {

@@ -29,4 +29,13 @@ const dateMask = (data) => {
   return newData;
 };
 
-export { phoneMask, cepMask, dateMask };
+const cpfMask = (cpf) => {
+  cpf = cpf.replace(/\D/g, "");
+  cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+  cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+  cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+  return cpf;
+};
+
+export { phoneMask, cepMask, dateMask, cpfMask };

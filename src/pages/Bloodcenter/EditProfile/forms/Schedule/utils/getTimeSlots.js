@@ -1,4 +1,10 @@
 export const getTimeSlots = (startTime, endTime, collectionTime) => {
+  if (collectionTime === "00:45") {
+    collectionTime = 45;
+  } else if (collectionTime === "01:30") {
+    collectionTime = 90;
+  }
+
   let initHour, initMinute;
   startTime = startTime.split(" ");
   startTime = startTime[0].split(":");

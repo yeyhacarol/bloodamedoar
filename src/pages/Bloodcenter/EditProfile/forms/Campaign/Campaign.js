@@ -249,7 +249,6 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
         id_unidade_hemocentro: auth.user,
       });
     } else if (id) {
-      console.log(data);
       put("/editarCampanha", id, fileData);
     }
   };

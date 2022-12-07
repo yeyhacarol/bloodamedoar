@@ -90,6 +90,8 @@ const RecoverPassword = () => {
     delete data.confirmacaoSenha;
 
     put("/redefinirSenha", data.email, data);
+
+    navigate("/bloodcenter/login");
   };
 
   useEffect(() => {

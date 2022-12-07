@@ -9,8 +9,6 @@ import Container from "../../layout/Container/Container";
 const CompaignSlider = ({ customClass, title, children, items }) => {
   const [scrollX, setScrollX] = useState(0);
 
-  /* PASSAR LISTWIDTH POR PROPS */
-
   const handleLeftArrow = () => {
     let scroll = scrollX + Math.round(window.innerWidth / 2);
 

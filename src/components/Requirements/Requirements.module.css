@@ -11,7 +11,7 @@
 }
 
 .requirements h2 {
-    font-size: clamp(1rem, 3vw, 1.175rem);
+    font-size: clamp(1rem, 5vw, 1.125em);
     font-weight: 600;
 
     margin-bottom: 10px;
@@ -19,7 +19,7 @@
 
 .see_requirements h3,
 .see_impediments h3 {
-    font-size: clamp(1rem, 5vw, 1.125rem);
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
     font-weight: 300;
 
     margin-bottom: 45px;
@@ -139,7 +139,7 @@
 
     position: absolute;
 
-    font-size: clamp(0.875rem, 1vw, 1.125rem);
+    font-size: clamp(0.8rem, 2vw, 1rem);
     font-weight: 500;
     color: #fff;
     text-align: center;
@@ -151,7 +151,7 @@
 
 .requirements a {
     align-self: flex-end;
-    padding-right: 50px;
+    padding-right: 15px;
 
     font-size: clamp(0.875rem, 1vw, 1.125rem);
     color: #000;
@@ -163,10 +163,73 @@
 
         margin-bottom: 50px;
     }
+
+    .see_requirements h3,
+    .see_impediments h3,
+    .requirements_bloobs,
+    .impediments_bloobs {
+        margin-bottom: 22.5px;
+    }
+
+    .requirements_bloobs,
+    .impediments_bloobs {
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+  
+    .requirements .req,
+    .requirements .imp {
+        position: relative;
+        min-height: 80px;
+
+        justify-content: flex-start;
+        padding: 8px;
+    }
+
+    .requirements .req {
+        border-left: 15px solid var(--green);
+        background-color: #0992071e;
+    }
+
+    .requirements .imp {
+        border-left: 15px solid var(--red);
+        background-color: #9207071e;
+    }
+
+    .requirements img {
+        display: none;
+    }
+
+    .requirements p {
+        width: auto;
+        color: #000;
+        position: relative;
+        text-align: left;
+    }
+
+    .first_req,
+    .second_req,
+    .third_req,
+    .fourth_req,
+    .first_imp,
+    .second_imp,
+    .third_imp,
+    .fourth_imp,
+    .fifth_imp,
+    .sixth_imp {
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+
 }
 
-@media screen and (max-width: 700px) {
+/* @media screen and (max-width: 700px) {
     .requirements {
         display: none;
     }
-}
+} */

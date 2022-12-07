@@ -99,7 +99,6 @@ const Login = () => {
           />
 
           <div className={styles.about_pwd}>
-            <Input type="checkbox" label="Lembrar-me" name="rememberMe" />
             <Link to="/forgetpassword">Esqueceu a senha?</Link>
           </div>
 
