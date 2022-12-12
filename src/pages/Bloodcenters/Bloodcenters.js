@@ -47,7 +47,7 @@ const Bloodcenters = () => {
 
   const filteredBloodcenter = useMemo(() => {
     if (selectedValue)
-      return bloodcenters.filter((item) => item.id === selectedValue);
+      return bloodcenters.filter((item) => item.id === parseInt(selectedValue));
     else if (data.bloodcenter)
       return bloodcenters.filter(
         (item) =>

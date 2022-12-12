@@ -47,7 +47,7 @@ const useCreateValues = (initial, selectedDay) => {
 
 const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
   const auth = useContext(AuthContext);
-  // eslint-disable-next-line
+
   const now = new Date();
 
   const [defaultData, setDefaultData] = useState({
@@ -60,6 +60,7 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
   });
 
   const [selectableHours, setSelectableHours] = useState([]);
+  // const [collect, setCollect] = useState({});
   const [selectedDay, setSelectedDay] = useState(now.toISOString());
   const [vacancies, handleChangeVacancies, setVacancy] = useCreateValues(
     [],
@@ -126,7 +127,7 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
       const newTime = time_convert(45);
       setDefaultData({ ...defaultData, tempo_coleta: newTime });
     }
-  }, [selectedValue, defaultData]);
+  }, [selectedValue]);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -229,14 +230,16 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
       return { [date]: formatedSelectableHours };
     });
 
+    // const collection = dates.map((date) => {
+    //   return {
+    //     data_coleta: date.split("T")[0],
+    //     formatedSelectableHours,
+    //   };
+    // });
+
     setVacancy(collectionVacancy);
-  }, [
-    selectableHours,
-    dates,
-    defaultData.quantidade_vagas_media,
-    now,
-    setVacancy,
-  ]);
+    // setCollect({ collection, id_unidade_hemocentro: auth.user });
+  }, [selectableHours]);
 
   const personalized = () => {
     const collectionData = [];
