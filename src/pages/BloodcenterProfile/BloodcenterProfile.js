@@ -41,6 +41,10 @@ const BloodcenterProfile = () => {
       } else {
         const resp = response[0][0];
 
+        const services = response[0].map((item) => {
+          return item.tipo_servico;
+        });
+
         setData((prevState) => {
           return {
             ...prevState,
@@ -67,6 +71,7 @@ const BloodcenterProfile = () => {
             email: resp.email,
             foto_perfil: resp.foto_perfil,
             foto_capa: resp.foto_capa,
+            tipo_servico: services,
           };
         });
       }

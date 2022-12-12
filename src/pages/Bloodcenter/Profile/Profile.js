@@ -2,10 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../contexts/Auth/AuthContext";
 
-import { CircleMenu, CircleMenuItem } from "react-circular-menu";
-
-import { FiCalendar, FiSmile, FiDroplet, FiLogIn } from "react-icons/fi";
-import { AiOutlineHistory } from "react-icons/ai";
+// import { CircleMenu, CircleMenuItem } from "react-circular-menu";
+import { FiLogIn } from "react-icons/fi";
+// import { AiOutlineHistory } from "react-icons/ai";
 
 import profile from "../../../assets/bloobs/profile 1.1.svg";
 import cape from "../../../assets/bloobs/cape.svg";
@@ -36,13 +35,13 @@ const Profile = () => {
     navigate("/");
   };
 
-  let rotationAngle = Math.round(window.innerWidth);
+  // let rotationAngle = Math.round(window.innerWidth);
 
-  if (rotationAngle < 1025) {
-    rotationAngle = -190;
-  } else {
-    rotationAngle = 360;
-  }
+  // if (rotationAngle < 1025) {
+  //   rotationAngle = -190;
+  // } else {
+  //   rotationAngle = 360;
+  // }
 
   const [data, setData] = useState({
     nome_unidade: "",
@@ -69,6 +68,10 @@ const Profile = () => {
     getById("/listarHemocentroPorId", auth.user).then((response) => {
       const resp = response[0][0];
 
+      const services = response[0].map((item) => {
+        return item.tipo_servico;
+      });
+
       setData((prevState) => {
         return {
           ...prevState,
@@ -91,7 +94,7 @@ const Profile = () => {
           email: resp.email,
           foto_perfil: resp.foto_perfil,
           foto_capa: resp.foto_capa,
-          tipo_servico: [],
+          tipo_servico: services,
         };
       });
     });
