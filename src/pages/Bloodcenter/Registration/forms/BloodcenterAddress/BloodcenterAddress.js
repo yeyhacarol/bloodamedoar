@@ -74,7 +74,7 @@ const BloodcenterAddress = ({ setTabIndex, setTabSteps }) => {
         };
       });
     });
-  }, [data.cep]);
+  }, [data.cep, data.bairro]);
 
   return (
     <form onSubmit={handleOnSubmit}>
