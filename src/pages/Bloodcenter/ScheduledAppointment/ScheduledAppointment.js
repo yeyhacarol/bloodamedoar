@@ -26,7 +26,7 @@ const ScheduledAppointment = () => {
 
       setQueries(resp);
     });
-  }, []);
+  }, [auth.user]);
 
   const handleOnChange = (input, value) => {
     setDate((prevState) => ({ ...prevState, [value]: input }));
@@ -36,7 +36,7 @@ const ScheduledAppointment = () => {
     return date
       ? queries.filter((item) => item.data_agendada_doador.includes(date.date))
       : queries;
-  }, [queries, date.date]);
+  }, [queries, date]);
 
   console.log(filteredBloodcenter);
 

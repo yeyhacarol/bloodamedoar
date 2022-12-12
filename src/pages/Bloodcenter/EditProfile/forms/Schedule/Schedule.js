@@ -29,10 +29,10 @@ const useCreateValues = (initial, selectedDay) => {
 
       const selectedDayHours = clonedVacancies.find((obj) => obj[selectedDay]);
       const dayIndex = clonedVacancies.findIndex(
-        (obj) => obj == selectedDayHours
+        (obj) => obj === selectedDayHours
       );
       const hourIndex = selectedDayHours[selectedDay].findIndex(
-        (obj) => obj.hora_coleta == vacancy.hora_coleta
+        (obj) => obj.hora_coleta === vacancy.hora_coleta
       );
 
       clonedVacancies[dayIndex][selectedDay][
@@ -47,6 +47,7 @@ const useCreateValues = (initial, selectedDay) => {
 
 const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
   const auth = useContext(AuthContext);
+  // eslint-disable-next-line
   const now = new Date();
 
   const [defaultData, setDefaultData] = useState({
@@ -59,7 +60,6 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
   });
 
   const [selectableHours, setSelectableHours] = useState([]);
-  const [collect, setCollect] = useState({});
   const [selectedDay, setSelectedDay] = useState(now.toISOString());
   const [vacancies, handleChangeVacancies, setVacancy] = useCreateValues(
     [],
@@ -119,14 +119,14 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
   }
 
   useEffect(() => {
-    if (selectedValue == 1) {
+    if (selectedValue === 1) {
       const newTime = time_convert(90);
       setDefaultData({ ...defaultData, tempo_coleta: newTime });
     } else {
       const newTime = time_convert(45);
       setDefaultData({ ...defaultData, tempo_coleta: newTime });
     }
-  }, [selectedValue]);
+  }, [selectedValue, defaultData]);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -186,8 +186,6 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
       id_tipo_servico: selectedValue,
     });
 
-    console.log(defaultData);
-
     post("/cadastrarConfigAgenda", {
       ...defaultData,
       id_tipo_servico: selectedValue,
@@ -231,17 +229,14 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
       return { [date]: formatedSelectableHours };
     });
 
-    const collection = dates.map((date) => {
-      return {
-        data_coleta: date.split("T")[0],
-        formatedSelectableHours,
-      };
-    });
-
     setVacancy(collectionVacancy);
-
-    setCollect({ collection, id_unidade_hemocentro: auth.user });
-  }, [selectableHours]);
+  }, [
+    selectableHours,
+    dates,
+    defaultData.quantidade_vagas_media,
+    now,
+    setVacancy,
+  ]);
 
   const personalized = () => {
     const collectionData = [];
@@ -270,35 +265,29 @@ const Schedule = ({ cape, photo, bloodcenter, setVisible }) => {
     post("/CadastrarAgendaHemocentro", formatedData);
   };
 
-  // O QUE É PRECISO FAZER?
-
-  // 3 - BUSCAR AGENDA POR TIPO SERVIÇO
-
   const hours = useMemo(() => {
-    {
-      return vacancies.map((vacancy) => {
-        return vacancy[selectedDay]?.map((selectedDayVacancy) => {
-          return (
-            <div className={styles.timeslot}>
-              <div className={styles.personalized_hour}>
-                {selectedDayVacancy.hora_coleta}
-              </div>
-              <Input
-                placeholder="Qtde. de vagas"
-                mask={onlyNumbers}
-                name="quantidade_vagas_coleta"
-                value={selectedDayVacancy.quantidade_vagas_coleta}
-                handleOnChange={(event) =>
-                  handleChangeVacancies(event, selectedDayVacancy)
-                }
-                custom={styles.personalized_quantity}
-              />
+    return vacancies.map((vacancy) => {
+      return vacancy[selectedDay]?.map((selectedDayVacancy) => {
+        return (
+          <div className={styles.timeslot}>
+            <div className={styles.personalized_hour}>
+              {selectedDayVacancy.hora_coleta}
             </div>
-          );
-        });
+            <Input
+              placeholder="Qtde. de vagas"
+              mask={onlyNumbers}
+              name="quantidade_vagas_coleta"
+              value={selectedDayVacancy.quantidade_vagas_coleta}
+              handleOnChange={(event) =>
+                handleChangeVacancies(event, selectedDayVacancy)
+              }
+              custom={styles.personalized_quantity}
+            />
+          </div>
+        );
       });
-    }
-  }, [selectedDay]);
+    });
+  }, [selectedDay, handleChangeVacancies, vacancies]);
 
   return (
     <>

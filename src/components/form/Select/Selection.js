@@ -22,12 +22,6 @@ const Selection = ({
   customized,
 }) => {
   const styles = {
-    /* container: (styles) => {
-      return {
-        ...styles,
-        width: width,
-      };
-    }, */
     control: (styles) => {
       return {
         ...styles,

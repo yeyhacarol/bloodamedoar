@@ -34,7 +34,6 @@ const BloodcenterData = ({ setVisible }) => {
     ponto_referencia: "",
     biografia: "",
     horario_atendimento: "",
-    tipo_servico: [],
     telefone: "",
     celular: "",
     email: "",
@@ -87,7 +86,6 @@ const BloodcenterData = ({ setVisible }) => {
           biografia: data.biografia || resp.biografia,
           horario_atendimento:
             data.horario_atendimento || resp.horario_atendimento,
-          //tipo_servico: data.tipo_servico || resp.tipo_servico,
           telefone: data.telefone || resp.telefone,
           celular: data.celular || resp.celular,
           email: resp.email,
@@ -96,7 +94,14 @@ const BloodcenterData = ({ setVisible }) => {
         };
       });
     });
-  }, []);
+  }, [
+    auth.user,
+    data.biografia,
+    data.celular,
+    data.horario_atendimento,
+    data.ponto_referencia,
+    data.telefone,
+  ]);
 
   const [errors, setErrors] = useState({
     telefone: {

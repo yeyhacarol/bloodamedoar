@@ -1,14 +1,9 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
-import {
-  login,
-  logout,
-  validateToken,
-} from "../../services/apiBlood/authentication";
+import { login, logout } from "../../services/apiBlood/authentication";
 import { toast } from "react-toastify";
 
 const AuthProvider = ({ children }) => {
-  const auth = useContext(AuthContext);
   const [user, setUser] = useState(null);
 
   useEffect(() => {

@@ -98,7 +98,7 @@ const RecoverPassword = () => {
     if (!validate(protocol) || !token) {
       navigate("/");
     }
-  }, [protocol, token]);
+  }, [protocol, token, navigate]);
 
   return (
     <div className={styles.container_recover_password}>

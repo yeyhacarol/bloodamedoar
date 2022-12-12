@@ -36,7 +36,10 @@ const Inventory = ({
         {currentInventory.map((current) => {
           return (
             <div className={styles.level} key={current.estoque_sangue}>
-              <img src={getBloodLevel(current.nivel)} />
+              <img
+                src={getBloodLevel(current.nivel)}
+                alt={getBloodLevel(current.nivel)}
+              />
               <p>{current.tipo_sanguineo}</p>
             </div>
           );

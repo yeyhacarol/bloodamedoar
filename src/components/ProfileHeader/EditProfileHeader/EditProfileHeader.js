@@ -29,7 +29,7 @@ const EditProfileHeader = ({
       </div>
       <label htmlFor="profileImg" className={styles.edit_photo}>
         <p>Editar foto</p>
-        <img src={bloodcenter ? bloodcenter : profile} />
+        <img src={bloodcenter ? bloodcenter : profile} alt={bloodcenter} />
       </label>
       <input
         id="profileImg"

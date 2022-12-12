@@ -7,7 +7,6 @@ import styles from "./App.module.css";
 
 import Home from "./pages/Home/Home";
 import Campaign from "./pages/Campaign/Campaign";
-//import Identification from "./pages/Identification/Identification";
 import Login from "./pages/Login/Login";
 import Registration from "./pages/Bloodcenter/Registration/Registration";
 import Profile from "./pages/Bloodcenter/Profile/Profile";
@@ -33,7 +32,6 @@ const App = () => {
           <Route path="/campaign/:id" element={<Campaign />} />
           <Route path="/bloodcenters" element={<Bloodcenters />} />
           <Route path="/bloodcenters/:id" element={<BloodcenterProfile />} />
-          {/* <Route path="/identification" element={<Identification />} /> */}
           {!auth.user ? (
             <Route path="/bloodcenter/login" element={<Login />} />
           ) : (

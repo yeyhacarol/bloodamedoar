@@ -297,7 +297,7 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
         };
       });
     }
-  }, [data.cep]);
+  }, [data.cep, errors]);
 
   useEffect(() => {
     if (id) {
@@ -324,7 +324,14 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
         })
         .catch((error) => console.error(error));
     }
-  }, [id]);
+  }, [
+    data.descricao,
+    data.nome,
+    data.numero,
+    data.ponto_referencia,
+    id,
+    auth.user,
+  ]);
 
   const getFileType = (file) => {
     if (file.type?.match("image.*")) return "image";
@@ -375,7 +382,11 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
                     <>
                       <MdOutlinePhoto size={30} />
                       <label htmlFor="file" title="Escolha uma foto de capa">
-                        <img src={formatImage} className={styles.foto_capa} />
+                        <img
+                          src={formatImage}
+                          alt="Foto da campanha"
+                          className={styles.foto_capa}
+                        />
                       </label>
                     </>
                   ) : (

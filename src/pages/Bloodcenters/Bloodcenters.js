@@ -47,7 +47,7 @@ const Bloodcenters = () => {
 
   const filteredBloodcenter = useMemo(() => {
     if (selectedValue)
-      return bloodcenters.filter((item) => item.id == selectedValue);
+      return bloodcenters.filter((item) => item.id === selectedValue);
     else if (data.bloodcenter)
       return bloodcenters.filter(
         (item) =>
@@ -58,7 +58,7 @@ const Bloodcenters = () => {
           item.logradouro.toLowerCase().includes(data.bloodcenter.toLowerCase())
       );
     else return bloodcenters;
-  }, [bloodcenter, bloodcenters, data.bloodcenter, selectedValue]);
+  }, [bloodcenters, data.bloodcenter, selectedValue]);
 
   return (
     <>

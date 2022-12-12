@@ -3,7 +3,7 @@ import styles from "./Bloodflow.module.css";
 import { FiCalendar, FiSmile } from "react-icons/fi";
 import { AiOutlineHistory } from "react-icons/ai";
 
-const Bloodflow = ({ text, bft1, bft2, bf3 }) => {
+const Bloodflow = () => {
   return (
     <div className={styles.our_benefits}>
       <div className={styles.benefits}>

@@ -24,10 +24,10 @@ const ScheduleDetails = () => {
       const resp = response[0];
 
       resp.map((item) => {
-        setQuery(item);
+        return setQuery(item);
       });
     });
-  }, []);
+  }, [id]);
 
   const completeQuery = () => {
     put("/FinalizarConsulta", id);

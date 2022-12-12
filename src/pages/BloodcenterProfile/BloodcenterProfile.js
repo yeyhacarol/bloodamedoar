@@ -75,7 +75,7 @@ const BloodcenterProfile = () => {
     getById("/listarEstoqueSangue", id).then((data) =>
       setCurrentInventory(data[0])
     );
-  }, [auth.user]);
+  }, [auth.user, id]);
 
   useEffect(() => {
     getById("/listarCampanhas", id)
@@ -83,7 +83,7 @@ const BloodcenterProfile = () => {
         setCampain(response);
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [id]);
 
   return (
     <div className={styles.profile_container}>
