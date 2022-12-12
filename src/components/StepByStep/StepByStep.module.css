@@ -72,7 +72,7 @@
 
 .step_content p,
 .step h4 {
-    font-size: clamp(0.8rem, 2vw, 1rem);
+    font-size: clamp(0.8rem, 1vw, 1rem);
     text-align: justify;
 }
 

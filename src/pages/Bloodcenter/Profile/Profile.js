@@ -191,7 +191,7 @@ const Profile = () => {
           </CampaignSlider>
         )}
 
-        <CircleMenu
+        {/* <CircleMenu
           className={styles.menu}
           startAngle={-90}
           rotationAngle={rotationAngle}
@@ -214,7 +214,7 @@ const Profile = () => {
           >
             <AiOutlineHistory size={20} />
           </CircleMenuItem>
-        </CircleMenu>
+        </CircleMenu> */}
       </div>
     </div>
   );

@@ -38,8 +38,6 @@ const ScheduledAppointment = () => {
       : queries;
   }, [queries, date]);
 
-  console.log(filteredBloodcenter);
-
   return (
     <>
       <Menu />
@@ -59,7 +57,7 @@ const ScheduledAppointment = () => {
           {filteredBloodcenter.length > 0 ? (
             filteredBloodcenter.map((item) => {
               return (
-                !item.concluido && (
+                item.concluido === 0 && (
                   <ListItem
                     key={item.id}
                     logo={item.foto_perfil ? item.foto_perfil : patient}
@@ -82,7 +80,7 @@ const ScheduledAppointment = () => {
             <h3>Consultas concluídas</h3>
             {queries.map((item) => {
               return (
-                item.concluido && (
+                item.concluido === 1 && (
                   <ListItem
                     key={item.id}
                     logo={item.foto_perfil ? item.foto_perfil : patient}
