@@ -60,4 +60,8 @@
     .content {
         padding: 0;
     }
+
+    .inventory_tab {
+        padding-bottom: 55px;
+    }
 }

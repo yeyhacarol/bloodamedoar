@@ -305,7 +305,7 @@ const Campaign = ({ setVisible, cape, photo, bloodcenter }) => {
         };
       });
     }
-  }, [data.cep, errors]);
+  }, [data.cep]);
 
   useEffect(() => {
     if (id) {

@@ -65,6 +65,10 @@
 }
 
 @media screen and (max-width: 1025px) {
+    .profile_content {
+        padding-bottom: 50px;
+    }
+
     .profile_content,
     .our_campaigns {
         width: 100vw;
@@ -81,7 +85,7 @@
 
     .whatsapp {
         position: fixed;
-        top: 88vh;
+        top: 80vh;
         right: 15px;
     }
 

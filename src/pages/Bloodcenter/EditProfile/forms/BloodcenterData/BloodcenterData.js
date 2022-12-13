@@ -131,7 +131,7 @@ const BloodcenterData = ({ setVisible }) => {
       });
     }
 
-    if (data.celular.length !== 10) {
+    if (data.celular.length !== 11) {
       return setErrors({
         ...errors,
         celular: {

@@ -42,7 +42,9 @@ const BloodcenterProfile = () => {
         const resp = response[0][0];
 
         const services = response[0].map((item) => {
-          return item.tipo_servico;
+          return item.tipo_servico
+            ? item.tipo_servico
+            : "Ainda não cadastrado.";
         });
 
         setData((prevState) => {
@@ -71,7 +73,7 @@ const BloodcenterProfile = () => {
             email: resp.email,
             foto_perfil: resp.foto_perfil,
             foto_capa: resp.foto_capa,
-            tipo_servico: services,
+            tipo_servico: services ? services : "Ainda não foi cadastrado.",
           };
         });
       }
@@ -92,11 +94,7 @@ const BloodcenterProfile = () => {
 
   return (
     <div className={styles.profile_container}>
-      <Menu
-        label="Hemocentros"
-        alt="Lista de hemocentros"
-        title="Lista de hemocentros"
-      />
+      <Menu />
 
       <div className={styles.profile_content}>
         <ProfileHeader
