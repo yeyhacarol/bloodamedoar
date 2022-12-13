@@ -38,6 +38,7 @@
     height: inherit;
 
     gap: 30px;
+    padding-bottom: 50px;
 
     display: flex;
     flex-direction: column;
